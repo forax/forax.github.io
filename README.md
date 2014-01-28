@@ -1,4 +1,6 @@
-blog
+My blog
 ====
 
-A blog publisher (like Jekyll) written in Java and tailored for me
+My blog - that uses https://github.com/forax/blog as generator.
+
+
