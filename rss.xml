@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<rss version='2.0'>
+  <channel>
+  <title>Remi Forax's Blog</title>
+  <description>Java, the JVM and stuff around</description>
+  <link>http://forax.github.io</link>
+  <lastBuildDate>2014-01-28T00:00:00</lastBuildDate>
+  <pubDate>2014-01-28T00:00:00</pubDate>
+  <ttl>1800</ttl>
+    <item>
+      <title>the selector pattern</title>
+      <description> Fun with functional Programming in Java
+Java 8 introduces functional interface (function type) and lambda (anonymous function) to Java making Java effectively a kind of functional language.</description>
+      <link>http://forax.github.io/2014-01-27-8650156-the_selector_pattern.html</link>
+      <guid>2014-01-27-8650156-the_selector_pattern</guid>
+      <pubDate>2014-01-27T00:00:00</pubDate>
+    </item>
+</channel>
+</rss>
