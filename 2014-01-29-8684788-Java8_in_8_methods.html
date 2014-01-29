@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width'>
+    <title>Remi Forax's Blog</title>
+    <link rel='stylesheet' id='twentythirteen-style-css'  href='style.css' type='text/css' media='all' />
+    <style type='text/css' id='twentythirteen-header-css'>
+    .site-header {
+      background: url(circle.png) no-repeat scroll top;
+      background-size: 1600px auto;
+    }
+    </style>
+    <!-- link type='text/css' rel='stylesheet' href='styles/shCoreDefault.css'/ -->
+  </head>
+  <body class='home blog single-author'>
+    <div id='page' class='hfeed site'>
+      <header id='masthead' class='site-header' role='banner'>
+        <a class='home-link' href='index.html' title='forax's blog' rel='home'>
+          <h1 class='site-title'>Remi Forax's Blog</h1>
+          <h2 class='site-description'>Java, the JVM and stuff around</h2>
+        </a>
+      </header>
+      <div id='main' class='site-main'>
+        <div id='primary' class='content-area'>
+          <div id='content' class='site-content' role='main'>
+<article id='post' class='post type-post status-publish format-standard hentry category-uncategorized'>
+<header class='entry-header'>
+  <h1 class='entry-title'>
+    <a href='2014-01-29-8684788-Java8_in_8_methods.html' title='Permalink' rel='bookmark'>
+Java8 in 8 methods
+     </a>
+  </h1>
+  <div class='entry-meta'>
+    <span class='date'>
+      <time class='entry-date'>
+Wednesday, January 29, 2014
+      </time>
+    </span>
+    <span class='categories-links'>
+lambda
+java
+    </span>
+  </div><!-- .entry-meta -->
+</header><!-- .entry-header -->
+<div class='entry-content'>
+ <p>
+<p>Trying to summarize all the novelties of Java 8 is pretty hard, obviously you have the introduction of lambdas, but there are dozens of little gems just waiting you, in this post, i will try to summarize Java 8 in 8 new useful methods.</p><h3><a href="http://download.java.net/jdk8/docs/api/java/util/List.html#sort-java.util.Comparator-">List.sort()</a></h3><p><code>java.util.List</code> has now a method <code>sort</code>, yes, I know, it's just crazy in retrospect to think that until 2014, a newbie in Java has to post a question on StackOverflow to be able to sort a list.</p>
+<pre><code>List&lt;String&gt; list = ...
+list.sort(null);                                    // use natural order
+list.sort((s1, s2) -&gt; s1.compareToIgnoreCase(s2));  // sort ignoring case
+list.sort(String::compareToIgnoreCase);             // same with a method reference
+</code></pre><p>If <code>sort</code> is called with <code>null</code>, the element of the list must be comparable with themselves, otherwise, you can specify a comparator, either as a lambda or as a method reference.</p><h3><a href="http://download.java.net/jdk8/docs/api/java/util/Collection.html#removeIf-java.util.function.Predicate-">List.removeIf()</a></h3><p>Sometimes you want to iterate on a list to remove let say all the string that have a length divisible by 2 (yes, I know the example is stupid, but I'm sure you see what I mean).<br/>Because you can not mutate the list while iterating on it, you have to use an Iterator and write those lines</p>
+<pre><code>Iterator&lt;String&gt; it = list.iterator();
+while(it.hasNext()) {
+    String s = it.next();
+    if (s.length() %2 == 0) {
+        it.remove();
+    }
+}
+</code></pre><p>It's a common code but having to conjure an Iterator for that is still a little scary (an iterator is not something a user of an API should see, it is just there to do the plumbing in the basement).<br/>Hopefully, we now have the method <code>removeIf</code>.</p>
+<pre><code>list.removeIf(s -&gt; s.length() %2 == 0);
+</code></pre><p>so now, there is no excuse to use an Iterator explicitly anymore.</p><h3><a href="http://download.java.net/jdk8/docs/api/java/util/Map.html#getOrDefault-java.lang.Object-V-">Map.getOrDefault()</a></h3><p>Let suppose we want to record the number of occurrence of a list of word in a <code>Map</code>, the code below is the code that was given when Java 5 was released as an example (I think it was written by <a href="https://en.wikipedia.org/wiki/Joshua_Bloch">Josh Bloch</a>) because it combines generics and boxing.</p>
+<pre><code>Map&lt;String, Long&gt; map = new HashMap&lt;String, Long&gt;();
+for(String s: array) {
+    Long count = map.get(s);
+    map.put(s, (count == null)? 1L: count + 1);
+}
+</code></pre><p>here, the fact that <code>Map.get</code> returns null and not the default value of the type (here <code>Long</code>) makes the code quite ugly. Java 8 introduces <code>Map.getOrDefault</code> to allow to specify the default value if there is no corresponding value in the <code>Map</code>.</p>
+<pre><code>Map&lt;String, Long&gt; map = new HashMap&lt;&gt;();
+for(String s: args) {
+    map.put(s, 1 + map.getOrDefault(s, 0L));
+}
+</code></pre><h3><a href="http://download.java.net/jdk8/docs/api/java/util/Map.html#computeIfAbsent-K-java.util.function.Function-">Map.computeIfAbsent()</a></h3><p>Let suppose I want to group a list of <code>Person</code> by their name into a <code>Map</code>. Again, I have to separate the case where there is no value associated to a string or not.</p>
+<pre><code>List&lt;Person&gt; people = ...
+Map&lt;String, List&lt;Person&gt;&gt; byNameMap = new HashMap&lt;&gt;();
+for(Person person: people) {
+    String name = person.getName();
+    List&lt;Person&gt; persons = byNameMap.get(name);
+    if (persons == null) {
+      persons = new ArrayList&lt;&gt;();
+      byNameMap.put(name, persons);
+    }
+    persons.add(person);
+}
+</code></pre><p>Maybe, we can use <code>getOrDefault</code> ?</p>
+<pre><code>Map&lt;String, List&lt;Person&gt;&gt; byNameMap = new HashMap&lt;&gt;();
+for(Person person: people) {
+    byNameMap.getOrDefault(person.getName(), new ArrayList&lt;&gt;()).add(person);
+}
+</code></pre><p>It works but it's inefficient because we create a new <code>ArrayList</code> at each call of <code>getOrDefault</code> even when a list already exist in the map. What we need is a way to delay the creation of the <code>ArrayList</code> until we really need it.<br/>A lambda is a delayed calculation ! </p>
+<pre><code>Map&lt;String, List&lt;Person&gt;&gt; byNameMap = new HashMap&lt;&gt;();
+for(Person person: people) {
+    byNameMap.computeIfAbsent(person.getName(), name -&gt; new ArrayList&lt;&gt;()).add(person);
+}
+</code></pre><p>Note that this lambda doesn't use value of variable from outside of the lambda, so the JDK implementation will make it a constant (so please, do not store a lambda in a static final field, you do not need it !).</p><p><code>computeIfAbsent</code> can also be used to implement a cache easily</p>
+<pre><code>Map&lt;Integer, FairlyBigObject&gt; map = ...
+map.computeIfAbsent(id, id -&gt; DB.findById(FairlyBigObject.class, id)); 
+</code></pre><h3><a href="http://download.java.net/jdk8/docs/api/java/util/Map.html#forEach-java.util.function.BiConsumer-">Map.forEach()</a></h3><p>Iterating over a <code>Map</code> is not simple as it should with Java &lt; 8, even in PHP, you can do a <code>foreach</code> with two variables, the key and the value.<br/>So instead of</p>
+<pre><code>Map&lt;String, List&lt;Person&gt;&gt; byNameMap = ...
+for(Map.Entry&lt;String, List&lt;Person&gt;&gt; entry: byNameMap.entrySet()) {
+  System.out.println(name + &#39; &#39; + persons);
+}
+</code></pre><p>you can use <code>Map.forEach</code></p>
+<pre><code>byNameMap.forEach((name, persons) -&gt; {
+  System.out.println(name + &#39; &#39; + persons);
+});
+</code></pre><p>which is in fact more efficient for maps like <code>IdentityHashMap</code> that doesn't store the key and the value in the same object (because <code>IdentityHashMap.entrySet()</code> has to re-create the <code>Map.Entry</code> on the fly :( ).</p><h3><a href="http://download.java.net/jdk8/docs/api/java/util/Collection.html#stream--">Collection.stream()</a>, <a href="http://download.java.net/jdk8/docs/api/java/util/Arrays.html#stream-T:A-">Arrays.stream()</a></h3><p>In fact, you don't need to use <code>computeIfAbsent</code> if you want to do a <code>groupBy</code>, you can transform the collection or the array to a <code>Stream</code> of objects, do transformation on each one and then collect all the results in a <code>List</code> or a <code>Map</code> using a set predefined <a href="http://download.java.net/jdk8/docs/api/java/util/stream/Collectors.html"><code>Collectors</code></a>. </p>
+<pre><code>Map&lt;String, List&lt;Person&gt;&gt; byNameMap =
+people.stream().collect(Collectors.groupingBy(Person::getName));
+</code></pre><p>The Stream API is really powerful, if you want more, you can see the presentation<br/>of José Paumard (and Brian Goetz as a sidekick) at Devoxx <a href="http://parleys.com/play/529356aae4b054cd7d2ef4eb/about">Part 1</a> <a href="http://parleys.com/play/5293594de4b054cd7d2ef4ec/about">Part 2</a></p><h3><a href="http://download.java.net/jdk8/docs/api/java/nio/file/Files.html#lines-java.nio.file.Path-">Files.lines()</a></h3><p>And what about taking a file, split it in lines and then words and compute the number of occurrence of each words. <code>Files.lines</code> let you split a files into lines <em>and</em> closes cleanly the file descriptor when not needed anymore.</p>
+<pre><code>Path file = Paths.get(&quot;file.txt&quot;);
+Map&lt;String, Long&gt; histoMap =
+    Files.lines(file)
+         .flatMap(line -&gt; Arrays.stream(line.split(&quot; &quot;)))
+         .collect(Collectors.groupingBy(Function.identity(),
+             Collectors.counting()));
+</code></pre><p>You can notice that for this snippet, I have not shown the code we have to write with Java &lt; 8, too many lines :)</p><h3><a href="http://download.java.net/jdk8/docs/api/java/time/temporal/TemporalAccessor.html#query-java.time.temporal.TemporalQuery-">Temporal.query()</a></h3><p>I would like to finish with a snippet that use the new <code>java.time</code> API, because even if the lambdas tend to catch all the light, this API is important at several levels.</p>
+<ul>
+  <li><p>I haven't seen a documentation so well written,<br/>it significantly raises the bar for all future API.<br/>and in its design notes, there is <a href="http://download.java.net/jdk8/docs/api/java/time/package-summary.html">a set of the verbs</a><br/>that every one should use in its own code.</p></li>
+  <li><p>It's mostly the work of <a href="http://blog.joda.org/">one man</a> (and contributors)<br/>not paid for that job, let say just for the glory of Java. </p></li>
+  <li><p>The API is conceptually well designed and a joy to use.</p></li>
+</ul><p>Let suppose I want to aggregate several source of data, e.g. a database, some REST service, etc, each source uses its own way to represent the concept of date and time and I want to know the day of week of these temporal objects to display them in a UI.</p>
+<pre><code>List&lt;Temporal&gt; temporals = ...
+temporals.stream().map(temporal -&gt; temporal.query(DayOfWeek::from)).forEach(System.out::println);
+</code></pre><p><code>java.time</code> not only provides immutable types to play with date and time but also a meta-description of each of these classes that allows to query the value of several different temporal object greatly simplifying the code of the UI. </p><p>This post is already too long, I hope that you have found these methods interesting and learn something new reading that post. You can find the whole code as a <a href="https://gist.github.com/forax/8684788">gist</a>.</p><p>see you soon, cheers,<br/>Remi</p>
+ </p>
+</div><!-- .entry-content -->
+<footer class='entry-meta'>
+   <div class='comments-link'>
+<a href='https://gist.github.com/forax/8684788' title='Comments'>Write a comment</a>
+   </div><!-- .comments-link -->
+   <span id='comments'/>
+</footer><!-- .entry-meta -->
+</article><!-- #post -->
+<script type='text/javascript' src='assets/ajax.js'></script>
+<script type='text/javascript'>fetchComments(8684788);</script>
+          </div><!-- #content -->
+        </div><!-- #primary -->
+      </div><!-- #main -->
+    </div><!-- #page -->
+    <!-- script type='text/javascript' src='scripts/shCore.js'></script>
+    <script type='text/javascript' src='scripts/shBrushJScript.js'></script>
+    <script type='text/javascript'>SyntaxHighlighter.all();</script -->
+  </body>
+</html>
