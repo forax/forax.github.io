@@ -104,7 +104,7 @@ public class Nil&lt;E&gt; implements List&lt;E&gt; {
     return (consumer, runnable) -&gt; consumer.accept(element, next);
   }
 }
-</code></pre><p>The implementation of nil() calls the runnable, and the implementation of cons() calls the consumer with the element and the rest of the list as parameter.<br/>Creating a list is know simpler:</p>
+</code></pre><p>The implementation of nil() calls the runnable, and the implementation of cons() calls the consumer with the element and the rest of the list as parameter.<br/>Creating a list is now simpler:</p>
 <pre><code>List&lt;Integer&gt; list =
       cons(1, cons(2, new cons(3, nil())));
 </code></pre><p>In nil() the lambda doesn't capture a value from the enclosing scope, the JDK implementation will create a constant lambda thus two calls to nil() will return the same object.</p>
