@@ -35,7 +35,7 @@ function fetchComments(gist) {
                 '        </div><!-- .comment-metadata -->' + '\n' +
                 '      </footer><!-- .comment-meta -->' + '\n' +
                 '      <div class="comment-content">' + '\n' +
-		'        <p>' + comment.body + '</p>' + '\n' +
+		'        <p>' + markdown.toHTML(comment.body) + '</p>' + '\n' +
                 '      </div><!-- .comment-content -->' + '\n' +
                 '    </article><!-- .comment-body -->' + '\n' +
                 '  </li><!-- #comment-## -->' + '\n';

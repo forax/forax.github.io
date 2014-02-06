@@ -45,7 +45,7 @@ java
 </header><!-- .entry-header -->
 <div class='entry-content'>
  <p>
-<p>Trying to summarize all the novelties of Java 8 is pretty hard, obviously you have the introduction of lambdas, but there are dozens of little gems just waiting you, in this post, i will try to summarize Java 8 in 8 new useful methods.</p><h3><a href="http://download.java.net/jdk8/docs/api/java/util/List.html#sort-java.util.Comparator-">List.sort()</a></h3><p><code>java.util.List</code> has now a method <code>sort</code>, yes, I know, it's just crazy in retrospect to think that until 2014, a newbie in Java has to post a question on StackOverflow to be able to sort a list.</p>
+<p>Trying to summarize all the novelties of Java 8 is pretty hard, obviously you have the introduction of lambdas, but there are dozens of little gems just waiting you, in this post, i will try to summarize Java 8 in 8 new useful methods.</p><p>This post was updated Feb 6th to fix issues in some Java 7 examples thanks to JB Nizet. </p><h3><a href="http://download.java.net/jdk8/docs/api/java/util/List.html#sort-java.util.Comparator-">List.sort()</a></h3><p><code>java.util.List</code> has now a method <code>sort</code>, yes, I know, it's just crazy in retrospect to think that until 2014, a newbie in Java has to post a question on StackOverflow to be able to sort a list.</p>
 <pre><code>List&lt;String&gt; list = ...
 list.sort(null);                                    // use natural order
 list.sort((s1, s2) -&gt; s1.compareToIgnoreCase(s2));  // sort ignoring case
@@ -86,7 +86,10 @@ for(Person person: people) {
 </code></pre><p>Maybe, we can use <code>getOrDefault</code> ?</p>
 <pre><code>Map&lt;String, List&lt;Person&gt;&gt; byNameMap = new HashMap&lt;&gt;();
 for(Person person: people) {
-    byNameMap.getOrDefault(person.getName(), new ArrayList&lt;&gt;()).add(person);
+    String name = person.getName();
+    List&lt;Person&gt; persons = byNameMap.getOrDefault(person.getName(), new ArrayList&lt;&gt;());
+    byNameMap.put(name, persons);
+    persons.add(person);
 }
 </code></pre><p>It works but it's inefficient because we create a new <code>ArrayList</code> at each call of <code>getOrDefault</code> even when a list already exist in the map. What we need is a way to delay the creation of the <code>ArrayList</code> until we really need it.<br/>A lambda is a delayed calculation ! </p>
 <pre><code>Map&lt;String, List&lt;Person&gt;&gt; byNameMap = new HashMap&lt;&gt;();
@@ -99,7 +102,7 @@ map.computeIfAbsent(id, id -&gt; DB.findById(FairlyBigObject.class, id));
 </code></pre><h3><a href="http://download.java.net/jdk8/docs/api/java/util/Map.html#forEach-java.util.function.BiConsumer-">Map.forEach()</a></h3><p>Iterating over a <code>Map</code> is not simple as it should with Java &lt; 8, even in PHP, you can do a <code>foreach</code> with two variables, the key and the value.<br/>So instead of</p>
 <pre><code>Map&lt;String, List&lt;Person&gt;&gt; byNameMap = ...
 for(Map.Entry&lt;String, List&lt;Person&gt;&gt; entry: byNameMap.entrySet()) {
-  System.out.println(name + &#39; &#39; + persons);
+  System.out.println(entry.getKey() + &#39; &#39; + entry.getValue());
 }
 </code></pre><p>you can use <code>Map.forEach</code></p>
 <pre><code>byNameMap.forEach((name, persons) -&gt; {
@@ -133,6 +136,7 @@ temporals.stream().map(temporal -&gt; temporal.query(DayOfWeek::from)).forEach(S
    <span id='comments'/>
 </footer><!-- .entry-meta -->
 </article><!-- #post -->
+<script type='text/javascript' src='assets/markdown.min.js'></script>
 <script type='text/javascript' src='assets/ajax.js'></script>
 <script type='text/javascript'>fetchComments(8684788);</script>
           </div><!-- #content -->
