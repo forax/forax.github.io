@@ -4,10 +4,16 @@
   <title>Remi Forax's Blog</title>
   <description>Java, the JVM and stuff around</description>
   <link>http://forax.github.io</link>
-  <lastBuildDate>2014-02-06T00:00:00</lastBuildDate>
-  <pubDate>2014-02-06T00:00:00</pubDate>
+  <lastBuildDate>2014-05-11T00:00:00</lastBuildDate>
+  <pubDate>2014-05-11T00:00:00</pubDate>
   <ttl>1800</ttl>
     <item>
+      <title>optional or not</title>
+      <description> Java 8 among other things introduces the class Optional (and its siblings OptionalInt, OptionalLong and OptionalDouble), this blog post tries to explain why we have introduced such classes and how to use it.</description>
+      <link>http://forax.github.io/2014-05-11-48b51fb2924c7773e159-optional_or_not.html</link>
+      <guid>2014-05-11-48b51fb2924c7773e159-optional_or_not</guid>
+      <pubDate>2014-05-11T00:00:00</pubDate>
+    </item>    <item>
       <title>Java8 in 8 methods</title>
       <description> Trying to summarize all the novelties of Java 8 is pretty hard, obviously you have the introduction of lambdas, but there are dozens of little gems just waiting you, in this post, i will try to summarize Java 8 in 8 new useful methods.</description>
       <link>http://forax.github.io/2014-01-29-8684788-Java8_in_8_methods.html</link>
