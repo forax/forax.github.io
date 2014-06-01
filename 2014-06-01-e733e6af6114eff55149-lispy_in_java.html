@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width'>
+    <title>Remi Forax's Blog</title>
+    <link rel='stylesheet' id='twentythirteen-style-css'  href='style.css' type='text/css' media='all' />
+    <style type='text/css' id='twentythirteen-header-css'>
+    .site-header {
+      background: url(circle.png) no-repeat scroll top;
+      background-size: 1600px auto;
+    }
+    </style>
+    <!-- link type='text/css' rel='stylesheet' href='styles/shCoreDefault.css'/ -->
+  </head>
+  <body class='home blog single-author'>
+    <div id='page' class='hfeed site'>
+      <header id='masthead' class='site-header' role='banner'>
+        <a class='home-link' href='index.html' title='forax's blog' rel='home'>
+          <h1 class='site-title'>Remi Forax's Blog</h1>
+          <h2 class='site-description'>Java, the JVM and stuff around</h2>
+        </a>
+      </header>
+      <div id='main' class='site-main'>
+        <div id='primary' class='content-area'>
+          <div id='content' class='site-content' role='main'>
+<article id='post' class='post type-post status-publish format-standard hentry category-uncategorized'>
+<header class='entry-header'>
+  <h1 class='entry-title'>
+    <a href='2014-06-01-e733e6af6114eff55149-lispy_in_java.html' title='Permalink' rel='bookmark'>
+lispy in java
+     </a>
+  </h1>
+  <div class='entry-meta'>
+    <span class='date'>
+      <time class='entry-date'>
+Sunday, June 1, 2014
+      </time>
+    </span>
+    <span class='categories-links'>
+lambda
+java
+    </span>
+  </div><!-- .entry-meta -->
+</header><!-- .entry-header -->
+<div class='entry-content'>
+ <p>
+<p>Recently I re-read a blog entry from Peter Norvig about a really small and nice Lisp/Scheme interpreter written in Python, what about porting that code to Java 8 and compare.</p><p>There are several implementations of Scheme in Java, i believe that the most complete and fast is <a href="https://www.gnu.org/software/kawa/">Kawa</a> of Per Bothner and because Kawa uses a nice type inference algorithm, it's not that rare to see that Kawa is faster that JRuby or Groovy on some benchmarks.</p><p>Anyway, here is aim is to not try to implement the whole Scheme specification but just to write a small Scheme interpreter in one file. For that, i will just port the <a href="http://norvig.com/lispy.html">Python code of Peter Norvig</a>. Because i'm lenient, i have tried to be as close as possible from the original code to avoid to explain how the code works given that Peter already did a good job of describing how his implementation works. So if you have still not read his <a href="http://norvig.com/lispy.html">blog entry</a>, please read it !</p><h3>Porting a Scheme interpreter from Python to Java</h3><p>First, as Peter note, implementing a dynamically typed language (Scheme) on top of a dynamically typed language (Python) is easier than on top of a statically typed language like Java. By example, Python operator '+' already works with integer values and real values while in Java its two different operations, Python function call can call any function with any parameter types while in Java, you have to use reflection (or java.lang.invoke) which also means messing with checked exceptions.</p><h4>Mapping Scheme type to Java one</h4><p>In Java, i will use Object to represent any type, so this rule out the use of primitive types.<br/> - floating point number will be represented by java.lang.Double<br/> - integer number will be represented by java.math.BigInteger (in Python or Scheme, integer types can not overflow)<br/> - symbol will be represented by java.lang.String<br/> - list will be represented by java.util.List using only random access lists (no LinkedList !)<br/> - function will be represented by java.lang.invoke.MethodHandle</p><p>MethodHandle is perhaps the lesser known of the types listed here, it represents a kind function pointer typed at runtime, compared to a java.lang.reflect.Method, a method handle is more versatile, you can apply currying (bindTo), do arguments shuffling, arguments collecting, arguments spreading, etc.</p><h4>The environment</h4><p>The environment contains the symbols that are accessible during the evaluation. The Python code uses a dict, the Java code uses a HashMap and the code is just a copy paste.</p>
+<pre><code>static class Env {
+  final HashMap&lt;String, Object&gt; dict = new HashMap&lt;&gt;();
+  private final Env outer;
+
+  Env(Env outer) { this.outer = outer; }
+  Env find(String var) {
+    return dict.containsKey(var)? this: outer.find(var);
+  }
+  Env add(String var, Object value) { dict.put(var, value); return this; }
+}
+</code></pre><p>Note that there is a bug in the code of find(), if the Scheme code refers to an unknown symbol (a symbol not previously defined), find() will be called recursively until outer is null and the VM will thow a null pointer exception. This bug is present in the Python code, i've not tried to fix it.</p><h4>Creating the global environment</h4><p>The global environment contains the 20 basic operations that are available by default, while most of these operations are available as default function in Python, very few of them are available in Java, that's why the code define helper methods that will be used to implement operation like + on big integers and doubles.</p>
+<pre><code>static double dbl(Object o) { return ((Number)o).doubleValue(); }
+static BigInteger bigint(Object o) { return ((BigInteger)o); }
+static boolean isdbl(Object o ) { return o instanceof Double; }
+</code></pre><p>Moreover, Python has a literal syntax to initialize a dictionary, Java has no syntax for initializing a Map, i use the <a href="https://en.wikipedia.org/wiki/Builder_pattern">builder pattern</a> as a poor's man replacement in order to chain calls.</p>
+<pre><code>public interface Fun2 { Object apply(Object a, Object b); }
+
+static Env globalEnv() {
+  return new Env(null)
+    .add(&quot;+&quot;, mh(Fun2.class,
+      (a, b) -&gt; (isdbl(a) || isdbl(b))?
+        dbl(a) + dbl(b): bigint(a).add(bigint(b))))
+    .add(&quot;-&quot;, mh(Fun2.class,
+      (a, b) -&gt; (isdbl(a) || isdbl(b))?
+        dbl(a) - dbl(b): bigint(a).subtract(bigint(b))))
+    .add(&quot;&lt;&quot;, mh(Fun2.class, (a, b) -&gt; compare(a,b) &lt; 0))
+    ...
+    .add(&quot;=&quot;, mhRef(Object.class, &quot;equals&quot;))
+    ...
+}
+</code></pre><p>As I said, each operation is represented by a method handle, so I need a way to create a method handle either from an existing Java method (like Object.equals) or from a lambda (to avoid to declare a method with a name i don't care). There is unfortunately no way to create a method handle from a lambda or a method reference, even if as you may know that the compiler store lambdas and method references as method handles inside the bytecode. I've proposed that feature to the lambda Expert Group but the EG have found that this use case too specific. So in order to convert a lambda to a method handle, instead of asking the compiler to provide it, you have to let the Java runtime to create a lambda as an instance of a functional interface (i.e. as something typed) and then create a method handle on the single method of that instance.<br/>In the code, mhRef() finds the first method in the class that have the right name (this mean that this code doesn't support overloaded methods) and loads it as a method handle. mh() uses mhRef() to find the method "apply", (interfaces Fun, Fun2 and FunAll all define "apply" as their single abstract method) and curry the instance of the lambda as first parameter of the method handle.</p>
+<pre><code>public interface Fun { Object apply(Object a); }
+public interface Fun2 { Object apply(Object a, Object b); }
+public interface FunAll { Object apply(Object[] args); }
+
+static MethodHandle mhRef(Class&lt;?&gt; type, String name) {
+  try {
+    return MethodHandles.publicLookup().unreflect(
+      stream(type.getMethods()).filter(m -&gt; m.getName().equals(name))
+                               .findFirst()
+                               .get());
+  } catch (IllegalAccessException e) {
+    throw new Error(e);
+  }
+}
+
+static &lt;F&gt; MethodHandle mh(Class&lt;F&gt; type, F fun) {
+  return mhRef(type, &quot;apply&quot;).bindTo(fun);
+}
+</code></pre><h4>Eval</h4><p>The function eval() is not very different from the Python one, Java has a switch statement (on String since Java 7) which make the code cleaner but Java has no destructured assignment making the code less clean. </p>
+<pre><code>static Object eval(Object x, Env env) {
+  if (x instanceof String) {             // variable reference
+    return env.find(string(x)).dict.get(x);   
+  }
+  if (!(x instanceof List)) {            // constant
+    return x;
+  }
+  List&lt;?&gt; l = (List&lt;?&gt;)x;
+  String var;
+  Object exp, cmd = l.get(0);
+  if (cmd instanceof String) {
+    switch(string(l.get(0))) {
+    case &quot;quote&quot;:                        // (quote exp)
+      return l.get(1);                 
+    case &quot;if&quot;:                           // (if test conseq alt)
+      return eval(((Boolean)eval(l.get(1),env))?l.get(2):l.get(3),env);            
+    case &quot;set!&quot;:                         // (set! var exp)
+      var = string(l.get(1));
+      env.find(var).add(var, eval(l.get(2), env));
+      return null;
+    case &quot;define&quot;:                       // (define var exp)
+      var = string(l.get(1));
+      env.add(var, eval(l.get(2), env));
+      return null;
+    case &quot;lambda&quot;:                       // (lambda (vars) exp)
+      List&lt;?&gt; vars = list(l.get(1));
+      exp = l.get(2);
+      return mh(FunAll.class, 
+          args -&gt; eval(exp, new Env(env).addAll(vars, asList(args))))
+        .asCollector(Object[].class, vars.size());
+    case &quot;begin&quot;:                        // (begin exp*)
+      return l.stream()
+              .skip(1)
+              .reduce(null, (val, e) -&gt; eval(e, env), (__1, __2) -&gt; null);
+    default:
+    }
+  }
+  List&lt;?&gt; exprs = l.stream()
+                   .map(expr -&gt; eval(expr, env))
+                   .collect(toList());
+  MethodHandle proc = (MethodHandle)exprs.get(0);
+  try {
+    return proc.invokeWithArguments(exprs.subList(1, exprs.size()));
+  } catch (Throwable e) {
+    if (e instanceof Error) throw (Error)e;
+    throw new Error(e);
+  }
+}  
+</code></pre><p>for 'lambda', Java has no varargs at runtime (no equivalent to *args), the syntax ... is resolved at compile time not runtime, so in order to collect all the arguments inside an array, i need to call asCollector() on the method handle.</p><p>for 'begin', the code does basically a fold, the last argument of reduce is used only if the stream is parallel, so the lambda (__1, __2) -&gt; null should never be called.</p><p>And if the first argument is a method handle, invokeWithArguments() invokes the function pointer with the other arguments as arguments. invokeWithArguments() throws a Throwable because it can call virtually any methods, it can call a method that throws checked exception, so a little dance is required to transform the checked exception to an unchecked one.</p><h4>Parsing</h4><p>This code is mostly a straightforward translation of the Python code with two differences. String.split(" ") generates some empty strings that need to be filtered out in tokenize() and readFrom() takes a Queue as parameter and not a List because while in Python list.pop() is O(1), ArrayList.remove(0) is O(n), so the Java code use an ArrayDeque instead of an ArrayList.</p>
+<pre><code>static Object parse(String s) {
+  return readFrom(tokenize(s));
+}
+
+static Queue&lt;String&gt; tokenize(String text) {
+  return stream(text.replace(&quot;(&quot;,&quot;( &quot;)
+                    .replace(&quot;)&quot;,&quot; )&quot;)
+                    .split(&quot; &quot;))
+           .filter(s -&gt; !s.isEmpty())
+           .collect(toCollection(ArrayDeque::new));
+}
+
+static Object readFrom(Queue&lt;String&gt; tokens) {
+  if (tokens.isEmpty())
+    throw new Error(&quot;unexpected EOF while reading&quot;);
+  String token = tokens.poll();
+  if (&quot;(&quot;.equals(token)) {
+    ArrayList&lt;Object&gt; l = new ArrayList&lt;&gt;();
+    while (!tokens.peek().equals(&quot;)&quot;)) {
+      l.add(readFrom(tokens));
+    }
+    tokens.poll();   // pop of &quot;)&quot;
+    return l;
+  }
+  if (&quot;)&quot;.equals(token)) {
+    return new Error(&quot;unexpected &#39;)&#39;&quot;);
+  }
+  return atom(token);
+}
+
+static Object atom(String token) {
+  try {
+    return new BigInteger(token);
+  } catch(NumberFormatException __) {
+    try {
+      return Double.parseDouble(token);
+    } catch(NumberFormatException ___) {
+      return token;
+    }
+  }
+}
+</code></pre><h4>REPL</h4><p>The code of toString() is equivalent to the Python one, the only small difference is that joining() in Java takes 3 delimiters while join() in Python takes only one. For the REPL, i use the system console because it works like raw_input()/input(). Note that if you don't want to get a null pointer exception, the program has to be started from a terminal.</p>
+<pre><code>static String toString(Object val) {
+  return (val instanceof List)?
+    list(val).stream()
+             .map(Lispy::toString)
+             .collect(joining(&quot; &quot;, &quot;(&quot;, &quot;)&quot;)):
+    String.valueOf(val);
+}
+
+static void repl() {
+  Console console = System.console();
+  Env env = globalEnv();
+  for(;;) {
+    Object val = eval(parse(console.readLine(&quot;lispy&gt; &quot;)), env);
+    if (val != null) {
+      System.out.println(toString(val));
+    }
+  }
+}
+</code></pre><h4>Conclusion</h4><p>Compared to the Python code, the Java code is twice bigger (20 lines of imports included) which is not that bad given that Java is less closer than Python from Scheme.</p>
+<pre><code>$ grep -v &quot;^[ ]*$&quot; Lispy.java | wc
+    164     703    6971
+
+</code></pre><p>I think it also demonstrate that Java 8 lambda &amp; stream and Java 7 method handle allow to write a concise yet flexible code at least for an interpreter.<br/>The whole code is available as <a href="https://gist.github.com/forax/e733e6af6114eff55149">a gist</a>. </p><p>cheers,<br/>Rémi</p>
+ </p>
+</div><!-- .entry-content -->
+<footer class='entry-meta'>
+   <div class='comments-link'>
+<a href='https://gist.github.com/forax/e733e6af6114eff55149' title='Comments'>Write a comment</a>
+   </div><!-- .comments-link -->
+   <span id='comments'/>
+</footer><!-- .entry-meta -->
+</article><!-- #post -->
+<script type='text/javascript' src='assets/markdown.min.js'></script>
+<script type='text/javascript' src='assets/ajax.js'></script>
+<script type='text/javascript'>fetchComments(e733e6af6114eff55149);</script>
+          </div><!-- #content -->
+        </div><!-- #primary -->
+      </div><!-- #main -->
+    </div><!-- #page -->
+    <footer id='colophon' class='site-footer' role='contentinfo'>
+      <div id='secondary' class='sidebar-container' role='complementary'>
+        <div class='widget-area'>
+          <aside class='widget widget_recent_entries'>
+            <img alt='Creative Commons License' src='cc128.png' width='64' height='64'/>
+          </aside>
+          <aside id='rss' class='widget widget_recent_entries'>
+            <a href='rss.xml'><img src='cake-rss.png' width='64' height='64' alt='RSS Feed'/></a>
+          </aside>
+          <!-- aside class='widget widget_recent_entries'>
+            Generated by <a href='https://github.com/forax/blog' src='cc128.png' alt='blog'/>Blog</a>
+          </aside -->
+        </div>
+      </div><!-- #secondary -->
+    </footer><!-- #colophon -->
+    <!-- script type='text/javascript' src='scripts/shCore.js'></script>
+    <script type='text/javascript' src='scripts/shBrushJScript.js'></script>
+    <script type='text/javascript'>SyntaxHighlighter.all();</script -->
+  </body>
+</html>
