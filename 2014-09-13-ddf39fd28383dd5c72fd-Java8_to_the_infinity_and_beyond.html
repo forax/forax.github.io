@@ -45,118 +45,37 @@ java
 </header><!-- .entry-header -->
 <div class='entry-content'>
  <p>
-fun with lambda(s) .
+<p>fun with lambda(s) ... </p><h3>Java 8 - To the Infiny and Beyond</h3><p>I'm really happy, my talk was accepted !<br/>so i will talk at ...</p>
+<pre><code>import java.util.Random;
+import java.util.function.IntFunction;
+import java.util.stream.Collectors;
+
+public interface SayHi {
+  public static void main(String[] args) {
+    IntFunction&lt;String&gt; fun = s -&gt; new Random(s)
+        .ints(6, 0, 27)
+        .filter(v -&gt; v != 0)
+        .mapToObj(v -&gt; &quot;&quot; + (char)(&#39;`&#39; + v))
+        .collect(Collectors.joining(&quot;&quot;));
+    
+    System.out.println(fun.apply(-229985452));
+    System.out.println(fun.apply(-2081939528));
+  }
+}
+
+</code></pre><p>If you want to understand the output of this code, you can Google the first number -229985452 and obviously go to my talk (Monday, 10th November at 13:30 - 16:30).</p><p>long live to -1636202894 and see you there,<br/>cheers,<br/>Remi </p>
  </p>
 </div><!-- .entry-content -->
 <footer class='entry-meta'>
    <div class='comments-link'>
-
+<a href='https://gist.github.com/forax/ddf39fd28383dd5c72fd' title='Comments'>Write a comment</a>
    </div><!-- .comments-link -->
    <span id='comments'/>
 </footer><!-- .entry-meta -->
 </article><!-- #post -->
-
-
-<article id='post' class='post type-post status-publish format-standard hentry category-uncategorized'>
-<header class='entry-header'>
-  <h1 class='entry-title'>
-    <a href='2014-06-01-e733e6af6114eff55149-lispy_in_java.html' title='Permalink' rel='bookmark'>
-lispy in java
-     </a>
-  </h1>
-  <div class='entry-meta'>
-    <span class='date'>
-      <time class='entry-date'>
-Sunday, June 1, 2014
-      </time>
-    </span>
-    <span class='categories-links'>
-lambda
-java
-    </span>
-  </div><!-- .entry-meta -->
-</header><!-- .entry-header -->
-<div class='entry-content'>
- <p>
-Recently I re-read a blog entry from Peter Norvig about a really small and nice Lisp/Scheme interpreter written in Python, what about porting that code to Java 8 and compare.
- </p>
-</div><!-- .entry-content -->
-<footer class='entry-meta'>
-   <div class='comments-link'>
-
-   </div><!-- .comments-link -->
-   <span id='comments'/>
-</footer><!-- .entry-meta -->
-</article><!-- #post -->
-
-
-<article id='post' class='post type-post status-publish format-standard hentry category-uncategorized'>
-<header class='entry-header'>
-  <h1 class='entry-title'>
-    <a href='2014-01-29-8684788-Java8_in_8_methods.html' title='Permalink' rel='bookmark'>
-Java8 in 8 methods
-     </a>
-  </h1>
-  <div class='entry-meta'>
-    <span class='date'>
-      <time class='entry-date'>
-Wednesday, January 29, 2014
-      </time>
-    </span>
-    <span class='categories-links'>
-lambda
-java
-    </span>
-  </div><!-- .entry-meta -->
-</header><!-- .entry-header -->
-<div class='entry-content'>
- <p>
-Trying to summarize all the novelties of Java 8 is pretty hard, obviously you have the introduction of lambdas, but there are dozens of little gems just waiting you, in this post, i will try to summarize Java 8 in 8 new useful methods.
- </p>
-</div><!-- .entry-content -->
-<footer class='entry-meta'>
-   <div class='comments-link'>
-
-   </div><!-- .comments-link -->
-   <span id='comments'/>
-</footer><!-- .entry-meta -->
-</article><!-- #post -->
-
-
-<article id='post' class='post type-post status-publish format-standard hentry category-uncategorized'>
-<header class='entry-header'>
-  <h1 class='entry-title'>
-    <a href='2014-01-27-8650156-the_selector_pattern.html' title='Permalink' rel='bookmark'>
-the selector pattern
-     </a>
-  </h1>
-  <div class='entry-meta'>
-    <span class='date'>
-      <time class='entry-date'>
-Monday, January 27, 2014
-      </time>
-    </span>
-    <span class='categories-links'>
-lambda
-java
-    </span>
-  </div><!-- .entry-meta -->
-</header><!-- .entry-header -->
-<div class='entry-content'>
- <p>
-Fun with functional Programming in Java</br>Java 8 introduces functional interface (function type) and lambda (anonymous function) to Java making Java effectively a kind of functional language.
- </p>
-</div><!-- .entry-content -->
-<footer class='entry-meta'>
-   <div class='comments-link'>
-
-   </div><!-- .comments-link -->
-   <span id='comments'/>
-</footer><!-- .entry-meta -->
-</article><!-- #post -->
-
-
-
+<script type='text/javascript' src='assets/markdown.min.js'></script>
+<script type='text/javascript' src='assets/ajax.js'></script>
+<script type='text/javascript'>fetchComments(ddf39fd28383dd5c72fd);</script>
           </div><!-- #content -->
         </div><!-- #primary -->
       </div><!-- #main -->

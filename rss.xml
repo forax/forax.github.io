@@ -4,10 +4,16 @@
   <title>Remi Forax's Blog</title>
   <description>Java, the JVM and stuff around</description>
   <link>http://forax.github.io</link>
-  <lastBuildDate>2014-06-01T00:00:00</lastBuildDate>
-  <pubDate>2014-06-01T00:00:00</pubDate>
+  <lastBuildDate>2014-09-13T00:00:00</lastBuildDate>
+  <pubDate>2014-09-13T00:00:00</pubDate>
   <ttl>1800</ttl>
     <item>
+      <title>Java8 to the infinity and beyond</title>
+      <description> fun with lambda(s) .</description>
+      <link>http://forax.github.io/2014-09-13-ddf39fd28383dd5c72fd-Java8_to_the_infinity_and_beyond.html</link>
+      <guid>2014-09-13-ddf39fd28383dd5c72fd-Java8_to_the_infinity_and_beyond</guid>
+      <pubDate>2014-09-13T00:00:00</pubDate>
+    </item>    <item>
       <title>lispy in java</title>
       <description> Recently I re-read a blog entry from Peter Norvig about a really small and nice Lisp/Scheme interpreter written in Python, what about porting that code to Java 8 and compare.</description>
       <link>http://forax.github.io/2014-06-01-e733e6af6114eff55149-lispy_in_java.html</link>
