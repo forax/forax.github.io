@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Web et Internet</title>
+
+		<meta name="description" content="Programmation Web">
+		<meta name="author" content="Remi Forax">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+                                <section>
+					<h1>Web et Internet</h1>
+					<p>
+					  Remi Forax
+					</p>
+				</section>
+				<section>
+					<h2>Internet ?</h2>
+					<blockquote cite="https://en.wikipedia.org/wiki/Internet">
+					  &ldquo;The Internet is the global system of interconnected computer networks
+                                          that use the Internet protocol suite (TCP/IP) to link billions
+                                          of devices worldwide&rdquo;
+					</blockquote>
+                                        <p align="right">
+                                         source: Wikipedia.com - Internet
+                                        </p>
+				</section>
+                                <section>
+					<h2>Internet Protocol ?</h2>
+					<p>
+                                         Plusieurs protocoles d'échange de données permettant à des machines
+                                         de communiquer entre-elles à travers un reseau de machine
+                                        </p>
+                                        <img src="images/web/internet-routing.png">
+				</section>
+                                <section>
+					<h2>Adresse IP</h2>
+					<p>
+                                         Addresse unique identifiant une machine sur le réseau internet
+                                        </p>
+                                        <img src="images/web/ip-address.png">
+				</section>
+                                <section>
+					<h2>ping</h2>
+					<p>
+                                         La commande ping permet d'nevoyer des paquets ICMP
+                                        <br/>
+                                         (de controle) à une adresse IP.
+                                        </p>
+                                        <pre><code class="hlbash" data-trim>
+$ ping 193.50.159.151
+PING 193.50.159.151 (193.50.159.151) 56(84) bytes of data.
+64 bytes from 193.50.159.151: icmp_seq=1 ttl=53 time=27.2 ms
+64 bytes from 193.50.159.151: icmp_seq=2 ttl=53 time=29.4 ms
+64 bytes from 193.50.159.151: icmp_seq=3 ttl=53 time=28.8 ms
+64 bytes from 193.50.159.151: icmp_seq=4 ttl=53 time=28.4 ms
+^C
+--- 193.50.159.151 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3004ms
+rtt min/avg/max/mdev = 27.293/28.505/29.422/0.782 ms
+                                        </code></pre>
+				</section>
+                                <section>
+					<h2>DNS</h2>
+					<blockquote cite="https://en.wikipedia.org/wiki/DNS">
+                                         The Domain Name System (DNS) is a hierarchical distributed naming system
+                                         for computers, services, or any resource connected to the Internet
+                                        </blockquote>
+                                        <p align="right">
+                                         source: Wikipedia.com - DNS
+                                        </p>
+				</section>
+                                <section>
+					<h2>host</h2>
+					<p>
+                                         La commande host permet de demander au DNS une adresse IP pour un nom de machine
+                                        </p>
+                                        <pre><code class="hlbash" data-trim>
+$ host www.u-pem.fr
+www.u-pem.fr is an alias for typo3-prod.u-pem.fr.
+typo3-prod.u-pem.fr has address 193.50.159.151.
+
+$ host playboy.com
+playboy.com has address 204.74.99.100
+playboy.com mail is handled by 10 mx.la.playboy.com.
+playboy.com mail is handled by 5 mx01.la.playboy.com.
+					</code></pre>
+				</section>
+                                <section>
+                                        <h2>host avec un DNS externe</h2>
+					<p>
+                                         En utilisant un des DNS de Google 8.8.8.8
+                                        </p>
+                                        <pre><code class="hlbash" data-trim>
+$ host www.u-pem.fr 8.8.8.8
+Using domain server:
+Name: 8.8.8.8
+Address: 8.8.8.8#53
+Aliases: 
+
+www.u-pem.fr is an alias for typo3-prod.u-pem.fr.
+typo3-prod.u-pem.fr has address 193.50.159.151
+                                        </code></pre>
+                                </section>
+                                <section>
+                                        <h2>Google DNS</h2>
+                                        <a href="https://xkcd.com/1361/">
+                                         <img src="https://imgs.xkcd.com/comics/google_announcement.png">
+                                        </a>
+                                </section>
+                                <section>
+					<h2>Router</h2>
+					<p>
+                                         Materiel connecté à plusieurs machines qui sépare differents réseaux IP 
+                                        </p>
+                                        <img src="images/web/router-chez-soi.jpg">
+				</section>
+                                <section>
+					<h2>Routage</h2>
+					<p>
+                                         Pour atteindre une machine distante, les données sont routés de proche en proche
+                                        </p>
+                                        <img src="images/web/internet-routing.png">
+				</section>
+                                <section>
+					<h2>traceroute</h2>
+					<p>
+                                         La commande traceroute permet de savoir
+                                        <br/>
+                                         comment sont routés les données
+                                        </p>
+                                        <pre><code class="hlbash" data-trim>
+$ traceroute 93.184.220.20
+traceroute to 93.184.220.20 (93.184.220.20), 30 hops max, 60 byte packets
+ 1  router.belkin (192.168.2.1)  * 8.856 ms  8.941 ms
+ 2  88.167.50.254 (88.167.50.254)  35.054 ms  35.510 ms  37.737 ms
+ 3  stmaurice-6k-1-a5.routers.proxad.net (213.228.14.254)  40.146 ms  41.482 ms  42.518 ms
+ 4  bzn-crs16-2-be1008.intf.routers.proxad.net (194.149.160.125)  48.989 ms  46.015 ms  49.999 ms
+ 5  th2-9k-3-be1000.intf.routers.proxad.net (194.149.163.90)  51.011 ms  55.204 ms  54.792 ms
+ 6  be4204.ccr21.par04.atlas.cogentco.com (149.11.115.13)  57.950 ms  48.369 ms  51.117 ms
+ 7  ntt.par04.atlas.cogentco.com (130.117.14.166)  26.249 ms  27.425 ms  27.546 ms
+ 8  xe-0-2-0-32.r04.parsfr01.fr.ce.gin.ntt.net (81.25.197.190)  27.131 ms
+    xe-0-2-0-34.r04.parsfr01.fr.ce.gin.ntt.net (81.25.197.238)  26.901 ms  27.719 ms
+ 9  93.184.220.20 (93.184.220.20)  26.546 ms  26.683 ms  25.159 ms
+					</code></pre>
+                                        <p>
+                                         <small>On voit que les données ont pris deux chemins en 8</small>
+                                        </p>
+				</section>
+                                <section>
+					<h2>TCP/IP</h2>
+					<p>
+                                         Transmission Control Protocol fait croirent à des machines qu'elles sont
+                                         connectées directement l'une à l'autre
+                                        </p>
+                                        <img src="images/web/tcp.png">
+				</section>
+				
+                                <section>
+					<h2>Web ?</h2>
+					<blockquote cite="https://en.wikipedia.org/wiki/Internet">
+					  &ldquo;The World Wide Web (WWW) is an open source information
+                                          space where documents and other web resources are identified
+                                          by URLs, interlinked by hypertext links, and can be accessed
+                                          via the Internet&rdquo;
+					</blockquote>
+                                        <p align="right">
+                                         source: Wikipedia.com - World Wide Web
+                                        </p>
+				</section>
+
+                                <section>
+					<h2>URL</h2>
+					<p>
+                                         Unified Resource Locator
+                                        <br/>
+                                         permet d'identifier une ressource sur le Web
+                                        </p>
+                                        <img src="images/web/url.png">
+                                        <p>
+                                         <small>C'est le truc que l'on écrit dans la barre de navigation du browser</small>
+                                        </p>
+				</section>
+                                <section>
+					<h2>URL</h2>
+					<p>
+                                         Identifie à la fois des documents (au format HTML) ou des images, videos etc.
+                                         sur le Web
+                                        </p>
+                                        <img src="images/web/url-image.png">
+                                        <ul>
+                                         <li>protocole: http, https
+                                         <li>nom de la machine: www.google.fr
+                                         <li>URI: /images/branding ...
+                                        </ul>
+				</section>
+
+                                <section>
+					<h2>HTTP</h2>
+					<p>
+                                         HyperText Transfer Protocol: Protocole d'échange de documents
+                                         et d'images au dessus TCP
+                                        </p>
+                                        <img src="images/web/browser-server.png">
+				</section>
+                                
+                                <section>
+                                        <h2>netcat (nc)</h2>
+                                        <p>
+                                         permet d'envoyer une requète HTTP :)
+                                        </p>
+                                        <pre><code class="hlbash" data-trim>
+$ nc monge.univ-mlv.fr 80
+GET / HTTP/1.0
+                                         </code></pre>
+                                         <pre class="fragment"><code class="hlbash" data-trim>
+
+HTTP/1.1 302 Found
+Date: Mon, 21 Dec 2015 17:15:35 GMT
+Server: Apache
+Location: http://igm.u-pem.fr/
+Content-Length: 269
+Connection: close
+Content-Type: text/html; charset=iso-8859-1
+...
+                                       </code></pre>
+                                </section>
+
+                                <section>
+					<h2>Codes de réponse HTTP</h2>
+					<p><small>
+                                         200 OK<br/>
+                                         301 Moved Permanently<br/>
+                                         401 Unauthorized<br/>
+                                         404 Not Found
+                                        </small></p>
+                                        <img src="images/web/404notfound.png">
+                                        <p>
+                                         <small><a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">https://en.wikipedia.org/wiki/List_of_HTTP_status_codes</a></small>
+                                        </p>
+				</section>
+
+                                <section>
+				        <h2>wget</h2>
+                                        <p>
+                                         wget permet de télécharger une resource à partir d'une URL
+                                        </p>
+                                        <pre><code class="hlbash" data-trim>
+$ wget http://igm.u-pem.fr/index.html
+--2015-12-22 00:54:29--  http://igm.u-pem.fr/index.html
+Resolving igm.u-pem.fr (igm.u-pem.fr)... 193.50.159.151
+Connecting to igm.u-pem.fr (igm.u-pem.fr)|193.50.159.151|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘index.html’
+                                        </code></pre>
+                                </section>
+                                <section>
+					<h2>Requètes HTTP</h2>
+                                        <img src="images/web/page.png"
+                                             width="300"
+                                             height="200"
+                                             aligh="right">
+					<p>
+                                         Une page nécessite plusieurs requètes HTTP
+                                        </p>
+                                        <a href="images/web/page-breakdown.png">
+                                          <img src="images/web/page-breakdown.png">
+                                        </a>
+				</section>
+
+                                <section>
+					<h2>HTTPS</h2>
+					<p>
+                                         Tunnel de sécurité autour de HTTP
+                                        </p>
+                                        <p>
+                                         Utilise le principe du chiffrement asymétrique
+                                        <br/>
+                                         entre le client et le serveur. 
+                                        </p>
+                                        <p>
+                                         Pour des questions de performance,
+                                         le chiffrement asymétrique n'est utilisé que pour échanger
+                                         une clef symétrique entre le client et le serveur,
+                                         le reste des échanges se fait en utilisant cette clef symétrique.
+                                        </p>
+				</section>
+
+                                <section>
+					<h2>Chiffrage asymétrique</h2>
+                                        
+					<p>
+                                         clé publique
+                                         clé privée
+                                        </p>
+                                        
+				</section>
+
+                                <section>
+                                         <img src="images/web/https-certificates.png">
+				</section>
+
+                                <section>
+					<h2>Certificats</h2>
+					<p>
+                                         
+                                        </p>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>HTML</title>
+
+		<meta name="description" content="HTML">
+		<meta name="author" content="Remi Forax">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+                                <section>
+					<h1>HTML</h1>
+					<p>
+					  Remi Forax
+					</p>
+				</section>
+				<section>
+					<h2>HTML ?</h2>
+					<blockquote cite="https://en.wikipedia.org/wiki/HTML">
+					  &ldquo;HyperText Markup Language, commonly referred to as HTML, is the standard markup language used to create web pages&rdquo;
+					</blockquote>
+                                        <p align="right">
+                                         source: Wikipedia.com - <a href="https://en.wikipedia.org/wiki/HTML">HTML</a>
+                                        </p>
+				</section>
+                                <section>
+					<h2>Historique des versions</h2>
+					<table>
+                                         <tr>
+                                          <td>HTML</td><td>1991</td>
+                                         </tr><tr>
+                                          <td>HTML 2.0</td><td>1995</td>
+                                         </tr><tr>
+                                          <td>HTML 3.2</td><td>1997</td>
+                                         </tr><tr>
+                                          <td>HTML 4.01</td><td>1999</td>
+                                         </tr><tr>
+                                          <td>XHTML 1.0</td><td>2000</td>
+                                         </tr><tr>
+                                          <td><a href="http://www.w3.org/TR/html5/">HTML 5</a></td><td>2014</td>
+                                         </tr>
+                                        </table>
+				</section>
+                                <section>
+					<h2>Element</h2>
+                                        <p>
+                                         Un élement est définie par un tag de début et un tag de fin
+                                        </p>
+                                        <p><span id="myelement">
+                                         Par exemple, pour mettre en <b>gras</b>
+                                        </span></p>
+                                        <p>
+                                         on utilise &lt;b&gt; et &lt;/b&gt;
+                                        </p>
+                                        <p>&nbsp;</p>
+                                        <textarea autoeval="myelement" rows="2" cols="40">
+Par exemple, pour mettre en <b>gras</b>
+                                        </textarea>
+				</section>
+                                <section>
+					<h2>Entités</h2>
+                                        <p>
+                                         Les caractères &lt; et &gt; sont réservés
+                                        <br/>
+                                         pour déclarer des éléments
+                                        <br/>
+                                         Il faut une façon de dé-spécialiser ces caractères
+                                        </p>
+                                        <table>
+                                         <th>caractère<th>entité<th>description
+                                        <tr>
+                                          <td>&lt;<td>&amp;lt;<td>less than
+                                        <tr>
+                                          <td>&gt;<td>&amp;gt;<td>greater than
+                                        <tr>
+                                          <td>&amp;<td>&amp;amp;<td>ampersand
+                                        <tr>
+                                          <td>&nbsp;<td>&amp;nbsp;
+                                          <td><a hrfe="https://en.wikipedia.org/wiki/Non-breaking_space">non-breakable space</a>
+                                        </table>
+				</section>
+                                <section>
+					<h2>Commentaire</h2>
+                                        <p>
+                                         Il est possible d'indiquer des commentaires
+                                        <br/>
+                                         entre les balises &lt;!-- et --&gt;
+                                        </p>
+                                        <p>&nbsp;</p>
+                                        <pre><code class="html" data-trim>
+&lt;!--
+ Ceci est un commentaire dans le HTML qui ne sera pas affiché
+--&gt;
+                                        </code></pre>
+				</section>
+                                <section>
+					<h2>Exemple de document</h2>
+                                        <p>
+                                         Un document est commence par le tag <b>html</b>
+                                        <br/>
+                                         le corps du texte est contenu dans <b>body</b>
+                                        <br/>
+                                         <b>h1</b> indique un titre de rubrique
+                                        <br/>
+                                         <b>p</b> définie un paragraphe
+                                        </p>
+                                        <pre><code class="html" data-trim>
+&lt;html&gt;
+ &lt;body&gt;
+  <h1>Hello</h1>
+  <p>C'est le premier paragraphe</p>
+  <p>Et voici le second paragraphe</p>
+ &lt;/body&gt;
+&lt;/html&gt;
+                                        </code></pre>
+				</section>
+                                <section>
+					<h2>document.html</h2>
+                                        <pre><code class="html" data-trim>
+&lt;html&gt;
+ &lt;body&gt;
+  <h1>Hello</h1>
+  <p>C'est le premier paragraphe</p>
+  <p>Et voici le second paragraphe</p>
+ &lt;/body&gt;
+&lt;/html&gt;
+                                        </code></pre>
+                                        <img src="images/html/document.png">
+				</section>
+                                <section>
+					<h2>Arbre d'élements</h2>
+                                        <p>
+                                         Les élements sont organisés sous forme d'arbre
+                                        </p>
+                                        <img src="images/html/tree.png">
+                                        <pre><code class="html" data-trim>
+&lt;html&gt;
+ &lt;body&gt;
+  <h1>Hello</h1>
+  <p>C'est le premier paragraphe</p>
+  <p>Et voici le second paragraphe</p>
+ &lt;/body&gt;
+&lt;/html&gt;
+                                        </code></pre>
+				</section>
+                                <section>
+					<h2>Element entrelacé</h2>
+                                        <p>
+                                         Les élements entrelacés sont interdits
+                                        </p>
+                                        <p>
+                                         Impossible de créer l'arbre correspondant
+                                        </p>
+                                        <p>&nbsp;</p>
+                                        <p><span id="interleaved">
+                                         Exemple <b>qui <i>ne</b> marche pas</i>
+                                        </span></p>
+                                        <textarea autoeval="interleaved" rows="2" cols="40">
+Exemple <b>qui <i>ne</b> marche pas</i>
+                                        </textarea>
+                                        <small>
+                                         La plupart des browsers supportent quand même les constructions invalident
+                                        <br/>
+                                         mais ce n'est pas le cas de tous les outils qui lisent le HTML (crawlers par exemple).
+                                        </small>
+				</section>
+                                <section>
+					<h2>Element sans balise fermante</h2>
+                                        <p>
+                                         Certains élements n'ont pas de balises fermantes,
+                                        <br/>
+                                         comme &lt;br&gt; par exemple.
+                                        </p>
+                                        <p>&nbsp;</p>
+                                        <pre><code class="html" data-trim>
+<p>
+ Ceci est un paragraphe
+<br>
+ sur plusieurs lignes
+</p>
+                                        </code></pre>
+                                        <p>&nbsp;</p>
+                                        <p>
+                                         La norme XTML permet d'écrire ces balises comme ceci:
+                                        <br/>
+                                         &lt;br/&gt;
+                                        </p>
+				</section>
+                                <section>
+					<h2>Element avec attribut</h2>
+                                        <p>
+                                         Certains élements définissient des attributs
+                                        </p>
+                                        <p>
+                                         Il existe trois formes d'attributs
+                                         <ol>
+                                          <li> &lt;tag&nbsp;attr="value"&gt;
+                                          <li> &lt;tag attr=value&gt;
+                                          <li> &lt;tag attr&gt;
+                                         </ol>
+                                        </p>
+                                        <p>&nbsp;</p>
+                                        <pre><code class="html" data-trim>
+<p>
+ Ceci <a href="www.u-pem.fr">est un lien</a>
+</p>
+                                        </code></pre>
+				</section>
+                                <section>
+					<h2>Elements standards</h2>
+                                        <p>
+                                         La norme HTML 5 définies beaucoup trop
+                                        <br/>
+                                         d'<a href="http://www.w3.org/community/webed/wiki/HTML/Elements">élements</a>
+                                         pour tous les lister.
+                                        </p><p>
+                                         Voici les principaux organisés en catégorie
+                                        </p>
+                                        <ul>
+                                         <li>éléments liés au texte
+                                         <li>éléments de structure
+                                         <li>éléments multi-média
+                                         <li>éléments de formulaire (vu plus tard)
+                                         <li>éléments du document 
+                                        </ul>
+				</section>
+                                <section>
+                                        <h2>Elements liés au texte</h2>
+				</section>
+                                <section>
+					<h2>Elements liés au texte</h2>
+                                        <p>&nbsp;</p>
+                                        <table>
+                                         <th>Elément
+                                         <th>commentaire
+                                        <tr>
+                                         <td><b>&lt;b&gt;</b> ou <strong>&lt;strong&gt;</strong>
+                                         <td>en gras (<b>b</b>old)
+                                        <tr>
+                                         <td><i>&lt;i&gt;</i> ou <em>&lt;em&gt;</em>
+                                         <td>en italique
+                                        <tr>
+                                         <td><small>&lt;small&gt;</small>
+                                         <td>en petit
+                                        <tr>
+                                         <td><s>&lt;s&gt;</s>
+                                         <td>barré (<b>s</b>trike)
+                                        <tr>
+                                         <td><sup>&lt;sup&gt;</sup>/<sub>&lt;sub&gt;</sub>
+                                         <td>exposant/indice
+                                        <tr>
+                                         <td><code>&lt;code&gt;</code>
+                                         <td>partie de programme 
+                                        </table>
+				</section>
+                                <section>
+					<h2>Elements de structure</h2>
+				</section>
+                                <section>
+					<h2>Elements de structure (simple)</h2>
+                                        <p>&nbsp;</p>
+                                        <table>
+                                         <th>Elément
+                                         <th>commentaire
+                                        <tr>
+                                         <td>section</strong>
+                                         <td>section
+                                       <tr>
+                                         <td>h1, h2, h3, h4, h5, h6</strong>
+                                         <td>titre de section (headings)
+                                        <tr>
+                                         <td>p</strong>
+                                         <td>paragraphe
+                                        <tr>
+                                         <td>pre
+                                         <td>comme à la machine à écrire (preformatted)
+                                        <tr>
+                                         <td>blockquote
+                                         <td>citation
+                                        </table>
+				</section>
+                                <section>
+					<h2>Elements de structure (simple)</h2>
+                                        <p>
+                                         Un exemple
+                                        </p>
+                                        <pre><code class="html" data-trim contenteditable>
+<h1>Titre du document</h1>
+&lt;section&gt;
+ <h2>Titre de section</h2>
+ <p>
+  Premier paragraphe
+ </p>
+ &lt;pre&gt;
+  Second paragraphe preformated
+ &lt;/pre&gt;
+&lt;/section&gt;
+&lt;section&gt;
+ <h2>Titre autre section</h2>
+ <blockquote>
+  C'est trop bien le HTML !
+ </blockquote>
+&lt;/section&gt;
+                                        </code></pre>
+				</section>
+                                <section>
+					<h2>Elements de structure (ol)</h2>
+                                        <p>Les listes ordonnées</p>
+                                        <ol id="ordered_list">
+                                         <li>premier item</li>
+                                         <li>second item</li>
+                                        </ol>
+                                                                         
+                                        <p>&nbsp;</p>
+                                        <small><textarea autoeval="ordered_list" rows="5" cols="45">
+<ol>
+ <li>premier item</li>
+ <li>second item</li>
+</ol>
+                                        </textarea></small>
+                                       <br/>
+                                        <small>
+                                         li= liste item
+                                        </small>
+				</section>
+                                <section>
+					<h2>Elements de structure (ul)</h2>
+                                        <p>Les listes non-ordonnées</p>
+                                        <ul id="unordered_list">
+                                         <li>premier item</li>
+                                         <li>second item</li>
+                                        </ul>
+                                                                         
+                                        <p>&nbsp;</p>
+                                        <small><textarea autoeval="unordered_list" rows="5" cols="45">
+<ul>
+ <li>premier item</li>
+ <li>second item</li>
+</ul>
+                                        </textarea></small>
+				</section>
+                                <section>
+					<h2>Elements de structure (dl)</h2>
+                                        <p>Les listes de definitions</p>
+                                        <dl id="definition_list">
+                                         <dt>HTML</dt>
+                                         <dd>HyperText Markup Language, ...</dd>
+                                         <dt>HTTP</dt>
+                                         <dd>The Hypertext Transfer Protocol ...</dd>
+                                        </dl>
+                                                                         
+                                        <p>&nbsp;</p>
+                                        <small><textarea autoeval="definition_list" rows="7" cols="45">
+<dl>
+ <dt>HTML</dt>
+ <dd>HyperText Markup Language, ...</dd>
+ <dt>HTTP</dt>
+ <dd>The Hypertext Transfer Protocol ...</dd>
+</dl>
+                                        </textarea></small>
+                                      <br/>
+                                        <small>
+                                         dt= definition title, dd= definition data
+                                        </small>
+				</section>
+                                <section>
+					<h2>Elements de structure (table)</h2>
+                                        <p>Les tableaux à 2 dimensions</p>
+                                        <table>                                   
+                                          <tr>
+                                           <td>Azote</td><td>N<sub>2</sub></td>
+                                          </tr>
+                                          <tr>
+                                           <td>Oxygène</td><td>O<sub>2</sub></td>
+                                          </tr>
+                                         </table>
+                    
+                                        <pre><code class="html" data-trim contenteditable>
+&lt;table&gt;                                   
+ &lt;tr&gt;
+  &lt;td&gt;Azote&lt;/td&gt;&lt;td&gt;N&lt;sub&gt;2&lt;/sub&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;Oxygène&lt;/td&gt;&lt;td&gt;O&lt;sub&gt;2&lt;/sub&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+&lt;/table&gt;
+                                        </code></pre>
+                                        <small>
+                                         tr= table row, td= table data
+                                        </small> 
+				</section>
+                                <section>
+					<h2>Elements de structure (table)</h2>
+                                        <table>
+                                         <thead>
+                                          <th></th><th>Symbole</th><th>% dans l'air</th>
+                                         </thead>
+                                         <tbody>                                   
+                                          <tr>
+                                           <th>Azote</th><td>N<sub>2</sub></td><td>78 %</td>
+                                          </tr><tr>
+                                           <th>Oxygène</th><td>O<sub>2</sub></td><td>20 %</td>
+                                          </tr>
+                                         </tbody>
+                                         </table>
+                    
+                                        <pre><code class="html" data-trim contenteditable>
+&lt;table&gt;  
+ &lt;thead&gt;
+  &lt;th&gt;&lt;/th&gt;&lt;th&gt;Symbole&lt;/th&gt;&lt;th&gt;% dans l'air&lt;/th&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;                                 
+  &lt;tr&gt;
+   &lt;th&gt;Azote&lt;/th&gt;&lt;td&gt;N&lt;sub&gt;2&lt;/sub&gt;&lt;/td&gt;
+  &lt;/tr&gt;&lt;tr&gt;
+   &lt;th&gt;Oxygène&lt;/th&gt;&lt;td&gt;O&lt;sub&gt;2&lt;/sub&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+ &lt;tbody&gt;
+&lt;/table&gt;
+                                        </code></pre>
+                                        <small>
+                                         thead= table header, tbody= table body, th= table header
+                                        </small> 
+				</section>
+                                <section>
+					<h2>Elements multi-media</h2>
+				</section>
+                                <section>
+					<h2>Elements multi-media (lien)</h2>
+                                        <ul>
+                                          <li>les liens externes
+                                             <br/>
+                                            <pre><code class="html" data-trim contenteditable>
+&lt;a href="www.w3c.org"&gt;texte&lt;/a&gt;
+                                            </code></pre>
+                                           
+                                          <li class="fragment">les liens internes
+                                            <br/>
+                                             declaration:
+                                            <br/>
+                                             <pre><code class="html" data-trim contenteditable>
+&lt;a name="foo"&gt;texte&lt;/a&gt;
+                                             </code></pre>
+                                              référence:
+                                            <br/>
+                                             <pre><code class="html" data-trim contenteditable>
+&lt;a href="#foo"&gt;texte&lt;/a&gt;
+                                             </code></pre>
+                                          </li>
+                                        </ul>
+                                        <div class="fragment">
+                                        <p>
+                                         On peut bien-sûr, combiner les deux
+                                        <br/>
+                                         <pre><code class="html" data-trim contenteditable>
+&lt;a href="www.bar.com/hello.html#foo"&gt;texte&lt;/a&gt;
+                                         </code></pre>
+                                        </p>
+                                        </div>
+				</section>
+                                <section>
+					<h2>Elements multi-media (iframe)</h2>
+                                         <p>
+                                          Permet d'inclure un document dans un document
+                                         </p>
+                                         <iframe src="images/html/hello.html"
+                                                 width="400"
+                                                 height="200">
+                                         </iframe>
+                                         <pre><code class="html" data-trim contenteditable>
+&lt;iframe src="images/html/hello.html"
+        width="400"
+        height="300"&gt;
+&lt;/iframe&gt;
+                                             </code></pre>
+				</section>
+                                <section>
+					<h2>Elements multi-media (image)</h2>
+                                        <img src="images/html/enquire.jpg"
+                                             width="361"
+                                             height="282"
+                                             alt="Enquire, name used by Tim Berners-Lee before the Web">
+                                        <pre><code class="html" data-trim contenteditable>
+&lt;img src="images/html/enquire.jpg"
+     width="361"
+     height="282"
+     alt="Enquire, name used by Tim Berners-Lee before the Web"&gt;
+                                        </code></pre>
+                                        <small>
+                                         <b>alt</b> est utilisé par les clients HTML
+                                         qui ne sont pas graphique
+                                        </small>
+				</section>
+                                <section>
+					<h2>Elements multi-media<br/>(formats d'image)</h2>
+                                        <table>
+                                         <tr>
+                                          <td>PNG</td>
+                                          <td>Bitmap, compression sans perte</td>
+                                         <tr>
+                                          <td>GIF</td>
+                                          <td>Bitmap, compression sans perte,<br/>
+                                              perte si reduction de la palette</td>
+                                         <tr>
+                                          <td>JPEG</td>
+                                          <td>Bitmap, compression avec perte<td>
+                                         <tr>
+                                          <td>SVG</td>
+                                          <td>Vectoriel</td>
+                                        </table>
+				</section>
+                                <section>
+					<h2>Elements multi-media (audio)</h2>
+                                        <audio controls>
+                                          <source src="images/html/upem.oga" type="audio/ogg"> 
+                                          <source src="images/html/upem.mp3" type="audio/mpeg"> 
+                                         Sorry, no audio for you.
+                                        </audio>
+                                        <pre><code class="html" data-trim contenteditable>
+&lt;audio controls&gt;
+  <source src="images/html/upem.oga" type="audio/ogg">
+  <source src="images/html/upem.mp3" type="audio/mpeg">
+  Sorry, no audio for you.
+&lt;/audio&gt;
+                                        </code></pre>
+                                        <small>
+                                         Le format mp3 est supporté par tous les browsers,
+                                        <br/>
+                                         ogg (format libre !) est ni supporté par Internet Explorer
+                                         ni par Safari :(
+                                        </small>
+				</section>
+                                <section>
+					<h2>Elements multi-media (video)</h2>
+                                        <p>&nbsp;</p>
+                                        <pre><code class="html" data-trim contenteditable>
+&lt;video width="640"
+       height="360"
+       poster="images/html/upem-poster.jpg"
+       controls&gt;
+  <source src="images/html/upem.ogv" type="video/ogg">
+  <source src="images/html/upem.mp4" type="video/mp4">
+  Sorry, no video for you.
+&lt;/video&gt;
+                                        </code></pre>
+                                        <small>
+                                         Le format mp4 est supporté par tous les browsers,
+                                        <br/>
+                                         ogg et webm (formats libres !) sont ni supporté par
+                                         Internet Explorer ni par Safari :(
+                                        </small>
+				</section>
+                                <section>
+					<h2>Elements multi-media (video)</h2>
+                                        <p>&nbsp;</p>
+                                        <video width="640"
+                                               height="360"
+                                               poster="images/html/upem-poster.jpg"
+                                               controls>
+                                           <source src="images/html/upem.ogv" type="video/ogg">
+                                           <source src="images/html/upem.mp4" type="video/mp4">
+                                         Sorry, no video for you.
+                                        </video>
+				</section>
+                                <section>
+					<h2>Elements du document</h2>
+				</section>
+                                <section>
+					<h2>Elements du document (doctype)</h2>
+                                        <p>
+                                         Avant la balise html,
+                                         on doit indiquer la version du HTML
+                                        </p>
+                                        <table>
+                                         <td>HTML 5</td>
+                                         <td><pre><code class="html" data-trim>
+&lt;!DOCTYPE html&gt; 
+                                         </code></pre></td>
+                                        <tr>
+                                         <td>XHTML 1.0</td>
+                                         <td><pre><code class="html" data-trim>
+&lt;!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+                                         </code></pre></td>
+                                        <tr>
+                                         <td>HTML 4.01</td>
+                                         <td><pre><code class="html" data-trim>
+&lt;!DOCTYPE HTML PUBLIC
+ "-//W3C//DTD HTML 4.01 Transitional//EN"
+ "http://www.w3.org/TR/html4/loose.dtd"&gt; 
+                                         </code></pre></td>
+                                        </table>
+				</section>
+                                <section>
+					<h2>Elements du document (head)</h2>
+                                        <p>
+                                         La balise <b>head</b> permet d'indiquer
+                                        <br/>
+                                         des propriétés sur le document
+                                        </p>
+                                        <dl>
+                                         <dt>title
+                                         <dd>permet d'indiquer un titre au document
+                                         <dt>meta
+                                         <dd>les meta-données associées au document 
+                                        </ul>
+                                        <pre><code class="html" data-trim contenteditable>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+ &lt;head&gt;
+  &lt;title&gt;Programmation Web&lt;/title&gt;
+  &lt;meta charset="UTF-8"&gt; 
+ &lt;/head&gt;
+&lt;/html&gt;
+                                        </code></pre>
+				</section>
+                                <section>
+					<h2>Elements du document (meta)</h2>
+                                        <p>
+                                         Meta-donnée sur le document
+                                        </p>
+                                        <dl>
+                                         <dt>table de caractères
+                                             (<a href="https://en.wikipedia.org/wiki/Character_encodings_in_HTML">encodage</a>)
+                                         <dd>
+                                          <pre><code class="html" data-trim contenteditable>
+&lt;meta charset="UTF-8"&gt;
+                                          </code></pre>
+                                         <dt>mot-clefs (moteur de recherche)
+                                         <dd>
+                                          <pre><code class="html" data-trim contenteditable>
+&lt;meta name="keywords" content="web, html, css, javascript"&gt;
+                                          </code></pre>
+                                         <dt>auteur
+                                         <dd>
+                                          <pre><code class="html" data-trim contenteditable>
+&lt;meta name="author" content="Remi Forax"&gt;
+                                          </code></pre>
+                                        </dl>
+				</section>
+                                <section>
+					<h2>Et pour le style ?</h2>
+                                        <p>
+                                         Et comment on
+                                         <ul>
+                                          <li>ajoute des couleurs ?
+                                          <li>change les fontes ?
+                                          <li>place les élements sur l'écran ?
+                                          <li>à des placements differents
+                                             <br/>
+                                              pour un desktop ou un smartphone ?
+                                          <li>...
+                                         </ul>
+                                        </p>
+                                        <p>
+                                         On fait <span style="color: red;">pas ça</span>
+                                         en HTML, on utilise
+                                         <a href="css.html">CSS</a>
+                                         pour cela !
+                                        </p>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                                        { src: 'plugin/autoeval/autoeval.js', async: true },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
