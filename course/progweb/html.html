@@ -203,7 +203,7 @@ Par exemple, pour mettre en <b>gras</b>
 Exemple <b>qui <i>ne</b> marche pas</i>
                                         </textarea>
                                         <small>
-                                         La plupart des browsers supportent quand même les constructions invalident
+                                         La plupart des browsers supportent quand même les constructions invalides
                                         <br/>
                                          mais ce n'est pas le cas de tous les outils qui lisent le HTML (crawlers par exemple).
                                         </small>
@@ -211,7 +211,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                 <section>
 					<h2>Elément sans balise fermante</h2>
                                         <p>
-                                         Certains élements n'ont pas de balises fermantes,
+                                         Certains élements n'ont pas de balise fermante,
                                         <br/>
                                          comme &lt;br&gt; par exemple.
                                         </p>
@@ -225,7 +225,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </code></pre>
                                         <p>&nbsp;</p>
                                         <p>
-                                         La norme XTML permet d'écrire ces balises comme ceci:
+                                         La norme XHTML permet d'écrire ces balises comme ceci:
                                         <br/>
                                          &lt;br/&gt;
                                         </p>
@@ -376,7 +376,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </textarea></small>
                                        <br/>
                                         <small>
-                                         li= liste item
+                                         li= <em>item</em> de liste
                                         </small>
 				</section>
                                 <section>
@@ -397,7 +397,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
 				</section>
                                 <section>
 					<h2>Eléments de structure (dl)</h2>
-                                        <p>Les listes de definitions</p>
+                                        <p>Les listes de définitions</p>
                                         <dl id="definition_list">
                                          <dt>HTML</dt>
                                          <dd>HyperText Markup Language, ...</dd>
@@ -487,12 +487,12 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                           <li>les liens externes
                                              <br/>
                                             <pre><code class="html" data-trim contenteditable>
-&lt;a href="www.w3c.org"&gt;texte&lt;/a&gt;
+&lt;a href="http://www.w3c.org/"&gt;texte&lt;/a&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </code></pre>
                                            
                                           <li class="fragment">les liens internes
                                             <br/>
-                                             declaration:
+                                             déclaration:
                                             <br/>
                                              <pre><code class="html" data-trim contenteditable>
 &lt;a name="foo"&gt;texte&lt;/a&gt;
@@ -506,10 +506,10 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </ul>
                                         <div class="fragment">
                                         <p>
-                                         On peut bien-sûr, combiner les deux
+                                         On peut bien sûr, combiner les deux
                                         <br/>
                                          <pre><code class="html" data-trim contenteditable>
-&lt;a href="www.bar.com/hello.html#foo"&gt;texte&lt;/a&gt;
+&lt;a href="http://www.bar.com/hello.html#foo"&gt;texte&lt;/a&gt;
                                          </code></pre>
                                         </p>
                                         </div>
@@ -556,7 +556,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                          <tr>
                                           <td>GIF</td>
                                           <td>Bitmap, compression sans perte,<br/>
-                                              perte si reduction de la palette</td>
+                                              perte si réduction de la palette</td>
                                          <tr>
                                           <td>JPEG</td>
                                           <td>Bitmap, compression avec perte<td>
@@ -582,7 +582,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         <small>
                                          Le format mp3 est supporté par tous les browsers,
                                         <br/>
-                                         ogg (format libre !) est ni supporté par Internet Explorer
+                                         ogg (format libre !) n'est supporté ni par Internet Explorer
                                          ni par Safari :(
                                         </small>
 				</section>
@@ -602,7 +602,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         <small>
                                          Le format mp4 est supporté par tous les browsers,
                                         <br/>
-                                         ogg et webm (formats libres !) sont ni supporté par
+                                         ogg et webm (formats libres !) ne sont pas supporté ni par
                                          Internet Explorer ni par Safari :(
                                         </small>
 				</section>
@@ -703,16 +703,15 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                           <li>ajoute des couleurs ?
                                           <li>change les fontes ?
                                           <li>place les élements sur l'écran ?
-                                          <li>à des placements differents
+                                          <li>à des placements différents
                                              <br/>
                                               pour un desktop ou un smartphone ?
                                           <li>...
                                          </ul>
                                         </p>
                                         <p>
-                                         On fait <span style="color: red;">pas ça</span>
-                                         en HTML, on utilise
-                                         <a href="css.html">CSS</a>
+                                         On ne fait <span style="color: red;">pas ça</span>
+                                         en HTML, on utilise <a href="css.html">CSS</a>
                                          pour cela !
                                         </p>
 				</section>
