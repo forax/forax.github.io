@@ -55,6 +55,15 @@
                                          source: Wikipedia.com - <a href="https://en.wikipedia.org/wiki/HTML">HTML</a>
                                         </p>
 				</section>
+				<section>
+					<h2>HTML ?</h2>
+					<blockquote cite="https://en.wikipedia.org/wiki/HTML">
+					  &ldquo;Langage à balise hypertexte, communément appelé comme HTML est un langage standard à balise utilisé pour crée des pages Web&rdquo;
+					</blockquote>
+                                        <p align="right">
+                                         source: Wikipedia.com - <a href="https://en.wikipedia.org/wiki/HTML">HTML</a>
+                                        </p>
+				</section>
                                 <section>
 					<h2>Historique des versions</h2>
 					<table>
@@ -74,9 +83,9 @@
                                         </table>
 				</section>
                                 <section>
-					<h2>Element</h2>
+					<h2>Elément</h2>
                                         <p>
-                                         Un élement est définie par un tag de début et un tag de fin
+                                         Un élement est défini par un tag de début et un tag de fin
                                         </p>
                                         <p><span id="myelement">
                                          Par exemple, pour mettre en <b>gras</b>
@@ -134,7 +143,7 @@ Par exemple, pour mettre en <b>gras</b>
                                         <br/>
                                          <b>h1</b> indique un titre de rubrique
                                         <br/>
-                                         <b>p</b> définie un paragraphe
+                                         <b>p</b> définit un paragraphe
                                         </p>
                                         <pre><code class="html" data-trim>
 &lt;html&gt;
@@ -165,6 +174,9 @@ Par exemple, pour mettre en <b>gras</b>
                                          Les élements sont organisés sous forme d'arbre
                                         </p>
                                         <img src="images/html/tree.png">
+                                        <p><small>
+                                         Arbre l'arbre DOM (Document Object Model)
+                                        </small></p>
                                         <pre><code class="html" data-trim>
 &lt;html&gt;
  &lt;body&gt;
@@ -176,9 +188,9 @@ Par exemple, pour mettre en <b>gras</b>
                                         </code></pre>
 				</section>
                                 <section>
-					<h2>Element entrelacé</h2>
+					<h2>Elément entrelacé</h2>
                                         <p>
-                                         Les élements entrelacés sont interdits
+                                         Les éléments entrelacés sont interdits
                                         </p>
                                         <p>
                                          Impossible de créer l'arbre correspondant
@@ -197,7 +209,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </small>
 				</section>
                                 <section>
-					<h2>Element sans balise fermante</h2>
+					<h2>Elément sans balise fermante</h2>
                                         <p>
                                          Certains élements n'ont pas de balises fermantes,
                                         <br/>
@@ -219,7 +231,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </p>
 				</section>
                                 <section>
-					<h2>Element avec attribut</h2>
+					<h2>Elément avec attribut</h2>
                                         <p>
                                          Certains élements définissient des attributs
                                         </p>
@@ -239,7 +251,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </code></pre>
 				</section>
                                 <section>
-					<h2>Elements standards</h2>
+					<h2>Eléments standards</h2>
                                         <p>
                                          La norme HTML 5 définies beaucoup trop
                                         <br/>
@@ -257,7 +269,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </ul>
 				</section>
                                 <section>
-                                        <h2>Elements liés au texte</h2>
+                                        <h2>Eléments liés au texte</h2>
 				</section>
                                 <section>
 					<h2>Elements liés au texte</h2>
@@ -286,10 +298,10 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </table>
 				</section>
                                 <section>
-					<h2>Elements de structure</h2>
+					<h2>Eléments de structure</h2>
 				</section>
                                 <section>
-					<h2>Elements de structure (simple)</h2>
+					<h2>Eléments de structure (simple)</h2>
                                         <p>&nbsp;</p>
                                         <table>
                                          <th>Elément
@@ -312,7 +324,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </table>
 				</section>
                                 <section>
-					<h2>Elements de structure (simple)</h2>
+					<h2>Eléments de structure (simple)</h2>
                                         <p>
                                          Un exemple
                                         </p>
@@ -324,7 +336,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
   Premier paragraphe
  </p>
  &lt;pre&gt;
-  Second paragraphe preformated
+  Second paragraphe préformaté
  &lt;/pre&gt;
 &lt;/section&gt;
 &lt;section&gt;
@@ -336,7 +348,19 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </code></pre>
 				</section>
                                 <section>
-					<h2>Elements de structure (ol)</h2>
+					              <h2>Eléments de structure (simple)</h2>
+					              <p>&nbsp;</p>
+                                  <p>
+                                   Même exemple vu sous la forme d'un arbre
+                                  </p>
+                                  <img src="images/html/tree2.png"
+                                       width="473"
+                                       height="215"
+                                       alt="arbre de balises correspondant document précédent"
+                                   />
+				                </section>
+                                <section>
+					<h2>Eléments de structure (ol)</h2>
                                         <p>Les listes ordonnées</p>
                                         <ol id="ordered_list">
                                          <li>premier item</li>
@@ -356,7 +380,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </small>
 				</section>
                                 <section>
-					<h2>Elements de structure (ul)</h2>
+					<h2>Eléments de structure (ul)</h2>
                                         <p>Les listes non-ordonnées</p>
                                         <ul id="unordered_list">
                                          <li>premier item</li>
@@ -372,7 +396,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </textarea></small>
 				</section>
                                 <section>
-					<h2>Elements de structure (dl)</h2>
+					<h2>Eléments de structure (dl)</h2>
                                         <p>Les listes de definitions</p>
                                         <dl id="definition_list">
                                          <dt>HTML</dt>
@@ -396,7 +420,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </small>
 				</section>
                                 <section>
-					<h2>Elements de structure (table)</h2>
+					<h2>Eléments de structure (table)</h2>
                                         <p>Les tableaux à 2 dimensions</p>
                                         <table>                                   
                                           <tr>
@@ -422,7 +446,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </small> 
 				</section>
                                 <section>
-					<h2>Elements de structure (table)</h2>
+					<h2>Eléments de structure (table)</h2>
                                         <table>
                                          <thead>
                                           <th></th><th>Symbole</th><th>% dans l'air</th>
@@ -455,10 +479,10 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </small> 
 				</section>
                                 <section>
-					<h2>Elements multi-media</h2>
+					<h2>Eléments multi-media</h2>
 				</section>
                                 <section>
-					<h2>Elements multi-media (lien)</h2>
+					<h2>Eléments multi-media (lien)</h2>
                                         <ul>
                                           <li>les liens externes
                                              <br/>
@@ -491,7 +515,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </div>
 				</section>
                                 <section>
-					<h2>Elements multi-media (iframe)</h2>
+					<h2>Eléments multi-media (iframe)</h2>
                                          <p>
                                           Permet d'inclure un document dans un document
                                          </p>
@@ -507,7 +531,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                              </code></pre>
 				</section>
                                 <section>
-					<h2>Elements multi-media (image)</h2>
+					<h2>Eléments multi-media (image)</h2>
                                         <img src="images/html/enquire.jpg"
                                              width="361"
                                              height="282"
@@ -524,7 +548,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </small>
 				</section>
                                 <section>
-					<h2>Elements multi-media<br/>(formats d'image)</h2>
+					<h2>Eléments multi-media<br/>(formats d'image)</h2>
                                         <table>
                                          <tr>
                                           <td>PNG</td>
@@ -542,7 +566,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </table>
 				</section>
                                 <section>
-					<h2>Elements multi-media (audio)</h2>
+					<h2>Eléments multi-media (audio)</h2>
                                         <audio controls>
                                           <source src="images/html/upem.oga" type="audio/ogg"> 
                                           <source src="images/html/upem.mp3" type="audio/mpeg"> 
@@ -563,7 +587,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </small>
 				</section>
                                 <section>
-					<h2>Elements multi-media (video)</h2>
+					<h2>Eléments multi-media (video)</h2>
                                         <p>&nbsp;</p>
                                         <pre><code class="html" data-trim contenteditable>
 &lt;video width="640"
@@ -583,7 +607,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </small>
 				</section>
                                 <section>
-					<h2>Elements multi-media (video)</h2>
+					<h2>Eléments multi-media (video)</h2>
                                         <p>&nbsp;</p>
                                         <video width="640"
                                                height="360"
@@ -595,10 +619,10 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </video>
 				</section>
                                 <section>
-					<h2>Elements du document</h2>
+					<h2>Eléments du document</h2>
 				</section>
                                 <section>
-					<h2>Elements du document (doctype)</h2>
+					<h2>Eléments du document (doctype)</h2>
                                         <p>
                                          Avant la balise html,
                                          on doit indiquer la version du HTML
@@ -625,7 +649,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </table>
 				</section>
                                 <section>
-					<h2>Elements du document (head)</h2>
+					<h2>Eléments du document (head)</h2>
                                         <p>
                                          La balise <b>head</b> permet d'indiquer
                                         <br/>
@@ -648,7 +672,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </code></pre>
 				</section>
                                 <section>
-					<h2>Elements du document (meta)</h2>
+					<h2>Eléments du document (meta)</h2>
                                         <p>
                                          Meta-donnée sur le document
                                         </p>
