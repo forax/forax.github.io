@@ -50,34 +50,49 @@
 					<h2>Internet ?</h2>
 					<blockquote cite="https://en.wikipedia.org/wiki/Internet">
 					  &ldquo;The Internet is the global system of interconnected computer networks
-                                          that use the Internet protocol suite (TCP/IP) to link billions
-                                          of devices worldwide&rdquo;
+                      that use the Internet protocol suite (TCP/IP) to link billions
+                      of devices worldwide&rdquo;
 					</blockquote>
                                         <p align="right">
                                          source: Wikipedia.com - Internet
                                         </p>
 				</section>
-                                <section>
-					<h2>Internet Protocol ?</h2>
+				<section>
+					<h2>Internet ?</h2>
+					<blockquote cite="https://en.wikipedia.org/wiki/Internet">
+					  &ldquo; L'Internet est un système globale de réseaux d'ordinateurs
+					  interconnectés qui utilise la suite de protocoles Internet (TCP/IP)
+					  pour lier des milliards de terminaux mondialement&rdquo;
+					</blockquote>
+                                        <p align="right">
+                                         source: Wikipedia.com - Internet
+                                        </p>
+				</section>
+                <section>
+					<h2>Internet Protocol (IP) ?</h2>
 					<p>
                                          Plusieurs protocoles d'échange de données permettant à des machines
                                          de communiquer entre elles à travers un réseau de machines
                                         </p>
-                                        <img src="images/web/internet-routing.png">
+                                        <img src="images/web/internet-routing.png"
+                                             width="540"
+                                             height="398">
 				</section>
-                                <section>
+                <section>
 					<h2>Adresse IP</h2>
 					<p>
                                          Adresse unique identifiant une machine sur le réseau internet
                                         </p>
-                                        <img src="images/web/ip-address.png">
+                                        <img src="images/web/ip-address.png"
+                                             width="540"
+                                             height="398">
 				</section>
                                 <section>
 					<h2>ping</h2>
 					<p>
                                          La commande ping permet d'envoyer des paquets ICMP
                                         <br/>
-                                         (de controle) à une adresse IP.
+                                         (de contrôle) à une adresse IP.
                                         </p>
                                         <pre><code class="hlbash" data-trim>
 $ ping 193.50.159.151
@@ -92,11 +107,21 @@ PING 193.50.159.151 (193.50.159.151) 56(84) bytes of data.
 rtt min/avg/max/mdev = 27.293/28.505/29.422/0.782 ms
                                         </code></pre>
 				</section>
-                                <section>
+                <section>
 					<h2>DNS</h2>
 					<blockquote cite="https://en.wikipedia.org/wiki/DNS">
-                                         The Domain Name System (DNS) is a hierarchical distributed naming system
-                                         for computers, services, or any resource connected to the Internet
+                                         &ldquo;The Domain Name System (DNS) is a hierarchical distributed naming system
+                                         for computers, services, or any resource connected to the Internet&rdquo;
+                                        </blockquote>
+                                        <p align="right">
+                                         source: Wikipedia.com - DNS
+                                        </p>
+				</section>
+				<section>
+					<h2>DNS</h2>
+					<blockquote cite="https://en.wikipedia.org/wiki/DNS">
+					  &ldquo;Le système de nom de domaine (DNS) est un système de nommage hiérarchique et distribué
+					  pour des ordinateurs, services ou n'importe quel ressource connecté à l'Internet&rdquo;
                                         </blockquote>
                                         <p align="right">
                                          source: Wikipedia.com - DNS
@@ -137,22 +162,33 @@ typo3-prod.u-pem.fr has address 193.50.159.151
                                 <section>
                                         <h2>Google DNS</h2>
                                         <a href="https://xkcd.com/1361/">
-                                         <img src="https://imgs.xkcd.com/comics/google_announcement.png">
+                                         <img src="images/web/xkcd_google_dns.png"
+                                              width="262"
+                                              height="383">
                                         </a>
+                                        <p>
+                                         <a href="https://xkcd.com/1361/">
+                                          xkcd Google Announcement
+                                         </a>
+                                        </p>
                                 </section>
                                 <section>
 					<h2>Router</h2>
 					<p>
                                          Materiel connecté à plusieurs machines qui sépare différents réseaux IP 
                                         </p>
-                                        <img src="images/web/router-chez-soi.jpg">
+                                        <img src="images/web/router-chez-soi.jpg"
+                                             width="478"
+                                             height="442">
 				</section>
                                 <section>
 					<h2>Routage</h2>
 					<p>
-                                         Pour atteindre une machine distante, les données sont routées de proche en proche
+                                         Pour atteindre une machine distante, les données sont acheminées (routées) de proche en proche
                                         </p>
-                                        <img src="images/web/internet-routing.png">
+                                        <img src="images/web/internet-routing.png"
+                                             width="540"
+                                             height="398">
 				</section>
                                 <section>
 					<h2>traceroute</h2>
@@ -176,25 +212,39 @@ traceroute to 93.184.220.20 (93.184.220.20), 30 hops max, 60 byte packets
  9  93.184.220.20 (93.184.220.20)  26.546 ms  26.683 ms  25.159 ms
 					</code></pre>
                                         <p>
-                                         <small>On voit que les données ont pris deux chemins en 8</small>
+                                         <small>On voit que les données ont pris deux chemins à l'étape 8</small>
                                         </p>
 				</section>
                                 <section>
 					<h2>TCP/IP</h2>
 					<p>
-                                         Transmission Control Protocol fait croire à des machines qu'elles sont
+                                         Transmission Control Protocol (TCP) fait croire à des machines qu'elles sont
                                          connectées directement l'une à l'autre
                                         </p>
-                                        <img src="images/web/tcp.png">
+                                        <img src="images/web/tcp.png"
+                                             width="540"
+                                             height="398">
 				</section>
 				
-                                <section>
+                <section>
 					<h2>Web ?</h2>
 					<blockquote cite="https://en.wikipedia.org/wiki/Internet">
 					  &ldquo;The World Wide Web (WWW) is an open source information
-                                          space where documents and other web resources are identified
-                                          by URLs, interlinked by hypertext links, and can be accessed
-                                          via the Internet&rdquo;
+                      space where documents and other web resources are identified
+                      by URLs, interlinked by hypertext links, and can be accessed
+                      via the Internet&rdquo;
+					</blockquote>
+                                        <p align="right">
+                                         source: Wikipedia.com - World Wide Web
+                                        </p>
+				</section>
+				<section>
+					<h2>Web ?</h2>
+					<blockquote cite="https://en.wikipedia.org/wiki/Internet">
+					  &ldquo;La toile mondiale (WWW) est un espace d'information à
+					  code source ouvert où les documents et autres ressources de la toile
+					  sont identifiés par des URLs, interconnecté par des liens hypertextes
+					  qui peuvent être accessibles par l'Internet&rdquo;
 					</blockquote>
                                         <p align="right">
                                          source: Wikipedia.com - World Wide Web
@@ -204,7 +254,7 @@ traceroute to 93.184.220.20 (93.184.220.20), 30 hops max, 60 byte packets
                                 <section>
 					<h2>URL</h2>
 					<p>
-                                         Unified Resource Locator
+                                         Uniform Resource Locator
                                         <br/>
                                          permet d'identifier une ressource sur le Web
                                         </p>
@@ -233,7 +283,9 @@ traceroute to 93.184.220.20 (93.184.220.20), 30 hops max, 60 byte packets
                                          HyperText Transfer Protocol: Protocole d'échange de documents
                                          et d'images au-dessus TCP
                                         </p>
-                                        <img src="images/web/browser-server.png">
+                                        <img src="images/web/browser-server.png"
+                                             width="540"
+                                             height="398">
 				</section>
                                 
                                 <section>
@@ -257,10 +309,31 @@ Content-Type: text/html; charset=iso-8859-1
 ...
                                        </code></pre>
                                 </section>
-
+                                
                                 <section>
-					<h2>Codes de réponse HTTP</h2>
-					<p><small>
+					                    <h2>Entête de la réponse HTTP</h2>
+					                    <p>
+					                      La première ligne est un code de réponse 
+					                      <pre><code class="http" data-trim>
+HTTP/1.1 200 OK
+					                      </code></pre>
+					                      puis d'informations supplémentaires
+					                      de la forme <tt>clé: valeurs</tt>
+					                      <pre><code class="http" data-trim>
+Content-Length: 269
+Content-Type: text/html; charset=iso-8859-1
+					                      </code></pre>
+					                      et enfin séparé d'une ligne vide, le contenu
+					                     <br/>
+					                      (page web, images, videos, etc).
+					                    </p>
+				                </section>
+				                
+				               
+				                
+                                <section>
+					                    <h2>Codes de réponse HTTP</h2>
+					                    <p><small>
                                          200 OK<br/>
                                          301 Moved Permanently<br/>
                                          401 Unauthorized<br/>
@@ -270,12 +343,99 @@ Content-Type: text/html; charset=iso-8859-1
                                         <p>
                                          <small><a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">https://en.wikipedia.org/wiki/List_of_HTTP_status_codes</a></small>
                                         </p>
-				</section>
+				                </section>
+				                
+				                <section>
+				                        <h2>Content-Length / Content-Type</h2>
+				                        <p>
+				                          <b>Content-Length</b> définie la taille du contenu, ou -1
+				                        </p>
+				                        <p>  
+				                          <b>Content-Type</b> définie le type du contenu, text, image, etc
+				                         <br/> 
+				                          au format MIME.
+				                        </p>
+				                          <pre><code class="http" data-trim>
+Content-Length: 269
+Content-Type: text/html; charset=iso-8859-1
+				                          </code></pre>
+				                          <small>
+				                            Fichier HTML de 269 octets encodé en iso-latin1
+				                          </small>  
+				                </section>
+				                
+				                <section>
+				                 <h2>Type MIME</h2>
+				                 <p>
+				                  Multipurpose Internet Mail Extensions (MIME) définie l'encodage
+				                  du Content-Type.
+				                 </p>
+				                 <table>
+				                 <tr>
+				                  <td>text/plain;&nbsp;charset=utf-8</td>
+				                  <td>texte simple (encodage UTF8)</td>
+				                  </tr><tr>
+				                  <td>text/html;&nbsp;charset=utf-8</td>
+				                  <td>texte au format HTML</td>
+				                 </tr><tr>
+				                  <td>image/jpeg</td>
+				                  <td>image JPEG</td>
+				                 </tr><tr>
+				                  <td>video/mp4</td>
+				                  <td>video au format MPEG4</td>
+				                 </tr><tr>
+				                  <td>application/msword</td>
+				                  <td>contenu lisible par Microsoft Word</td>
+				                 </tr>
+				                 </table>
+				                 <small>
+				                  Historiquement, le type MIME a été spécifié pour les mails et
+				                  réutiliser par HTTP. 
+				                 </small>
+				                </section>
+				                
+                                <section>
+				                        <h2>Et pour une image ?</h2>
+				                        <p>
+				                          <pre><code class="http" data-trim>
+$ nc imgs.xkcd.com 80
+GET /comics/google_announcement.png HTTP/1.1
+Host: imgs.xkcd.com
+                                          </code></pre>
+                                          <pre class="fragment"><code class="http" data-trim>
+HTTP/1.1 200 OK
+Cache-Control: public, max-age=300
+Expires: Sun, 24 Jan 2016 10:51:04 GMT
+Content-Type: image/png
+ETag: "3722984847"
+Last-Modified: Mon, 28 Apr 2014 04:40:03 GMT
+Server: lighttpd/1.4.28
+Content-Length: 19172
+Accept-Ranges: bytes
+Date: Sun, 24 Jan 2016 13:58:11 GMT
+Via: 1.1 varnish
+Age: 16
+Connection: close
+X-Served-By: cache-lcy1135-LCY
+X-Cache: HIT
+X-Cache-Hits: 6
+X-Timer: S1453643891.248729,VS0,VE0
+
+				                          </code></pre>
+				                          <small>
+				                            Fichier PNG de 19172 octets
+				                          </small>
+				                        </p>  
+				                </section>
+				                
+				                
 
                                 <section>
-				        <h2>wget</h2>
+				                        <h2>wget</h2>
                                         <p>
-                                         wget permet de télécharger une ressource à partir d'une URL
+                                         wget permet de télécharger une ressource
+                                        <br/>
+                                         à partir d'une URL
                                         </p>
                                         <pre><code class="hlbash" data-trim>
 $ wget http://igm.u-pem.fr/index.html
@@ -287,19 +447,30 @@ Length: unspecified [text/html]
 Saving to: ‘index.html’
                                         </code></pre>
                                 </section>
+                                
                                 <section>
-					<h2>Requêtes HTTP</h2>
+					                 <h2>Requêtes HTTP</h2>
                                         <img src="images/web/page.png"
                                              width="300"
                                              height="200"
                                              aligh="right">
-					<p>
+					                    <p>
                                          Une page nécessite plusieurs requêtes HTTP
                                         </p>
                                         <a href="images/web/page-breakdown.png">
                                           <img src="images/web/page-breakdown.png">
                                         </a>
-				</section>
+				                </section>
+				                
+				                <section>
+					                 <h2>Requêtes HTTP (suite)</h2>
+					                    <p>
+					                     Avec la première page du Monde (www.lemonde.fr)
+					                    </p>
+                                        <a href="images/web/page-lemonde.png">
+                                          <img src="images/web/page-lemonde.png">
+                                        </a>
+				                </section>
 
                                 <section>
 					<h2>HTTPS</h2>
@@ -311,7 +482,12 @@ Saving to: ‘index.html’
                                         <br/>
                                          entre le client et le serveur. 
                                         </p>
-                                        <p>
+                                        <p class="fragment">
+                                         La clé public est cherchée auprès de serveurs
+                                         (dit serveurs de certificats) qui ont leurs clées publiques
+                                         stockées dans le code du client.
+                                        </p>
+                                        <p class="fragment">
                                          Pour des questions de performance,
                                          le chiffrement asymétrique n'est utilisé que pour échanger
                                          une clef symétrique entre le client et le serveur,
@@ -319,7 +495,7 @@ Saving to: ‘index.html’
                                         </p>
 				</section>
 
-                                <section>
+                                <!-- section>
 					<h2>Chiffrage asymétrique</h2>
                                         
 					<p>
@@ -338,7 +514,7 @@ Saving to: ‘index.html’
 					<p>
                                          
                                         </p>
-				</section>
+				</section -->
 			</div>
 
 		</div>
