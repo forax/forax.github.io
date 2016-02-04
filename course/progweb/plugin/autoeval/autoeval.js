@@ -86,12 +86,12 @@
                                   return line;
                                 }
                                 if (instr.startsWith("var")) {
-                                  var index = line.indexOf('=');
+                                  var index = instr.indexOf('=');
                                   if (index == -1) {
                                     return line;
                                   } else {
-                                    var init = trimSemicolon(line.substring(index + 1));
-                                    return line.substring(0, index) + "= tap(" + num + ", " + init + ");"; 
+                                    var init = trimSemicolon(instr.substring(index + 1));
+                                    return instr.substring(0, index) + "= tap(" + num + ", " + init + ");"; 
                                   }
                                 }
    
