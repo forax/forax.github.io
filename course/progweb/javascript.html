@@ -421,15 +421,19 @@ console.log(addOne(3));
                                         </small>
 				</section>
                 <section>
-					                     <h2>Fonction comme variable</h2>
+					                     <h2>Fonction comme une valeur</h2>
 					                     <p>
-                                          La définition d'une fonction crée une variable du même nom que la fonction qui contient la valeur de la fonction
+                                          La définition d'une fonction crée une variable du même nom que la fonction
+                                         <br/>
+                                          Cette variable contient la valeur de la fonction
                                          </p>
                                          <p>&nbsp;</p>
-                                        <small><textarea autojslog="js-function4" rows="8" cols="30">
+                                        <small><textarea autojslog="js-function4" rows="10" cols="30">
 function addOne(x) { 
   return x + 1;
 }
+
+console.log(addOne);
 
 var plusOne = addOne;
 console.log(plusOne);
@@ -441,7 +445,7 @@ console.log(plusOne(3));
                                         </small>
 				</section>     
                 <section>
-					                     <h2>Fonction comme une valeur</h2>
+					                     <h2>Fonction qui prend une fonction en argument</h2>
 					                     <p>
                                           Une fonction peut prendre une fonction en paramètre
                                          </p>
@@ -713,10 +717,8 @@ if (a == 4)
                                           Mais la grammaire de JavaScript est ambigue
                                          </p>
                                         <p>&nbsp;</p>
-                                        <small><div class="bad-container"><textarea autojslog="js-asi" rows="9" cols="20">
-function f(x) {
-  return x
-}
+                                        <small><div class="bad-container"><textarea autojslog="js-asi" rows="6" cols="30">
+function f(x) { return x }
 var a = f
 (f(3))
        
