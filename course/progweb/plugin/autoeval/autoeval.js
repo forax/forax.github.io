@@ -3,6 +3,19 @@
                 console.log('init autoeval');
 		var areas = document.querySelectorAll( 'textarea' );
 
+                var pretty = function(val) {
+                  if (Array.isArray(val)) {
+                    return "[" + val +  "]";
+                  }
+                  if (val instanceof Function) {
+                    return val;
+                  }
+                  if (val instanceof Object) {
+                    return JSON.stringify(val);
+                  }
+                  return val;
+                }
+
 		for( var i = 0, len = areas.length; i < len; i++ ) {
 			var element = areas[i];
 
@@ -48,7 +61,8 @@
                             var listener = function(event) {
                               e.innerHTML = "";
                               var console = { log: function(msg) {
-                                e.appendChild(document.createTextNode(msg));
+                                var text = pretty(msg);
+                                e.appendChild(document.createTextNode(text));
                                 e.appendChild(document.createElement("br"));
                               } }; 
                               try {
@@ -119,7 +133,8 @@
 
                               var tap = function(num, val) {
                                   var div = e.childNodes[num];
-                                  div.replaceChild(document.createTextNode(val), div.childNodes[0]);
+                                  var text = pretty(val);
+                                  div.replaceChild(document.createTextNode(text), div.childNodes[0]);
                                   return val;
                               };
                               eval(content);

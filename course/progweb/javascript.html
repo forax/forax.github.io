@@ -36,6 +36,7 @@
 		<!-- autojs result -->
 		<style>
 		  div.autojsresult {
+		    text-align: left;
 		    color: lime;
 		  }
 		  div.autojslog {
@@ -211,7 +212,9 @@ typeof "bar"
                                         </textarea></small>
                                         <small><div id="js-datatype"></div></small>
                                         <p><small>
-                                         Il y a d'autre types pour les tableaux, les dictionnaires ou les dates que l'on verra plus tard.
+                                         Il y a d'autre types pour les tableaux, les dictionnaires
+                                        <br/> 
+                                         ou les fonctions que l'on verra plus tard.
                                         </small></p>
 				</section>
 				<section>
@@ -428,15 +431,13 @@ console.log(addOne(3));
                                           Cette variable contient la valeur de la fonction
                                          </p>
                                          <p>&nbsp;</p>
-                                        <small><textarea autojslog="js-function4" rows="10" cols="30">
+                                        <small><textarea autojslog="js-function4" rows="8" cols="30">
 function addOne(x) { 
   return x + 1;
 }
-
 console.log(addOne);
 
 var plusOne = addOne;
-console.log(plusOne);
 console.log(plusOne(3));
                                         </textarea></small>
                                         <p></p>
@@ -449,7 +450,6 @@ console.log(plusOne(3));
 					                     <p>
                                           Une fonction peut prendre une fonction en paramètre
                                          </p>
-                                         <p>&nbsp;</p>
                                         <small><textarea autojslog="js-function5" rows="13" cols="30">
 function doItTwice(f, x) { 
   console.log(f(f(x)));
@@ -471,11 +471,11 @@ doItTwice(multiplyBy2, 1);
 				</section>     
                      
                 <section>
-					                     <h2>Execution conditionnel</h2>
+					                     <h2>Exécution conditionnel</h2>
 					                     <p>
                                           <b>if</b> permet de demander d'exécuter un morceau de code sous certaines conditions
                                          </p>
-                                         <p>&nbsp;</p>
+                                         <p></p>
                                         <small><textarea autojslog="js-if" rows="10" cols="25">
 function abs(x) { 
   if (x < 0) {
@@ -493,7 +493,7 @@ console.log(abs(7));
                                         </small>
 				</section>
 				<section>
-					                     <h2>Execution conditionnel (2)</h2>
+					                     <h2>Exécution conditionnel (2)</h2>
 					                     <p>
                                           <b>if</b> ... <b>else</b> permet de demander d'exécuter un morceau de code différent dans chaque cas.
                                          </p>
