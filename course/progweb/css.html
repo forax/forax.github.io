@@ -57,7 +57,18 @@
                                          source: Wikipedia.com - <a href="https://en.wikipedia.org/wiki/CSS">CSS</a>
                                         </p>
 				</section>
-                                <section>
+				<section>
+					<h2>CSS ?</h2>
+					<blockquote cite="https://en.wikipedia.org/wiki/CSS">
+					  &ldquo;La feuille de style en cascade (CSS) est un langage de
+					  feuilles de style utilisé pour décrire la présentation
+					  d'un document écrit dans un langage à balises&rdquo;
+					</blockquote>
+                                        <p align="right">
+                                         source: Wikipedia.com - <a href="https://en.wikipedia.org/wiki/CSS">CSS</a>
+                                        </p>
+				</section>
+                <section>
 					<h2>Historique des versions</h2>
 					<table>
                                          <tr>
@@ -97,7 +108,7 @@
 					<h2>La balise style</h2>
 					<p>
                                          La balise <b>style</b> permet de définir
-                                         des styles qui seront valide pour tous le document
+                                         des styles qui seront valides pour tous le document
                                         </p>
                                         <p>&nbsp;</p>
                                         <pre><code class="html" data-trim>
@@ -135,9 +146,9 @@
 				</section>
 
                                 <section>
-					<h2>Id d'élement</h2>
+					<h2>Id d'élément</h2>
 					<p>
-                                         Si l'on veut que seul une balise ait un style particulier,
+                                         Si l'on veut que seule une balise ait un style particulier,
                                          on peut donner un identifiant à cette balise.
                                         </p>
                                         <pre><code class="html" data-trim>
@@ -156,7 +167,7 @@ li#important {
                                         </code></pre>
 				</section>
                                 <section>
-					<h2>classe d'élement</h2>
+					<h2>classe d'élément</h2>
 					<p>
                                          On peut aussi vouloir distinguer plusieurs balises.
                                          On indique les balises qui appartiennent
@@ -183,7 +194,7 @@ li.important {
                                 <section>
 					<h2>La syntaxe</h2>
 					<p>
-                                         Un style est une liste de selecteurs auquels
+                                         Un style est une liste de sélecteurs auquels
                                         <br/>
                                          sont associées des propriétés.
                                         </p>
@@ -208,25 +219,25 @@ selecteur2 {
 					<h2>Selecteurs</h2>
 					<small><table>
                                          <tr>
-                                          <td>E</td><td>élements de type E</td>
+                                          <td>E</td><td>éléments de type E</td>
                                          </tr><tr>
-                                          <td>E1 E2</td><td>un element E1 suivi par E2</td>
+                                          <td>E1 E2</td><td>un élément E1 suivi par E2</td>
                                          </tr><tr>
-                                          <td>E#myid</td><td>élement dont l'<b>id</b> est myid</td>
+                                          <td>E#myid</td><td>élément dont l'<b>id</b> est myid</td>
                                          </tr><tr>
                                           <td>E.myclass</td>
-                                          <td>élement dont la <b>class</b> est myclass</td>
+                                          <td>élément dont la <b>class</b> est myclass</td>
                                          </tr><tr>
-                                          <td>E[foo]</td><td>élements avec un attribut foo</td>
+                                          <td>E[foo]</td><td>éléments avec un attribut foo</td>
                                          </tr><tr>
                                           <td>E[foo="val"]</td>
                                           <td>élément dont l'attribut foo a la valeur val</td>
                                          </tr><tr>
-                                          <td>E::first-letter</td><td>première lettre d'un texte</td>
+                                          <td>E::first-letter</td><td>première lettre d'un texte (pseudo élément)</td>
                                          </tr><tr>
                                           <td>E::first-child ou<br/>E::last-child</td>
                                           <td>
-                                           premier élement ou dernier élement
+                                           premier élément ou dernier élément
                                           <br/>
                                            (<a href="http://www.w3.org/TR/css3-selectors/">CSS3 selector</a>)
                                           </td>
@@ -235,12 +246,43 @@ selecteur2 {
                                           <td>état d'un lien (pseudo classe)</td>
                                         </table></small>
 				</section>
+				<section>
+					<h2>Exemple de selecteurs</h2>
+                    <p>
+                     Exemple d'application d'un style à des éléments
+                    <br/> 
+                     et des pseudos élements.
+                    </p>
+                                        <iframe id="example-frame"
+                                                src="images/css/example.html"
+                                                width="500"
+                                                height="110">
+                                        </iframe>
+                                        <p>
+                                         <small><textarea autostyle="example-frame" rows="10" cols="30">
+p {
+  color: green;
+}
+p::first-line {
+  color: red;
+}
+p::first-letter {
+  color: blue;
+}
+                                         </textarea></small>
+                                        </p>
+                                        <p>
+                                         <small>
+                                          La première ligne est la première ligne affichée
+                                         </small>
+                                        </p>
+				</section>
 
                                 <section>
 					<h2>Cascading Style Sheet</h2>
                                         <p>
                                          Cascading signifie que si l'on applique un
-                                         style à un élement, le style est propagé [1] à tous
+                                         style à un élément, le style est propagé [1] à tous
                                          ses sous-éléments
                                         </p>
                                         <iframe id="text-frame"
@@ -269,7 +311,7 @@ li {
                                         <p>
                                          L'algorithme marche en 2 temps
                                         <br/>
-                                         1. on applique les selecteurs dans l'ordre du fichier
+                                         1. on applique les sélecteurs dans l'ordre du fichier
                                         </p>
                                         <img src="images/css/tree-cascading1.png"
                                              width="361"
@@ -444,7 +486,7 @@ p {
   font-family: "Arial", "Helvetica", "Verdana", sans-serif;
   font-style: oblique;
   font-weight: bold;
-  font-size: 22px;
+  font-size: 1.3em;
 }
                                          </textarea></small>
                                         </p>
@@ -452,7 +494,7 @@ p {
                                 <section>
                                         <style>
                                         A#pseudo:link { color: green; }
-                                        A#pseudo:visited { color: green; }
+                                        A#pseudo:visited { color: yellow; }
                                         A#pseudo:hover { color: teal; }
                                         A#pseudo:active { color: red; }
                                         </style>
@@ -461,7 +503,7 @@ p {
                                          Il existe des
                                          <a id="pseudo" 
                                             href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes">
-                                           pseudo-propriétés
+                                           pseudo-classes
                                           </a>
                                          reflétant l'état d'un lien
                                         </p>
@@ -470,13 +512,13 @@ A:link {  /* lien non visite */
   color: green;
 }
 A:visited { /* lien visite */
-  color: green;
+  color: yellow;
 }
 A:hover { /* souris au dessus du lien */
   color: teal;
 }
 A:active { /* on click sur le lien */
-  color: read;
+  color: red;
 }
                                         </code></pre>
                                         
@@ -518,7 +560,7 @@ ul {
                                 <section>
 					<h2>Inline vs block</h2>
 					<p>
-                                         Pour l'affichage, les élements sont séparés en 2 catégories
+                                         Pour l'affichage, les éléments sont séparés en 2 catégories
                                          <ul>
                                           <li>Les <b>inlines</b>, qui comme du texte sont
                                             <br/>
@@ -527,7 +569,7 @@ ul {
                                              <br/>
                                               et dont la hauteur est de la somme des
                                              <br/>
-                                              hauteurs des sous-élements
+                                              hauteurs des sous-éléments
                                          </p>
                                          <p>&nbsp;</p>
                                          <p>
