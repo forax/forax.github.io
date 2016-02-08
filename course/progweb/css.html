@@ -917,10 +917,11 @@ th, td { border-bottom: 1px solid; }
                                                 height="200">
                                          </iframe>
                                          <p></p>
-                                         <small><textarea autostyle="box-position" rows="5" cols="30">
+                                         <small><textarea autostyle="box-position" rows="6" cols="30">
 .box {
   position: relative; 
   left: 10px;
+  top: 10px;
 }
                                          </textarea></small>
                                        
@@ -928,12 +929,17 @@ th, td { border-bottom: 1px solid; }
                                         <div>
                                          <small><dl>
                                           <dt>static</dt><dd>comportement normal</dd>
-                                          <dt>fixed</dt><dd>par rapport au coin en haut à gauche de la fenêtre</dd>
+                                          <dt>fixed</dt>
+                                          <dd>par rapport au coin en haut à gauche de la fenêtre</dd>
                                           <dt>relative</dt><dd>par rapport à la postion habituelle</dd>
                                           <dt>absolute</dt><dd>par rapport à la bois marquée relative</dd>
                                          </dl></small>
                                         </div>
-                                        <p style="clear: both"></p>
+                                        
+                                        <p style="clear: both">&nbsp;</p>
+                                        <p><small>
+                                         Les valeurs de <b>left</b>, <b>top</b>, <b>right</b>, <b>bottom</b> peuvent être negative
+                                        </small></p>
 				</section>
 				<section>
 					<h2>relative/absolute</h2>
