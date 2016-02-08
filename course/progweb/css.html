@@ -32,6 +32,20 @@
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
+		
+		<style>
+		  .bad-container {
+            position: relative;
+            display:inline-block;
+          }
+		  .bad-image:after {
+            content: url(images/js/bad.png);
+            position: absolute;
+            z-index: 9999;
+            right: 5px;
+            bottom: 0px;
+          }
+		</style>
 	</head>
 
 	<body>
@@ -393,15 +407,14 @@ li {
                                 <section>
 					<h2>Propriétés par catégorie</h2>
                                         <ul>
-                                         <li>propriétés des textes
+                                         <li>propriétés des textes & images
                                          <li>propriétés des listes & tables
                                          <li>propriétés des boites
-                                         <li>propriétés des images
                                         </ul>
 				</section>
 
                                 <section>
-					<h2>Propriété des textes</h2>
+					<h2>Propriété des textes & images</h2>
 				</section>
 
                                 <section>
@@ -491,10 +504,32 @@ p {
                                          </textarea></small>
                                         </p>
 				</section>
+				<section>
+					<h2>Image & Alignement Vertical</h2>
+                                        <dl>
+                                         <dt>vertical-align:</dt>
+                                         <dd>baseline | sub | super | top | text-top | middle | bottom | text-bottom</dd>
+                                        </dl>
+                                        <p></p>
+                                        <iframe id="text-vertical"
+                                                src="images/css/text-vertical.html"
+                                                width="500"
+                                                height="200">
+                                        </iframe>
+                                        <p></p>
+                                        <p>
+                                         <small><textarea autostyle="text-vertical" rows="5" cols="45">
+p { font-size: 1.2em; }
+img.ok1 { vertical-align: baseline; }
+img.ok2 { vertical-align: text-top; }
+img.ok3 { vertical-align: middle; }
+                                         </textarea></small>
+                                        </p>
+				</section>
                                 <section>
                                         <style>
                                         A#pseudo:link { color: green; }
-                                        A#pseudo:visited { color: yellow; }
+                                        A#pseudo:visited { color: green; }
                                         A#pseudo:hover { color: teal; }
                                         A#pseudo:active { color: red; }
                                         </style>
@@ -512,7 +547,7 @@ A:link {  /* lien non visite */
   color: green;
 }
 A:visited { /* lien visite */
-  color: yellow;
+  color: green;
 }
 A:hover { /* souris au dessus du lien */
   color: teal;
@@ -530,10 +565,12 @@ A:active { /* on click sur le lien */
 
                                 <section>
 					<h2>Style des listes</h2>
-                                        <ul style="list-style-type: none">
-                                         <li>list-style-type: none | disc | circle | square | decimal
+                                        <dl>
+                                         <dt>list-style-type:</dt>
+                                         <dd> none | disc | circle | square | decimal
                                              | upper-alpha | lower− alpha | upper −roman | lower−roman
-                                        </ul>
+                                         </dd>
+                                        </dl>
                                         <p></p>
                                         <iframe id="style-list"
                                                 src="images/css/list.html"
@@ -552,7 +589,117 @@ ul {
                                          </textarea></small>
                                         </p>
 				</section>
-
+                <section>
+					<h2>Bordure des tables</h2>
+                                        <p>
+                                         Il est possible de mettre des bordures et sur la <b>table</b>
+                                         et sur les <b>td</b> et <b>th</b>
+                                        </p>
+                                        <iframe id="style-table"
+                                                src="images/css/table.html"
+                                                width="500"
+                                                height="200">
+                                        </iframe>
+                                        <p></p>
+                                        <p>
+                                         <small><textarea autostyle="style-table" rows="3" cols="65">
+table { border-collapse: collapse; }
+table, th, td { border: 1px solid black; }
+                                         </textarea></small>
+                                        </p>
+                                        <p><small>
+                                         <b>border-collapse</b> fond plusieurs bordures en une seul
+                                        </small></p>
+				</section>
+				<section>
+					<h2>Largeur/hauteur des tables</h2>
+                                        <p>
+                                         La taille de la table est calculé par son contenu sauf
+                                         si on utilise les propriétés <b>width</b> et <b>height</b>
+                                        </p>
+                                        <iframe id="style-table2"
+                                                src="images/css/table2.html"
+                                                width="500"
+                                                height="200">
+                                        </iframe>
+                                        <p></p>
+                                        <p>
+                                         <small><textarea autostyle="style-table2" rows="4" cols="65">
+table { width: 100%; border: 1px solid; }
+th { height: 30px; } 
+td { padding: 3px; }
+                                         </textarea></small>
+                                        </p>
+                                        <p>
+                                          <b>padding</b> définie l'espacement entre le texte et la case
+                                        </p>
+				</section>
+				<section>
+					<h2>Alignement du texte</h2>
+                                        <p>
+                                         <b>text-align: left | center | right</b> aligne le texte dans les cases
+                                        </p>
+                                        <iframe id="style-table3"
+                                                src="images/css/table3.html"
+                                                width="500"
+                                                height="200">
+                                        </iframe>
+                                        <p></p>
+                                        <p>
+                                         <small><textarea autostyle="style-table3" rows="5" cols="65">
+table { width: 100%; border-collapse: collapse; }
+th { border-bottom: 1px solid; }
+.row1 { text-align: center; }
+.row2, .row3 { text-align: right; }
+                                         </textarea></small>
+                                        </p>
+				</section>
+				<section>
+					<h2>Alignement verticale</h2>
+                                        <p>
+                                         <b>vertical-align: top | center | bottom</b> aligne verticalement le texte dans la case
+                                        </p>
+                                        <iframe id="style-table4"
+                                                src="images/css/table4.html"
+                                                width="500"
+                                                height="200">
+                                        </iframe>
+                                        <p></p>
+                                        <p>
+                                         <small><textarea autostyle="style-table4" rows="5" cols="65">
+table { border-collapse: collapse; }                                   
+th { height: 40px; background-color: orange; vertical-align: center; }
+th, td { border-bottom: 1px solid; }
+.row2, .row3 { text-align: right; }
+                                         </textarea></small>
+                                        </p>
+				</section>
+				<section>
+					<h2>Bandes qui facilite la lecture</h2>
+                                        <p>
+                                         On utilise la pseudo classe <b>:nth-child</b> avec les valeurs <b>odd</b> ou <b>even</b>
+                                         sur une ligne (<b>tr</b>)
+                                        </p>
+                                        <iframe id="style-table5"
+                                                src="images/css/table5.html"
+                                                width="500"
+                                                height="200">
+                                        </iframe>
+                                        <p></p>
+                                        <p>
+                                         <small><textarea autostyle="style-table5" rows="7" cols="65">
+table { border-collapse: collapse; }
+tr:nth-child(odd) { background-color: lightgray; }
+//tr:hover { background-color: lightblue }                                      
+th { background-color: orange; }
+th, td { border-bottom: 1px solid; }
+.row2, .row3 { text-align: right; }
+                                         </textarea></small>
+                                        </p>
+                                        <p>
+                                         Avec le même principe, on peut utiliser la pseudo classe <b>:hover</b>
+                                        </p>
+				</section>
                                 <section>
 					<h2>Propriété des boites</h2>
 				</section>
@@ -592,6 +739,31 @@ ul {
   Une <span class="important">erreur</span> s'est produite ...
 </div>
                                         </code></pre>
+				</section>
+				<section>
+					<h2>Couleur & image de fond</h2>
+					                    <p>
+                                         <b>background-color</b> spécifie une couleur de fond
+                                        <br/>
+                                         <b>background-image</b> spécifie une image de fond
+                                        </p>
+                                        <iframe id="box-background"
+                                                src="images/css/box-background.html"
+                                                width="500"
+                                                height="225">
+                                        </iframe>
+                                        <pre><code class="html" data-trim contenteditable>
+<div class="box1">Lorem ipsum dolor sit ...</div>
+<div class="box2">Lorem ipsum dolor sit ...</div>
+                                        </code></pre>
+                                        <p>
+                                         <small><textarea autostyle="box-background" rows="3" cols="75">
+.box1 { background-color: silver; }
+.box2 { background-image: url("images/css/paper.jpg"); }
+                                         </textarea></small>
+                                        </p>
+                                        <p></p>
+                                        
 				</section>
 
                                 <section>
@@ -655,27 +827,168 @@ ul {
 				</section>
 
                                 <section>
+					<h2>Texte et boite flottante</h2>
+                                        <p>
+                                         <b>float: left | right</b> indique que le texte passe autour de la boite flottante
+                                        </p>
+                                        <iframe id="text-float"
+                                                src="images/css/text-float.html"
+                                                width="500"
+                                                height="250">
+                                        </iframe>
+                                        <p>
+                                         <small><textarea autostyle="text-float" rows="2" cols="75">
+.box { background-color: silver; margin: 10px; padding: 20px; float: left; }
+                                         </textarea></small>
+                                        </p>
+                                        <p><small>
+                                         On peut utiliser cette technique pour positionner des boites
+                                        </small></p>
+				</section>
+				<section>
 					<h2>Positionnement Flottant</h2>
                                         <p>
-                                         
+                                         <b>float</b> répartie les boites à gauche et à droite,
+                                        <br/>
+                                         <b>clear</b> permet d'arréter l'affichage flottant
                                         </p>
                                         <iframe id="box-float"
                                                 src="images/css/box.html"
                                                 width="500"
-                                                height="350">
+                                                height="300">
                                         </iframe>
                                         <p>
                                          <small><textarea autostyle="box-float" rows="4" cols="75">
-.box1 { background-color: teal; margin: 50px; padding: 20px; float: left; }
-.box2 { background-color: silver; margin: 50px; padding: 20px; float: left; }
-.box3 { background-color: olive; margin: 50px; padding: 20px; clear: both; }
+.box-left { background-color: teal; margin: 10px; padding: 20px; float: left; }
+.box-right { background-color: silver; margin: 10px; padding: 20px; float: right; }
+.box-clear { background-color: olive; padding: 20px; clear: both; }
                                          </textarea></small>
                                         </p>
 				</section>
-
-                                <section>
-					<h2>Propriété des images</h2>
+				<section>
+					<h2>Float et alignement vertical</h2>
+                                        <p>
+                                         Une boite avec la propriété <b>float</b> ne supporte pas l'alignement verticale
+                                        </p>
+                                        <iframe id="box-vertical"
+                                                src="images/css/box-vertical.html"
+                                                width="500"
+                                                height="200">
+                                        </iframe>
+                                        <p></p>
+                                        <small><div class="bad-container"><textarea autostyle="box-vertical" rows="4" cols="75">
+.box { background-color: teal; border: 1px solid; float: left; vertical-align: bottom; }
+.box-clear { background-color: olive; clear: both; }
+                                         </textarea><div class="bad-image"></div></div></small>
+                                         <p></p>
+                                        
 				</section>
+				<section>
+					<h2>Inline Block</h2>
+                                        <p>
+                                         <b>display: inline-block</b> permet de voir un élement comme un inline
+                                         et donc de pourvoir utiliser <b>vertical-align</b>
+                                        </p>
+                                        <iframe id="box-vertical-inline"
+                                                src="images/css/box-vertical-inline.html"
+                                                width="500"
+                                                height="200">
+                                        </iframe>
+                                        <p>
+                                         <small><textarea autostyle="box-vertical-inline" rows="4" cols="75">
+.box { background-color: teal; border: 1px solid; display: inline-block; vertical-align: bottom; }
+.box-clear { background-color: olive; clear: both; }
+                                         </textarea></small>
+                                        </p>
+                                        <p><small>
+                                         Mais attention aux espaces car ils sont gérés comme faisant partie de l'affichage
+                                        </small></p>
+				</section>
+				
+				<section>
+					<h2>Positionnement</h2>
+                                        <p>
+                                         <b>position</b> permet de positionner un élement
+                                        </p>
+                                        <div style="float: left">
+                                         <iframe id="box-position"
+                                                src="images/css/box-position.html"
+                                                width="400"
+                                                height="200">
+                                         </iframe>
+                                         <p></p>
+                                         <small><textarea autostyle="box-position" rows="5" cols="30">
+.box {
+  position: relative; 
+  left: 10px;
+}
+                                         </textarea></small>
+                                       
+                                        </div>
+                                        <div>
+                                         <small><dl>
+                                          <dt>static</dt><dd>comportement normal</dd>
+                                          <dt>fixed</dt><dd>par rapport au coin en haut à gauche de la fenêtre</dd>
+                                          <dt>relative</dt><dd>par rapport à la postion habituelle</dd>
+                                          <dt>absolute</dt><dd>par rapport à la bois marquée relative</dd>
+                                         </dl></small>
+                                        </div>
+                                        <p style="clear: both"></p>
+				</section>
+				<section>
+					<h2>relative/absolute</h2>
+                                        <p>
+                                         <b>absolute</b> permet de placer une boite par rapport à une boite relative
+                                        </p>
+                                        <div style="float: left">
+                                         <iframe id="box-position2"
+                                                 src="images/css/box-position2.html"
+                                                 width="500"
+                                                 height="200">
+                                         </iframe>
+                                         <p></p>
+                                         <textarea style="font-size: 0.7em" rows="5" cols="30">
+&lt;div class="container"&gt;
+   Boite de classe container
+   &lt;div class="valid"&gt;&lt;/div&gt;
+&lt;/div&gt;
+                                         </textarea>
+                                        </div>
+                                        <div>
+                                         <small><textarea autostyle="box-position2" rows="12" cols="30">
+.container {
+  position: relative;
+  border: 1px solid;
+  padding: 0px 0px 40px 0px;
+}
+.valid:after {
+  content: url(good.png);
+  position: absolute;
+  z-index: 9999;
+  right: 5px;
+  bottom: 0px;
+}
+                                         </textarea></small>
+                                        </div>
+                                        <p style="clear: both"></p>
+				</section>
+
+                <section>
+					<h2>Et pour la partie dynamique ?</h2>
+                                        <p>
+                                         Et comment on
+                                         <ul>
+                                          <li>clique sur un élement
+                                          <li>on change ce qui est affiché dynamiquement
+                                          <li>on fait des boucles, des test, etc.
+                                         </ul>
+                                        </p>
+                                        <p>
+                                         On ne fait <span style="color: red;">pas ça</span>
+                                         en CSS, on utilise <a href="javascript.html">JavaScript</a>
+                                         pour cela !
+                                        </p>
+				</section>                
                                 
 			</div>
 

@@ -33,6 +33,9 @@
 
                         if (element.attributes.autostyle != undefined) {
                           var frame = frames[element.attributes.autostyle.value];
+                          if (frame == undefined) {
+                            console.log("unknown frame " + element.attributes.autostyle.value);
+                          }
                           
                           (function(element, frame) {
                             var listener = function(event) {
