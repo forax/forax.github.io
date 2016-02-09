@@ -249,15 +249,15 @@ selecteur2 {
                                          </tr><tr>
                                           <td>E::first-letter</td><td>première lettre d'un texte (pseudo élément)</td>
                                          </tr><tr>
-                                          <td>E::first-child ou<br/>E::last-child</td>
+                                          <td>E:first-child ou<br/>E:last-child</td>
                                           <td>
-                                           premier élément ou dernier élément
+                                           premier élément ou dernier élément (pseudo classe)
                                           <br/>
                                            (<a href="http://www.w3.org/TR/css3-selectors/">CSS3 selector</a>)
                                           </td>
                                          </tr><tr>
                                           <td>a:link, a: visited, a:hover,<br/> a:active</td>
-                                          <td>état d'un lien (pseudo classe)</td>
+                                          <td>état d'un lien</td>
                                         </table></small>
 				</section>
 				<section>
@@ -316,7 +316,7 @@ li {
                                         </p>
                                         <p>
                                          <small>
-                                          [1] ou hérité si l'on regade du point de vue des fils.
+                                          [1] ou hérité si l'on regarde du point de vue des fils.
                                          </small>
                                         </p>
 				</section>
@@ -625,7 +625,7 @@ table, th, td { border: 1px solid black; }
                                         <p></p>
                                         <p>
                                          <small><textarea autostyle="style-table2" rows="4" cols="65">
-table { width: 100%; border: 1px solid; }
+table { width: 100%; border: 1px solid black; }
 th { height: 30px; } 
 td { padding: 3px; }
                                          </textarea></small>
@@ -648,7 +648,7 @@ td { padding: 3px; }
                                         <p>
                                          <small><textarea autostyle="style-table3" rows="5" cols="65">
 table { width: 100%; border-collapse: collapse; }
-th { border-bottom: 1px solid; }
+th { border-bottom: 1px solid black; }
 .row1 { text-align: center; }
 .row2, .row3 { text-align: right; }
                                          </textarea></small>
@@ -669,13 +669,13 @@ th { border-bottom: 1px solid; }
                                          <small><textarea autostyle="style-table4" rows="5" cols="65">
 table { border-collapse: collapse; }                                   
 th { height: 40px; background-color: orange; vertical-align: center; }
-th, td { border-bottom: 1px solid; }
+th, td { border-bottom: 1px solid black; }
 .row2, .row3 { text-align: right; }
                                          </textarea></small>
                                         </p>
 				</section>
 				<section>
-					<h2>Bandes qui facilite la lecture</h2>
+					<h2>Bandes qui facilitent la lecture</h2>
                                         <p>
                                          On utilise la pseudo classe <b>:nth-child</b> avec les valeurs <b>odd</b> ou <b>even</b>
                                          sur une ligne (<b>tr</b>)
@@ -692,7 +692,7 @@ table { border-collapse: collapse; }
 tr:nth-child(odd) { background-color: lightgray; }
 //tr:hover { background-color: lightblue }                                      
 th { background-color: orange; }
-th, td { border-bottom: 1px solid; }
+th, td { border-bottom: 1px solid black; }
 .row2, .row3 { text-align: right; }
                                          </textarea></small>
                                         </p>
@@ -877,7 +877,7 @@ th, td { border-bottom: 1px solid; }
                                         </iframe>
                                         <p></p>
                                         <small><div class="bad-container"><textarea autostyle="box-vertical" rows="4" cols="75">
-.box { background-color: teal; border: 1px solid; float: left; vertical-align: bottom; }
+.box { background-color: teal; border: 1px solid black; float: left; vertical-align: bottom; }
 .box-clear { background-color: olive; clear: both; }
                                          </textarea><div class="bad-image"></div></div></small>
                                          <p></p>
@@ -896,7 +896,7 @@ th, td { border-bottom: 1px solid; }
                                         </iframe>
                                         <p>
                                          <small><textarea autostyle="box-vertical-inline" rows="4" cols="75">
-.box { background-color: teal; border: 1px solid; display: inline-block; vertical-align: bottom; }
+.box { background-color: teal; border: 1px solid black; display: inline-block; vertical-align: bottom; }
 .box-clear { background-color: olive; clear: both; }
                                          </textarea></small>
                                         </p>
@@ -964,7 +964,7 @@ th, td { border-bottom: 1px solid; }
                                          <small><textarea autostyle="box-position2" rows="13" cols="30">
 .container {
   position: relative;
-  border: 1px solid;
+  border: 1px solid black;
   padding: 0px 0px 40px 0px;
 }
 .valid:after {
