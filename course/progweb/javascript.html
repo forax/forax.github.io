@@ -212,7 +212,7 @@ typeof "bar"
                                         </textarea></small>
                                         <small><div id="js-datatype"></div></small>
                                         <p><small>
-                                         Il y a d'autre types pour les tableaux, les dictionnaires
+                                         Il y a d'autres types pour les tableaux, les dictionnaires
                                         <br/> 
                                          ou les fonctions que l'on verra plus tard.
                                         </small></p>
@@ -598,14 +598,29 @@ for(i = 0; i < 4; i = i + 1) {
                                         </small>
 				</section>
 				<section>
+					                     <h2>Boucle For et initialisation</h2>
+					                     <p>
+                                          Il est possible de faire l'initialisation à l'intérieur du <b>for</b> 
+                                         </p>
+                                         <p>&nbsp;</p>
+                                        <small><textarea autojslog="js-for-loop2" rows="4" cols="30">
+for(var i = 0; i < 4; i = i + 1) {
+  console.log(i);
+}
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js-for-loop2" class="autojslog"></div>
+                                        </small>
+				</section>
+				<section>
 					                     <h2>Break</h2>
 					                     <p>
                                           <b>break</b> permet d'arréter une boucle (<b>return</b> aussi)
                                          </p>
                                          <p>&nbsp;</p>
-                                        <small><textarea autojslog="js-for-break" rows="8" cols="30">
-var i;
-for(i = 0; ; i = i + 1) {
+                                        <small><textarea autojslog="js-for-break" rows="7" cols="30">
+for(var i = 0; ; i = i + 1) {
   if (i == 4) {
     break;
   }
@@ -623,9 +638,8 @@ for(i = 0; ; i = i + 1) {
                                           <b>continue</b> saute le tour de boucle courant et passe à l'incrémentation suivante
                                          </p>
                                          <p>&nbsp;</p>
-                                        <small><textarea autojslog="js-for-continue" rows="8" cols="30">
-var i;
-for(i = 0; i < 4; i = i + 1) {
+                                        <small><textarea autojslog="js-for-continue" rows="7" cols="30">
+for(var i = 0; i < 4; i = i + 1) {
   if (i %2 == 0) {
     continue;
   }
@@ -649,9 +663,8 @@ for(i = 0; i < 4; i = i + 1) {
                                           </ul></small>
                                          </p>
                                          <p>&nbsp;</p>
-                                        <small><textarea autojslog="js-for-incrementation" rows="5" cols="30">
-var i;
-for(i = 0; i < 4; i++) {
+                                        <small><textarea autojslog="js-for-incrementation" rows="4 cols="30">
+for(var i = 0; i < 4; i++) {
   console.log(i);
 }
                                         </textarea></small>
@@ -668,9 +681,8 @@ for(i = 0; i < 4; i++) {
                                           ++i (resp. --i) incrémente <b>puis</b> renvoie la nouvelle valeur de i
                                          </p>
                                          <p>&nbsp;</p>
-                                        <small><textarea autojslog="js-for-incrementation2" rows="5" cols="30">
-var i;
-for(i = 4; --i >= 0;) {
+                                        <small><textarea autojslog="js-for-incrementation2" rows="4" cols="30">
+for(var i = 4; --i >= 0;) {
   console.log(i);
 }
                                         </textarea></small>
