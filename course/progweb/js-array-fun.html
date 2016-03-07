@@ -727,6 +727,30 @@ array.forEach(function(f) { f(); });
                                          <small>Chaque appel à <b>pushToArray</b> crée une nouvelle variable <b>i</b></small>
                                         </p>
 				</section>
+				<section>
+					                    <h2><a href="https://en.wikipedia.org/wiki/Immediately-invoked_function_expression">Immediately Invoked Function Expression</a></h2>
+					                    <p>
+                                         ou encore une closure en tant que fonction intermédiaire
+                                        </p>
+                                        <small><textarea autojslog="js-array-closure-loop3" rows="10" cols="45">
+var array = [];
+for(var i = 0; i < 3; i++) {
+  (function(i) {        // on cree un nouveau scope
+    array.push(function() {
+      console.log(i);
+    });
+  })(i);   // on envoie i
+}
+array.forEach(function(f) { f(); });
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                          <div id="js-array-closure-loop3" class="autojslog""></div>
+                                        </small>
+                                        <p>
+                                         <small>La closure crée une nouvelle variable <b>i</b></small>
+                                        </p>
+				</section>
 			</div>
 
 		</div>
