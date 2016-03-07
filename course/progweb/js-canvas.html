@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>JavaScript - Canvas API</title>
+
+		<meta name="description" content="JS Canvas API">
+		<meta name="author" content="Remi Forax">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+		
+		<!-- autojs result -->
+		<style>
+		  canvas {
+		    background-color: white;
+		  }
+		  div.autojslog {
+		    color: orange;
+		  }
+		  div.autojserror {
+		    color: red;
+		  }
+		  .bad-container {
+            position: relative;
+            display:inline-block;
+          }
+		  .bad-image:after {
+            content: url(images/js/bad.png);
+            position: absolute;
+            z-index: 9999;
+            right: 5px;
+            bottom: 0px;
+          }
+		</style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+                                <section>
+					<h1>JavaScript</h1>
+                                       <br/>
+                                        <h2>Canvas API</h2>
+					<p>
+					  Remi Forax
+					</p>
+				</section>
+				<section>
+                                        <h2>Canvas API ?</h2>
+					<blockquote cite="https://en.wikipedia.org/wiki/Array_data_structure">
+					  &ldquo;The canvas element is part of HTML5 and allows for dynamic, scriptable rendering of 2D shapes and bitmap images.
+					  It is a low level, procedural model that updates a bitmap.&rdquo;
+					</blockquote>
+                                        <p align="right">
+                                         source: Wikipedia.com - <a href="https://en.wikipedia.org/wiki/Canvas_element">Canvas Element</a>
+                                        </p>
+				</section>
+                <section>
+                                        <h2>API des Canevas ?</h2>
+					<blockquote cite="https://en.wikipedia.org/wiki/Array_data_structure">
+					  &ldquo;L'élément canvas est une partie du HTML5 et permet d'afficher dynamiquement avec un script des figures 2D et des images bitmap.
+					  C'est un modèle procédural de bas niveau qui met à jour une image.&rdquo;
+					</blockquote>
+                                        <p align="right">
+                                         source: Wikipedia.com - <a href="https://en.wikipedia.org/wiki/Canvas_element">L'élément Canvas</a>
+                                        </p>
+				</section>
+				<section>
+					<h2>Historique des versions</h2>
+					
+					 La spécification est en 2 parties
+					<br/>
+					 <ol>
+					  <li>un élement <em>canvas</em></li>
+					  <li>un objet <em>context&nbsp;2D</em></li>
+					 </ol>
+					<p>&nbsp</p>
+					<table>
+                                         <tr>
+                                          <td><a href="https://www.w3.org/TR/html5/scripting-1.html#the-canvas-element">HTML 5 Canvas</a></td><td>2014</td>
+                                         </tr><tr>
+                                          <td><a href="https://www.w3.org/TR/2dcontext/">Context 2D</a></td><td>2015</td>
+                                         </tr>
+                                        </table>
+                                    
+				</section>
+
+                                <section>
+					                    <h2>L'API Canvas</h2>
+					                    <p>
+                                         permet de dessiner avec JavaScript sur un canvas HTML
+                                         </p>
+                                        <p>&nbsp;</p>
+                                        <pre><code class="html" data-trim>
+<canvas id="canvas-example1"
+        width="300"
+        height="180"></canvas>
+                                        </code></pre>
+                                        <canvas id="canvas-example1"
+                                                width="300"
+                                                height="180">
+                                        </canvas>
+                                        <small><textarea autojscanvas="canvas-example1" rows="6" cols="60">
+var canvas = document.getElementById('canvas-example1');
+var context = canvas.getContext("2d");
+
+context.strokeRect(50, 25, 75, 35);
+context.strokeRect(75, 50, 100, 60);
+                                        </textarea></small>
+                                        <p><small>
+                                         Un canvas est vue comme une image sur laquelle on peut dessiner
+                                        </small></p>
+				                </section>
+				                
+				                <section>
+					                    <h2>Le context 2D</h2>
+					                    <p>
+                                         On récupère l'élement Canvas par son nom
+                                        <br/>
+                                         puis on demande le contexte de dessin 2D pour dessiner.
+                                         </p>
+                                        <p>&nbsp;</p>
+                                        <canvas id="canvas-example2"
+                                                width="300"
+                                                height="180">
+                                        </canvas>
+                                        <small><textarea autojscanvas="canvas-example2" rows="6" cols="60">
+var canvas = document.getElementById('canvas-example2');
+var context = canvas.getContext("2d");
+
+context.fillStyle = "orange";
+context.fillRect(100, 50, 100, 100);
+                                        </textarea></small>
+                                        <p>&nbsp;</p>
+                                        <p><small>
+                                         Il existe aussi un context 3D, définie par la specification
+                                         <a href="https://www.khronos.org/registry/webgl/specs/latest/">WebGL</a>.
+                                        </small></p>
+				                </section>
+
+                                <section>
+					                    <h2>L'état du context</h2>
+					                    <p>
+					                     La façon d'afficher dépend de l'état de propriétés du context
+					                    </p>
+                                        <p></p>
+                                        <canvas id="canvas-example3"
+                                                width="300"
+                                                height="180">
+                                        </canvas>
+                                        <p></p>
+                                        <small><textarea autojscanvas="canvas-example3" rows="6" cols="40">
+context.strokeStyle = "blue";
+context.strokeRect(150, 25, 100, 100);
+ 
+context.strokeStyle = "red";
+context.strokeRect(100, 50, 100, 100);    
+                                        </textarea></small>
+                                        <p>
+                                         Par exemple, l'affichage de la couleur d'un rectangle dépend
+					                     de la propriété <b>stokeStyle</b>
+                                        </p>
+                                     
+				                </section>
+				                <section>
+					                    <h2>Couleur</h2>
+					                    <p>
+					                     Les couleurs sont les mêmes que les <a href="css.html#style-color">couleurs de CSS</a>
+					                    </p>
+                                        <p></p>
+                                        <canvas id="canvas-color"
+                                                width="300"
+                                                height="180">
+                                        </canvas>
+                                        <p></p>
+                                        <small><textarea autojscanvas="canvas-color" rows="6" cols="40">
+context.fillStyle = "rgb(255, 0, 0)";
+context.fillRect(25, 50, 100, 100);
+
+context.fillStyle = "#00A0A0";
+context.fillRect(150, 50, 100, 100);
+                                        </textarea></small>
+                                        <p></p>
+                                     
+				                </section>
+				                <section>
+					                    <h2>Gradient Linéaire</h2>
+					                    <p>
+					                     On définie un gradient linéaire par deux points (x1,&nbsp;y1) (x2,&nbsp;y2)
+					                     puis plusieurs couleurs (<em>color stops</em>) sur une échelle entre 0 et 1
+					                    </p>
+                                        <div style="float: left">
+                                        <canvas id="canvas-color2"
+                                                width="250"
+                                                height="250">
+                                        </canvas>
+                                        </div><div>
+                                        <small><textarea autojscanvas="canvas-color2" rows="9" cols="50">
+var gradient = context.createLinearGradient(
+                   50, 50,
+                   200, 200);
+gradient.addColorStop(0, "rgb(255, 0, 0)");
+gradient.addColorStop(0.75, "white");
+gradient.addColorStop(1, "blue");
+context.fillStyle = gradient;
+context.fillRect(50, 50, 150, 150);
+                                        </textarea></small>
+                                        </div>
+                                        <p style="clear: both"></p>
+                                     
+				                </section>
+				                <section>
+					                    <h2>Gradient Circulaire</h2>
+					                    <p>
+					                     On définie un gradient circulaire par 2 cercles (x1,&nbsp;y1,&nbsp;r1) (x2,&nbsp;y2,&nbsp;r2)
+					                    </p>
+                                        <div style="float: left">
+                                        <canvas id="canvas-color3"
+                                                width="250"
+                                                height="250">
+                                        </canvas>
+                                        </div><div>
+                                        <small><textarea autojscanvas="canvas-color3" rows="9" cols="50">
+var gradient = context.createRadialGradient(
+                   125, 125, 10,
+                   130, 130, 30);
+gradient.addColorStop(0, "#A0FF00");
+gradient.addColorStop(0.75, "#00A064");
+gradient.addColorStop(1, "#00A064");
+context.fillStyle = gradient;
+context.fillRect(50, 50, 150, 150);
+                                        </textarea></small>
+                                        </div>
+                                        <p style="clear: both"></p>
+                                     
+				                </section>
+				                
+				                <section>
+				                        <h2>opérations sur un canvas</h2>
+				                        <ul>
+				                         <li>Afficher un texte</li>
+				                         <li>Afficher une figure simple</li>
+				                         <li>Afficher des figures complexes</li>
+				                         <li>Afficher une image</li>
+				                         <li>Gestion des évènements</li>
+				                        </ul>
+				                </section>
+				                
+				                
+				                <section>
+					                    <h2>Afficher un texte</h2>
+					                    <p>
+					                     <em>stroke</em> = trait
+					                    <br/>
+					                     <em>fill</em> = remplissage
+					                    </p>
+                                        <p></p>
+                                        <canvas id="canvas-text"
+                                                width="300"
+                                                height="180">
+                                        </canvas>
+                                        <p></p>
+                                        <small><textarea autojscanvas="canvas-text" rows="6" cols="40">
+context.strokeStyle = "gray";
+context.fillStyle = "red";                                        
+context.font = "40px Arial";
+context.strokeText("Hello World", 20, 50);   
+context.fillText("Hello World", 20, 100);  
+                                        </textarea></small>
+                                        <p><small>
+                                         On peut faire des effet d'ombre en dessinant avec un décalage d'1 ou 2 pixels
+                                        </small></p>
+				                </section>
+				                <section>
+					                    <h2>Afficher un rectangle</h2>
+					                    <p>
+					                     <em>stroke</em> = trait
+					                    <br/>
+					                     <em>fill</em> = remplissage
+					                    </p>
+                                        <p></p>
+                                        <canvas id="canvas-rect"
+                                                width="300"
+                                                height="180">
+                                        </canvas>
+                                        <p></p>
+                                        <small><textarea autojscanvas="canvas-rect" rows="6" cols="45">
+context.strokeStyle = "blue";                                    
+context.strokeRect(50, 50, 100, 50);
+
+context.fillStyle = "red";
+context.fillRect(100, 75, 100, 50);
+                                        </textarea></small>
+                                        <p></p>
+				                </section>
+				                
+				                <section>
+					                    <h2>Afficher une ligne</h2>
+					                    <p>
+					                     <b>moveTo</b> déplace le crayon, <b>lineTo</b> place une ligne,
+					                    <br/>
+					                     <b>stroke</b> dessine
+					                    </p>
+                                        <p></p>
+                                        <canvas id="canvas-line"
+                                                width="300"
+                                                height="180">
+                                        </canvas>
+                                        <p></p>
+                                        <small><textarea autojscanvas="canvas-line" rows="8" cols="40">
+context.strokeStyle = "orange";
+context.lineWidth = 7;     
+                               
+context.moveTo(50, 50);
+context.lineTo(150, 150);
+context.lineTo(250, 50);
+context.stroke();
+                                        </textarea></small>
+                                        <p></p>
+				                </section>
+				                <section>
+					                    <h2>Style d'une ligne</h2>
+					                    <p></p>
+                                        <canvas id="canvas-line2"
+                                                width="300"
+                                                height="180">
+                                        </canvas>
+                                        <p></p>
+                                        <small><textarea autojscanvas="canvas-line2" rows="10" cols="30">
+context.strokeStyle = "fuchsia";
+context.lineWidth = 7;     
+context.lineCap = "round";
+context.lineJoin = "bevel"; 
+ 
+context.moveTo(50, 50);
+context.lineTo(150, 150);
+context.lineTo(250, 50);
+context.stroke();
+                                        </textarea></small>
+					                    <small><dl style="float: right">
+					                     <dt>lineWith</dt>
+					                     <dd>épaisseur du trait</dd>
+					                     <dt>lineCap: butt | round | square</dt>
+					                     <dd>bout des lignes</dd>
+					                     <dt>lineJoin: bevel | round | miter</dt>
+					                     <dd>jointure entre les lignes</dd>
+					                    </dl></small>
+                                        <p style="clear: both"></p>
+				                </section>
+				                
+				                <section>
+					                    <h2>Afficher un cercle/ellipse</h2>
+					                    <p>
+					                     arc(x, y, radius, startAngle, endAngle)
+					                    <br/>
+					                     <small>les angles sont en radians !</small>
+					                    </p>
+                                        <p></p>
+                                        <canvas id="canvas-arc"
+                                                width="300"
+                                                height="180">
+                                        </canvas>
+                                        <p></p>
+                                        <small><textarea autojscanvas="canvas-arc" rows="8" cols="60">
+context.font = "14px arial";
+for(var i = 0; i < 4; i++) {
+  context.strokeText((i + 1) + " PI / 2", 85 + 50 * i, 27 + 45 * i);
+  context.beginPath();
+  context.arc(50 + 50 * i, 20 + 45 * i, 20, 0, (i + 1) * Math.PI / 2);
+  context.stroke();
+}
+                                        </textarea></small>
+                                        <p><small>
+                                         Le point d'angle 0 est au centre à droite et on tourne dans le sens des aiguilles d'une montre
+                                        </small></p>
+				                </section>
+				                
+				                
+				                <section>
+					                    <h2>Afficher une image</h2>
+					                    <p>
+					                     Il faut que l'image soit chargée avant de pouvoir la dessiner,
+					                    <br/>
+					                     si l'image est déjà dans la page, pas de problème ...
+					                    </p>
+                                        <p></p>
+                                        <canvas id="canvas-image"
+                                                width="250"
+                                                height="180">
+                                        </canvas>
+                                        <img id="image-html5"
+                                             src="images/js-canvas/html5.png"
+                                             style="float: right; margin: 35px 0px 0px 0px"
+                                             >
+                                        
+                                        <p style="clear: both"></p>
+                                        <small><textarea autojscanvas="canvas-image" rows="6" cols="60">
+var image = document.getElementById("image-html5");
+
+for(var i = 0; i < 3; i++) {
+  context.drawImage(image, 10 + i * 75, 10 + i * 30);
+}
+                                        </textarea></small>
+                                        <p></p>  
+				                </section>
+				                <section>
+					                    <h2>Afficher une image (2)</h2>
+					                    <p>
+					                     Si l'image n'est pas chargé, <b>image.onload</b> est appelée
+					                     lorsque l'image est chargée
+					                    </p>
+                                        <p></p>
+                                        <canvas id="canvas-image2"
+                                                width="250"
+                                                height="180">
+                                        </canvas>
+                                        <p></p>
+                                        <small><textarea autojscanvas="canvas-image2" rows="9" cols="50">
+var image = new Image();
+function letUsDrawTheImages() {
+  for(var i = 0; i < 3; i++) {
+    context.drawImage(image, 10 + i * 75, 70 - i * 30);
+  }
+}
+image.onload = letUsDrawTheImages;
+image.src = "images/js-canvas/html5.png";
+                                        </textarea></small>
+                                        <p></p>  
+				                </section>
+				                
+				                
+    
+				                
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                                        { src: 'plugin/autoeval/autoeval.js', async: true },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

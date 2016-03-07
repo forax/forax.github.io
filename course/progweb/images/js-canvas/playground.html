@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <meta charset="utf-8">
+   <style>
+    canvas {
+      border: 2px solid black;
+    }
+    div.clear {
+      clear: both;
+    }
+    div.left {
+      float: left;
+      margin: 0px 40px 0px 0px;
+    }
+   </style>
+   <script>
+     function refresh() {
+       var input = document.getElementById("input");
+       eval(input.value);
+     }
+     
+     function trimWhitespaces(text) {
+       return text.split('\n').map(function(line) { return line.trim(); }).join('\n');
+     }
+   </script>
+ </head>
+ <body>
+  <h2>Dessiner de façon interactive !</h2>
+  <canvas id="area"
+          width="600"
+          height="300">
+  </canvas>
+  <div class="cler"></div>
+  <div class="left">
+   <p>
+    Ecrire ici les commandes pour dessiner sur le canvas
+   </p>
+   <textarea id="input" rows="25" cols="60" onkeyup="refresh()">
+     var canvas = document.getElementById("area");
+     var context = canvas.getContext("2d");
+     context.clearRect(0, 0, canvas.width, canvas.height);
+    
+     context.fillStyle = "rgb(255,0,0)";
+     context.fillRect(10, 10, 50, 50);
+   </textarea>
+   <script>
+    var input = document.getElementById("input");
+    input.value = trimWhitespaces(input.value);
+    refresh();
+   </script>
+  </div>
+  <h4>Forme Simple</h4>
+  <ol>
+   <li>strokeRect(x, y, width, height)</li>
+   <li>fillRect(x, y, width, height)</li>
+   <li>arc(x, y, radius, startAngle, endAngle, anticlockwise)</li>
+  </ol>
+  <h4>Style</h4>
+  <ol>
+   <li>strokeStyle = couleur</li>
+   <li>fillStyle = couleur</li>
+   <li>lineWidth = taille (en pixel)</li>
+  </ol>
+  <h4>Chemin</h4>
+  <ol>
+   <li>beginPath()  ... stroke()</li>
+   <li>beginPath() ... fill()</li>
+   <li>moveTo(x, y)</li>
+   <li>lineTo(x, y)</li>
+   <li>arcTo(x1, y1, x2, y2, radius)</li>
+   <li>closePath()</li>
+  </ol>
+ </body>
+</html>

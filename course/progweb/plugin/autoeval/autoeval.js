@@ -82,6 +82,30 @@
                           })(element, e);
                         }
 
+                        if (element.attributes.autojscanvas != undefined) {
+                          var canvasId = element.attributes.autojscanvas.value;
+                          var canvas = document.getElementById(canvasId);
+                          if (canvas == undefined) {
+                            console.log("autojscanvas " + canvasId + " not found");
+                            continue;
+                          }
+                          //console.log("found " + canvas + " " + element);
+
+                          (function(element, canvas) {
+                            var listener = function(event) {
+                              var context = canvas.getContext("2d");
+                              context.clearRect(0, 0, canvas.width, canvas.height);
+                              try {
+                                eval(element.value);
+                              } catch(err) {
+                                console.log(err);
+                              }
+                            };
+                            element.addEventListener('keyup', listener, false);
+                            Reveal.addEventListener( 'slidechanged', listener);
+                          })(element, canvas);
+                        }
+
                         if (element.attributes.autojs != undefined) {
                           var name = element.attributes.autojs.value;
                           var e = document.getElementById(name);
