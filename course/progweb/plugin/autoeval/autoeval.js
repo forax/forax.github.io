@@ -89,10 +89,21 @@
                             console.log("autojscanvas " + canvasId + " not found");
                             continue;
                           }
-                          //console.log("found " + canvas + " " + element);
+                          var once = element.attributes['once'] != undefined; 
+                          //console.log("found " + canvasId + " " + element + " " + once);
 
-                          (function(element, canvas) {
+                          (function(element, canvas, once) {
+                            var running = false;
                             var listener = function(event) {
+                              if (once) {
+                                //console.log("running " + running);
+                                if(running) {
+                                  //console.log("snippet for " + canvasId + " already running");
+                                  return;
+                                }
+                                running = true;  
+                              }
+
                               var context = canvas.getContext("2d");
                               context.clearRect(0, 0, canvas.width, canvas.height);
                               try {
@@ -103,7 +114,7 @@
                             };
                             element.addEventListener('keyup', listener, false);
                             Reveal.addEventListener( 'slidechanged', listener);
-                          })(element, canvas);
+                          })(element, canvas, once);
                         }
 
                         if (element.attributes.autojs != undefined) {

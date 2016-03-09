@@ -326,7 +326,7 @@ context.fillRect(100, 75, 100, 50);
 					                    <p>
 					                     <b>moveTo</b> déplace le crayon, <b>lineTo</b> place une ligne,
 					                    <br/>
-					                     <b>stroke</b> dessine
+					                     <b>beginPath</b> indique le début d'un chemin, <b>stroke</b> dessine
 					                    </p>
                                         <p></p>
                                         <canvas id="canvas-line"
@@ -334,10 +334,11 @@ context.fillRect(100, 75, 100, 50);
                                                 height="180">
                                         </canvas>
                                         <p></p>
-                                        <small><textarea autojscanvas="canvas-line" rows="8" cols="40">
+                                        <small><textarea autojscanvas="canvas-line" rows="9" cols="40">
 context.strokeStyle = "orange";
 context.lineWidth = 7;     
-                               
+                        
+context.beginPath();       
 context.moveTo(50, 50);
 context.lineTo(150, 150);
 context.lineTo(250, 50);
@@ -353,12 +354,13 @@ context.stroke();
                                                 height="180">
                                         </canvas>
                                         <p></p>
-                                        <small><textarea autojscanvas="canvas-line2" rows="10" cols="30">
+                                        <small><textarea autojscanvas="canvas-line2" rows="11" cols="30">
 context.strokeStyle = "fuchsia";
 context.lineWidth = 7;     
 context.lineCap = "round";
 context.lineJoin = "bevel"; 
  
+context.beginPath();
 context.moveTo(50, 50);
 context.lineTo(150, 150);
 context.lineTo(250, 50);
@@ -455,8 +457,214 @@ image.src = "images/js-canvas/html5.png";
                                         <p></p>  
 				                </section>
 				                
+				                <section>
+					                    <h2>Evènements</h2>
+				                </section>
+				                <section>
+					                    <h2>Evènements clavier</h2>
+					                    <p>
+					                     La fonction <b>window.onkeydown</b> est appelé lorsque l'on appuis sur une touche,
+					                     <b>windows.onkeyup</b> lorsque l'on relache la touche.
+					                    </p>
+                                        <span style="float: inline-block">
+                                        <small><textarea autojscanvas="canvas-key" rows="12" cols="50">
+var y = 20;
+function action(name) {
+  context.fillText(name, 100, y);
+  y = y + 20; 
+  if (y > canvas. height)  {
+     y = 20;
+     context.clearRect(0, 0, canvas.width, canvas.height);
+  }
+}
+window.onkeydown = function() { action('onkeydown'); };
+window.onkeyup = function() { action('onkeyup'); };
+                                        </textarea></small>
+                                        </span><span style="display: inline-block">
+                                        <canvas id="canvas-key"
+                                                width="310"
+                                                height="210">
+                                        </canvas>
+                                        </span>  
+                                        <p><small>Appuyer sur la touche 'a'</small></p>
+				                </section>
 				                
-    
+				                <section>
+					                    <h2>Plusieurs écouteurs clavier</h2>
+					                    <p>
+					                     La fonction <b>window.addEventListener</b> permet d'ajouter une action
+					                     sans détruire les actions précédemment enregistrés
+					                    </p>
+                                        <span style="float: inline-block">
+                                        <small><textarea autojscanvas="canvas-key2" once="true" rows="12" cols="45">
+function draw(color) {
+  context.fillStyle = color;
+  context.fillRect(100, y - 10, 20, 20);
+}
+var y = 0;
+window.addEventListener('keydown', function() {
+  draw('white');
+  y = y + 5;
+  if (y > canvas.height) { y = 0; }
+  draw('teal');
+});                                  </textarea></small>
+                                        </span><span style="display: inline-block">
+                                        <canvas id="canvas-key2"
+                                                width="310"
+                                                height="210">
+                                        </canvas>
+                                        </span>  
+                                        <p><small>Appuyer sur la touche 'a'</small></p>
+				                </section>
+				                
+				                <section>
+					                    <h2>Récupérer les touches</h2>
+					                    <p>
+					                     keyCode permet de récupérer le code (plus ou moins ASCII) de la touche
+					                    </p>
+                                        <span style="float: inline-block">
+                                        <small><textarea autojscanvas="canvas-key3" once="true" rows="14" cols="50">
+function draw(x, color) {
+  context.fillStyle = color;
+  context.fillRect(x - 10, 100, 20, 20);
+}
+var x = 150;
+draw(x, 'red');
+window.addEventListener('keydown', function(event) {
+  draw(x, 'white');
+  var e = event.keyCode;
+  if (e == 84)  { x = x + 5; }              // key 'r' 
+  else { if (e == 82) { x = x - 5; } }  // key 't'
+  draw(x, 'red');
+});
+                                        </textarea></small>
+                                        </span><span style="display: inline-block">
+                                        <canvas id="canvas-key3"
+                                                width="310"
+                                                height="210">
+                                        </canvas>
+                                        </span>  
+                                        <p><small>Utiliser les touches 'r' et 't' pour bouger le carré</small></p>
+				                </section>
+				                
+                                <section>
+					                    <h2>setTimeout</h2>
+					                    <p>
+					                     <b>setTimeout(action, temps)</b> permet de déclencher
+					                     une action après un temps d'attente (en ms)
+					                    </p>
+                                        <p></p>
+                                        <canvas id="canvas-timer"
+                                                width="300"
+                                                height="200">
+                                        </canvas>
+                                        <p></p>
+                                        <small><textarea autojscanvas="canvas-timer" once="true" rows="7" cols="35">
+context.fillStyle = "teal";
+context.fillRect(100, 50, 100, 100);
+window.setTimeout(function() {
+  context.fillStyle = "lightblue";
+  context.fillRect(100, 50, 100, 100);
+}, 5000);
+                                        </textarea></small>
+                                        <p></p>  
+				                </section>
+				                
+				                <section>
+					                    <h2>setTimeout (2)</h2>
+					                    <p>
+					                     on peut appeler <b>setTimeout()</b> plusieurs fois avec la même fonction
+					                    </p>
+                                        <span style="float: inline-block">
+                                        <small><textarea autojscanvas="canvas-timer2" once="true" rows="10" cols="35">
+var colors = [ 'teal', 'lightblue'];
+var index = 0;
+var fun = function() {
+  context.fillStyle = colors[index];
+  context.fillRect(100, 50, 100, 100);
+  index = 1 - index;
+  window.setTimeout(fun, 2000);
+};
+fun();
+                                        </textarea></small>
+                                        </span><span style="display: inline-block">
+                                        <canvas id="canvas-timer2"
+                                                width="300"
+                                                height="200">
+                                        </canvas>
+                                        </span>  
+                                        <p>&nbsp;</p>
+				                </section>
+				                
+				                <section>
+					                    <h2>setInterval</h2>
+					                    <p>
+					                     <b>window.sertInterval</b> permet de rappeler une fonction
+					                     à intervale régulier
+					                    </p>
+                                        <span style="float: inline-block">
+                                        <small><textarea autojscanvas="canvas-timer3" once="true" rows="14" cols="40">
+function draw(color) {
+  context.fillStyle = color;
+  context.fillRect(x - 5, y - 5, 10, 10);
+}
+var x = 0; var y = 0; var dx = 1; var dy = 1;
+var animate = function() {
+  draw('white');
+  x = x + dx; y = y + dy;
+  if (x == 0 || x == canvas.width) { dx = -dx; }
+  if (y == 0 || y == canvas.height) { dy = -dy; }
+  draw('red');
+};
+window.setInterval(animate, 12);
+                                        </textarea></small>
+                                        </span><span style="display: inline-block">
+                                        <canvas id="canvas-timer3"
+                                                width="310"
+                                                height="210">
+                                        </canvas>
+                                        </span>  
+                                        <p>&nbsp;</p>
+				                </section>
+				                
+				                <section>
+					                    <h2>requestAnimationFrame</h2>
+					                    <p>
+					                     demande une animation dès que possible         
+					                    </p>
+                                        <span style="float: inline-block">
+                                        <small><textarea autojscanvas="canvas-timer4" once="true" rows="21" cols="50">
+function point(x, y) { return { x: x, y: y, dx: 1, dy: 1 }; }
+function draw(p1, p2, color) {
+  context.strokeStyle = color;
+  context.beginPath();
+  context.moveTo(p1.x, p1.y); context.lineTo(p2.x, p2.y);
+  context.stroke();
+}
+var move = function(p) {
+  p.x = p.x + p.dx; p.y = p.y + p.dy;
+  if (p.x == 0 || p.x == canvas.width) { p.dx = -p.dx; }
+  if (p.y == 0 || p.y == canvas.height) { p.dy = -p.dy; }
+};
+var p1 = point(50, 50);  var p2 = point(200, 150);
+var animate = function() {
+  draw(p1, p2, 'white');
+  move(p1); move(p2);
+  draw(p1, p2, 'blue');
+  window.requestAnimationFrame(animate);
+};
+window.requestAnimationFrame(animate);
+                                        </textarea></small>
+                                        </span><span style="display: inline-block">
+                                        <canvas id="canvas-timer4"
+                                                width="310"
+                                                height="210">
+                                        </canvas>
+                                        </span>  
+                                        <p>&nbsp;</p>
+				                </section>
+				                
+				                
 				                
 			</div>
 
