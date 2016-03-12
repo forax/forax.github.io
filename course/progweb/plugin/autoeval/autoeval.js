@@ -94,12 +94,19 @@
 
                           (function(element, canvas, once) {
                             var running = false;
-                            var listener = function(event) {
+                            var listener = function(isKeyListener, event) {
+                              var animations = {};
                               if (once) {
                                 //console.log("running " + running);
                                 if(running) {
                                   //console.log("snippet for " + canvasId + " already running");
-                                  return;
+                                  //if (isKeyListener) {
+                                  //   Objetcts.key(animations).forEach(function(key) { animations[key](); });
+                                     
+                                    
+                                  //} else {
+                                    return;
+                                  //}
                                 }
                                 running = true;  
                               }
@@ -112,8 +119,8 @@
                                 console.log(err);
                               }
                             };
-                            element.addEventListener('keyup', listener, false);
-                            Reveal.addEventListener( 'slidechanged', listener);
+                            element.addEventListener('keyup', listener.bind(undefined, true), false);
+                            Reveal.addEventListener( 'slidechanged', listener.bind(undefined, false));
                           })(element, canvas, once);
                         }
 

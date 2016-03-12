@@ -155,14 +155,36 @@ context.strokeRect(75, 50, 100, 60);
 var canvas = document.getElementById('canvas-example2');
 var context = canvas.getContext("2d");
 
-context.fillStyle = "orange";
+context.fillStyle = "tomato";
 context.fillRect(100, 50, 100, 100);
                                         </textarea></small>
-                                        <p>&nbsp;</p>
                                         <p><small>
                                          Il existe aussi un context 3D, définie par la specification
                                          <a href="https://www.khronos.org/registry/webgl/specs/latest/">WebGL</a>.
                                         </small></p>
+				                </section>
+				                
+				                <section>
+					                    <h2>Les coordonnées</h2>
+					                    <p>
+                                         Le point (x=0, y=0) est en haut à gauche
+                                        </p><p><small>
+                                         x: coordonnée sur l'axe horizontal (vers la droite)
+                                        <br/>
+                                         y: coordonnée sur l'axe vertical (vers le bas)
+                                        </small></p>
+                                        <canvas id="canvas-example3"
+                                                width="300"
+                                                height="180">
+                                        </canvas>
+                                        <small><textarea autojscanvas="canvas-example3" rows="6" cols="60">
+var canvas = document.getElementById('canvas-example3');
+var context = canvas.getContext("2d");
+
+context.fillStyle = "violet";
+context.fillRect(0, 0, 100, 100);
+                                        </textarea></small>
+                                        <p>&nbsp;</p>
 				                </section>
 
                                 <section>
@@ -171,12 +193,12 @@ context.fillRect(100, 50, 100, 100);
 					                     La façon d'afficher dépend de l'état de propriétés du context
 					                    </p>
                                         <p></p>
-                                        <canvas id="canvas-example3"
+                                        <canvas id="canvas-example4"
                                                 width="300"
                                                 height="180">
                                         </canvas>
                                         <p></p>
-                                        <small><textarea autojscanvas="canvas-example3" rows="6" cols="40">
+                                        <small><textarea autojscanvas="canvas-example4" rows="6" cols="40">
 context.strokeStyle = "blue";
 context.strokeRect(150, 25, 100, 100);
  
@@ -404,6 +426,67 @@ for(var i = 0; i < 4; i++) {
                                         </small></p>
 				                </section>
 				                
+				                <section>
+					                    <h2>Tableau de pixels</h2>
+					                    <p>
+					                     getImageData() renvoie un tableau de pixels
+					                    </p>
+                                        <canvas id="canvas-image-data"
+                                                style="float: left"
+                                                width="250"
+                                                height="180">
+                                        </canvas>
+                                        <p>
+                                        <small><textarea autojscanvas="canvas-image-data" rows="14" cols="55">
+var imageData = context.getImageData(0, 0,
+                                                           canvas.width, canvas.height);
+var array = imageData.data;
+for(var y = 0; y < canvas.height; y++) {    
+  for(var x = 0; x < canvas.width; x++) {
+    var i = (x + y * canvas.width) * 4;
+    array[i]   = Math.floor(255 * x / canvas.width);      // red
+    array[i+1] = 128;                                                              // green
+    array[i+2] = Math.floor(255 * y / canvas.height);  // blue
+    array[i+3] = 255;                                                              // alpha
+  }
+}
+context.putImageData(imageData, 0, 0);
+                                        </textarea></small>
+                                        </p> 
+                                        <p><small>
+                                         Chaque pixel est composé d'une case rouge, vert, bleue, alpha
+                                        </small></p>
+				                </section>
+				                <section>
+					                    <h2>Tableau de pixels (2)</h2>
+					                    <p>
+					                     putImageData() copie le tableau de pixels dans le canvas.
+					                    </p>
+                                        <canvas id="canvas-image-data2"
+                                                style="float: left"
+                                                width="250"
+                                                height="180">
+                                        </canvas>
+                                        <p>
+                                        <small><textarea autojscanvas="canvas-image-data2" rows="13" cols="55">
+var imageData = context.getImageData(0, 0,
+                                                           canvas.width, canvas.height);
+var array = imageData.data;
+for(var i = 0; i < array.length; i = i + 4) {
+  var y = i / 4 / canvas.width;
+  var x = i / 4 % canvas.width;
+  array[i]   = Math.floor(255 * x / canvas.width);      // red
+  array[i+1] = 128;                                                              // green
+  array[i+2] = Math.floor(255 * y / canvas.height);  // blue
+  array[i+3] = 255;                                                              // alpha
+}
+context.putImageData(imageData, 0, 0);
+                                        </textarea></small>
+                                        </p> 
+                                        <p><small>
+                                         Version avec une seule boucle
+                                        </small></p>
+				                </section>
 				                
 				                <section>
 					                    <h2>Afficher une image</h2>
@@ -435,7 +518,7 @@ for(var i = 0; i < 3; i++) {
 				                <section>
 					                    <h2>Afficher une image (2)</h2>
 					                    <p>
-					                     Si l'image n'est pas chargé, <b>image.onload</b> est appelée
+					                     Si l'image n'est pas chargée, <b>image.onload</b> est appelée
 					                     lorsque l'image est chargée
 					                    </p>
                                         <p></p>
@@ -456,6 +539,31 @@ image.src = "images/js-canvas/html5.png";
                                         </textarea></small>
                                         <p></p>  
 				                </section>
+				                <section>
+					                    <h2>Afficher une image (3)</h2>
+					                    <p>
+					                     On peut spécifier <b>onLoad</b> en utilisant une closure,
+					                     ce qui évite de devoir trouver un nom à la fonction.
+					                    </p>
+                                        <p></p>
+                                        <canvas id="canvas-image3"
+                                                width="250"
+                                                height="180">
+                                        </canvas>
+                                        <p></p>
+                                        <small><textarea autojscanvas="canvas-image3" rows="8" cols="60">
+var image = new Image();
+image.onload = function() {
+  for(var i = 0; i < 3; i++) {
+    context.drawImage(image, 10 + i * 75, 20 + Math.abs(i - 1) * 30);
+  }
+};
+image.src = "images/js-canvas/html5.png";
+                                        </textarea></small>
+                                        <p><small>c'est une closure car la variable <b>image</b> est prise du scope englobant !</small></p>  
+				                </section>
+				                
+				                
 				                
 				                <section>
 					                    <h2>Evènements</h2>
@@ -467,7 +575,8 @@ image.src = "images/js-canvas/html5.png";
 					                     <b>windows.onkeyup</b> lorsque l'on relache la touche.
 					                    </p>
                                         <span style="float: inline-block">
-                                        <small><textarea autojscanvas="canvas-key" rows="12" cols="50">
+                                        <small><textarea autojscanvas="canvas-key" rows="13" cols="50">
+context.font = "16px arial";
 var y = 20;
 function action(name) {
   context.fillText(name, 100, y);
@@ -499,14 +608,14 @@ window.onkeyup = function() { action('onkeyup'); };
                                         <small><textarea autojscanvas="canvas-key2" once="true" rows="12" cols="45">
 function draw(color) {
   context.fillStyle = color;
-  context.fillRect(100, y - 10, 20, 20);
+  context.fillRect(130, y - 20, 40, 40);
 }
 var y = 0;
 window.addEventListener('keydown', function() {
   draw('white');
   y = y + 5;
   if (y > canvas.height) { y = 0; }
-  draw('teal');
+  draw('gold');
 });                                  </textarea></small>
                                         </span><span style="display: inline-block">
                                         <canvas id="canvas-key2"
@@ -520,22 +629,22 @@ window.addEventListener('keydown', function() {
 				                <section>
 					                    <h2>Récupérer les touches</h2>
 					                    <p>
-					                     keyCode permet de récupérer le code (plus ou moins ASCII) de la touche
+					                     <b>keyCode</b> permet de récupérer le code (plus ou moins ASCII) de la touche
 					                    </p>
                                         <span style="float: inline-block">
                                         <small><textarea autojscanvas="canvas-key3" once="true" rows="14" cols="50">
 function draw(x, color) {
   context.fillStyle = color;
-  context.fillRect(x - 10, 100, 20, 20);
+  context.fillRect(x - 20, 80, 40, 40);
 }
 var x = 150;
-draw(x, 'red');
+draw(x, 'dodgerblue');
 window.addEventListener('keydown', function(event) {
   draw(x, 'white');
   var e = event.keyCode;
   if (e == 84)  { x = x + 5; }              // key 'r' 
   else { if (e == 82) { x = x - 5; } }  // key 't'
-  draw(x, 'red');
+  draw(x, 'dodgerblue');
 });
                                         </textarea></small>
                                         </span><span style="display: inline-block">
@@ -560,7 +669,7 @@ window.addEventListener('keydown', function(event) {
                                         </canvas>
                                         <p></p>
                                         <small><textarea autojscanvas="canvas-timer" once="true" rows="7" cols="35">
-context.fillStyle = "teal";
+context.fillStyle = "silver";
 context.fillRect(100, 50, 100, 100);
 window.setTimeout(function() {
   context.fillStyle = "lightblue";
@@ -577,7 +686,7 @@ window.setTimeout(function() {
 					                    </p>
                                         <span style="float: inline-block">
                                         <small><textarea autojscanvas="canvas-timer2" once="true" rows="10" cols="35">
-var colors = [ 'teal', 'lightblue'];
+var colors = [ 'silver', 'lightblue'];
 var index = 0;
 var fun = function() {
   context.fillStyle = colors[index];
