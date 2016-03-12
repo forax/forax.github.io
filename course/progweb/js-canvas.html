@@ -560,7 +560,7 @@ image.onload = function() {
 };
 image.src = "images/js-canvas/html5.png";
                                         </textarea></small>
-                                        <p><small>c'est une closure car la variable <b>image</b> est prise du scope englobant !</small></p>  
+                                        <p><small>c'est une closure car les variables <b>context</b> et <b>image</b> sont prise du scope englobant !</small></p>  
 				                </section>
 				                
 				                
@@ -656,6 +656,69 @@ window.addEventListener('keydown', function(event) {
                                         <p><small>Utiliser les touches 'r' et 't' pour bouger le carré</small></p>
 				                </section>
 				                
+				                <section>
+					                    <h2>Evènements souris</h2>
+					                    <p>
+					                     <b>onmousedown</b>, <b>onmousemove</b>, <b>onmouseup</b> sont appelées
+					                     lorsque l'on utilise la souris sur un élément
+					                    </p>
+                                        <span style="float: inline-block">
+                                        <small><textarea autojscanvas="canvas-mouse" rows="7" cols="45">
+context.font = "16px arial";
+context.strokeStyle = 'black';
+canvas.onmousedown = function(event) {
+  var text = event.offsetX + ', ' + event.offsetY;
+  context.fillText(text, event.offsetX, event.offsetY);
+};
+                                        </textarea></small>
+                                        </span><span style="display: inline-block">
+                                        <canvas id="canvas-mouse"
+                                                width="310"
+                                                height="210">
+                                        </canvas>
+                                        </span>  
+                                        <p>
+                                         La fonction recoit un évènement (<b>event</b>) contenant les coordonées
+					                     (<b>offsetX</b> et <b>offsetY</b>)
+                                        </p>
+				                </section>
+				                <section>
+					                    <h2>Evènements souris (2)</h2>
+					                    <p>
+					                     <b>onmousemove</b> est appelée lorsque l'on bouge la souris,
+					                    <br/>
+					                     si l'on veut détecter si l'on bouge en appuyant,
+					                    <br/> 
+					                     il faut un booléen supplémentaire 
+					                    </p>
+                                        <span style="float: inline-block">
+                                        <small><textarea autojscanvas="canvas-mouse2" rows="17" cols="45">
+var drag = false;
+context.strokeStyle = 'violet';
+canvas.onmousedown = function(event) {
+  drag = true;
+  context.beginPath();
+  context.moveTo(event.offsetX, event.offsetY);
+};
+canvas.onmousemove = function(event) {
+  if (drag) {
+    context.lineTo(event.offsetX, event.offsetY);
+    context.stroke();
+  }
+};
+canvas.onmouseup = function() {
+  drag = false;
+};
+                                        </textarea></small>
+                                        </span><span style="display: inline-block">
+                                        <canvas id="canvas-mouse2"
+                                                width="310"
+                                                height="210">
+                                        </canvas>
+                                        </span>  
+                                        <p><small></small></p>
+				                </section>
+				                
                                 <section>
 					                    <h2>setTimeout</h2>
 					                    <p>
@@ -678,7 +741,6 @@ window.setTimeout(function() {
                                         </textarea></small>
                                         <p></p>  
 				                </section>
-				                
 				                <section>
 					                    <h2>setTimeout (2)</h2>
 					                    <p>
