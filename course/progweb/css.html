@@ -122,7 +122,7 @@
 					<h2>La balise style</h2>
 					<p>
                                          La balise <b>style</b> permet de définir
-                                         des styles qui seront valides pour tous le document
+                                         des styles qui seront valides pour tout le document
                                         </p>
                                         <p>&nbsp;</p>
                                         <pre><code class="html" data-trim>
@@ -137,7 +137,7 @@
  ...
                                         </code></pre>
                                         <p>
-                                         toutes les balises STRONG seront oranges.
+                                         toutes les balises STRONG seront oranges
                                         </p>
 				</section>
                                 <section>
@@ -160,10 +160,10 @@
 				</section>
 
                                 <section>
-					<h2>Id d'élément</h2>
+					<h2>Identifiant d'élément</h2>
 					<p>
                                          Si l'on veut que seule une balise ait un style particulier,
-                                         on peut donner un identifiant à cette balise.
+                                         on peut donner un identifiant à cette balise
                                         </p>
                                         <pre><code class="html" data-trim>
 <ul>
@@ -181,11 +181,11 @@ li#important {
                                         </code></pre>
 				</section>
                                 <section>
-					<h2>classe d'élément</h2>
+					<h2>Classe d'élément</h2>
 					<p>
-                                         On peut aussi vouloir distinguer plusieurs balises.
-                                         On indique les balises qui appartiennent
-                                         à une même classe. 
+                                         On peut aussi vouloir distinguer plusieurs balises, en
+                                         indiquant les balises qui appartiennent
+                                         à une même classe
                                         </p>
                                         <pre><code class="html" data-trim>
 <ul>
@@ -196,7 +196,7 @@ li#important {
                                         </code></pre>
                                         <p>&nbsp;</p>
                                         <p>
-                                         on utilisera '.' et le nom de la classe dans le style
+                                         On utilisera '.' et le nom de la classe dans le style
                                         </p>
                                         <pre><code class="css" data-trim>
 li.important {
@@ -208,9 +208,9 @@ li.important {
                                 <section>
 					<h2>La syntaxe</h2>
 					<p>
-                                         Un style est une liste de sélecteurs auquels
+                                         Un style est une liste de sélecteurs auxquels
                                         <br/>
-                                         sont associées des propriétés.
+                                         sont associées des propriétés
                                         </p>
                                         
                                         <pre><code class="css" data-trim>
@@ -225,17 +225,17 @@ selecteur2 {
 }
                                         </code></pre>
                                         <p>
-                                         '/*' démarre un commentaire, '*/' le fini
+                                         '/*' démarre un commentaire, '*/' le finit
                                         </p>
 				</section>
 
                                 <section>
-					<h2>Selecteurs</h2>
+					<h2>Sélecteurs</h2>
 					<small><table>
                                          <tr>
                                           <td>E</td><td>éléments de type E</td>
                                          </tr><tr>
-                                          <td>E1 E2</td><td>un élément E1 suivi par E2</td>
+                                          <td>E1 E2</td><td>un élément E2 contenu dans un E1</td>
                                          </tr><tr>
                                           <td>E#myid</td><td>élément dont l'<b>id</b> est myid</td>
                                          </tr><tr>
@@ -261,11 +261,11 @@ selecteur2 {
                                         </table></small>
 				</section>
 				<section>
-					<h2>Exemple de selecteurs</h2>
+					<h2>Exemple de sélecteurs</h2>
                     <p>
                      Exemple d'application d'un style à des éléments
                     <br/> 
-                     et des pseudos élements.
+                     et des pseudos élements
                     </p>
                                         <iframe id="example-frame"
                                                 src="images/css/example.html"
@@ -316,14 +316,14 @@ li {
                                         </p>
                                         <p>
                                          <small>
-                                          [1] ou hérité si l'on regarde du point de vue des fils.
+                                          [1] ou hérité si l'on regarde du point de vue des fils
                                          </small>
                                         </p>
 				</section>
                                 <section>
 					<h2>CSS (algo 1/2)</h2>
                                         <p>
-                                         L'algorithme marche en 2 temps
+                                         L'algorithme marche en 2 temps :
                                         <br/>
                                          1. on applique les sélecteurs dans l'ordre du fichier
                                         </p>
@@ -363,7 +363,7 @@ li {
 					<h2>Couleurs</h2>
                                         <div id="style-color">
                                          <p style="color: teal">
-                                          Il y a plusieurs façon d'indiquer une couleur
+                                          Il y a plusieurs façons d'indiquer une couleur
                                          </p>
                                         </div>
                                         <ul>
@@ -373,11 +373,11 @@ li {
                                          <li>#FFFFFF
                                         </ul>
                                         <p><small>
-                                         <a href="http://www.w3.org/TR/css3-color/">CSS3 Color</a> définie d'autres façons ...
+                                         <a href="http://www.w3.org/TR/css3-color/">CSS3 Color</a> définit d'autres façons ...
                                         </small></p>
                                         <small><textarea autoeval="style-color" rows="4" cols="50">
 <p style="color: teal">
-  Il y a plusieurs façon d'indiquer une couleur
+  Il y a plusieurs façons d'indiquer une couleur
 </p>
                                         </textarea></small>
 				</section>
@@ -393,7 +393,7 @@ li {
                                         <tr>
                                          <td>%</td><td>pourcentage de l'écran</td>
                                         </tr><tr>
-                                         <td>em</td><td>proportionnelle à la fonte courante<br/>
+                                         <td>em</td><td>proportionnel à la fonte courante<br/>
                                                 <small>(16 px avec la fonte par défaut)</small></td>
                                         </tr><tr>
                                          <td>px</td><td>en pixel</td>
@@ -418,7 +418,7 @@ li {
 				</section>
 
                                 <section>
-					<h2>Texte Decoration</h2>
+					<h2>Text Decoration</h2>
                                         <ul>
                                          <li>text-decoration: none | underline | overline | line-through
                                          <li>text-align: left | right | center | justify
@@ -443,10 +443,10 @@ p {
                                         </p>
 				</section>
                                 <section>
-					<h2>Familles de Police</h2>
+					<h2>Familles de polices</h2>
                                         <p>
-                                         Noms génériques de familles de police qui marche
-                                         indépendamment des polices installés sur le client
+                                         Noms génériques de familles de polices qui marchent
+                                         indépendamment des polices installées sur le client
                                         </p>
                                         <p>&nbsp;</p>
                                         <table>
@@ -479,7 +479,7 @@ p {
                                          </table>
 				</section>
                                 <section>
-					<h2>Police de caractères</h2>
+					<h2>Polices de caractères</h2>
                                         <ul>
                                          <li>font-family: noms spécifiques puis nom générique
                                          <li>font-style: normal | italic | oblique
@@ -506,7 +506,7 @@ p {
                                         </p>
 				</section>
 				<section>
-					<h2>Image & Alignement Vertical</h2>
+					<h2>Image & Alignement vertical</h2>
                                         <dl>
                                          <dt>vertical-align:</dt>
                                          <dd>baseline | sub | super | top | text-top | middle | bottom | text-bottom</dd>
@@ -544,16 +544,16 @@ img.ok3 { vertical-align: middle; }
                                          reflétant l'état d'un lien
                                         </p>
                                         <pre><code class="css" data-trim>
-A:link {  /* lien non visite */
+A:link {  /* lien non visité */
   color: green;
 }
-A:visited { /* lien visite */
+A:visited { /* lien visité */
   color: green;
 }
 A:hover { /* souris au dessus du lien */
   color: teal;
 }
-A:active { /* on click sur le lien */
+A:active { /* on clique sur le lien */
   color: red;
 }
                                         </code></pre>
@@ -593,8 +593,8 @@ ul {
                 <section>
 					<h2>Bordure des tables</h2>
                                         <p>
-                                         Il est possible de mettre des bordures et sur la <b>table</b>
-                                         et sur les <b>td</b> et <b>th</b>
+                                         Il est possible de mettre des bordures à la <b>table</b>
+                                         et aux cases (<b>td</b> et <b>th</b>)
                                         </p>
                                         <iframe id="style-table"
                                                 src="images/css/table.html"
@@ -615,7 +615,7 @@ table, th, td { border: 1px solid black; }
 				<section>
 					<h2>Largeur/hauteur des tables</h2>
                                         <p>
-                                         La taille de la table est calculé par son contenu sauf
+                                         La taille de la table est adaptée à son contenu, sauf
                                          si on utilise les propriétés <b>width</b> et <b>height</b>
                                         </p>
                                         <iframe id="style-table2"
@@ -632,7 +632,7 @@ td { padding: 3px; }
                                          </textarea></small>
                                         </p>
                                         <p>
-                                          <b>padding</b> définie l'espacement entre le texte et la case
+                                          <b>padding</b> définit l'espacement entre le texte et la case
                                         </p>
 				</section>
 				<section>
@@ -715,7 +715,7 @@ th, td { border-bottom: 1px solid black; }
                                               affichés de gauche à droite
                                           <li>Les <b>blocks</b>, (boites) prennent toute la largeur
                                              <br/>
-                                              et dont la hauteur est de la somme des
+                                              et dont la hauteur est la somme des
                                              <br/>
                                               hauteurs des sous-éléments
                                          </p>
@@ -770,8 +770,7 @@ th, td { border-bottom: 1px solid black; }
                                 <section>
 					<h2>CSS Box Model</h2>
                                         <p>
-                                         Le CSS définie 3 propriétés définissant les boites
-                                         autour du contenu
+                                         Le CSS définit 3 propriétés concernant l'espacement dans et autour d'une boîte
                                         </p>
                                         <img src="images/css/box-model.png"
                                              width="578"
@@ -780,8 +779,8 @@ th, td { border-bottom: 1px solid black; }
                                              />
                                         <ul>
                                          <li>padding: espace à l'intérieur de la boite
-                                         <li>border: bordure autour des boite
-                                         <li>margin: espace entre les boites
+                                         <li>border: bordure de la boite
+                                         <li>margin: espace autour de la boites
                                         </ul>
 				</section>
 
@@ -849,9 +848,9 @@ th, td { border-bottom: 1px solid black; }
 				<section>
 					<h2>Positionnement Flottant</h2>
                                         <p>
-                                         <b>float</b> répartie les boites à gauche et à droite,
+                                         <b>float</b> répartit les boites à gauche et à droite,
                                         <br/>
-                                         <b>clear</b> permet d'arréter l'affichage flottant
+                                         <b>clear</b> permet d'arrêter l'affichage flottant
                                         </p>
                                         <iframe id="box-float"
                                                 src="images/css/box.html"
@@ -869,7 +868,7 @@ th, td { border-bottom: 1px solid black; }
 				<section>
 					<h2>Float et alignement vertical</h2>
                                         <p>
-                                         Une boite avec la propriété <b>float</b> ne supporte pas l'alignement verticale
+                                         Une boite avec la propriété <b>float</b> ne supporte pas l'alignement vertical
                                         </p>
                                         <iframe id="box-vertical"
                                                 src="images/css/box-vertical.html"
@@ -888,7 +887,7 @@ th, td { border-bottom: 1px solid black; }
 					<h2>Inline Block</h2>
                                         <p>
                                          <b>display: inline-block</b> permet de voir un élement comme un inline
-                                         et donc de pourvoir utiliser <b>vertical-align</b>
+                                         et donc de pouvoir utiliser <b>vertical-align</b>
                                         </p>
                                         <iframe id="box-vertical-inline"
                                                 src="images/css/box-vertical-inline.html"
@@ -911,7 +910,7 @@ th, td { border-bottom: 1px solid black; }
                                         <p>
                                          <b>position</b> permet de positionner un élement
                                         </p>
-                                        <div style="float: left">
+                                        <div style="float:left">
                                          <iframe id="box-position"
                                                 src="images/css/box-position.html"
                                                 width="400"
@@ -925,16 +924,17 @@ th, td { border-bottom: 1px solid black; }
   top: 10px;
 }
                                          </textarea></small>
-                                       
                                         </div>
                                         <div>
-                                         <small><dl>
+                                         <small>
+                                         <dl>
                                           <dt>static</dt><dd>comportement normal</dd>
                                           <dt>fixed</dt>
                                           <dd>par rapport au coin en haut à gauche de la fenêtre</dd>
-                                          <dt>relative</dt><dd>par rapport à la postion habituelle</dd>
-                                          <dt>absolute</dt><dd>par rapport à la boite marquée relative</dd>
-                                         </dl></small>
+                                          <dt>relative</dt><dd>par rapport à la position habituelle</dd>
+                                          <dt>absolute</dt><dd>par rapport à une boite marquée relative</dd>
+                                         </dl>
+                                         </small>
                                         </div>
                                         
                                         <p style="clear: both">&nbsp;</p>
@@ -945,7 +945,7 @@ th, td { border-bottom: 1px solid black; }
 				<section>
 					<h2>relative/absolute</h2>
                                         <p>
-                                         <b>absolute</b> permet de placer une boite par rapport à une boite relative
+                                         <b>absolute</b> permet de placer une boite par rapport à la boite relative englobante la plus proche
                                         </p>
                                         <div style="float: left">
                                          <iframe id="box-position2"
@@ -986,8 +986,8 @@ th, td { border-bottom: 1px solid black; }
                                          Et comment on
                                          <ul>
                                           <li>clique sur un élement
-                                          <li>on change ce qui est affiché dynamiquement
-                                          <li>on fait des boucles, des test, etc.
+                                          <li>change ce qui est affiché dynamiquement
+                                          <li>fait des boucles, des test, etc.
                                          </ul>
                                         </p>
                                         <p>

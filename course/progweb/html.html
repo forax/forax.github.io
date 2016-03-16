@@ -22,11 +22,11 @@
 
 		<!-- Printing and PDF exports -->
 		<script>
-			var link = document.createElement( 'link' );
+			var link = document.createÉlément( 'link' );
 			link.rel = 'stylesheet';
 			link.type = 'text/css';
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
+			document.getÉlémentsByTagName( 'head' )[0].appendChild( link );
 		</script>
 
 		<!--[if lt IE 9]>
@@ -38,7 +38,7 @@
 
 		<div class="reveal">
 
-			<!-- Any section element inside of this container is displayed as a slide -->
+			<!-- Any section Élément inside of this container is displayed as a slide -->
 			<div class="slides">
                                 <section>
 					<h1>HTML</h1>
@@ -58,7 +58,7 @@
 				<section>
 					<h2>HTML ?</h2>
 					<blockquote cite="https://en.wikipedia.org/wiki/HTML">
-					  &ldquo;Langage à balise hypertexte, communément appelé comme HTML est un langage standard à balise utilisé pour crée des pages Web&rdquo;
+					  &ldquo;Le langage à balises hypertexte, ou HTML, est le langage à balises standard utilisé pour créer des pages Web&rdquo;
 					</blockquote>
                                         <p align="right">
                                          source: Wikipedia.com - <a href="https://en.wikipedia.org/wiki/HTML">HTML</a>
@@ -83,18 +83,18 @@
                                         </table>
 				</section>
                                 <section>
-					<h2>Elément</h2>
+					<h2>Élément</h2>
                                         <p>
-                                         Un élement est défini par un tag de début et un tag de fin
+                                         Un élément est défini par un tag de début et un tag de fin
                                         </p>
-                                        <p><span id="myelement">
+                                        <p><span id="myÉlément">
                                          Par exemple, pour mettre en <b>gras</b>
                                         </span></p>
                                         <p>
                                          on utilise &lt;b&gt; et &lt;/b&gt;
                                         </p>
                                         <p>&nbsp;</p>
-                                        <textarea autoeval="myelement" rows="2" cols="40">
+                                        <textarea autoeval="myÉlément" rows="2" cols="40">
 Par exemple, pour mettre en <b>gras</b>
                                         </textarea>
 				</section>
@@ -121,7 +121,7 @@ Par exemple, pour mettre en <b>gras</b>
                                         </table>
 				</section>
                                 <section>
-					<h2>Commentaire</h2>
+					<h2>Commentaires</h2>
                                         <p>
                                          Il est possible d'indiquer des commentaires
                                         <br/>
@@ -169,13 +169,13 @@ Par exemple, pour mettre en <b>gras</b>
                                         <img src="images/html/document.png">
 				</section>
                                 <section>
-					<h2>Arbre d'élements</h2>
+					<h2>Arbre d'éléments</h2>
                                         <p>
-                                         Les élements sont organisés sous forme d'arbre
+                                         Les éléments sont organisés sous forme d'arbre
                                         </p>
                                         <img src="images/html/tree.png">
                                         <p><small>
-                                         Arbre l'arbre DOM (Document Object Model)
+                                         L'arbre DOM (Document Object Model)
                                         </small></p>
                                         <pre><code class="html" data-trim>
 &lt;html&gt;
@@ -188,7 +188,7 @@ Par exemple, pour mettre en <b>gras</b>
                                         </code></pre>
 				</section>
                                 <section>
-					<h2>Elément entrelacé</h2>
+					<h2>Éléments entrelacés</h2>
                                         <p>
                                          Les éléments entrelacés sont interdits
                                         </p>
@@ -209,7 +209,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </small>
 				</section>
                                 <section>
-					<h2>Elément sans balise fermante</h2>
+					<h2>Élément sans balise fermante</h2>
                                         <p>
                                          Certains élements n'ont pas de balise fermante,
                                         <br/>
@@ -231,7 +231,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </p>
 				</section>
                                 <section>
-					<h2>Elément avec attribut</h2>
+					<h2>Élément avec attribut</h2>
                                         <p>
                                          Certains élements définissient des attributs
                                         </p>
@@ -251,14 +251,14 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </code></pre>
 				</section>
                                 <section>
-					<h2>Eléments standards</h2>
+					<h2>Éléments standards</h2>
                                         <p>
-                                         La norme HTML 5 définies beaucoup trop
+                                         La norme HTML 5 définit beaucoup trop
                                         <br/>
-                                         d'<a href="http://www.w3.org/community/webed/wiki/HTML/Elements">élements</a>
-                                         pour tous les lister.
+                                         d'<a href="http://www.w3.org/community/webed/wiki/HTML/Éléments">éléments</a>
+                                         pour tous les lister
                                         </p><p>
-                                         Voici les principaux organisés en catégorie
+                                         Voici les principaux éléments, organisés en catégories :
                                         </p>
                                         <ul>
                                          <li>éléments liés au texte
@@ -269,14 +269,14 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </ul>
 				</section>
                                 <section>
-                                        <h2>Eléments liés au texte</h2>
+                                        <h2>Éléments liés au texte</h2>
 				</section>
                                 <section>
-					<h2>Elements liés au texte</h2>
+					<h2>Éléments liés au texte</h2>
                                         <p>&nbsp;</p>
                                         <table>
-                                         <th>Elément
-                                         <th>commentaire
+                                         <th>Élément
+                                         <th>Commentaire
                                         <tr>
                                          <td><b>&lt;b&gt;</b> ou <strong>&lt;strong&gt;</strong>
                                          <td>en gras (<b>b</b>old)
@@ -298,20 +298,20 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </table>
 				</section>
                                 <section>
-					<h2>Eléments de structure</h2>
+					<h2>Éléments de structure</h2>
 				</section>
                                 <section>
-					<h2>Eléments de structure (simple)</h2>
+					<h2>Éléments de structure (simple)</h2>
                                         <p>&nbsp;</p>
                                         <table>
-                                         <th>Elément
-                                         <th>commentaire
+                                         <th>Élément
+                                         <th>Commentaire
                                         <tr>
                                          <td>section</strong>
                                          <td>section
                                        <tr>
                                          <td>h1, h2, h3, h4, h5, h6</strong>
-                                         <td>titre de section (headings)
+                                         <td>titre de section (heading)
                                         <tr>
                                          <td>p</strong>
                                          <td>paragraphe
@@ -324,7 +324,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </table>
 				</section>
                                 <section>
-					<h2>Eléments de structure (simple)</h2>
+					<h2>Éléments de structure (simple)</h2>
                                         <p>
                                          Un exemple
                                         </p>
@@ -348,7 +348,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </code></pre>
 				</section>
                                 <section>
-					              <h2>Eléments de structure (simple)</h2>
+					              <h2>Éléments de structure (simple)</h2>
 					              <p>&nbsp;</p>
                                   <p>
                                    Même exemple vu sous la forme d'un arbre
@@ -360,7 +360,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                    />
 				                </section>
                                 <section>
-					<h2>Eléments de structure (ol)</h2>
+					<h2>Éléments de structure (ol)</h2>
                                         <p>Les listes ordonnées</p>
                                         <ol id="ordered_list">
                                          <li>premier item</li>
@@ -380,8 +380,8 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </small>
 				</section>
                                 <section>
-					<h2>Eléments de structure (ul)</h2>
-                                        <p>Les listes non-ordonnées</p>
+					<h2>Éléments de structure (ul)</h2>
+                                        <p>Les listes non ordonnées</p>
                                         <ul id="unordered_list">
                                          <li>premier item</li>
                                          <li>second item</li>
@@ -396,7 +396,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </textarea></small>
 				</section>
                                 <section>
-					<h2>Eléments de structure (dl)</h2>
+					<h2>Éléments de structure (dl)</h2>
                                         <p>Les listes de définitions</p>
                                         <dl id="definition_list">
                                          <dt>HTML</dt>
@@ -420,7 +420,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </small>
 				</section>
                                 <section>
-					<h2>Eléments de structure (table)</h2>
+					<h2>Éléments de structure (table)</h2>
                                         <p>Les tableaux à 2 dimensions</p>
                                         <table>                                   
                                           <tr>
@@ -446,7 +446,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </small> 
 				</section>
                                 <section>
-					<h2>Eléments de structure (table)</h2>
+					<h2>Éléments de structure (table)</h2>
                                         <table>
                                          <thead>
                                           <th></th><th>Symbole</th><th>% dans l'air</th>
@@ -479,10 +479,10 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </small> 
 				</section>
                                 <section>
-					<h2>Eléments multi-media</h2>
+					<h2>Éléments multi-media</h2>
 				</section>
                                 <section>
-					<h2>Eléments multi-media (lien)</h2>
+					<h2>Éléments multi-media (liens)</h2>
                                         <ul>
                                           <li>les liens externes
                                              <br/>
@@ -515,7 +515,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </div>
 				</section>
                                 <section>
-					<h2>Eléments multi-media (iframe)</h2>
+					<h2>Éléments multi-media (iframe)</h2>
                                          <p>
                                           Permet d'inclure un document dans un document
                                          </p>
@@ -531,7 +531,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                              </code></pre>
 				</section>
                                 <section>
-					<h2>Eléments multi-media (image)</h2>
+					<h2>Éléments multi-media (image)</h2>
                                         <img src="images/html/enquire.jpg"
                                              width="361"
                                              height="282"
@@ -544,11 +544,11 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </code></pre>
                                         <small>
                                          <b>alt</b> est utilisé par les clients HTML
-                                         qui ne sont pas graphique
+                                         non graphiques (ex: lecteur braille)
                                         </small>
 				</section>
                                 <section>
-					<h2>Eléments multi-media<br/>(formats d'image)</h2>
+					<h2>Éléments multi-media<br/>(formats d'image)</h2>
                                         <table>
                                          <tr>
                                           <td>PNG</td>
@@ -566,7 +566,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </table>
 				</section>
                                 <section>
-					<h2>Eléments multi-media (audio)</h2>
+					<h2>Éléments multi-media (audio)</h2>
                                         <audio controls>
                                           <source src="images/html/upem.oga" type="audio/ogg"> 
                                           <source src="images/html/upem.mp3" type="audio/mpeg"> 
@@ -587,7 +587,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </small>
 				</section>
                                 <section>
-					<h2>Eléments multi-media (video)</h2>
+					<h2>Éléments multi-media (video)</h2>
                                         <p>&nbsp;</p>
                                         <pre><code class="html" data-trim contenteditable>
 &lt;video width="640"
@@ -607,7 +607,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </small>
 				</section>
                                 <section>
-					<h2>Eléments multi-media (video)</h2>
+					<h2>Éléments multi-media (video)</h2>
                                         <p>&nbsp;</p>
                                         <video width="640"
                                                height="360"
@@ -619,10 +619,10 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </video>
 				</section>
                                 <section>
-					<h2>Eléments du document</h2>
+					<h2>Éléments du document</h2>
 				</section>
                                 <section>
-					<h2>Eléments du document (doctype)</h2>
+					<h2>Éléments du document (doctype)</h2>
                                         <p>
                                          Avant la balise html,
                                          on doit indiquer la version du HTML
@@ -649,17 +649,17 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </table>
 				</section>
                                 <section>
-					<h2>Eléments du document (head)</h2>
+					<h2>Éléments du document (head)</h2>
                                         <p>
                                          La balise <b>head</b> permet d'indiquer
                                         <br/>
-                                         des propriétés sur le document
+                                         des propriétés du document entier
                                         </p>
                                         <dl>
                                          <dt>title
-                                         <dd>permet d'indiquer un titre au document
+                                         <dd>permet d'indiquer le titre du document
                                          <dt>meta
-                                         <dd>les meta-données associées au document 
+                                         <dd>les méta-données associées au document 
                                         </ul>
                                         <pre><code class="html" data-trim contenteditable>
 &lt;!DOCTYPE html&gt;
@@ -672,9 +672,9 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                         </code></pre>
 				</section>
                                 <section>
-					<h2>Eléments du document (meta)</h2>
+					<h2>Éléments du document (meta)</h2>
                                         <p>
-                                         Meta-donnée sur le document
+                                         Méta-donnée sur le document
                                         </p>
                                         <dl>
                                          <dt>table de caractères
@@ -683,7 +683,7 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                           <pre><code class="html" data-trim contenteditable>
 &lt;meta charset="UTF-8"&gt;
                                           </code></pre>
-                                         <dt>mot-clefs (moteur de recherche)
+                                         <dt>mots-clefs (pour moteurs de recherche)
                                          <dd>
                                           <pre><code class="html" data-trim contenteditable>
 &lt;meta name="keywords" content="web, html, css, javascript"&gt;
@@ -701,8 +701,8 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                          Et comment on
                                          <ul>
                                           <li>ajoute des couleurs ?
-                                          <li>change les fontes ?
-                                          <li>place les élements sur l'écran ?
+                                          <li>change les polices de caractères (fonts) ?
+                                          <li>place les éléments sur l'écran ?
                                           <li>à des placements différents
                                              <br/>
                                               pour un desktop ou un smartphone ?
