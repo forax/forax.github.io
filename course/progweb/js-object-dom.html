@@ -90,7 +90,7 @@
 				<section>
 					<h2>Dictionnaire ?</h2>
 					<blockquote cite="https://en.wikipedia.org/wiki/Associative_array">
-					  &ldquo;En informatique, un tableau associatif, map, table des symboles, ou dictionnaire est un type abstrait composé d'une collection de pairs (clé, valeur), tel que chaque clé possibe apparait une seul fois dans la collection.&rdquo;
+					  &ldquo;En informatique, un tableau associatif, map, table des symboles, ou dictionnaire est un type abstrait composé d'une collection de couples (clé, valeur), tel que chaque clé possible apparait une seule fois dans la collection.&rdquo;
 					</blockquote>
                                         <p align="right">
                                          source: Wikipedia.com - <a href="https://en.wikipedia.org/wiki/Associative_array">Dictionnaire</a>
@@ -99,9 +99,9 @@
 				<section>
 					                    <h2>Dictionnaire</h2>
 					                    <p>
-                                          Un dictionnaire en Javascript se déclare entre <b>{</b> et <b>}</b>.
+                                          Un dictionnaire en Javascript se déclare entre <b>{</b> et <b>}</b>
                                          <br/>
-                                          Une clé et une valeur sont séparés par un :, les couples sont séparés par des virgules.
+                                          Une clé et une valeur sont séparées par <code>:</code>, les couples sont séparés par des virgules
                                          </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojs="js-dict1" rows="6" cols="35">
@@ -120,7 +120,7 @@
 				<section>
 					                    <h2>Accéder aux valeurs</h2>
 					                    <p>
-                                         L'opération '.' (<b>dot</b>) permet d'obtenir la valeur correspondant à une clé.
+                                         L'opération '.' (<b>dot</b>) permet d'obtenir la valeur correspondant à une clé
                                          </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojs="js-dict-index" rows="6" cols="35">
@@ -140,7 +140,7 @@ dict.foo
 					                    <h2>Accéder aux valeurs (2)</h2>
 					                    <p>
                                          Comme pour les tableaux, il est possible d'utiliser les <b>[</b> <b>]</b>
-                                         pour obtenir la valeur correspondant à une clé.
+                                         pour obtenir la valeur correspondant à une clé
                                          </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojs="js-dict-index2" rows="6" cols="35">
@@ -153,14 +153,14 @@ dict["foo"]
                                         <small><div id="js-dict-index2"></div></small>
                                         <p>&nbsp;</p>
                                         <p>
-                                         on utilise <b>.</b> si la clé est constante, <b>[]</b> si la clé est une <b>string</b>
+                                         On utilise <b>.</b> si la clé est constante, <b>[]</b> si la clé est une <b>string</b>
                                         </p>
 				</section>
 				<section>
 					                    <h2>Dictionnaire dynamique</h2>
 					                    <p>
-                                         Il est possible de changer la valeur pour une clé ou d'ajouter
-                                         une paire clé/valeur.
+                                         Il est possible de changer la valeur associée une clé ou d'ajouter
+                                         un couple clé/valeur
                                          </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojs="js-dict-dyn" rows="8" cols="35">
@@ -181,8 +181,8 @@ basket
 				<section>
 					                    <h2>Pas de clé en double !</h2>
 					                    <p>
-                                         Le dictionnaire index les valeurs par leur clé,
-                                         il ne peut y avoir qu'une seule valeur pour une clé.
+                                         Le dictionnaire indexe les valeurs par leur clé,
+                                         il ne peut y avoir qu'une seule valeur pour une clé donnée
                                          </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojs="js-dict-key" rows="8" cols="30">
@@ -205,7 +205,7 @@ dict
 					                    <p>
                                          En JavaScript, les dictionnaires ne sont pas appelés 'dictionary' mais 'object'
                                         </p><p>
-                                         L'affichage par défaut (<b>toString()</b>) est pas intéressant, on utilise <b>JSON.stringify()</b> à la place
+                                         L'affichage par défaut (<b>toString()</b>) n'est pas intéressant, on utilise <b>JSON.stringify()</b> à la place
                                         </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojs="js-dict-object" rows="5" cols="30">
@@ -223,7 +223,7 @@ JSON.stringify(dict)
 				<section>
 					                    <h2>Le tableau des clés</h2>
 					                    <p>
-                                         La fonction <b>Object.keys</b> permet d'avoir un tableau
+                                         La fonction <b>Object.keys</b> renvoie un tableau
                                          des clés d'un objet
                                          </p>
                                         <p>&nbsp;</p>
@@ -243,7 +243,7 @@ Object.keys(letters)
 					                    <h2>Parcourir un objet</h2>
 					                    <p>
                                          On peut pas parcourir un objet directement,
-                                         il faut parcourir ses clés, puis pour chaque clé on peut aller chercher la valeur.
+                                         il faut parcourir ses clés, puis pour chaque clé on peut aller chercher la valeur
                                          </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojslog="js-object-iter" rows="9" cols="40">
@@ -258,7 +258,7 @@ for(i = 0; i < keys.length; i++) {
                                         </textarea></small>
                                         <p></p>
                                         <small>
-                                          <div id="js-object-iter" class="autojslog""></div>
+                                          <div id="js-object-iter" class="autojslog"></div>
                                         </small>
                                         <p>
                                          
@@ -268,7 +268,7 @@ for(i = 0; i < keys.length; i++) {
 					                    <h2>Parcourir un objet (2)</h2>
 					                    <p>
                                          Il existe une syntaxe spéciale pour parcourir les dictionnaires,
-                                         <b>for(<em>variable</em>&nbsp;in&nbsp;<em>dict</em>)</b>
+                                         <b>for(<em>variable</em>&nbsp;in&nbsp;<em>dict</em>)</b> (comme en Python)
                                          </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojslog="js-object-for-in" rows="5" cols="40">
@@ -279,7 +279,7 @@ for(key in dict) {
                                         </textarea></small>
                                         <p></p>
                                         <small>
-                                          <div id="js-object-for-in" class="autojslog""></div>
+                                          <div id="js-object-for-in" class="autojslog"></div>
                                         </small>
                                         <p><small>
                                          Cette syntaxe est éuivalente au code qui utilise <b>Object.keys()</b>
@@ -289,7 +289,7 @@ for(key in dict) {
 				<section>
 					                    <h2>Regrouper des propriétés</h2>
 					                    <p>
-					                     Un objet permet de regrouper des propriétés ayant attrait à un même concept
+					                     Un objet permet de regrouper des propriétés ayant trait à un même concept,
 					                     ce qui permet de structurer le code
                                         </p>
                                         <small><textarea autojslog="js-object-as-struct" rows="10" cols="40">
@@ -305,7 +305,7 @@ console.log(isAdult(jane));
                                         </textarea></small>
                                         <p></p>
                                         <small>
-                                          <div id="js-object-as-struct" class="autojslog""></div>
+                                          <div id="js-object-as-struct" class="autojslog"></div>
                                         </small>
                                         <p></p>
 				</section>
@@ -313,7 +313,7 @@ console.log(isAdult(jane));
 				<section>
 					                    <h2>Fonction vs Méthode</h2>
 					                    <p>
-					                     Un objet peut aussi contenir des fonctions comme valeur
+					                     Un objet peut aussi contenir des fonctions comme valeurs
 					                    <br/>
 					                     Une fonction dans un objet est appelé une méthode
                                         </p>
@@ -330,14 +330,14 @@ console.log(disc.surface(3));
                                         </textarea></small>
                                         <p></p>
                                         <small>
-                                          <div id="js-object-method" class="autojslog""></div>
+                                          <div id="js-object-method" class="autojslog"></div>
                                         </small>
                                         <p></p>
 				</section>
 				<section>
 					                    <h2>this</h2>
 					                    <p>
-					                     variable implicite qui contient l'objet sur lequel on a appelé
+					                     Variable implicite qui contient l'objet sur lequel on a appelé
 					                     une méthode (l'objet sur lequel on utilise l'opérateur '.')
                                         </p>
                                         <small><textarea autojslog="js-object-this" rows="10" cols="50">
@@ -353,10 +353,10 @@ console.log(f());
                                         </textarea></small>
                                         <p></p>
                                         <small>
-                                          <div id="js-object-this" class="autojslog""></div>
+                                          <div id="js-object-this" class="autojslog"></div>
                                         </small>
                                         <p>
-                                         Si la fonction est appelée comme une fonction et pas une méthode "this" vaut undefined
+                                         Si la fonction est appelée comme une fonction et pas une méthode, "this" vaut undefined !
                                         </p>
 				</section>
 				<section>
@@ -366,7 +366,7 @@ console.log(f());
 				<section>
 					                    <h2>Partage de méthodes (problème)</h2>
 					                    <p>
-					                     Si on a deux objets, il faut définir <b>surface</b> 2 fois, même si c'est le même code ??
+					                     Si on a deux objets, il faut définir <b>surface</b> deux fois, même si c'est le même code !?
                                         </p>
                                         <small><textarea autojslog="js-object-prototype" rows="10" cols="50">
 var square1 = {
@@ -382,10 +382,10 @@ console.log(square2.surface());
                                         </textarea></small>
                                         <p></p>
                                         <small>
-                                          <div id="js-object-prototype" class="autojslog""></div>
+                                          <div id="js-object-prototype" class="autojslog"></div>
                                         </small>
                                         <p>
-                                         Ca parait idiot !
+                                         Ça parait idiot !
                                         </p>
 				</section>
 				<section>
@@ -408,7 +408,7 @@ console.log(square2.surface());
                                         </textarea></small>
                                         <p></p>
                                         <small>
-                                          <div id="js-object-prototype2" class="autojslog""></div>
+                                          <div id="js-object-prototype2" class="autojslog"></div>
                                         </small>
                                         <p>
                                          <b>setPrototypeOf</b> permet de changer le prototype
@@ -433,7 +433,7 @@ console.log(square2.surface());
                                         </textarea></small>
                                         <p></p>
                                         <small>
-                                          <div id="js-object-new" class="autojslog""></div>
+                                          <div id="js-object-new" class="autojslog"></div>
                                         </small>
                                         <p><small>
                                          <b>new Square</b> crée un objet, initialise celui-ci avec la fonction <b>Square</b>
@@ -443,17 +443,17 @@ console.log(square2.surface());
 				<section>
 					                    <h2>Création d'objets</h2>
 					                    <p>
-					                     deux syntaxes !
+					                     Deux syntaxes !
 					                    </p>
 					                    <dl>
-					                     <dt>avec les accolades
-					                     <dd>si on a que des valeurs, ou 1 seul objet (singleton comme Math)
+					                     <dt>Avec les accolades :
+					                     <dd>si on n'a que des valeurs, ou un seul objet (singleton comme Math)
 					                    <br/>
 					                     <small><textarea autojslog="js-creation1" rows="2" cols="35">
 var foo = { key1: 2, key2: 'hello' };
 					                     </textarea></small>
 					                     <p></p>
-					                     <dt>avec new
+					                     <dt>Avec new :
 					                     <dd>si on a plusieurs objets avec des méthodes
 					                     <small><textarea autojslog="js-creation2" rows="6" cols="55">
 function Foo(key1, key2) { this.key1 = key1; this.key2 = key2; }
@@ -487,7 +487,7 @@ displayAll(list);
                                         </textarea></small>
                                         <p></p>
                                         <small>
-                                          <div id="js-object-linkedlist" class="autojslog""></div>
+                                          <div id="js-object-linkedlist" class="autojslog"></div>
                                         </small>
                                         <p></p>
 				</section>
@@ -516,7 +516,7 @@ list.displayAll();
                                         </textarea></small>
                                         <p></p>
                                         <small>
-                                          <div id="js-object-linkedlist2" class="autojslog""></div>
+                                          <div id="js-object-linkedlist2" class="autojslog"></div>
                                         </small>
                                         <p></p>
 				</section -->
@@ -536,7 +536,7 @@ list.displayAll();
 				<section>
 					<h2>DOM ?</h2>
 					<blockquote cite="https://en.wikipedia.org/wiki/Document_Object_Model">
-					  &ldquo;Le modèle de document objet(DOM) est une convention indépendante d'un language et multi-plateforme pour représenter et interagir avec des objets issues de documents HTML, XHTML et XML.&rdquo;
+					  &ldquo;Le modèle objet de document (DOM) est une convention indépendante d'un language et multi-plateforme pour représenter et interagir avec des objets issus de documents HTML, XHTML et XML.&rdquo;
 					</blockquote>
                                         <p align="right">
                                          source: Wikipedia.com - <a href="https://en.wikipedia.org/wiki/Document_Object_Model">DOM</a>
@@ -576,7 +576,7 @@ list.displayAll();
 				<section>
 					<h2>JSON ?</h2>
 					<blockquote cite="https://en.wikipedia.org/wiki/Document_Object_Model">
-					  &ldquo;JSON (Notation objet JavaScript) est un format standard ouvert qui utilise un texte lisible par un humain pour transmettre des données objets sous forme de paires attribut/valeur. C'est le format d'échange de donnée le plus commun utilisé pour la communication browser/serveur asynchrone.&rdquo;
+					  &ldquo;JSON (Notation objet JavaScript) est un format standard ouvert qui utilise un texte lisible par un humain pour transmettre des données objets sous forme de couples attribut/valeur. C'est le format d'échange de données le plus couramment utilisé pour la communication asynchrone entre browser et serveur.&rdquo;
 					</blockquote>
                                         <p align="right">
                                          source: Wikipedia.com - <a href="https://en.wikipedia.org/wiki/JSON">JSON</a>
@@ -598,7 +598,7 @@ list.displayAll();
 				<section>
 					<h2>AJAX ?</h2>
 					<blockquote cite="https://en.wikipedia.org/wiki/Ajax_%28programming%29">
-					  &ldquo;Ajax (aussi AJAX; acronyme pour asynchrone JavaScript et XML) est un ensemble de techniques de developpement web utilisant plusieurs technologies web coté client dans le but de créer des applications Web asynchrones.&rdquo;
+					  &ldquo;Ajax (aussi AJAX; acronyme pour JavaScript et XML asynchrones) est un ensemble de techniques de developpement web utilisant plusieurs technologies web coté client dans le but de créer des applications Web asynchrones.&rdquo;
 					</blockquote>
                                         <p align="right">
                                          source: Wikipedia.com - <a href="https://en.wikipedia.org/wiki/Ajax_%28programming%29">AJAX</a>
