@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>JavaScript - Data Structures & DOM</title>
+		<title>JavaScript - Objet, DOM, JSON, AJAX</title>
 
 		<meta name="description" content="javascript, data structure, DOM">
 		<meta name="author" content="Remi Forax">
@@ -68,7 +68,7 @@
                                 <section>
 					<h1>JavaScript</h1>
                                        <br/>
-                                        <h2>Data Struct, DOM & Canvas</h2>
+                                        <h2>Objet, DOM, JSON, AJAX</h2>
 					<p>
 					  Remi Forax
 					</p>
@@ -337,26 +337,49 @@ console.log(disc.surface(3));
 				<section>
 					                    <h2>this</h2>
 					                    <p>
-					                     Variable implicite qui contient l'objet sur lequel on a appelé
-					                     une méthode (l'objet sur lequel on utilise l'opérateur '.')
+					                     Paramètre implicite qui contient l'objet sur lequel
+					                    <br/>
+					                     on a appelé une méthode
+					                    <br/>
+					                     (l'objet sur lequel on utilise l'opérateur '.')
                                         </p>
-                                        <small><textarea autojslog="js-object-this" rows="10" cols="50">
-"use strict";
+                                        <small><textarea autojslog="js-object-this" rows="8" cols="40">
 var square = {
   side: 2,
-  surface: function() { return this.side * this.side; }
+  surface: function() {
+   return this.side * this.side;
+  }
 };
 console.log(square.surface());
-
-var f = square.surface;
-console.log(f());
                                         </textarea></small>
                                         <p></p>
                                         <small>
                                           <div id="js-object-this" class="autojslog"></div>
                                         </small>
+                                        <p>&nbsp;</p>
+				</section>
+				<section>
+					                    <h2>this et appel de fonction</h2>
+					                    <p>
+					                     Et si on appel une méthode qui utilise <b>this</b> comme une fonction ?
+                                        </p>
+                                        <small><textarea autojslog="js-object-this2" rows="10" cols="40">
+"use strict";
+var square = {
+  side: 2,
+  surface: function() {
+   return this.side * this.side;
+  }
+};
+var f = square.surface;
+console.log(f());
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                          <div id="js-object-this2" class="autojslog"></div>
+                                        </small>
                                         <p>
-                                         Si la fonction est appelée comme une fonction et pas une méthode, "this" vaut undefined !
+                                         <b>square</b> est appelée comme une fonction et pas une méthode, "this" vaut undefined !
                                         </p>
 				</section>
 				<section>
@@ -463,6 +486,43 @@ Foo.prototype.meth2 = function() { return this.key2; };
 var foo = new Foo(2, 'hello');
 					                     </textarea></small>
 					                    </dl>
+				</section>
+				
+				<section>
+					                    <h2>Exemple</h2>
+					                    <span style="float: inline-block">
+                                        <small><textarea autojscanvas="js-object-matrix" once="true" rows="23" cols="55">
+var canvas = document.getElementById('js-object-matrix');
+var context = canvas.getContext("2d"); 
+var data = [ 'U', 'P', 'E', 'M' ];             
+function Snake(x) {
+  this.x = x;
+  this.y = Math.floor(canvas.height * Math.random());
+}
+Snake.prototype.draw = function(context) {
+  context.fillStyle = 'rgb(0, 255 , 0)';
+  for(var i = 0; i < data.length; i++) {
+    context.fillText(data[i], 15 * this.x, this.y - 15 * i);
+    context.fillStyle = 'rgb(0, 164, 0)';
+  }
+  this.y = this.y + 10;
+  if (this.y > canvas.height) this.y = 0;
+}
+snakes = [];
+for(var i = 0; i < 20; i++) { snakes.push(new Snake(i)); }
+window.setInterval(function() {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  snakes.forEach(function(snake) { snake.draw(context); });
+}, 50);
+                                          
+                                        </textarea></small>
+                                        </span><span style="display: inline-block">
+                                        <canvas id="js-object-matrix"
+                                                width="300"
+                                                height="600">
+                                        </canvas>
+                                        </span>  
+                                        
 				</section>
 				
 				<!-- section>
