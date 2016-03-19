@@ -601,8 +601,8 @@ element.children[1].tagName;
 					                     Il y a deux façon d'obtenir les fils d'un élement
 					                    </p>
 					                     <dl id="dom-example2">
-					                      <dt>.children</dt><dd>renvoie uniquement les sous-élements</dd>
-					                      <dt>.childNodes</dt><dd>renvoie les élements, avec les textes et les commentaires</dd>
+					                      <dt>element.children</dt><dd>renvoie uniquement les sous-élements</dd>
+					                      <dt>element.childNodes</dt><dd>renvoie les élements, avec les textes et les commentaires</dd>
 					                     </dl>
                                         <p></p>
                                         <small><textarea autojs="js-dom2" rows="9" cols="55">
@@ -637,7 +637,7 @@ element.forEach
                                         </textarea></small>
                                         <small><div id="js-dom3"></div></small>
                                         <p>
-                                         <b>chilren</b> et <b>childNodes</b> renvoie des HTMLCollection,
+                                         <b>children</b> et <b>childNodes</b> renvoie des HTMLCollection,
                                         <br/>
                                          pas des Array :(
 					                    </p>
@@ -667,21 +667,20 @@ dts.length
 				<section>
 					                    <h2>Changer le contenu d'un élément</h2>
 					                    <dl>
-					                     <dt>.innerHTML</dt><dd>accepte le contenu HTML</dd>
-					                     <dt>.innerText</dt><dd>uniquement pour le contenu texte</dd>
+					                     <dt>element.innerHTML</dt><dd>accepte le contenu HTML</dd>
+					                     <dt>element.innerText</dt><dd>uniquement pour le contenu texte</dd>
 					                    </dl>
 					                    <p></p>
 					                    <div style="color: tomato"><small>
 					                     <div id="dom-content1"></div>
 					                     <div id="dom-content2"></div>
 					                    </small></div>
-                                        <small><textarea autojslog="js-dom-content" rows="7" cols="60">
+                                        <small><textarea autojslog="js-dom-content" rows="6" cols="60">
 var div1 = document.getElementById("dom-content1");
+div1.innerHTML = "<b>" + new Date() + "</b>";
+
 var div2 = document.getElementById("dom-content2");
-window.setTimeout(function() {
-  div1.innerHTML = "<b>" + new Date() + "</b>";
-  div2.innerText = "<b>" + new Date() + "</b>";
-}, 1000);
+div2.innerText = "<b>" + new Date() + "</b>";
                                         </textarea></small>
                                         <p><small>
                                          element<b>.style</b> permet d'accéder au style d'un élement
