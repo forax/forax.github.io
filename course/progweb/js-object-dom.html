@@ -363,7 +363,7 @@ console.log(square.surface());
 					                    <p>
 					                     Et si on appel une méthode qui utilise <b>this</b> comme une fonction ?
                                         </p>
-                                        <small><textarea autojslog="js-object-this2" rows="10" cols="40">
+                                        <small><div class="bad-container"><textarea autojslog="js-object-this2" rows="10" cols="40">
 "use strict";
 var square = {
   side: 2,
@@ -373,7 +373,7 @@ var square = {
 };
 var f = square.surface;
 console.log(f());
-                                        </textarea></small>
+                                        </textarea><div class="bad-image"></div></div></small>
                                         <p></p>
                                         <small>
                                           <div id="js-object-this2" class="autojslog"></div>
@@ -387,11 +387,13 @@ console.log(f());
 				</section>
 				
 				<section>
-					                    <h2>Partage de méthodes (problème)</h2>
+					                    <h2>Partage de méthodes :(</h2>
 					                    <p>
-					                     Si on a deux objets, il faut définir <b>surface</b> deux fois, même si c'est le même code !?
+					                     Si on a deux objets, il faut définir <b>surface</b> deux fois,
+					                    <br/> 
+					                     même si c'est le même code !?
                                         </p>
-                                        <small><textarea autojslog="js-object-prototype" rows="10" cols="50">
+                                        <small><div class="bad-container"><textarea autojslog="js-object-prototype" rows="11" cols="50">
 var square1 = {
   side: 1,
   surface: function() { return this.side * this.side; }
@@ -402,7 +404,7 @@ var square2 = {
 };
 console.log(square1.surface());
 console.log(square2.surface());
-                                        </textarea></small>
+                                        </textarea><div class="bad-image"></div></div></small>
                                         <p></p>
                                         <small>
                                           <div id="js-object-prototype" class="autojslog"></div>
@@ -438,6 +440,26 @@ console.log(square2.surface());
                                         </p>
 				</section>
 				<section>
+					                    <h2>setPrototypeOf</h2>
+					                    <p>
+					                     Attention, changer le prototype d'un objet avec <b>setPrototypOf</b>
+					                     alors que celui-ci est déjà créer
+					                    <br/> 
+					                     est souvent très lent !
+					                    </p>
+					                    <p>
+					                     Firefox écrit même un message
+					                     <span style="text-decoration: line-through;">d'insulte</span> d'information
+					                    <br/> 
+					                     sur la console
+                                        </p>
+                                        <p style="color: red">
+mutating the [[Prototype]] of an object will cause your code to run very slowly;
+instead create the object with the correct initial [[Prototype]] value using Object.create
+                                        </p>
+                                        <p>&nbsp;</p>
+				</section>
+				<section>
 					                    <h2>New permet le partage des méthodes</h2>
 					                    <p>
 					                     <b>new</b> et la propriété <b>prototype</b> d'une fonction
@@ -460,7 +482,7 @@ console.log(square2.surface());
                                         </small>
                                         <p><small>
                                          <b>new Square</b> crée un objet, initialise celui-ci avec la fonction <b>Square</b>
-                                         et indique que son prototype est <b>Square.prototype</b>
+                                         et indique que son prototype est la valeur de <b>Square.prototype</b>
                                         </small></p>
 				</section>
 				<section>
@@ -472,13 +494,13 @@ console.log(square2.surface());
 					                     <dt>Avec les accolades :
 					                     <dd>si on n'a que des valeurs, ou un seul objet (singleton comme Math)
 					                    <br/>
-					                     <small><textarea autojslog="js-creation1" rows="2" cols="35">
+					                     <small><textarea rows="2" cols="35">
 var foo = { key1: 2, key2: 'hello' };
 					                     </textarea></small>
 					                     <p></p>
 					                     <dt>Avec new :
 					                     <dd>si on a plusieurs objets avec des méthodes
-					                     <small><textarea autojslog="js-creation2" rows="6" cols="55">
+					                     <small><textarea rows="6" cols="55">
 function Foo(key1, key2) { this.key1 = key1; this.key2 = key2; }
 Foo.prototype.meth1 = function() { return this.key1; };
 Foo.prototype.meth2 = function() { return this.key2; };
@@ -525,62 +547,6 @@ window.setInterval(function() {
                                         
 				</section>
 				
-				<!-- section>
-					                    <h2>Exemple d'une liste chainée</h2>
-					                    <p>
-					                     
-                                        </p>
-                                        <small><textarea autojslog="js-object-linkedlist" rows="14" cols="45">
-function link(value, next) {
-  return { value: value, next: next };
-}
-function displayAll(link) {
-  if (link == undefined) {
-    return;
-  }
-  console.log(link.value);
-  displayAll(link.next);
-}
-
-var list = link("1", link("2"));
-displayAll(list);
-                                        </textarea></small>
-                                        <p></p>
-                                        <small>
-                                          <div id="js-object-linkedlist" class="autojslog"></div>
-                                        </small>
-                                        <p></p>
-				</section>
-				<section>
-					                    <h2>Exemple d'une liste chainée</h2>
-					                    <p>
-					                     
-                                        </p>
-                                        <small><textarea autojslog="js-object-linkedlist2" rows="17" cols="45">
-var EMPTY = { displayAll: function() {} };
-function Link(value, next) {
-  this.value = value;
-  if (next == undefined) {
-    this.next = EMPTY;
-  } else {
-    this.next = next;
-  }
-}
-Link.prototype.displayAll = function() {
-  console.log(this.value);
-  this.next.displayAll();
-}
-
-var list = new Link("1", new Link("2"));
-list.displayAll();
-                                        </textarea></small>
-                                        <p></p>
-                                        <small>
-                                          <div id="js-object-linkedlist2" class="autojslog"></div>
-                                        </small>
-                                        <p></p>
-				</section -->
-				
 				<section>
 					                    <h2>Document Object Model</h2>
 			    </section>
@@ -604,23 +570,192 @@ list.displayAll();
 				</section>
 				
 				<section>
-				 - document.getElementById()
-				 - document.getElementsByClassName()[i]
-				 - document.querySelectorAll(css_selector)
-				 
-				 - document.createElement()
-				 - element.children()[i]
-				 - element.attributes()[i]
-				 - element.attribute = newValue
-				 - element.style.property = newValue   (animation ?)
-				 
-				 - element.innerHTML
-				 - element.innerText
-				 - element.appendChild()
-				 
-				 - element.onclick 
+				                        <div id="dom-example">
+					                    <h2>Arbre DOM</h2>
+					                    <p>
+					                     L'API DOM permet de manipuler l'arbre correspondant
+					                    <br/> 
+					                     à une page HTML en JavaScript
+                                        </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojs="js-dom1" rows="9" cols="55">
+document.toString()
+var element = document.getElementById("dom-example");
+element.toString()
+element.tagName
+element.attributes[0].name
+element.attributes[0].value
+element.children[0].tagName;
+element.children[1].tagName;
+                                        </textarea></small>
+                                        <small><div id="js-dom1"></div></small>
+                                        <p><small>
+                                         Le document (racine), les élements, les attributs des éléments, le texte à l'intérieur des éléments
+					                     sont des noeuds de l'arbre
+					                    </small></p>
+					                    </div>
 				</section>
-			    
+				<section>
+					                    <h2>Children / childNodes</h2>
+					                    <p>
+					                     Il y a deux façon d'obtenir les fils d'un élement
+					                    </p>
+					                     <dl id="dom-example2">
+					                      <dt>.children</dt><dd>renvoie uniquement les sous-élements</dd>
+					                      <dt>.childNodes</dt><dd>renvoie les élements, avec les textes et les commentaires</dd>
+					                     </dl>
+                                        <p></p>
+                                        <small><textarea autojs="js-dom2" rows="9" cols="55">
+var element = document.getElementById("dom-example2");
+element.tagName
+var child = element.children[0];
+child.toString()
+child.tagName
+var text = child.childNodes[0];
+text.toString()
+text.nodeValue
+                                        </textarea></small>
+                                        <small><div id="js-dom2"></div></small>
+                                        <p>
+                                         
+					                    </p>
+				</section>
+				<section>
+				                        <div id="dom-example3">
+					                    <h2>API DOM</h2>
+					                    <p>
+					                     L'API est la même quelque soit le language de programmation
+					                     donc l'API est intégrée avec aucun language de programmation :(
+					                    </p>
+					                    <p>&nbsp;</p>
+                                        <small><textarea autojs="js-dom3" rows="6" cols="55">
+var element = document.getElementById("dom-example3");
+element.children.toString()
+element.children.length
+element.children[0]
+element.forEach
+                                        </textarea></small>
+                                        <small><div id="js-dom3"></div></small>
+                                        <p>
+                                         <b>chilren</b> et <b>childNodes</b> renvoie des HTMLCollection,
+                                        <br/>
+                                         pas des Array :(
+					                    </p>
+					                    </div>
+				</section>
+				<section>
+					                    <h2>Chercher des éléments</h2>
+					                     <dl id="dom-example4">
+					                      <dt>document.getElementById(id)</dt><dd>renvoie élément par son <b>id</b></dd>
+					                      <dt>document.getElementsByClassName(classname)</dt><dd>renvoie les élements ayant la classe</dd>
+					                      <dt>document.querySelectorAll(css_selector)</dt><dd>renvoie les élements par un sélecteur CSS</dd>
+					                     </dl>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojs="js-dom4" rows="6" cols="60">
+var cs = document.getElementsByClassName("bad-container");
+cs.length
+
+var dts = document.querySelectorAll("dl#dom-example4 dt");
+dts.length
+                                        </textarea></small>
+                                        <small><div id="js-dom4"></div></small>
+                                        <p>
+                                         
+					                    </p>
+				</section>
+				
+				<section>
+					                    <h2>Changer le contenu d'un élément</h2>
+					                    <dl>
+					                     <dt>.innerHTML</dt><dd>accepte le contenu HTML</dd>
+					                     <dt>.innerText</dt><dd>uniquement pour le contenu texte</dd>
+					                    </dl>
+					                    <p></p>
+					                    <div style="color: tomato"><small>
+					                     <div id="dom-content1"></div>
+					                     <div id="dom-content2"></div>
+					                    </small></div>
+                                        <small><textarea autojslog="js-dom-content" rows="7" cols="60">
+var div1 = document.getElementById("dom-content1");
+var div2 = document.getElementById("dom-content2");
+window.setTimeout(function() {
+  div1.innerHTML = "<b>" + new Date() + "</b>";
+  div2.innerText = "<b>" + new Date() + "</b>";
+}, 1000);
+                                        </textarea></small>
+                                        <p><small>
+                                         element<b>.style</b> permet d'accéder au style d'un élement
+                                        </small></p>
+                                        <small>
+                                          <div id="js-dom-content" class="autojslog"></div>
+                                        </small> 
+				</section>
+				<section>
+					                    <h2>Evènement onclick</h2>
+					                    <p>
+					                     Il est possible d'enregistrer des évènements 
+					                    <br/> 
+					                     sur des élements
+					                    </p>
+					                    <div id="dom-div" style="background-color: tomato; border: 2px solid silver; width: 200px; position: relative; left: 10px">
+					                     &nbsp;
+					                    </div>
+					                    <p>
+                                         <button type="button" id="dom-button">Click Me!</button>
+					                    </p>
+                                        <small><textarea autojslog="js-dom-event" rows="7" cols="60">
+var div = document.getElementById("dom-div");
+var button = document.getElementById("dom-button");
+button.onclick = function() {
+  console.log(div.style.left);
+  div.style.left = 30 + parseInt(div.style.left) + "px";
+};
+                                        </textarea></small>
+                                        <p><small>
+                                         element<b>.style</b> permet d'accéder au style d'un élement
+                                        </small></p>
+                                        <small>
+                                          <div id="js-dom-event" class="autojslog"></div>
+                                        </small> 
+				</section>
+				<section>
+					                    <h2>Ajouter de nouveaux éléments</h2>
+					                    <p>
+					                     <b>document.createElement</b> permet de créer un élement
+					                    <br/>
+					                     <b>parent.appendChild(element)</b> ajoute un élement 
+					                    </p>
+					                    <style>
+					                     div#dom-new div {
+					                       float: left;
+					                       width: 50px;
+					                       height: 50px;
+					                       background-color: tomato;
+					                       border: 2px solid silver;
+					                       margin: 20px;
+					                     }
+					                    </style>
+					                    <div id="dom-new"></div>
+					                    <br style="clear: both"/>
+					                    <p>
+                                         <button type="button" id="dom-new-button">Add a box !</button>
+					                    </p>
+                                        <small><textarea autojslog="js-dom-event" rows="7" cols="60">
+var div = document.getElementById("dom-new");
+var button = document.getElementById("dom-new-button");
+button.onclick = function() {
+  var element = document.createElement("DIV");
+  div.appendChild(element);
+};
+                                        </textarea></small>
+                                        <p><small>
+                                         
+                                        </small></p>
+                                        <small>
+                                          <div id="js-dom-event" class="autojslog"></div>
+                                        </small> 
+				</section>
+				
 			    <section>
 					                    <h2>JSON</h2>
 			    </section>
@@ -644,6 +779,55 @@ list.displayAll();
 				</section>
 			    
 			    <section>
+					                    <h2>Notation JSON</h2>
+					                    <p>
+					                     Sous ensemble de la notation sur les objets et les tableaux JavaScript
+					                     qui sert de format d'échange de donnée
+					                    <br/>
+					                     Attention, les noms des clefs doivent être entre "" !
+                                        </p>
+                                        <small><textarea autojslog="js-json1" rows="12" cols="40">
+var aquarium = {
+	"name": "my-aquarium",
+	"fishs": [{
+		"name": "guppi",
+		"count": 3
+	}, {
+		"name": "sushi",
+		"count": 2
+	}]
+  };
+console.log(JSON.stringify(aquarium));
+                                        </textarea></small>
+                                        <small>
+                                          <div id="js-json1" class="autojslog"></div>
+                                        </small> 
+                                        <div><small>
+                                         seuls les types primitifs sont suppportés,
+                                         boolean, number, string, array &amp; object.
+					                    </small></div>
+				</section>
+			    <section>
+					                    <h2>JSON.parse</h2>
+					                    <p>
+					                     Permet de décoder en JavaScript une chaine de caractère comme un objet JSON 
+                                        </p>
+                                        <small><textarea autojslog="js-json2" rows="8" cols="55">
+var array = JSON.parse('[1, 2, 4, true]');
+console.log(array);
+
+var object = JSON.parse('{ "name": "john", "age": 26 }');
+console.log(object);
+
+JSON.parse('{ name: "john", age: 26 }');  // oops
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                          <div id="js-json2" class="autojslog"></div>
+                                        </small> 
+				</section>
+			    
+			    <section>
 					                    <h2>Asynchronous Javascript And XML</h2>
 			    </section>
 			    <section>
@@ -663,7 +847,113 @@ list.displayAll();
                                         <p align="right">
                                          source: Wikipedia.com - <a href="https://en.wikipedia.org/wiki/Ajax_%28programming%29">AJAX</a>
                                         </p>
-				</section>            
+				</section>
+				
+				<section>
+					<h2>AJAX ou AJAP</h2>
+					<p>
+					 AJAX, permet en Javascript de faire des requètes à un serveur en enregistrant une fonction
+					 qui sera exécuter plus tard lorsque les données du serveur seront disponible.
+					</p>
+					<p>
+					 Le fait de faire le traitement plus tard lorsque les données seront présentes est appelé
+					 traitement <strong>asynchrone</strong> 
+					</p>
+					<p>
+					 Dans la réalité, on utilise plutôt JSON que XML comme format de transport,
+					 mais on garde le nom AJAX (au lieu de AJAP).
+					</p>
+				</section>    
+				<section>
+					<h2>XML ou JSON ?</h2>
+					<p>
+					 JSON est non structuré et non validable facilement donc
+					 il est utilisé pour les transferts de petite données (en kilo)
+					</p>
+					<p>
+					 XML est plus lourd mais structuré et validable,
+					 il est utilisé pour le tranfert de données plus importante (en méga)
+					</p>
+				</section>  
+				<section>
+					<h2>XMLHttpRequest</h2>
+					<p>
+					 Permet de faire une requète AJAX
+					</p>
+					<small><textarea autojslog="js-ajax" rows="15" cols="55">
+var ajax = new XMLHttpRequest();
+ajax.onreadystatechange = function() {
+  if (ajax.readyState != 4) {
+    return;
+  }
+  if (ajax.status == 200) {
+    var data = JSON.parse(ajax.responseText);
+    console.log(data);
+  } else {
+    console.log('oops ' + ajax.statusText);
+  }
+};
+ajax.open("GET", "images/js-object/demo.json", true);
+ajax.send();
+                    </textarea></small>
+                    <p></p>
+                    <small>
+                      <div id="js-ajax" class="autojslog"></div>
+                    </small> 
+				</section>
+				<section>
+					<h2>XMLHttpRequest (2)</h2>
+					<p>
+					 L'état <b>readyState</b> indique l'état de la requète
+					<br/>
+					 <b>onreadystatechange</b> permet d'être avertit lorsque
+					 cet état change
+					</p>
+					<small><textarea autojslog="js-ajax2" rows="13" cols="55">
+var ajax = new XMLHttpRequest();
+ajax.onreadystatechange = function() {
+  var state = ajax.readyState;
+  var result;
+  if (state == 1) { result = "opened"; }
+  if (state == 2) { result = "headers_received"; }
+  if (state == 3) { result = "loading"; }
+  if (state == 4) { result = "done"; }
+  console.log(result);
+};
+ajax.open("GET", "images/js-object/demo.json", true);
+ajax.send();
+                    </textarea></small>
+                    <p></p>
+                    <small>
+                      <div id="js-ajax2" class="autojslog"></div>
+                    </small> 
+				</section>
+				<section>
+					<h2>XMLHttpRequest (3)</h2>
+					<p>
+					 <b>open(method, url, async?)</b>
+					<br/>
+					 indique quelle requète créer
+					<br/>
+					 <b>setRequestHeader(header, value)</b>
+					<br/> 
+					 ajoute une donnée d'entête
+					<br/>
+					 <b>send</b> envoie la requète
+					</p>
+					<small><textarea autojslog="js-ajax3" rows="7" cols="65">
+var ajax = new XMLHttpRequest();
+ajax.onreadystatechange = function() {
+  console.log(ajax.readyState + ' ' + ajax.status + ' ' + ajax.responseText);
+};
+ajax.open("GET", "images/js-object/demo.json", true);
+ajax.send();
+                    </textarea></small>
+                    <p></p>
+                    <small>
+                      <div id="js-ajax3" class="autojslog"></div>
+                    </small> 
+				</section>        
 			</div>
 
 		</div>
