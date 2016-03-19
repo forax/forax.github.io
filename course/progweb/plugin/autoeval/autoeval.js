@@ -22,7 +22,10 @@
                         if (element.attributes.autoeval != undefined) {
                           var name = element.attributes.autoeval.value;
                           var e = document.getElementById(name);
-                          //console.log("found " + e);
+                          if (e == undefined) {
+                            console.log("autoeval " + name + " not found");
+                            continue;
+                          }
                           (function(element, e) {
                             element.addEventListener('keyup', function(event) {
 		                e.innerHTML = element.value;
@@ -58,7 +61,10 @@
                         if (element.attributes.autojslog != undefined) {
                           var name = element.attributes.autojslog.value;
                           var e = document.getElementById(name);
-                          //console.log("found " + e);
+                          if (e == undefined) {
+                            console.log("autojslog " + name + " not found");
+                            continue;
+                          }
 
                           (function(element, e) {
                             var listener = function(event) {
