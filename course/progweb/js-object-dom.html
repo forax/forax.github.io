@@ -419,7 +419,7 @@ console.log(square2.surface());
 					                     Lorsque l'on cherche une propriété, si elle n'existe pas sur l'objet,
 					                     on va chercher dans son prototype (récursivement)
                                         </p>
-                                        <small><textarea autojslog="js-object-prototype2" rows="11" cols="50">
+                                        <small><div class="bad-container"><textarea autojslog="js-object-prototype2" rows="11" cols="50">
 var shared_square = {
   surface: function() { return this.side * this.side; }
 };
@@ -430,7 +430,7 @@ Object.setPrototypeOf(square2, shared_square);
 
 console.log(square1.surface());
 console.log(square2.surface());
-                                        </textarea></small>
+                                        </textarea><div class="bad-image"></div></div></small>
                                         <p></p>
                                         <small>
                                           <div id="js-object-prototype2" class="autojslog"></div>
@@ -880,7 +880,7 @@ JSON.parse('{ name: "john", age: 26 }');  // oops
 					<p>
 					 Permet de faire une requète AJAX
 					</p>
-					<small><textarea autojslog="js-ajax" rows="15" cols="55">
+					<small><textarea autojslog="js-ajax" rows="16" cols="55">
 var ajax = new XMLHttpRequest();
 ajax.onreadystatechange = function() {
   if (ajax.readyState != 4) {
@@ -894,6 +894,7 @@ ajax.onreadystatechange = function() {
   }
 };
 ajax.open("GET", "images/js-object/demo.json", true);
+ajax.overrideMimeType("application/json");
 ajax.send();
                     </textarea></small>
                     <p></p>
@@ -906,10 +907,10 @@ ajax.send();
 					<p>
 					 L'état <b>readyState</b> indique l'état de la requète
 					<br/>
-					 <b>onreadystatechange</b> permet d'être avertit lorsque
+					 <b>onreadystatechange</b> est appelée lorsque
 					 cet état change
 					</p>
-					<small><textarea autojslog="js-ajax2" rows="13" cols="55">
+					<small><textarea autojslog="js-ajax2" rows="14" cols="55">
 var ajax = new XMLHttpRequest();
 ajax.onreadystatechange = function() {
   var state = ajax.readyState;
@@ -921,6 +922,7 @@ ajax.onreadystatechange = function() {
   console.log(result);
 };
 ajax.open("GET", "images/js-object/demo.json", true);
+ajax.overrideMimeType("application/json");
 ajax.send();
                     </textarea></small>
                     <p></p>
@@ -941,12 +943,13 @@ ajax.send();
 					<br/>
 					 <b>send</b> envoie la requète
 					</p>
-					<small><textarea autojslog="js-ajax3" rows="7" cols="65">
+					<small><textarea autojslog="js-ajax3" rows="8" cols="65">
 var ajax = new XMLHttpRequest();
 ajax.onreadystatechange = function() {
   console.log(ajax.readyState + ' ' + ajax.status + ' ' + ajax.responseText);
 };
 ajax.open("GET", "images/js-object/demo.json", true);
+ajax.overrideMimeType("application/json");
 ajax.send();
                     </textarea></small>
                     <p></p>
