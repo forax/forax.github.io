@@ -910,6 +910,7 @@ ajax.send();
 					 <b>onreadystatechange</b> est appelée lorsque
 					 cet état change
 					</p>
+					<span style="">
 					<small><textarea autojslog="js-ajax2" rows="14" cols="55">
 var ajax = new XMLHttpRequest();
 ajax.onreadystatechange = function() {
@@ -919,27 +920,22 @@ ajax.onreadystatechange = function() {
   if (state == 2) { result = "headers_received"; }
   if (state == 3) { result = "loading"; }
   if (state == 4) { result = "done"; }
-  console.log(result);
+  console.log(state + '  ' + result);
 };
 ajax.open("GET", "images/js-object/demo.json", true);
 ajax.overrideMimeType("application/json");
 ajax.send();
                     </textarea></small>
-                    <p></p>
+                    </span><span>
                     <small>
                       <div id="js-ajax2" class="autojslog"></div>
                     </small> 
+                    </span>
 				</section>
 				<section>
 					<h2>XMLHttpRequest (3)</h2>
 					<p>
-					 <b>open(method, url, async?)</b>
-					<br/>
-					 indique quelle requète créer
-					<br/>
-					 <b>setRequestHeader(header, value)</b>
-					<br/> 
-					 ajoute une donnée d'entête
+					 <b>open(method, url, async?)</b> configure la requète
 					<br/>
 					 <b>send</b> envoie la requète
 					</p>
