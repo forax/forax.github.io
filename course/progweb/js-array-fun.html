@@ -626,6 +626,24 @@ console.log(array.every(greaterThan10));
                                         </small>
 				</section>
 				<section>
+					                    <h2>et les index ?</h2>
+					                    <p>
+                                   Les méthodes <b>forEach</b>, <b>map</b>, <b>filter</b>, <b>some</b>, <b>every</b>
+                                   prennent une fonction avec 2 arguments (<b>élement</b>, <b>index</b>) en paramètre
+                                        </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojs="js-array-fun-index" rows="7" cols="55">
+var array = [1, 7, 14, 55];
+
+array.map(function(e, index) { return index; })
+array.filter(function(e, index) { return index >= 2; })
+array.some(function(e, index) { return index >= 2 && e <= 15; })
+array.every(function(e, index) { return index >= 2 && e <= 15; })
+                                        </textarea></small>
+                                        <small><div id="js-array-fun-index"></div></small>
+                                        <p>&nbsp;</p>
+				</section>
+				<section>
 					                    <h2>Reduce</h2>
 					                    <p>
                                          <b>reduce(fun, init)</b> résume par une valeur en appliquant une fonction d'agrégation
