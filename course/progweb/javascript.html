@@ -423,6 +423,26 @@ console.log(addOne(3));
                                          <div id="js-function3" class="autojslog"></div>
                                         </small>
 				</section>
+				     <section>
+					                     <h2>Paramètres et arguments</h2>
+					                     <p>
+                                    Lors de l'appel, si il y a trop d'arguments, ils seront ignorés,
+                                    si il y a pas assez d'argument, les paramètres auront la valeur <b>undefined</b>
+                                         </p>
+                                         <p>&nbsp;</p>
+                                        <small><textarea autojslog="js-function-param" rows="7" cols="30">
+function fun(x, y) {
+  console.log(x + ' et ' + y);
+}
+
+fun('1', '2', '3');
+fun('1');
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js-function-param" class="autojslog"></div>
+                                        </small>
+				</section>
                 <section>
 					                     <h2>Fonction comme une valeur</h2>
 					                     <p>
