@@ -143,10 +143,11 @@ car.foo
                                          pour obtenir la valeur correspondant à une clé
                                          </p>
                                         <p>&nbsp;</p>
-                                        <small><textarea autojs="js-dict-index2" rows="6" cols="35">
-var car = { wheels: 4, seats: 2 };
-car["wheels"]
+                                        <small><textarea autojs="js-dict-index2" rows="7" cols="35">
+var car = { driver: "bob", seats: 2 };
+var licenses = { "bob": 1258, "ann": 1498 }; 
 car["seats"]
+licenses[car.driver]
 
 car["foo"]
                                         </textarea></small>
@@ -163,12 +164,13 @@ car["foo"]
                                          un couple clé/valeur
                                          </p>
                                         <p>&nbsp;</p>
-                                        <small><textarea autojs="js-dict-dyn" rows="8" cols="35">
-var basket = { apple: 3, pear: 2 };
+                                        <small><textarea autojs="js-dict-dyn" rows="9" cols="35">
+var basket = { pear: 2 };
+basket.apple
+
 basket.apple = 4;
 basket.apple
 
-basket.orange = 1;
 basket["banana"] = 5;
 basket
                                         </textarea></small>
@@ -209,10 +211,10 @@ dict
                                         </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojs="js-dict-object" rows="5" cols="30">
-var dict = { 'object': 'dictionary' };
-dict.toString()
+var obj = { 'key': 'dictionary' };
+obj.toString()
 
-JSON.stringify(dict)
+JSON.stringify(obj)
                                         </textarea></small>
                                         <small><div id="js-dict-object"></div></small>
                                         <p>&nbsp;</p>
@@ -246,14 +248,13 @@ Object.keys(letters)
                                          il faut parcourir ses clés, puis pour chaque clé on peut aller chercher la valeur
                                          </p>
                                         <p>&nbsp;</p>
-                                        <small><textarea autojslog="js-object-iter" rows="9" cols="40">
+                                        <small><textarea autojslog="js-object-iter" rows="8" cols="40">
 var dict = { 'a': 1, 'b': 2, 'c': 3 };
 var keys = Object.keys(dict);
-var i;
-var key;
-for(i = 0; i < keys.length; i++) {
-  key = keys[i];
-  console.log(key + "=" + dict[key]);
+
+for(var i = 0; i < keys.length; i++) {
+  var key = keys[i];
+  console.log(key + " = " + dict[key]);
 }
                                         </textarea></small>
                                         <p></p>
@@ -267,14 +268,15 @@ for(i = 0; i < keys.length; i++) {
 				<section>
 					                    <h2>Parcourir un objet (2)</h2>
 					                    <p>
-                                         Il existe une syntaxe spéciale pour parcourir les dictionnaires,
-                                         <b>for(<em>variable</em>&nbsp;in&nbsp;<em>dict</em>)</b> (comme en Python)
+                                         Il existe une syntaxe spéciale pour parcourir les propriétés des objets,
+                                         <b>for(<em>variable</em>&nbsp;in&nbsp;<em>obj</em>)</b> (comme en Python)
                                          </p>
                                         <p>&nbsp;</p>
-                                        <small><textarea autojslog="js-object-for-in" rows="5" cols="40">
-var dict = { 'a': 1, 'b': 2, 'c': 3 };
-for(key in dict) {
-  console.log(key + "=" + dict[key]);
+                                        <small><textarea autojslog="js-object-for-in" rows="6" cols="40">
+var obj = { 'a': 1, 'b': 2, 'c': 3 };
+
+for(property in obj) {
+  console.log(property + " = " + obj[property]);
 }
                                         </textarea></small>
                                         <p></p>
@@ -297,11 +299,11 @@ function isAdult(person) {
   return person.age >= 21;
 }
 
-var john = { name: "John", age: 23 };
-var jane = { name: "Jane", age: 18 };
+var person1 = { name: "John", age: 23 };
+var person2 = { name: "Jane", age: 18 };
 
-console.log(isAdult(john));
-console.log(isAdult(jane));
+console.log(isAdult(person1));
+console.log(isAdult(person2));
                                         </textarea></small>
                                         <p></p>
                                         <small>
@@ -311,11 +313,38 @@ console.log(isAdult(jane));
 				</section>
 				
 				<section>
+					                    <h2>Tableau d'objets</h2>
+					                    <p>
+					                     Si on veux manipuler plusieurs objets,
+					                    <br/>
+					                     on les regroupe dans un tableau
+                                        </p>
+                                        <small><textarea autojslog="js-object-with-array" rows="12" cols="40">
+function isAdult(person) {
+  return person.age >= 21;
+}
+
+var persons = [
+   { name: "John", age: 23 },
+   { name: "Jane", age: 18 }
+];
+
+var firstAdult = persons.filter(isAdult)[0];
+console.log(firstAdult.name);
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                          <div id="js-object-with-array" class="autojslog"></div>
+                                        </small>
+                                        <p></p>
+				</section>
+				
+				<section>
 					                    <h2>Fonction vs Méthode</h2>
 					                    <p>
 					                     Un objet peut aussi contenir des fonctions comme valeurs
 					                    <br/>
-					                     Une fonction dans un objet est appelé une méthode
+					                     Une fonction dans un objet est appelé une <b>méthode</b>
                                         </p>
                                         <small><textarea autojslog="js-object-method" rows="10" cols="40">
 var square = {
@@ -361,25 +390,25 @@ console.log(square.surface());
 				<section>
 					                    <h2>this et appel de fonction</h2>
 					                    <p>
-					                     Et si on appel une méthode qui utilise <b>this</b> comme une fonction ?
+					                     Que vaux <b>this</b> si on appel comme une fonction ?
                                         </p>
                                         <small><div class="bad-container"><textarea autojslog="js-object-this2" rows="10" cols="40">
 "use strict";
-var square = {
-  side: 2,
-  surface: function() {
-   return this.side * this.side;
-  }
-};
-var f = square.surface;
-console.log(f());
+function isAdult() {
+  return this.age >= 18;
+}
+
+var person = { age: 32, hasGrownUp: isAdult };
+console.log(person.hasGrownUp());
+
+console.log(isAdult(person));
                                         </textarea><div class="bad-image"></div></div></small>
                                         <p></p>
                                         <small>
                                           <div id="js-object-this2" class="autojslog"></div>
                                         </small>
                                         <p>
-                                         <b>square</b> est appelée comme une fonction et pas une méthode, "this" vaut undefined !
+                                         <b>isAdult</b> ne prend pas d'argument et "this" vaut undefined !
                                         </p>
 				</section>
 				<section>
@@ -417,16 +446,16 @@ console.log(square2.surface());
 					                    <h2>Partage de méthode (astuce)</h2>
 					                    <p>
 					                     Lorsque l'on cherche une propriété, si elle n'existe pas sur l'objet,
-					                     on va chercher dans son prototype (récursivement)
+					                     on va chercher dans un objet délégué
                                         </p>
                                         <small><div class="bad-container"><textarea autojslog="js-object-prototype2" rows="11" cols="50">
-var shared_square = {
+var proto = {
   surface: function() { return this.side * this.side; }
 };
 var square1 = { side: 1 };
-Object.setPrototypeOf(square1, shared_square);
 var square2 = { side: 2 };
-Object.setPrototypeOf(square2, shared_square);
+Object.setPrototypeOf(square1, proto);
+Object.setPrototypeOf(square2, proto);
 
 console.log(square1.surface());
 console.log(square2.surface());
@@ -435,14 +464,39 @@ console.log(square2.surface());
                                         <small>
                                           <div id="js-object-prototype2" class="autojslog"></div>
                                         </small>
+                                        <p><small>
+                                         <b>setPrototypeOf</b> permet d'indiquer pour un objet
+                                        <br/> 
+                                         son objet délégué
+                                        </small></p>
+				</section>
+				<section>
+					                    <h2>Le délégué</h2>
+					                    <p>
+					                     L'objet délégué est l'objet dans lequel on va chercher une propriété
+					                     si celle-ci n'est pas définie sur l'objet courant
+                                        </p>
+                                        <small><div class="bad-container"><textarea autojslog="js-object-prototype3" rows="8" cols="50">
+var proto = {
+  surface: function() { return this.side * this.side; }
+};
+var square1 = { side: 1 };
+Object.setPrototypeOf(square1, proto);
+
+console.log(square1.__proto__ == proto);
+                                        </textarea><div class="bad-image"></div></div></small>
+                                        <p></p>
+                                        <small>
+                                          <div id="js-object-prototype3" class="autojslog"></div>
+                                        </small>
                                         <p>
-                                         <b>setPrototypeOf</b> permet de changer le prototype
+                                         On peut obtenir l'objet délégué avec la propriété <b>__proto__</b>
                                         </p>
 				</section>
 				<section>
 					                    <h2>setPrototypeOf</h2>
 					                    <p>
-					                     Attention, changer le prototype d'un objet avec <b>setPrototypOf</b>
+					                     Attention, changer le délégué d'un objet avec <b>setPrototypOf</b>
 					                     alors que celui-ci est déjà créer
 					                    <br/> 
 					                     est souvent très lent !
@@ -460,9 +514,10 @@ instead create the object with the correct initial [[Prototype]] value using Obj
                                         <p>&nbsp;</p>
 				</section>
 				<section>
-					                    <h2>New permet le partage des méthodes</h2>
+					                    <h2>La syntaxe New</h2>
 					                    <p>
-					                     <b>new</b> et la propriété <b>prototype</b> d'une fonction
+					                     <b>new</b> permet de créer des objets qui autont comme délégué
+					                     la propriété <b>prototype</b> d'une fonction
                                         </p>
                                         <small><textarea autojslog="js-object-new" rows="11" cols="60">
 function Square(side) {
@@ -481,8 +536,9 @@ console.log(square2.surface());
                                           <div id="js-object-new" class="autojslog"></div>
                                         </small>
                                         <p><small>
-                                         <b>new Square</b> crée un objet, initialise celui-ci avec la fonction <b>Square</b>
-                                         et indique que son prototype est la valeur de <b>Square.prototype</b>
+                                         <b>new Square</b> crée un objet, initialise celui-ci avec la fonction <b>Square</b> et
+                                        <br/>
+                                         indique que son délégué est la valeur de <b>Square.prototype</b>
                                         </small></p>
 				</section>
 				<section>
@@ -492,7 +548,7 @@ console.log(square2.surface());
 					                    </p>
 					                    <dl>
 					                     <dt>Avec les accolades :
-					                     <dd>si on n'a que des valeurs, ou un seul objet (singleton comme Math)
+					                     <dd>si on n'a que des valeurs, ou un seul objet
 					                    <br/>
 					                     <small><textarea rows="2" cols="35">
 var foo = { key1: 2, key2: 'hello' };
@@ -502,10 +558,10 @@ var foo = { key1: 2, key2: 'hello' };
 					                     <dd>si on a plusieurs objets avec des méthodes
 					                     <small><textarea rows="6" cols="55">
 function Foo(key1, key2) { this.key1 = key1; this.key2 = key2; }
-Foo.prototype.meth1 = function() { return this.key1; };
-Foo.prototype.meth2 = function() { return this.key2; };
+Foo.prototype.meth1 = function(x) { return ...; };
 
 var foo = new Foo(2, 'hello');
+foo.meth1(false);
 					                     </textarea></small>
 					                    </dl>
 				</section>
