@@ -28,7 +28,7 @@
                           }
                           (function(element, e) {
                             element.addEventListener('keyup', function(event) {
-		                e.innerHTML = element.value;
+		                        e.innerHTML = element.value;
                                 //console.log("modified !" + element.value);
                               }, false);
                            })(element, e);
@@ -150,7 +150,9 @@
                                 if (instr == "") {
                                   return line;
                                 }
-                                if (instr.startsWith("var")) {
+                                if (instr.startsWith("var") ||
+                                    instr.startsWith("let") ||
+                                    instr.startsWith("const")) {
                                   var index = instr.indexOf('=');
                                   if (index == -1) {
                                     return line;
