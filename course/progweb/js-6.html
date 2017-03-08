@@ -624,10 +624,15 @@ fetch("images/js-object/demo.json")
 					                    <p>
 					                     
                                         </p>
-                                        <small><textarea autojslog="js6-fetch-image" rows="9" cols="55">
+                                        <small><textarea autojslog="js6-fetch-image" rows="14" cols="55">
 image = document.getElementById('fetch-image-example');
 fetch("images/js-canvas/html5.png")
-  .then(response => response.blob())
+  .then(response => {
+     if (response.ok) {
+       return response.blob();
+     }
+     throw Error(response.statusText);
+   })
   .then(blob => {
     let objectURL = URL.createObjectURL(blob);
     image.src = objectURL;
