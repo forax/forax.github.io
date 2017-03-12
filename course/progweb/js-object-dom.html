@@ -211,7 +211,7 @@ dict
                                         </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojs="js-dict-object" rows="5" cols="30">
-var obj = { 'key': 'dictionary' };
+var obj = { peer: 3 };
 obj.toString()
 
 JSON.stringify(obj)
@@ -222,11 +222,112 @@ JSON.stringify(obj)
                                          <a href="http://json.org/">JSON</a> = JavaScript Object Notation  
                                         </p>
 				</section>
+				
 				<section>
-					                    <h2>Le tableau des clés</h2>
+					                    <h2>Regrouper des propriétés</h2>
+					                    <p>
+					                     Un objet permet de regrouper des propriétés ayant trait à un même concept,
+					                     ce qui permet de structurer le code
+                                        </p>
+                                        <small><textarea autojslog="js-object-as-struct" rows="10" cols="40">
+function isAdult(person) {
+  return person.age >= 21;
+}
+
+var person1 = { name: "John", age: 23 };
+var person2 = { name: "Jane", age: 18 };
+
+console.log(isAdult(person1));
+console.log(isAdult(person2));
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                          <div id="js-object-as-struct" class="autojslog"></div>
+                                        </small>
+                                        <p></p>
+				</section>
+				<section>
+					                    <h2>Tableau d'objets</h2>
+					                    <p>
+					                     Si on veux manipuler plusieurs objets,
+					                    <br/>
+					                     on les regroupe dans un tableau
+                                        </p>
+                                        <small><textarea autojslog="js-object-with-array" rows="12" cols="40">
+function isAdult(person) {
+  return person.age >= 21;
+}
+
+var persons = [
+   { name: "John", age: 23 },
+   { name: "Jane", age: 18 }
+];
+
+var firstAdult = persons.filter(isAdult)[0];
+console.log(firstAdult.name);
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                          <div id="js-object-with-array" class="autojslog"></div>
+                                        </small>
+                                        <p></p>
+				</section>
+				
+				<section>
+					                    <h2>Objet prédéfini: tableau</h2>
+					                    <p>
+					                     Pour JavaScript, un tableau (<b>Array</b>) est un objet,
+					                    <br/>
+					                     <b>length</b> est une propriété des objets tableaux
+                                        </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojs="js-object-builtin-array" rows="10" cols="40">
+var array = [1, 2, 4];
+
+// propriété
+array.length
+// méthode
+array.slice(1)
+
+var array2 = new Array();
+array2.length
+                                        </textarea></small>
+                                        <small><div id="js-object-builtin-array"></div></small>
+                                        <p><small>
+                                         La syntaxe <b>new</b> permet de créer un objet
+                                        </small><p>
+				</section>
+				<section>
+					                    <h2>Objet prédéfini: function</h2>
+					                    <p>
+					                     Pour JavaScript, une function (<b>Function</b>) est un objet,
+					                    <br/>
+					                     <b>name</b> ou <b>length</b> sont des propriétés des objets fonctions
+                                        </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojs="js-object-builtin-function" rows="11" cols="40">
+var add2 = function plus(x) { return x + 2 }
+
+// propriété
+add2.name
+// méthode
+add2.toString()
+
+var fun2 = new Function("a", "b", "return a + b;");
+fun2(1, 2)
+fun2.length
+                                        </textarea></small>
+                                        <small><div id="js-object-builtin-function"></div></small>
+                                        <p><small>
+                                         <b>length</b> renvoie le nombre de paramètres
+                                        </small><p>
+				</section>
+				
+				<section>
+					                    <h2>Le tableau des propriétés</h2>
 					                    <p>
                                          La fonction <b>Object.keys</b> renvoie un tableau
-                                         des clés d'un objet
+                                         des propriétés (clés) d'un objet
                                          </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojs="js-object-keys" rows="4" cols="30">
@@ -240,21 +341,20 @@ Object.keys(letters)
                                          
                                         </p>
 				</section>
-				
 				<section>
 					                    <h2>Parcourir un objet</h2>
 					                    <p>
                                          On peut pas parcourir un objet directement,
-                                         il faut parcourir ses clés, puis pour chaque clé on peut aller chercher la valeur
+                                         il faut parcourir ses propriétés, puis pour chaque propriété on peut aller chercher la valeur
                                          </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojslog="js-object-iter" rows="8" cols="40">
-var dict = { 'a': 1, 'b': 2, 'c': 3 };
-var keys = Object.keys(dict);
+var obj = { 'a': 1, 'b': 2, 'c': 3 };
+var keys = Object.keys(obj);
 
 for(var i = 0; i < keys.length; i++) {
   var key = keys[i];
-  console.log(key + " = " + dict[key]);
+  console.log(key + " = " + obj[key]);
 }
                                         </textarea></small>
                                         <p></p>
@@ -286,57 +386,6 @@ for(property in obj) {
                                         <p><small>
                                          Cette syntaxe est éuivalente au code qui utilise <b>Object.keys()</b>
                                         </small></p>
-				</section>
-				
-				<section>
-					                    <h2>Regrouper des propriétés</h2>
-					                    <p>
-					                     Un objet permet de regrouper des propriétés ayant trait à un même concept,
-					                     ce qui permet de structurer le code
-                                        </p>
-                                        <small><textarea autojslog="js-object-as-struct" rows="10" cols="40">
-function isAdult(person) {
-  return person.age >= 21;
-}
-
-var person1 = { name: "John", age: 23 };
-var person2 = { name: "Jane", age: 18 };
-
-console.log(isAdult(person1));
-console.log(isAdult(person2));
-                                        </textarea></small>
-                                        <p></p>
-                                        <small>
-                                          <div id="js-object-as-struct" class="autojslog"></div>
-                                        </small>
-                                        <p></p>
-				</section>
-				
-				<section>
-					                    <h2>Tableau d'objets</h2>
-					                    <p>
-					                     Si on veux manipuler plusieurs objets,
-					                    <br/>
-					                     on les regroupe dans un tableau
-                                        </p>
-                                        <small><textarea autojslog="js-object-with-array" rows="12" cols="40">
-function isAdult(person) {
-  return person.age >= 21;
-}
-
-var persons = [
-   { name: "John", age: 23 },
-   { name: "Jane", age: 18 }
-];
-
-var firstAdult = persons.filter(isAdult)[0];
-console.log(firstAdult.name);
-                                        </textarea></small>
-                                        <p></p>
-                                        <small>
-                                          <div id="js-object-with-array" class="autojslog"></div>
-                                        </small>
-                                        <p></p>
 				</section>
 				
 				<section>
@@ -387,6 +436,7 @@ console.log(square.surface());
                                         </small>
                                         <p>&nbsp;</p>
 				</section>
+				
 				<section>
 					                    <h2>this et appel de fonction</h2>
 					                    <p>
@@ -794,6 +844,31 @@ button.onclick = function() {
                                         </small></p>
                                         <small>
                                           <div id="js-dom-event" class="autojslog"></div>
+                                        </small> 
+				</section>
+				<section>
+					                    <h2>Champs de texte</h2>
+					                    <p>
+					                     La balise <b>input</b> permet à l'utilisateur de saisir des données 
+					                    </p>
+					                    <pre><code>
+&lt;input type=&quot;text&quot; id=&quot;dom-input-text&quot;&gt;&lt;/input&gt;
+					                    </code></pre>
+					                    <p>
+                                         <input type="text" id="dom-input-text"></input>
+					                    </p><p>
+					                     <div id="dom-input-text-div"></div>
+					                    </p>
+                                        <small><textarea autojslog="js-dom-inputtext" rows="6" cols="60">
+var div = document.getElementById("dom-input-text-div");
+var inputText = document.getElementById("dom-input-text");
+inputText.onkeyup = function() {
+  div.innerText = inputText.value;
+};
+                                        </textarea></small>
+                                        <p>&nbsp;</p>
+                                        <small>
+                                          <div id="js-dom-inputtext" class="autojslog"></div>
                                         </small> 
 				</section>
 				<section>
