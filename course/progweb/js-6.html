@@ -545,7 +545,7 @@ Array.from(element.children).map(x => x.tagName).join(", ")
 				<section>
 				                        <h2>Promesse</h2>
 					                    <p>
-					                     
+					                     Une <b>Promise</b> est la promesse d'une valeur (ou erreur) future
                                         </p>
                                         <small><textarea autojslog="js6-promise" rows="11" cols="45">
 let promise = new Promise((resolve, reject) => {
@@ -557,13 +557,16 @@ let promise = new Promise((resolve, reject) => {
   }
 });
 
-promise.then(console.log)
+promise.then(value => console.log(value))
                 .catch(err => console.log(err.message));
                                         </textarea></small>
                                         <p></p>
                                         <small>
                                          <div id="js6-promise" class="autojslog"></div>
                                         </small>
+                                        <p><small>
+                                         
+                                        </small></p>
 				</section>
 				<section>
 				                        <h2>Promesse &amp; AJAX à la main</h2>
@@ -618,12 +621,16 @@ fetch("images/js-object/demo.json")
                                         <small>
                                          <div id="js6-fetch" class="autojslog"></div>
                                         </small>
+                                        <p><small>
+                                         Attention, fetch renvoie une réponse même si la réponse est Not Found
+                                        </small></p>
 				</section>
 				<section>
 				                        <h2>Fetch d'une image</h2>
 					                    <p>
-					                     
+					                     <b>URL.createObjectURL</b> permet de créer une URL locale contenant les données de l'image
                                         </p>
+                                        <img style="float: right;" id="fetch-image-example" />
                                         <small><textarea autojslog="js6-fetch-image" rows="14" cols="55">
 image = document.getElementById('fetch-image-example');
 fetch("images/js-canvas/html5.png")
@@ -643,9 +650,6 @@ fetch("images/js-canvas/html5.png")
                                         <small>
                                          <div id="js6-fetch-image" class="autojslog"></div>
                                         </small>
-                                        <p>
-                                          <img id="fetch-image-example" />
-                                        </p>
 				</section>
 				
                                          
