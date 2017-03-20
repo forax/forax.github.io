@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>JavaScript - 6 - let, class, arrow, destructured assignment</title>
+		<title>JavaScript - 6 - let, class, fonction flèche, assignation destructurée</title>
 
 		<meta name="description" content="javascript, let, class, notation flèche">
 		<meta name="author" content="Remi Forax">
@@ -68,7 +68,8 @@
                                 <section>
 					<h1>JavaScript</h1>
                                        <br/>
-                                        <h2>JavaScript <strike>6</strike> 2015</h2>
+                                        <h2><strike>JavaScript 6</strike></h2>
+                                        <h2>JavaScript 2015</h2>
 					<p>
 					  Remi Forax
 					</p>
@@ -403,6 +404,9 @@ console.log(square.surface());
                                          La notion de classe <b>existe déjà</b> dans plusieurs autres languages (C++, Java, Swift, Rust) et est donc mieux compris que la notion de délégation propre à JavaScript
                                         </p>
 				</section>
+				                <section>
+				                        <h2>Héritage</h2>
+				                </section>
                                 <section>
 					<h2>Héritage</h2>
 					<p>
@@ -427,7 +431,7 @@ console.log(b.msg("bob"));
                                         </small>
 				</section>
                                 <section>
-					             <h2>super() et super.m()</h2>
+					             <h2>super()</h2>
 					             <p>
                                          super() permet d'appeler le constructeur de la super-classe
                                         </p>
@@ -481,24 +485,7 @@ array.map(v => v.str()).forEach(console.log);
                                         <br/> 
                                          il <b>faut redéfinir</b> celle-ci dans toutes les sous-classes
                                         </p>
-                                        <div style="float: left;">
-                                        <small><textarea autojslog="js6-bad-inherit-2a" rows="13" cols="35">
-class Square {
-  constructor(side) { this.side = side; }
-}
-class Rectangle extends Square {
-  constructor(width, height) {
-    super(width); this.height = height; 
-  }
-}
-let r = new Rectangle(2, 3);
-                                        </textarea></small>
-                                        <p><small>version 1</small></p>
-                                        <small>
-                                         <div id="js6-bad-inherit-2a" class="autojslog"></div>
-                                        </small>
-                                        </div><div>
-                                        <small><textarea autojslog="js6-bad-inherit-2b" rows="13" cols="40">
+                                        <small><div class="bad-container"><textarea autojslog="js6-class-inherit" rows="13" cols="45">
 class Square {
   constructor(side) { this.side = side; }
   surface() { return this.side * this.side; }
@@ -507,16 +494,40 @@ class Rectangle extends Square {
   constructor(width, height) {
     super(width); this.height = height; 
   }
-  //surface() { return this.side * this.height; } // !!!
+  //surface() { return this.width * this.height; }
 }
-let r = new Rectangle(2, 3);
-console.log(r.surface());
-                                        </textarea></small>
-                                        <p><small>version 2</small></p>
+var array = [new Square(3), new Rectangle(2, 3)];
+console.log(array.map(e => e.surface()));
+                                        </textarea><div class="bad-image"></div></div></small>
+                                        <p></p>
                                         <small>
-                                         <div id="js6-bad-inherit-2b" class="autojslog"></div>
+                                         <div id="js6-class-inherit" class="autojslog"></div>
                                         </small>
-                                        </div>
+				</section>
+				                     <section>
+					                    <h2>Les limites de l'héritage</h2>
+					                    <p>
+                                         En fait, l'héritage sert pas à grand chose en JavaScript,
+                                         on peut toujours faire sans ! 
+                                        </p>
+                                        <small><textarea autojslog="js6-inherit-limit2" rows="13" cols="45">
+class Square {
+  constructor(side) { this.side = side; }
+  surface() { return this.side * this.side; }
+}
+class Rectangle {
+  constructor(width, height) {
+    this.width = width; this.height = height; 
+  }
+  surface() { return this.width * this.height; }
+}
+var array = [new Square(3), new Rectangle(2, 3)];
+console.log(array.map(e => e.surface()));
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js6-inherit-limit2" class="autojslog"></div>
+                                        </small>
 				</section>
 				
 				<section>
