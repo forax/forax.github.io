@@ -201,121 +201,7 @@ const A = 4;
                                         </small>
 				                </section>
 				
-				                <section>
-				                        <h2>Assignation destructurée</h2>
-				                </section>
-                                <section>
-					 <h2>Assignation destructurée</h2>
-					 <p>
-                                          Il est possible de mettre des '[' ']' en partie gauche d'une assignation pour récupérer les valeurs d'un tableau
-                                         </p>
-                                        <p>&nbsp;</p>
-                                        <small><textarea autojs="js6-destructured" rows="6" cols="35">
-let array = ['a', 'b', 'c' ];
-let [v, w, x] = array;
-v
-w
-x
-                                        </textarea></small>
-                                        <small><div id="js6-destructured"></div></small>
-                                        <p>&nbsp;</p>
-                                        <p>
-                                         Attention a ne pas oublier le <b>var</b> ! 
-                                        </p>
-				</section>
-				
-                                <section>
-					 <h2>Assignation destructurée (2)</h2>
-					 <p>
-                                          Il est possible d'omettre des variables si on ne veut pas récupérer certaines valeurs
-                                         </p>
-                                        <p>&nbsp;</p>
-                                        <small><textarea autojs="js6-destructured2" rows="6" cols="35">
-let array = ['a', 'b', 'c' ];
-let [v, , w] = array;
-v
-w
-                                        </textarea></small>
-                                        <small><div id="js6-destructured2"></div></small>
-                                        <p>&nbsp;</p>
-				</section>
-                                <section>
-					 <h2>Assignation destructurée (3)</h2>
-					 <p>
-                                          On peut aussi séparer la déclaration (let ...)
-                                         <br/>
-                                          de l'assignation destructurée ([...] = ...)
-                                         </p>
-                                        <p>&nbsp;</p>
-                                        <small><textarea autojs="js6-destructured3" rows="6" cols="35">
-let array = ['a', 'b', 'c' ];
-let v, w;
-[v, , w] = array;
-v
-w
-                                        </textarea></small>
-                                        <small><div id="js6-destructured3"></div></small>
-                                        <p>&nbsp;</p>
-				</section>
-                                <section>
-					 <h2>Assignation destructurée (4)</h2>
-					 <p>
-                                          donc on peut écrire un <b>swap</b> facilement
-                                         </p>
-                                        <p>&nbsp;</p>
-                                        <small><textarea autojs="js6-destructured4" rows="6" cols="35">
-let a = 39;
-let b = 45;
-[b, a] = [a, b]
-a
-b
-                                        </textarea></small>
-                                        <small><div id="js6-destructured4"></div></small>
-                                        <p>&nbsp;</p>
-				</section>
-				<section>
-					 <h2>Avec une fonction</h2>
-					 <p>
-                                          Cela permet à une fonction de renvoyer plusieurs valeurs
-                                         </p>
-                                        <p>&nbsp;</p>
-                                        <small><textarea autojslog="js6-destructured-fun" rows="10" cols="40">
-function minmax(a, b) {
-  if (a &lt; b) {
-    return [a, b];
-  }
-  return [b, a];
-}
-
-let [min, max] = minmax(10, 3);
-console.log(min + " " + max);
-                                        </textarea></small>
-                                        <p></p>
-                                        <small>
-                                         <div id="js6-destructured-fun" class="autojslog"></div>
-                                        </small>
-                                        <p>&nbsp;</p>
-				</section>
-                                <section>
-					 <h2>Avec un objet</h2>
-					 <p>
-                                          L'assignation destructurée marche aussi avec les objets
-                                         <br/>
-                                          en utilisant '{' et '}' à la place de '[' et ']'.
-                                         </p>
-                                        <p>&nbsp;</p>
-                                        <small><textarea autojslog="js6-destructured-object" rows="5" cols="35">
-let person = { name: "john", age: 12 };
-let {name, age} = person;
-console.log(name);
-console.log(age); 
-                                        </textarea></small>
-                                        <p></p>
-                                        <small>
-                                         <div id="js6-destructured-object" class="autojslog"></div>
-                                        </small>
-                                        <p>&nbsp;</p>
-				</section>
+				                
 				                 <section>
 				                        <h2>Les Classes</h2>
 				                </section>
@@ -528,6 +414,123 @@ console.log(array.map(e => e.surface()));
                                         <small>
                                          <div id="js6-inherit-limit2" class="autojslog"></div>
                                         </small>
+				</section>
+				
+				<section>
+				                        <h2>Assignation destructurée</h2>
+				</section>
+				                
+                <section>
+					 <h2>Assignation destructurée</h2>
+					 <p>
+                                          Il est possible de mettre des '[' ']' en partie gauche d'une assignation pour récupérer les valeurs d'un tableau
+                                         </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojs="js6-destructured" rows="6" cols="35">
+let array = ['a', 'b', 'c' ];
+let [v, w, x] = array;
+v
+w
+x
+                                        </textarea></small>
+                                        <small><div id="js6-destructured"></div></small>
+                                        <p>&nbsp;</p>
+                                        <p>
+                                         Attention a ne pas oublier le <b>var</b> ! 
+                                        </p>
+				</section>
+				
+                                <section>
+					 <h2>Assignation destructurée (2)</h2>
+					 <p>
+                                          Il est possible d'omettre des variables si on ne veut pas récupérer certaines valeurs
+                                         </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojs="js6-destructured2" rows="6" cols="35">
+let array = ['a', 'b', 'c' ];
+let [v, , w] = array;
+v
+w
+                                        </textarea></small>
+                                        <small><div id="js6-destructured2"></div></small>
+                                        <p>&nbsp;</p>
+				</section>
+                                <section>
+					 <h2>Assignation destructurée (3)</h2>
+					 <p>
+                                          On peut aussi séparer la déclaration (let ...)
+                                         <br/>
+                                          de l'assignation destructurée ([...] = ...)
+                                         </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojs="js6-destructured3" rows="6" cols="35">
+let array = ['a', 'b', 'c' ];
+let v, w;
+[v, , w] = array;
+v
+w
+                                        </textarea></small>
+                                        <small><div id="js6-destructured3"></div></small>
+                                        <p>&nbsp;</p>
+				</section>
+                                <section>
+					 <h2>Assignation destructurée (4)</h2>
+					 <p>
+                                          donc on peut écrire un <b>swap</b> facilement
+                                         </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojs="js6-destructured4" rows="6" cols="35">
+let a = 39;
+let b = 45;
+[b, a] = [a, b]
+a
+b
+                                        </textarea></small>
+                                        <small><div id="js6-destructured4"></div></small>
+                                        <p>&nbsp;</p>
+				</section>
+				<section>
+					 <h2>Avec une fonction</h2>
+					 <p>
+                                          Cela permet à une fonction de renvoyer plusieurs valeurs
+                                         </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojslog="js6-destructured-fun" rows="10" cols="40">
+function minmax(a, b) {
+  if (a &lt; b) {
+    return [a, b];
+  }
+  return [b, a];
+}
+
+let [min, max] = minmax(10, 3);
+console.log(min + " " + max);
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js6-destructured-fun" class="autojslog"></div>
+                                        </small>
+                                        <p>&nbsp;</p>
+				</section>
+                                <section>
+					 <h2>Avec un objet</h2>
+					 <p>
+                                          L'assignation destructurée marche aussi avec les objets
+                                         <br/>
+                                          en utilisant '{' et '}' à la place de '[' et ']'.
+                                         </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojslog="js6-destructured-object" rows="5" cols="35">
+let person = { name: "john", age: 12 };
+let {name, age} = person;
+console.log(name);
+console.log(age); 
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js6-destructured-object" class="autojslog"></div>
+                                        </small>
+                                        <p>&nbsp;</p>
 				</section>
 				
 				<section>
