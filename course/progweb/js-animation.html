@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>JavaScript - animation</title>
+
+		<meta name="description" content="javascript, css, animation">
+		<meta name="author" content="Remi Forax">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+		
+		<!-- autojs result -->
+		<style>
+		  div.autojsresult {
+		    text-align: left;
+		    color: lime;
+		  }
+		  div.autojslog {
+		    color: orange;
+		  }
+		  div.autojserror {
+		    color: red;
+		  }
+		  .bad-container {
+            position: relative;
+            display:inline-block;
+          }
+		  .bad-image:after {
+            content: url(images/js/bad.png);
+            position: absolute;
+            z-index: 9999;
+            right: 5px;
+            bottom: 0px;
+          }
+		</style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+                                <section>
+					<h1>Animation en CSS</h1>
+					<h2>et JavaScript</h2>
+                                        
+					<p>
+					  Remi Forax
+					</p>
+				</section>
+				                <section>
+				                        <h2>Transition en CSS</h2>
+				                </section> 
+				                <section>
+				                        <h3>CSS3 Transition</h3>
+				                       <br/>
+				                        Working Draft - 19 November 2013
+				                       <br/>
+				                        <a href="https://www.w3.org/TR/css3-transitions/">https://www.w3.org/TR/css3-transitions/</a>
+				                </section>            
+				                <section>
+					                    <h2>Manipulation du DOM</h2>
+					                    <p>
+                                         Activer la classe d'un objet du DOM et appelant la méthode <tt>toggle()</tt>
+                                         sur la liste des classes 
+                                        </p>
+                                        <style>
+                                          div.box1 {
+                                            width: 100px;
+	                                        height: 100px;
+                                          }
+                                        </style>
+                                        <style id="js-trans-style1"></style>
+                                        <small style="float: right; width: 75%;"><textarea autojsstyle="js-trans-style1" rows="7" cols="35">
+.box1 {
+  background: red;
+}
+.box1.anim1 {
+  background: green;
+}
+                                        </textarea></small>                  
+                                        <div class="box1"></div>
+                                        
+                                        <p style="clear: both;">&nbsp;</p>
+                                        <small><textarea autojslog="js-trans-css1" rows="5" cols="40">
+let box = document.querySelector('.box1');
+box.onclick = () => {
+  box.classList.toggle('anim1');
+};
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js-trans-css1" class="autojslog"></div>
+                                        </small>
+				                </section>
+				                
+				                <section>
+					                    <h2>Transformation</h2>
+					                    <p>
+                                         La propriété <tt>transform</tt> permet de spécifier une tranformation
+                                         (translation, rotation, etc)
+                                        </p>
+                                        <style>
+                                          div.box2 {
+                                            width: 100px;
+	                                        height: 100px;
+	                                        background: red;
+                                          }
+                                        </style>
+                                        <style id="js-trans-style2"></style>
+                                        <small style="float: right; width: 75%;"><textarea autojsstyle="js-trans-style2" rows="7" cols="35">
+.box2 {
+  transform: translate(0, 0);
+}
+.box2.anim2 {
+  transform: translate(250px, 100px);
+}
+                                        </textarea></small>
+                                        <div class="box2"></div>
+                                        
+                                        <p style="clear: both;">&nbsp;</p>
+                                        <small><textarea autojslog="js-trans-css2" rows="5" cols="40">
+let box = document.querySelector('.box2');
+box.onclick = () => {
+  box.classList.toggle('anim2');
+};
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js-trans-css2" class="autojslog"></div>
+                                        </small>
+				                </section>
+				                <section>
+					                    <h2>Transition CSS</h2>
+					                    <p>
+                                         La propriété <tt>transition</tt> permet de demander une animation
+                                         qui va effectuer une interpolation entre les deux positions  
+                                        </p>
+                                        <style>
+                                          div.box3 {
+                                            width: 100px;
+	                                        height: 100px;
+	                                        background: red;
+                                          }
+                                        </style>
+                                        <style id="js-trans-style3"></style>
+                                        <small style="float: right; width: 75%;"><textarea autojsstyle="js-trans-style3" rows="8" cols="35">
+.box3 {
+  transform: translate(0, 0);
+  transition: transform 1000ms;
+}
+.box3.anim3 {
+  transform: translate(250px, 100px);
+}
+                                        </textarea></small>
+                                        <div class="box3"></div>
+                                        
+                                        <p style="clear: both;">&nbsp;</p>
+                                        <small><textarea autojslog="js-trans-css3" rows="5" cols="40">
+let box = document.querySelector('.box3');
+box.onclick = () => {
+  box.classList.toggle('anim3');
+};
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js-trans-css3" class="autojslog"></div>
+                                        </small>
+				                </section>
+				                
+				                
+				                
+				                <section>
+					                    <h2>Rotation et Etirement</h2>
+					                    <p>
+                                         En plus des translations, on peut faire des rotations (<tt>rotate</tt>)
+                                         et des agrandissements (<tt>scale</tt>)
+                                        </p>
+                                        <style>
+                                          div.box4 {
+                                            width: 100px;
+	                                        height: 100px;
+	                                        background: red;
+	                                        box-shadow: 2px 2px 2px #3FFFFF;
+                                          }
+                                        </style>
+                                        <style id="js-trans-style4"></style>
+                                        <small style="float: right; width: 75%;"><textarea autojsstyle="js-trans-style4" rows="8" cols="35">
+.box4 {
+  transform: scale(0.5) rotate(0);
+  transition: transform 1s;
+} 
+.box4.anim4 {
+ transform: scale(2) rotate(180deg);
+}
+                                        </textarea></small>
+                                        
+                                        <div class="box4"></div>
+                                        
+                                        <div class="box4"></div>
+                                        
+                                        <p style="clear: both;">&nbsp;</p>
+                                        <small><textarea autojslog="js-trans-css4" rows="5" cols="50">
+let boxes = document.querySelectorAll('.box4');
+boxes.forEach(box => box.onclick = () => {
+  box.classList.toggle('anim4');
+});
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js-trans-css4" class="autojslog"></div>
+                                        </small>
+				                </section>
+				                <section>
+					                    <h2>Transformation 3D</h2>
+					                    <p>
+                                         Et peut faire des trucs cool en 3D !
+                                        </p>
+                                        <style id="js-trans-style5"></style>
+                                        <small class="box5"><textarea autojsstyle="js-trans-style5" rows="8" cols="50">
+.box5 {
+  transform: rotateY(0) rotateZ(0);
+  transition: transform 4s;
+} 
+.box5.anim5 {
+  transform: rotateY(360deg) rotateZ(360deg);
+}
+                                        </textarea></small>
+                                        
+                                        <p style="clear: both;">&nbsp;</p>
+                                        <small><textarea autojslog="js-trans-css5" rows="5" cols="40">
+let box = document.querySelector('.box5');
+box.onclick = () => {
+  box.classList.toggle('anim5');
+};
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js-trans-css5" class="autojslog"></div>
+                                        </small>
+				                </section>
+				                
+				                <section>
+					                    <h2>Les propriétés de Transition</h2>
+					                    <dl>
+                                         <dt>transition-property</dt>
+                                         <dd>propriété(s) qui vont changer</dd>
+                                         <dt>transition-duration</dt>
+                                         <dd>temps de l'animation (en <b>ms</b> ou <b>s</b>)</dd>
+                                         <dt>transition-timinig-function</dt>
+                                         <dd>comment se fait l'interpolation</dd>
+                                        </dl>
+                                        <p>
+                                         <b>transition</b> regroupe ces propriétés dans cet ordre
+                                        </p>
+				                </section>
+				                
+                                <section>
+					                    <h2>Opacité</h2>
+					                    <p>
+                                         L'opacité peut aussi être animée
+                                        </p>
+                                        <style id="js-trans-style6"></style>
+                                        <small class="box6"><textarea autojsstyle="js-trans-style6" rows="8" cols="50">
+.box6 {
+  opacity: 1.0;
+  transition: opacity 1.5s;
+} 
+.box6.anim6 {
+  opacity: 0.3;
+}
+                                        </textarea></small>
+                                        
+                                        <p style="clear: both;">&nbsp;</p>
+                                        <small><textarea autojslog="js-trans-css6" rows="5" cols="40">
+let box = document.querySelector('.box6');
+box.onclick = () => {
+  box.classList.toggle('anim6');
+};
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js-trans-css6" class="autojslog"></div>
+                                        </small>
+				                </section>
+				                
+				                <section>
+					                    <h2>Transitions avec plusieurs attributs</h2>
+					                    <p>
+                                         On sépare par des ',' si on a plusieurs attributs.
+                                        </p>
+                                        <style id="js-trans-style7"></style>
+                                        <small class="box7"><textarea autojsstyle="js-trans-style7" rows="10" cols="50">
+.box7 {
+  opacity: 0.5;
+  transform: scale(1);
+  transition: opacity 1s, transform 1s;
+} 
+.box7.anim7 {
+  opacity: 1.0;
+  transform: scale(1.1);
+}
+                                        </textarea></small>
+                                        
+                                        <p style="clear: both;"></p>
+                                        <small><textarea autojslog="js-trans-css7" once="true" rows="5" cols="40">
+let box = document.querySelector('.box7');
+window.setInterval(() => {
+  box.classList.toggle('anim7');
+}, 1200);
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js-trans-css7" class="autojslog"></div>
+                                        </small>
+				                </section>
+				                
+				                <section>
+					                    <h2>Easing</h2>
+					                    <p>
+                                         On peut choisir la fonction d'interpolation
+                                        <br/>
+                                         <b>linear</b>, <b>ease-in</b>, <b>ease-out</b>, <b>ease-in-out</b>
+                                        </p>
+                                        <style>
+                                          div.box8 {
+                                            width: 100px;
+	                                        height: 100px;
+	                                        background: red;
+                                          }
+                                        </style>
+                                        <style id="js-trans-style8"></style>
+                                        <small><textarea autojsstyle="js-trans-style8" rows="8" cols="40">
+.box8 {
+  transform: translate(0px, 50px);
+  transition: transform 1000ms linear;
+}
+.box8.anim8 {
+  transform: translate(800px, 50px);
+}
+                                        </textarea></small>
+                                        <div class="box8"></div>
+                                        
+                                        <p style="clear: both;">&nbsp;</p>
+                                        <script>
+let box8 = document.querySelector('.box8');
+box8.onclick = () => {
+  box8.classList.toggle('anim8');
+};
+                                        </script>
+                                        <p><small>permet de rendre le mouvement plus naturel</small></p>
+				                </section>
+				                
+                                <section>
+					                    <h2>Easing - Courbe de bézier</h2>
+					                    <p>
+                                         On peut définir précisément la courbe de bézier à utiliser
+                                        <br/>
+                                         <b></b>
+                                        </p>
+                                        <style>
+                                          div.box9 {
+                                            width: 100px;
+	                                        height: 100px;
+	                                        background: red;
+                                          }
+                                          div.box9b {
+                                            width: 100px;
+	                                        height: 100px;
+	                                        background: red;
+                                          }
+                                        </style>
+                                        <style id="js-trans-style9"></style>
+                                        <img src="images/js-animation/TimingFunction.png"
+                                             width="200px"
+                                             height="200px"    
+                                             style="float: right; margin: 0px 0px 0px 0px"
+                                             >
+                                        <small><textarea autojsstyle="js-trans-style9" rows="8" cols="55">
+.box9 {
+  transform: translate(0px, 50px);
+  transition: transform 1000ms cubic-bezier(0.42, 0, 0.58, 1);
+}
+.box9.anim9 {
+  transform: translate(800px, 50px);
+}
+                                        </textarea></small>
+                                        <style>
+.box9b {
+  transform: translate(0px, 50px);
+  transition: transform 1000ms ease-in-out;
+}
+.box9b.anim9 {
+  transform: translate(800px, 50px);
+}
+                                        </style>
+                                        <div class="box9">cubic-bezier</div>
+                                        
+                                        <div class="box9b">ease-in-out</div>
+                                        
+                                        <p style="clear: both;">&nbsp;</p>
+                                        <script>
+let boxes9 = [document.querySelector('.box9'), document.querySelector('.box9b')]
+boxes9.forEach(box => box.onclick = () => {
+  boxes9.forEach(box => box.classList.toggle('anim9'));
+});
+                                        </script>
+                                        <p></p>
+				                </section>
+				                
+				                <section>
+				                  <h2>Animation en CSS</h2>
+				                </section>
+				                <section>
+				                        <h3>CSS Animations Level 1</h3>
+				                       <br/>
+				                        Working Draft - 21 May 2017
+				                       <br/>
+				                        <a href="https://drafts.csswg.org/css-animations/">https://drafts.csswg.org/css-animations/</a>
+				                </section>
+				                <section>
+				                 <h2>Deux concepts</h2>
+				                 <dl>
+				                  <dt>keyframe</td>
+				                  <dd>état de l'animation définie par l'utilisateur pour un temps donné
+				                  <dt>animation</td>
+				                  <dd>indique comment doit se dérouler la séquence de keyframes</dd>
+				                 </dl>
+				                </section>
+				                <section>
+					                    <h2>Animation</h2>
+					                    <p>
+                                         <b>@keyframes</b> permet de définir des keyframes avec un nom
+                                        <br/>
+                                         <b>animation</b> permet d'animer les keyframes
+                                        </p>
+                                        <style>
+                                         div.box20 {
+                                           width: 100px;
+                                            height: 100px;
+                                            background-color: red;
+                                         }
+                                        </style>
+                                        <style id="js-anim-style1"></style>
+                                        <div class="box20" style="float:left;"></div>
+                                        <small><textarea autojsstyle="js-anim-style1" rows="10" cols="55">
+@keyframes hello-anim {
+  0%   { background-color: red; }
+  33%  { background-color: green; }
+  66%  { background-color: gold; }
+  100% { background-color: red; }
+}
+.box20 {
+  animation: hello-anim 4s infinite;
+}
+                                        </textarea></small>
+                                        
+                                        <p style="clear: both;">&nbsp;</p>
+                                        <p></p>
+				                </section>
+				                <section>
+					                    <h2>Animation &amp; Transformation</h2>
+					                    <p>
+                                         On peut bien sûr utiliser les transformations
+                                        </p>
+                                        <style>
+                                         div.box21 {
+                                           width: 100px;
+                                            height: 100px;
+                                            background-color: red;
+                                         }
+                                        </style>
+                                        <style id="js-anim-style2"></style>
+                                        <div class="box21" style="float:left;"></div>
+                                        <small><textarea autojsstyle="js-anim-style2" rows="11" cols="55">
+@keyframes hello-anim2 {
+  0%   { transform: translate(0px, 0px); }
+  25%  { transform: translate(0px, 200px); }
+  50%  { transform: translate(0px, 200px) rotateY(180deg); }
+  75%  { transform: translate(0px, 100px) rotateZ(180deg); }
+  100% { transform: rotateX(180deg) }
+}
+.box21 {
+  animation: hello-anim2 6s linear infinite alternate;
+}
+                                        </textarea></small>
+                                        
+                                        <p style="clear: both;">&nbsp;</p>
+                                        <p><small>L'animation se fait en regardant ce qui change d'une keyframe à l'autre</small></p>
+				                </section>
+				                <section>
+					                    <h2>Les propriétés de Animation</h2>
+					                    <dl>
+                                         <dt>animation-name</dt>
+                                         <dd>propriété(s) qui vont changer</dd>
+                                         <dt>animation-duration</dt>
+                                         <dd>temps de l'animation (en <b>ms</b> ou <b>s</b>)</dd>
+                                         <dt>animation-timinig-function</dt>
+                                         <dd>comment se fait l'interpolation</dd>
+                                         <dt>animation-iteration-count</dt>
+                                         <dd>nombre de repetition de l'animation ou <b>infinite</b></dd>
+                                         <dt>animation-direction</dt>
+                                         <dd><b>normal</b> ou <b>reverse</b></dd>
+                                        </dl>
+                                        <p>
+                                         <b>animation</b> regroupe ces propriétés dans cet ordre
+                                        </p>
+				                </section>
+				                
+				                <section>
+				                 <h2>Animation à la main en JavaScript</h2>
+				                </section>
+				                <section>
+					                    <p>
+                                         <b>window.requestAnimationFrame</b> prend une fonction en paramètre
+                                         qui est appelé avec le temps courant
+                                        </br>
+                                         <b>box.style</b> permet d'obtenir le style d'un objet DOM
+                                        </p>
+                                        <small><textarea rows="13" cols="50">
+let mybox1 = document.getElementById('mybox1');
+mybox1.style.position = 'absolute';
+
+function anim(timestamp) {
+  mybox1.style.top = ???
+  if (?? > 2000) {
+    return; //stop the animation
+  }
+  window.requestAnimationFrame(anim);
+}
+
+window.requestAnimationFrame(anim);
+                                        </textarea></small>
+                                        <p style="clear: both;">&nbsp;</p>
+                                        <small>
+                                         <div></div>
+                                        </small>
+				                </section>
+				                <section>
+					                    <p>
+                                         On sauvegarde <b>timestanp</b> dans <b>start</b> pour travailler
+                                         par rapport à un temps initial
+                                        </br>
+                                         on arrête quand le décalage par rapport au temps est dépassé
+                                        </p>
+                                        <style>
+                                         div.mybox1 {
+                                            width: 100px;
+                                            height: 100px;
+                                            background-color: red;
+                                         }
+                                        </style>
+                                        <div id="mybox1" class="mybox1" style="float:left;"></div>
+                                        <small><textarea autojslog="js-hand-anim1" rows="17" cols="50">
+let mybox1 = document.getElementById('mybox1');
+mybox1.style.position = 'absolute';
+
+let start;
+function anim(timestamp) {
+  if (start == undefined) start = timestamp;
+  let progress = timestamp - start;
+  let top  = progress / 5
+  mybox1.style.top = top + 'px';
+  if (progress > 2000) {
+    return;
+  }
+  window.requestAnimationFrame(anim);
+}
+
+window.requestAnimationFrame(anim);
+                                        </textarea></small>
+                                        <p style="clear: both;">&nbsp;</p>
+                                        <small>
+                                         <div id="js-hand-anim1" class="autojslog"></div>
+                                        </small>
+				                </section>
+				                <section>
+					                    <p>
+                                         Avec la possibilité d'aller à l'envers.
+                                        </p>
+                                        <style>
+                                         div.mybox2 {
+                                            width: 100px;
+                                            height: 100px;
+                                            background-color: red;
+                                         }
+                                        </style>
+                                        <div id="mybox2" class="mybox2" style="float:left;"></div>
+                                        <small><textarea autojslog="js-hand-anim2" rows="21" cols="50">
+let mybox2 = document.getElementById('mybox2');
+mybox2.style.position = 'absolute';
+
+let start;
+let fun = v => v / 5;
+let reverse = false;
+function anim(timestamp) {
+  if (start == undefined) start = timestamp;
+  let progress = timestamp - start;
+  let top  = fun(progress);
+  mybox2.style.top = top + 'px';
+  if (progress > 2000) {
+    reverse = !reverse;
+    fun = (reverse)? v => top - v / 5: v => v / 5;
+    start = timestamp;
+  }
+  window.requestAnimationFrame(anim);
+}
+
+window.requestAnimationFrame(anim);
+                                        </textarea></small>
+                                        <p style="clear: both;">&nbsp;</p>
+                                        <small>
+                                         <div id="js-hand-anim2" class="autojslog"></div>
+                                        </small>
+				                </section>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                                        { src: 'plugin/autoeval/autoeval.js', async: true },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

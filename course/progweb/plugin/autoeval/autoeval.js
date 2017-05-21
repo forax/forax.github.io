@@ -34,6 +34,33 @@
                            })(element, e);
                         }
 
+                        if (element.attributes.autojsstyle != undefined) {
+                          var name = element.attributes.autojsstyle.value;
+                          var e = document.getElementById(name);
+                          if (e == undefined) {
+                            console.log("autojsstyle " + name + " not found");
+                            continue;
+                          }
+                          var once = element.attributes['once'] != undefined;
+
+                          (function(element, e, once) {
+                            var running = false;
+                            var listener = function(event) {
+                              if (once) {
+                                if (running) {
+                                  return;
+                                }
+                                running = true;
+                              }
+                              
+                              e.innerHTML = element.value;
+                              
+                            };
+                            element.addEventListener('keyup', listener, false);
+                            Reveal.addEventListener( 'slidechanged', listener);
+                          })(element, e, once);
+                        }
+
                         if (element.attributes.autostyle != undefined) {
                           var frame = frames[element.attributes.autostyle.value];
                           if (frame == undefined) {
@@ -48,7 +75,7 @@
                               var head = doc.head;
                               //console.log("head " + head);
 
-		              head.innerHTML = "<style>" + element.value + "</style>";
+		                      head.innerHTML = "<style>" + element.value + "</style>";
                               //console.log("modified !" + element.value);
                             };
 
@@ -65,9 +92,17 @@
                             console.log("autojslog " + name + " not found");
                             continue;
                           }
+                          var once = element.attributes['once'] != undefined;
 
-                          (function(element, e) {
+                          (function(element, e, once) {
+                            var running = false;
                             var listener = function(event) {
+                              if (once) {
+                                if (running) {
+                                  return;
+                                }
+                                running = true;
+                              }
                               e.innerHTML = "";
                               var console = { log: function(msg) {
                                 var text = pretty(msg);
@@ -85,7 +120,7 @@
                             };
                             element.addEventListener('keyup', listener, false);
                             Reveal.addEventListener( 'slidechanged', listener);
-                          })(element, e);
+                          })(element, e, once);
                         }
 
                         if (element.attributes.autojscanvas != undefined) {
