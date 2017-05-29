@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>JavaScript - REST - Promesse</title>
+
+		<meta name="description" content="javascript, REST, Promise">
+		<meta name="author" content="Remi Forax">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+		
+		<!-- autojs result -->
+		<style>
+		  div.autojsresult {
+		    text-align: left;
+		    color: lime;
+		  }
+		  div.autojslog {
+		    color: orange;
+		  }
+		  div.autojserror {
+		    color: red;
+		  }
+		  .bad-container {
+            position: relative;
+            display:inline-block;
+          }
+		  .bad-image:after {
+            content: url(images/js/bad.png);
+            position: absolute;
+            z-index: 9999;
+            right: 5px;
+            bottom: 0px;
+          }
+		</style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+                                <section>
+					<h1>JavaScript</h1>
+                                       <br/>
+                                        <h2>REST - Promesse</h2>
+					<p>
+					  Remi Forax
+					</p>
+				</section>
+				                <section>
+				                        <h2>REST</h2>
+				                </section>             
+				                <section>
+					<h2>REST</h2>
+					<blockquote cite="https://en.wikipedia.org/wiki/Representational_state_transfer">
+					  &ldquo;Representational state transfer (REST) or RESTful Web services are
+					  one way of providing interoperability between computer systems on the Internet.
+					  REST-compliant Web services allow requesting systems to access and manipulate
+					  textual representations of Web resources using a uniform and predefined
+					  set of stateless operations.&rdquo;
+					</blockquote>
+                                        <p align="right">
+                                         source: Wikipedia.com - <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">Representational state transfer</a>
+                                        </p>
+				</section>
+				                <section>
+					                    <h2>Idée</h2>
+					                    <p>
+                                         On réutilise le protocole HTTP pour faire
+                                        <br/> 
+                                         les appels à des services
+                                        </p>
+                                        <ul>
+                                         <li>client-server
+                                         <li>interface uniforme
+                                         <li>stateless, cacheable & load balanceur
+                                        </ul>
+				                </section>
+				                
+				                <section>
+				                        <h2>Interface uniforme</h2>
+				                        <ul>
+				                         <li>On nomme des resources en utilisant des URIs
+				                         <li>On utilise les méthodes HTTP comme action
+				                          <br/>
+				                           GET, PUT, POST, DELETE
+				                         <li>La façon dont sont stockés les données est indépendant de la représentation.
+				                         <li>On utilise XML et/ou JSON comme format de transport
+				                        </ul>
+				                </section>
+				                
+				                <section>
+				                        <h2>Exemple</h2>
+				                        <p>
+				                         On va utiliser une addresse de base <b>api.foo.bar.com</b>
+				                        <br/>
+				                         Pour accéder au utilisateur, on va utiliser l'URI <b>users</b>,
+				                         donc pour créer, lister, mettre à jour, supprimer des utilisateurs,
+				                         on utilisera l'adresse <b>http://api.foo.bar.com/users</b>
+				                        </p> 
+				                </section>
+				                
+				                <section>
+					             <h2>Utilisation des actions</h2>
+					             <table>
+					             <tr>
+					              <td></td><td>GET</td><td>PUT</td><td>POST</td><td>DELETE</td>
+					             </tr><tr>
+					              <td>/users/</td><td>liste des utilisateurs</td><td>remplace les utilisateurs</td><td>créer une nouvel utilisateur</td><td>détruit les utilisateurs</td>
+					             </tr><tr>
+					              <td>/users/bob</tt><td>récupère les propriétés d'un utilisateur</td><td>met à jour un utilisateur</td><td></td><td>supprime un utilisateur</td>
+					             </tr>
+					             </table>
+				                </section>
+				
+				                <section>
+				                 <h2>Coté Serveur</h2>
+				                </section>
+				                
+				                <section>
+				                 <h2>Exemple avec Express.js</h2>
+				                 <p>
+				                  express.js est une librarie qui permet de créer des points d'entrées (<b>endpoint</b>)
+				                  REST en JavaScript.
+				                 <br/>
+				                  Elle utilisee le "serveur" node.js 
+				                 </p>
+				                </section>
+				
+				                <section>
+				                 <h2>Exemple avec Express.js</h2>
+				                 <pre><code class="js" data-trim>         
+let express = require('express');
+let app = express();
+
+app.get('/users', (req, res) =&gt; {
+  res.send('Hello World!');
+});
+
+app.listen(3000);
+                                </code></pre>
+                                <p><small>
+                                 On créer un endpoint sur l'URI /users puis on écoute les clients sur le port TCP 3000
+                                </small></p>
+				               </section>
+				               
+				               <section>
+				                 <h2>Créer un endpoint</h2>
+				                 <p>
+				                  on utilise les verbes get, post, put, delete (en minuscule)
+				                 </p>
+				                 <pre><code class="js" data-trim>         
+app.post('/users', (req, res) =&gt; {
+  ...
+})
+                                </code></pre>
+                                <pre><code class="js" data-trim>         
+app.put('/users', (req, res) =&gt; {
+  ...
+})
+                                </code></pre>
+                                <pre><code class="js" data-trim>         
+app.delete('/users', (req, res) =&gt; {
+  ...
+})
+                                </code></pre>
+				               </section>
+				               
+				               <section>
+				                 <h2>Extraire des paramètres de l'URI</h2>
+				                 <p>
+				                  la propriété <b>params</b> de l'objet requète permet d'obtenir les paramètres
+				                  nommé extrait de l'URI
+				                 </p>
+				                 <pre><code class="js" data-trim>         
+app.get('/users/:id', (req, res) =&gt; {
+  console.log('user id ' + req.params.id);
+})
+                                </code></pre>
+                                <p><small>
+                                 Les paramètres nommés commence par ':' dans l'URI
+                                </small></p>
+				               </section>
+				               
+				               <section>
+				                 <h2>Récupérer les cookies dans la requète</h2>
+				                 <p>
+				                  Les cookies sont stockés par le client et envoyés à chaque requète
+				                 </p>
+				                 <pre><code class="js" data-trim>         
+app.get('/users/:id', (req, res) =&gt; {
+  console.log(req.cookies);
+})
+                                </code></pre>
+                                <p><small>
+                                 <b>cookies</b> contient tous les cookies valides pour l'URI
+                                <br/>
+                                 <b>cookies</b> est un objet dont les clés sont les noms des cookies
+                                </small></p>
+				               </section>
+				               
+				               <section>
+				                 <h2>Code de la réponse</h2>
+				                 <p>
+				                  <b>status</b> permet d'indiquer le code HTTP de la réponse
+				                 </p>
+				                 <pre><code class="js" data-trim>         
+app.get('/users/:id', (req, res) =&gt; {
+  res.status(404).send('Oops');
+})
+                                </code></pre>
+                                <p>
+                                 <small><a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">https://en.wikipedia.org/wiki/List_of_HTTP_status_codes</a></small>
+                                </p>
+				               </section>
+				               
+				               <section>
+				                 <h2>Envoyer une réponse (texte)</h2>
+				                 <p>
+				                  <b>send</b> permet d'envoyer une réponse textuelle
+				                 </p>
+				                 <pre><code class="js" data-trim>         
+app.get('/users/:id', (req, res) =&gt; {
+  res.send('OK !');
+})
+                                </code></pre>
+                                <p><small>
+                                 Le Content-Length est la longeur de la chaine de caractères
+                                <br/>
+                                 Si le <b>status</b> n'est pas possitionné la valeur est 200
+                                </small></p>
+				               </section>
+				               
+				               <section>
+				                 <h2>Envoyer une réponse (fichier)</h2>
+				                 <p>
+				                  <b>sendFile</b> permet d'envoyer un fichier en réponse
+				                 </p>
+				                 <pre><code class="js" data-trim>         
+app.get('/users/:id', (req, res) =&gt; {
+  res.sendFile('/absolute/path/to/ok.png');
+})
+                                </code></pre>
+                                <p><small>
+                                 Le Content-Type dépend de l'extension
+                                <br/>
+                                 le Content-Length est la taille du fichier.
+                                </small></p>
+				               </section>
+				               
+				               <section>
+				                 <h2>Envoyer une réponse (JSON)</h2>
+				                 <p>
+				                  <b>json</b> permet d'envoyer une réponse au format JSON
+				                 </p>
+				                 <pre><code class="js" data-trim>         
+app.get('/users/:id', (req, res) =&gt; {
+  let id = req.params.id;
+  res.json('{ user: ' + id + ' }');
+})
+                                </code></pre>
+                                <p><small>
+                                 Le Content-Type est <b>application/json</b>
+                                </small></p>
+				               </section>
+				               
+				               <section>
+				                 <h2>Envoyé des entêtes de réponse</h2>
+				                 <p>
+				                  Sur l'objet réponse, <b>set</b> et <b>append</b> permettent d'ajouter
+				                  des entêtes de réponse.
+				                 </p>
+				                 <pre><code class="js" data-trim>         
+app.get('/users/:id', (req, res) =&gt; {
+  res.set('Set-Cookie', 'foo=bar; Path=/; HttpOnly');
+})
+                                </code></pre>
+                                <p><small>
+                                 <b>HttpOnly</b> veut dire pas dans les requètes AJAX !
+                                </small></p>
+				               </section>
+				               
+				               <section>
+				                 <h2>Content-Type</h2>
+				                 <p>
+				                  <b>type</b> permet d'indiquer le Content-Type.
+				                 </p>
+				                 <pre><code class="js" data-trim>         
+app.get('/users/:id', (req, res) =&gt; {
+  res.type('text/html').send('<html><body>Ok</body></html>');
+})
+                                </code></pre>
+				               </section>
+				               
+				               <section>
+				                 <h2>Coté Client</h2>
+				               </section>
+				               
+				               <section>
+				                        <h2>AJAX</h2>
+				                        <p>
+				                         Appel Asynchrone en utilisant un <b>HttpXMLRequest</b>
+				                        </p>
+				                        <pre><code class="js" data-trim> 
+let ajax = new XMLHttpRequest();
+ajax.onreadystatechange = () => {
+  if (ajax.readyState != 4) { return; }
+  if(ajax.status != 200) {
+     // TODO NOT OK ! (ajax.status)
+  } else {
+     // TODO OK (ajax.responseText)
+  }
+};
+ajax.open('GET', 'http://api.foo.bar.com/users/bob', true);
+ajax.overrideMimeType("application/json");
+ajax.send();				                 
+                                </code></pre>       
+				               </section> 
+				               
+				               <section>
+				                        <h2>Promesse</h2>
+					                    <p>
+					                     Une <b>Promise</b> est la promesse d'une valeur (ou erreur) future
+                                        </p>
+                                        <small><textarea autojslog="js6-promise" rows="11" cols="45">
+let promise = new Promise((resolve, reject) => {
+  let value = Math.random();   // juste pour l'exemple
+  if (value < 0.5) {
+    resolve("It works");
+  } else {
+    reject(Error("oh no"));
+  }
+});
+
+promise.then(value => console.log(value))
+                .catch(err => console.log(err.message));
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js6-promise" class="autojslog"></div>
+                                        </small>
+                                        <p><small>
+                                         
+                                        </small></p>
+				</section>
+				<section>
+				                        <h2>Promesse &amp; AJAX à la main</h2>
+					                    <p>
+					                     
+                                        </p>
+                                        <small><textarea autojslog="js6-promise-ajax" rows="20" cols="45">
+function ajaxPromise(doc) {
+  return new Promise((resolve, reject) => {
+    let ajax = new XMLHttpRequest();
+    ajax.onreadystatechange = () => {
+      if (ajax.readyState != 4) { return; }
+      if(ajax.status != 200) {
+        reject(Error("error " + ajax.status));
+      } else {
+        resolve(ajax.responseText);
+      }
+    };
+    ajax.open("GET", doc, true);
+    ajax.overrideMimeType("application/json");
+    ajax.send();
+  });
+}
+ajaxPromise("images/js-object/demo.json")
+  .then(value => console.log(value))
+  .catch(err => console.log(err.message));
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js6-promise-ajax" class="autojslog"></div>
+                                        </small>
+				</section>
+				
+				<section>
+				                        <h2>Fetch</h2>
+					                    <p>
+					                     <b>fetch()</b>
+                                        </p>
+                                        <pre><code class="js" data-trim>         
+
+                                
+fetch("http://api.foo.bar.com/users/bob")
+  .then(response => {
+     if (response.ok) {
+       return ...
+     }
+     throw Error(response.statusText);
+   })
+                                        </code></pre>
+                                        <p><small>
+                                         Attention, fetch renvoie une réponse même si la réponse est Not Found
+                                        </small></p>
+				</section>
+				
+				<section>
+				                        <h2>Fetch en vrai</h2>
+					                    <p>
+					                     <b>fetch()</b> fait une requète AJAX et renvoie une Promise
+					                    <br/>
+					                     <b>response.json()</b> est aussi une Promise qui va parser le JSON
+                                        </p>
+                                        <small><textarea autojslog="js6-fetch" rows="10" cols="45">
+fetch("images/js-object/demo.json")
+  .then(response => {
+     if (response.ok) {
+       return response.json();
+     }
+     throw Error(response.statusText);
+   })
+  .then(object => console.log(object))
+  .catch(err => console.log(err.message));
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js6-fetch" class="autojslog"></div>
+                                        </small>
+                                        <p><small>
+                                         <b>then()</b> permet de combiner les promesses !
+                                        </small></p>
+				</section>
+				<section>
+				                        <h2>Fetch d'une image</h2>
+					                    <p>
+					                     <b>URL.createObjectURL</b> permet de créer une URL locale contenant les données de l'image
+                                        </p>
+                                        <img style="float: right;" id="fetch-image-example" />
+                                        <small><textarea autojslog="js6-fetch-image" rows="14" cols="55">
+image = document.getElementById('fetch-image-example');
+fetch("images/js-canvas/html5.png")
+  .then(response => {
+     if (response.ok) {
+       return response.blob();
+     }
+     throw Error(response.statusText);
+   })
+  .then(blob => {
+    let objectURL = URL.createObjectURL(blob);
+    image.src = objectURL;
+  })
+  .catch(err => console.log(err.message));
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js6-fetch-image" class="autojslog"></div>
+                                        </small>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                                        { src: 'plugin/autoeval/autoeval.js', async: true },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
