@@ -474,6 +474,114 @@ fetch("images/js-canvas/html5.png")
                                          <div id="js6-fetch-image" class="autojslog"></div>
                                         </small>
 				</section>
+				<section>
+				                        <h2>Promise.all</h2>
+					                    <p>
+					                     calcule de plusieurs promesses en parallèle,
+					                    <br/>
+					                     le résultat est un tableau des promesses résolues
+                                        </p>
+                                        <small><textarea autojslog="js6-promise-all" rows="13" cols="60">
+Promise.all([
+  fetch('images/js-object/demo.json'),
+  fetch('images/js-object/demo2.json')])
+.then(array => {
+  let [response1, response2] = array;
+  if (response1.ok && response2.ok) {
+    console.log('Ok !');
+    return;
+  }
+  throw Error(response1.statusText + ' ' + response2.statusText);
+})
+.catch(err => console.log(err.message));
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js6-promise-all" class="autojslog"></div>
+                                        </small>
+                                        <p></p>
+				</section>
+				<section>
+				                        <h2>Promise.all</h2>
+					                    <p>
+					                     Attention !, si on enchaine des appels à <b>Promise.all</b>(),
+					                    <br/> 
+					                     on peut créer des goulots d'étranglement
+                                        </p>
+                                        <small><div class="bad-container"><textarea autojslog="js6-promise-all-bad" rows="13" cols="60">
+Promise.all([
+  fetch('images/js-object/demo.json'),
+  fetch('images/js-object/demo2.json')])
+.then(array => {
+  let [response1, response2] = array;
+  if (response1.ok && response2.ok) {
+    return Promise.all([response1.json(), response2.json()]);
+  }
+  throw Error(response1.statusText + ' ' + response2.statusText);
+})
+.then(jsons => jsons.forEach(json => console.log(json.name)))
+.catch(err => console.log(err.message));
+                                        </textarea><div class="bad-image"></div></div></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js6-promise-all-bad" class="autojslog"></div>
+                                        </small>
+                                        <p></p>
+				</section>
+				<section>
+				                        <h2>Promise.all</h2>
+					                    <p>
+					                     Il est plus efficace de paralléliser au maximum !
+                                        </p>
+                                        <small><textarea autojslog="js6-promise-all2" rows="15" cols="60">
+function jsonOkOrError(response) {
+  if (response.ok) {
+    return response.json();
+  }
+  throw Error(response.statusText);
+}
+
+Promise.all([
+  fetch('images/js-object/demo.json')
+    .then(jsonOkOrError),
+  fetch('images/js-object/demo2.json')
+    .then(jsonOkOrError)])
+.then(jsons => jsons.forEach(json => console.log(json.name)))
+.catch(err => console.log(err.message));
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js6-promise-all2" class="autojslog"></div>
+                                        </small>
+                                        <p></p>
+				</section>
+				<section>
+				                        <h2>Promise.race</h2>
+					                    <p>
+					                     La promesse résultante est calculée dès qu'une des promesses a fini
+                                        </p>
+                                        <small><textarea autojslog="js6-promise-race" rows="15" cols="60">
+function jsonOkOrError(response) {
+  if (response.ok) {
+    return response.json();
+  }
+  throw Error(response.statusText);
+}
+
+Promise.race([
+  fetch('images/js-object/demo.json'),
+  fetch('images/js-object/demo2.json')
+  ])
+.then(jsonOkOrError)
+.then(json => console.log(json.name))
+.catch(err => console.log(err.message));
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js6-promise-race" class="autojslog"></div>
+                                        </small>
+                                        <p></p>
+				</section>
 			</div>
 
 		</div>
