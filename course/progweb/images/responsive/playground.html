@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8"> 
+  <style>
+   .leftPane {
+     background-color: lightyellow;
+     float: left;
+     width: 50%;
+   }
+   .leftPane textarea {
+     resize: both;
+     overflow: auto;
+   }
+  
+   .rightPane {
+     background-color: lightcyan;
+     float: left:
+     width: 50%;
+   }
+   .rightPane:after {
+     content: '';
+     display: block;
+     clear: both;
+   }
+   .rightPane iframe {
+     resize: both;
+     overflow: auto;
+   }
+  
+   .divider {
+     background-color: lightgray;
+     float: left;
+     width: 5px;
+     height: 100%;
+     border-left: 1px solid; 
+     border-right: 1px solid; 
+     cursor: col-resize;
+   }
+  </style>
+  <script>
+   function applyDivider(leftPanelName, dividerName) {
+     window.onload = function() {
+       var leftPane = document.getElementById(leftPanelName);
+       var divider = document.getElementById(dividerName);
+       if (leftPane == undefined || divider == undefined) {
+         console.log('error applyDivider ' + leftPanelName + '(' + leftPane + ') ' + dividerName + '(' + divider + ')');
+         return;
+       }
+     
+       function move(event) {
+         var width = window.innerWidth
+             || document.documentElement.clientWidth
+             || document.body.clientWidth;
+       
+         var percent = 100 * event.clientX / width;
+         leftPane.style.width = percent + '%';
+       }
+     
+       divider.addEventListener('mousedown', function() {
+         window.addEventListener('mousemove', move, true);
+       }, false);
+       window.addEventListener('mouseup', function() {
+         window.removeEventListener('mousemove', move, true);
+       }, false);
+     };
+   }</script>
+ </head>
+ <body>
+  <div class="leftPane" id="leftPane1">&nbsp;</div>
+  <div class="divider" id="dividerPane1">&nbsp;</div>
+  <div class="rightPane">&nbsp;</div>
+  <script>applyDivider('leftPane1', 'dividerPane1')</script>
+  Ceci est un test !!!
+ </body>
+</html>

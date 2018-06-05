@@ -1,6 +1,6 @@
 (function() {
 	if( typeof window.addEventListener === 'function' ) {
-                console.log('init autoeval');
+        console.log('init autoeval');
 		var areas = document.querySelectorAll( 'textarea' );
 
                 var pretty = function(val) {
@@ -19,6 +19,7 @@
 		for( var i = 0, len = areas.length; i < len; i++ ) {
 			var element = areas[i];
 
+                        // evaluate the content of the textarea as JavaScript
                         if (element.attributes.autoeval != undefined) {
                           var name = element.attributes.autoeval.value;
                           var e = document.getElementById(name);
@@ -34,6 +35,8 @@
                            })(element, e);
                         }
 
+
+                        // 
                         if (element.attributes.autojsstyle != undefined) {
                           var name = element.attributes.autojsstyle.value;
                           var e = document.getElementById(name);
@@ -61,6 +64,7 @@
                           })(element, e, once);
                         }
 
+                        // evaluate the CSS style of a frame
                         if (element.attributes.autostyle != undefined) {
                           var frame = frames[element.attributes.autostyle.value];
                           if (frame == undefined) {
@@ -85,6 +89,7 @@
                            })(element, frame);
                         }
 
+                        // evaluate a JavaScript script and trap console.log
                         if (element.attributes.autojslog != undefined) {
                           var name = element.attributes.autojslog.value;
                           var e = document.getElementById(name);
@@ -123,6 +128,7 @@
                           })(element, e, once);
                         }
 
+                        // evaluate a JS script that draw on a canvas
                         if (element.attributes.autojscanvas != undefined) {
                           var canvasId = element.attributes.autojscanvas.value;
                           var canvas = document.getElementById(canvasId);
@@ -165,6 +171,8 @@
                           })(element, canvas, once);
                         }
 
+
+                        // 
                         if (element.attributes.autojs != undefined) {
                           var name = element.attributes.autojs.value;
                           var e = document.getElementById(name);

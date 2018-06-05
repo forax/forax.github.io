@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    [class*="col-"] {
+      float: left;
+      padding: 15px;
+      width: 100%;
+    }
+    @media only screen and (min-width: 400px) {
+      .col-1 { width: 50%; }
+      .col-2 { width: 100%; }
+    }
+    </style>
+  </head>
+  <body>
+    <style>
+    body {
+      background-color: white;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    .row::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+    .title {
+      background-color: tan;
+    }
+    .fact {
+      background-color: lightblue;
+      /*margin: 10px;*/
+    }
+    .story {
+      background-color: tomato;
+      /*margin: 10px;*/
+    }
+    </style>
+    
+    <div class="row">
+      <div class="col-2"><div class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div></div>
+    </div><div class="row">
+      <div class="col-1"><div class="fact">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div></div>
+      <div class="col-1"><div class="fact">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div></div>
+    </div><div class="row">
+      <div class="col-2"><div class="story">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div></div>
+    </div>
+
+  </body>
+</html>
