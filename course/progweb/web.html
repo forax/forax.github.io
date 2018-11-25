@@ -298,7 +298,6 @@ $ nc monge.univ-mlv.fr 80
 GET / HTTP/1.0
                                          </code></pre>
                                          <pre class="fragment"><code class="hlbash" data-trim>
-
 HTTP/1.1 302 Found
 Date: Mon, 21 Dec 2015 17:15:35 GMT
 Server: Apache
@@ -328,8 +327,6 @@ Content-Type: text/html; charset=iso-8859-1
 					                      (page web, images, videos, etc).
 					                    </p>
 				                </section>
-				                
-				               
 				                
                                 <section>
 					                    <h2>Codes de réponse HTTP</h2>
@@ -394,6 +391,33 @@ Content-Type: text/html; charset=iso-8859-1
 				                 </small>
 				                </section>
 				                
+				                <section>
+                                        <h2>HTTP 1.1</h2>
+                                        <p>
+                                         On doit de plus spécifier un <b>Host</b> car un serveur
+                                        <br>
+                                         peut héberger plusieurs sites 
+                                        </p>
+                                        <pre><code class="hlbash" data-trim>
+$ nc forax.github.io 80
+GET / HTTP/1.0
+
+HTTP/1.1 404 Not Found
+Server: GitHub.com
+...
+                                         </code></pre>
+                                         <pre class="fragment"><code class="hlbash" data-trim>
+                                         
+$ $ nc forax.github.io 80
+GET / HTTP/1.1
+Host: forax.github.io
+
+HTTP/1.1 200 OK
+Server: GitHub.com
+...
+                                       </code></pre>
+                                </section>
+				                
                                 <section>
 				                        <h2>Et pour une image ?</h2>
 				                        <p>
@@ -429,6 +453,7 @@ X-Timer: S1453643891.248729,VS0,VE0
 				                </section>
 				                
 				                
+
 
                                 <section>
 				                        <h2>wget</h2>
