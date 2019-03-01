@@ -701,15 +701,18 @@ for(var i = 0; i < 4; i++) {
                                           ++i (resp. --i) incrémente <b>puis</b> renvoie la nouvelle valeur de i
                                          </p>
                                          <p>&nbsp;</p>
-                                        <small><textarea autojslog="js-for-incrementation2" rows="4" cols="30">
-for(var i = 4; --i >= 0;) {
-  console.log(i);
-}
+                                        <small><textarea autojs="js-incrementation" rows="10" cols="15">
+var i = 3;
+i++
+i
+i--
+
+var j = 7;
+++j
+j
+--j
                                         </textarea></small>
-                                        <p></p>
-                                        <small>
-                                         <div id="js-for-incrementation2" class="autojslog"></div>
-                                        </small>
+                                        <small><div id="js-incrementation"></div></small>
 				</section>
 				<section>
 					<h2>Les bizarreries de JavaScript</h2>
