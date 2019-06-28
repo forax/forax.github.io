@@ -86,7 +86,7 @@
 					  set of stateless operations.&rdquo;
 					</blockquote>
                                         <p align="right">
-                                         source: Wikipedia.com - <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">Representational state transfer</a>
+                                         source: Wikipedia.org - <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">Representational state transfer</a>
                                         </p>
 				</section>
 				                <section>
@@ -110,7 +110,7 @@
 				                         <li>On utilise les méthodes HTTP comme action
 				                          <br/>
 				                           GET, PUT, POST, DELETE
-				                         <li>La façon dont sont stockés les données est indépendant de la représentation.
+				                         <li>La façon dont sont stockées les données est indépendante de la représentation.
 				                         <li>On utilise XML et/ou JSON comme format de transport
 				                        </ul>
 				                </section>
@@ -132,7 +132,7 @@
 					             <tr>
 					              <td></td><td>GET</td><td>PUT</td><td>POST</td><td>DELETE</td>
 					             </tr><tr>
-					              <td>/users/</td><td>liste des utilisateurs</td><td>remplace les utilisateurs</td><td>créer une nouvel utilisateur</td><td>détruit les utilisateurs</td>
+					              <td>/users/</td><td>liste les utilisateurs</td><td>remplace les utilisateurs</td><td>crée un nouvel utilisateur</td><td>détruit les utilisateurs</td>
 					             </tr><tr>
 					              <td>/users/bob</tt><td>récupère les propriétés d'un utilisateur</td><td>met à jour un utilisateur</td><td></td><td>supprime un utilisateur</td>
 					             </tr>
@@ -140,16 +140,16 @@
 				                </section>
 				
 				                <section>
-				                 <h2>Coté Serveur</h2>
+				                 <h2>Côté Serveur</h2>
 				                </section>
 				                
 				                <section>
 				                 <h2>Exemple avec Express.js</h2>
 				                 <p>
-				                  express.js est une librarie qui permet de créer des points d'entrées (<b>endpoint</b>)
+				                  express.js est une bibliothèque qui permet de créer des points d'entrée (<b>endpoint</b>)
 				                  REST en JavaScript.
 				                 <br/>
-				                  Elle utilisee le "serveur" node.js 
+				                  Elle utilise le "serveur" node.js 
 				                 </p>
 				                </section>
 				
@@ -166,14 +166,14 @@ app.get('/users', (req, res) =&gt; {
 app.listen(3000);
                                 </code></pre>
                                 <p><small>
-                                 On créer un endpoint sur l'URI /users puis on écoute les clients sur le port TCP 3000
+                                 On crée un endpoint sur l'URI /users puis on écoute les clients sur le port TCP 3000
                                 </small></p>
 				               </section>
 				               
 				               <section>
 				                 <h2>Créer un endpoint</h2>
 				                 <p>
-				                  on utilise les verbes get, post, put, delete (en minuscule)
+				                  on utilise les verbes get, post, put, delete (en minuscules)
 				                 </p>
 				                 <pre><code class="js" data-trim>         
 app.post('/users', (req, res) =&gt; {
@@ -195,8 +195,8 @@ app.delete('/users', (req, res) =&gt; {
 				               <section>
 				                 <h2>Extraire des paramètres de l'URI</h2>
 				                 <p>
-				                  la propriété <b>params</b> de l'objet requète permet d'obtenir les paramètres
-				                  nommé extrait de l'URI
+				                  la propriété <b>params</b> de l'objet requête permet d'obtenir les paramètres
+				                  nommés extraits de l'URI
 				                 </p>
 				                 <pre><code class="js" data-trim>         
 app.get('/users/:id', (req, res) =&gt; {
@@ -204,14 +204,14 @@ app.get('/users/:id', (req, res) =&gt; {
 })
                                 </code></pre>
                                 <p><small>
-                                 Les paramètres nommés commence par ':' dans l'URI
+                                 Les paramètres nommés commencent par ':' dans l'URI
                                 </small></p>
 				               </section>
 				               
 				               <section>
-				                 <h2>Récupérer les cookies dans la requète</h2>
+				                 <h2>Récupérer les cookies dans la requête</h2>
 				                 <p>
-				                  Les cookies sont stockés par le client et envoyés à chaque requète
+				                  Les cookies sont stockés par le client et envoyés à chaque requête
 				                 </p>
 				                 <pre><code class="js" data-trim>         
 app.get('/users/:id', (req, res) =&gt; {
@@ -253,7 +253,7 @@ app.get('/users/:id', (req, res) =&gt; {
                                 <p><small>
                                  Le Content-Length est la longeur de la chaine de caractères
                                 <br/>
-                                 Si le <b>status</b> n'est pas possitionné la valeur est 200
+                                 Si le <b>status</b> n'est pas positionné, la valeur est 200
                                 </small></p>
 				               </section>
 				               
@@ -291,7 +291,7 @@ app.get('/users/:id', (req, res) =&gt; {
 				               </section>
 				               
 				               <section>
-				                 <h2>Envoyé des entêtes de réponse</h2>
+				                 <h2>Envoyer des entêtes de réponse</h2>
 				                 <p>
 				                  Sur l'objet réponse, <b>set</b> et <b>append</b> permettent d'ajouter
 				                  des entêtes de réponse.
@@ -302,7 +302,7 @@ app.get('/users/:id', (req, res) =&gt; {
 })
                                 </code></pre>
                                 <p><small>
-                                 <b>HttpOnly</b> veut dire pas dans les requètes AJAX !
+                                 <b>HttpOnly</b> veut dire pas dans les requêtes AJAX !
                                 </small></p>
 				               </section>
 				               
@@ -319,7 +319,7 @@ app.get('/users/:id', (req, res) =&gt; {
 				               </section>
 				               
 				               <section>
-				                 <h2>Coté Client</h2>
+				                 <h2>Côté Client</h2>
 				               </section>
 				               
 				               <section>
@@ -425,7 +425,7 @@ fetch("http://api.foo.bar.com/users/bob")
 				<section>
 				                        <h2>Fetch en vrai</h2>
 					                    <p>
-					                     <b>fetch()</b> fait une requète AJAX et renvoie une Promise
+					                     <b>fetch()</b> fait une requête AJAX et renvoie une Promise
 					                    <br/>
 					                     <b>response.json()</b> est aussi une Promise qui va parser le JSON
                                         </p>
@@ -477,7 +477,7 @@ fetch("images/js-canvas/html5.png")
 				<section>
 				                        <h2>Promise.all</h2>
 					                    <p>
-					                     calcule de plusieurs promesses en parallèle,
+					                     Calcul de plusieurs promesses en parallèle,
 					                    <br/>
 					                     le résultat est un tableau des promesses résolues
                                         </p>
@@ -504,7 +504,7 @@ Promise.all([
 				<section>
 				                        <h2>Promise.all</h2>
 					                    <p>
-					                     Attention !, si on enchaine des appels à <b>Promise.all</b>(),
+					                     Attention ! Si on enchaine des appels à <b>Promise.all</b>(),
 					                    <br/> 
 					                     on peut créer des goulots d'étranglement
                                         </p>
