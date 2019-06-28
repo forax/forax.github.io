@@ -79,7 +79,7 @@
 					  It is a low level, procedural model that updates a bitmap.&rdquo;
 					</blockquote>
                                         <p align="right">
-                                         source: Wikipedia.com - <a href="https://en.wikipedia.org/wiki/Canvas_element">Canvas Element</a>
+                                         source: Wikipedia.org - <a href="https://en.wikipedia.org/wiki/Canvas_element">Canvas Element</a>
                                         </p>
 				</section>
                 <section>
@@ -89,7 +89,7 @@
 					  C'est un modèle procédural de bas niveau qui met à jour une image.&rdquo;
 					</blockquote>
                                         <p align="right">
-                                         source: Wikipedia.com - <a href="https://en.wikipedia.org/wiki/Canvas_element">L'élément Canvas</a>
+                                         source : Wikipedia.org - <a href="https://en.wikipedia.org/wiki/Canvas_element">L'élément Canvas</a>
                                         </p>
 				</section>
 				<section>
@@ -98,7 +98,7 @@
 					 La spécification est en 2 parties
 					<br/>
 					 <ol>
-					  <li>un élement <em>canvas</em></li>
+					  <li>un élément <em>canvas</em></li>
 					  <li>un objet <em>context&nbsp;2D</em></li>
 					 </ol>
 					<p>&nbsp</p>
@@ -135,14 +135,14 @@ context.strokeRect(50, 25, 75, 35);
 context.strokeRect(75, 50, 100, 60);
                                         </textarea></small>
                                         <p><small>
-                                         Un canvas est vue comme une image sur laquelle on peut dessiner
+                                         Un canvas est vu comme une image sur laquelle on peut dessiner
                                         </small></p>
 				                </section>
 				                
 				                <section>
 					                    <h2>Le context 2D</h2>
 					                    <p>
-                                         On récupère l'élement Canvas par son nom
+                                         On récupère l'élément Canvas par son nom
                                         <br/>
                                          puis on demande le contexte de dessin 2D pour dessiner.
                                          </p>
@@ -159,7 +159,7 @@ context.fillStyle = "tomato";
 context.fillRect(100, 50, 100, 100);
                                         </textarea></small>
                                         <p><small>
-                                         Il existe aussi un context 3D, définie par la specification
+                                         Il existe aussi un context 3D, défini par la specification
                                          <a href="https://www.khronos.org/registry/webgl/specs/latest/">WebGL</a>.
                                         </small></p>
 				                </section>
@@ -169,9 +169,9 @@ context.fillRect(100, 50, 100, 100);
 					                    <p>
                                          Le point (x=0, y=0) est en haut à gauche
                                         </p><p><small>
-                                         x: coordonnée sur l'axe horizontal (vers la droite)
+                                         x : coordonnée sur l'axe horizontal (vers la droite)
                                         <br/>
-                                         y: coordonnée sur l'axe vertical (vers le bas)
+                                         y : coordonnée sur l'axe vertical (vers le bas)
                                         </small></p>
                                         <canvas id="canvas-example3"
                                                 width="300"
@@ -233,9 +233,9 @@ context.fillRect(150, 50, 100, 100);
                                      
 				                </section>
 				                <section>
-					                    <h2>Gradient Linéaire</h2>
+					                    <h2>Gradient linéaire</h2>
 					                    <p>
-					                     On définie un gradient linéaire par deux points (x1,&nbsp;y1) (x2,&nbsp;y2)
+					                     On définit un gradient linéaire par deux points (x1,&nbsp;y1) (x2,&nbsp;y2)
 					                     puis plusieurs couleurs (<em>color stops</em>) sur une échelle entre 0 et 1
 					                    </p>
                                         <div style="float: left">
@@ -259,9 +259,9 @@ context.fillRect(50, 50, 150, 150);
                                      
 				                </section>
 				                <section>
-					                    <h2>Gradient Circulaire</h2>
+					                    <h2>Gradient circulaire</h2>
 					                    <p>
-					                     On définie un gradient circulaire par 2 cercles (x1,&nbsp;y1,&nbsp;r1) (x2,&nbsp;y2,&nbsp;r2)
+					                     On définit un gradient circulaire par 2 cercles (x1,&nbsp;y1,&nbsp;r1) (x2,&nbsp;y2,&nbsp;r2)
 					                    </p>
                                         <div style="float: left">
                                         <canvas id="canvas-color3"
@@ -317,7 +317,7 @@ context.strokeText("Hello World", 20, 50);
 context.fillText("Hello World", 20, 100);  
                                         </textarea></small>
                                         <p><small>
-                                         On peut faire des effet d'ombre en dessinant avec un décalage d'1 ou 2 pixels
+                                         On peut faire des effets d'ombre en dessinant avec un décalage d'1 ou 2 pixels
                                         </small></p>
 				                </section>
 				                <section>
@@ -454,7 +454,7 @@ context.putImageData(imageData, 0, 0);
                                         </textarea></small>
                                         </p> 
                                         <p><small>
-                                         Chaque pixel est composé d'une case rouge, vert, bleue, alpha
+                                         Chaque pixel est composé d'une case rouge, verte, bleue, alpha
                                         </small></p>
 				                </section>
 				                <section>
@@ -493,7 +493,7 @@ context.putImageData(imageData, 0, 0);
 					                    <p>
 					                     Il faut que l'image soit chargée avant de pouvoir la dessiner,
 					                    <br/>
-					                     si l'image est déjà dans la page, pas de problème ...
+					                     si l'image est déjà dans la page, pas de problème...
 					                    </p>
                                         <p></p>
                                         <canvas id="canvas-image"
@@ -560,19 +560,19 @@ image.onload = function() {
 };
 image.src = "images/js-canvas/html5.png";
                                         </textarea></small>
-                                        <p><small>c'est une closure car les variables <b>context</b> et <b>image</b> sont prise du scope englobant !</small></p>  
+                                        <p><small>c'est une closure car les variables <b>context</b> et <b>image</b> sont prises du scope englobant !</small></p>  
 				                </section>
 				                
 				                
 				                
 				                <section>
-					                    <h2>Evènements</h2>
+					                    <h2>&Eacute;vènements</h2>
 				                </section>
 				                <section>
-					                    <h2>Evènements clavier</h2>
+					                    <h2>&Eacute;vènements clavier</h2>
 					                    <p>
-					                     La fonction <b>window.onkeydown</b> est appelé lorsque l'on appuis sur une touche,
-					                     <b>windows.onkeyup</b> lorsque l'on relache la touche.
+					                     La fonction <b>window.onkeydown</b> est appelée lorsque l'on appuie sur une touche,
+					                     <b>windows.onkeyup</b> lorsque l'on relâche la touche.
 					                    </p>
                                         <span style="float: inline-block">
                                         <small><textarea autojscanvas="canvas-key" rows="13" cols="50">
@@ -657,7 +657,7 @@ window.addEventListener('keydown', function(event) {
 				                </section>
 				                
 				                <section>
-					                    <h2>Evènements souris</h2>
+					                    <h2>&Eacute;vènements souris</h2>
 					                    <p>
 					                     <b>onmousedown</b>, <b>onmousemove</b>, <b>onmouseup</b> sont appelées
 					                     lorsque l'on utilise la souris sur un élément
@@ -683,7 +683,7 @@ canvas.onmousedown = function(event) {
                                         </p>
 				                </section>
 				                <section>
-					                    <h2>Evènements souris (2)</h2>
+					                    <h2>&Eacute;vènements souris (2)</h2>
 					                    <p>
 					                     <b>onmousemove</b> est appelée lorsque l'on bouge la souris,
 					                    <br/>
@@ -771,7 +771,7 @@ fun();
 					                    <h2>setInterval</h2>
 					                    <p>
 					                     <b>window.sertInterval</b> permet de rappeler une fonction
-					                     à intervale régulier
+					                     à intervalles réguliers
 					                    </p>
                                         <span style="float: inline-block">
                                         <small><textarea autojscanvas="canvas-timer3" once="true" rows="14" cols="40">

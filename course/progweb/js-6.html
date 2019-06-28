@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>JavaScript - 6 - let, class, fonction flèche, assignation destructurée</title>
+		<title>JavaScript - 6 - let, class, fonction flèche, assignation déstructurée</title>
 
 		<meta name="description" content="javascript, let, class, notation flèche">
 		<meta name="author" content="Remi Forax">
@@ -80,7 +80,7 @@
 				                <section>
 					                    <h2>Fonction Flèche</h2>
 					                    <p>
-                                         Syntaxe plus compacte lorsque l'on définie une fonction anonyme
+                                         Syntaxe plus compacte lorsque l'on définit une fonction anonyme
                                         </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojs="js6-arrowfun" rows="6" cols="45">
@@ -96,8 +96,8 @@ add2(2, 3)
 				                <section>
 					                    <h2>Syntaxe des Fonctions Flèches</h2>
 					                    <p>
-                                         Si il n'y à qu'un seul paramètre, les parenthèses autour des
-                                         paramètres ne sont pas obligatoire.
+                                         S'il n'y a qu'un seul paramètre, les parenthèses autour des
+                                         paramètres ne sont pas obligatoires.
                                         </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojs="js6-arrowfun2" rows="9" cols="45">
@@ -148,7 +148,7 @@ console.log(array.map(f => f()));
 				                <section>
 					             <h2>let à la place de var</h2>
 					                    <p>
-                                         <b>let</b> définie une variable de l'endroit où on la déclare
+                                         <b>let</b> définit une variable de l'endroit où on la déclare
                                          jusqu'à la parenthèse fermante du bloc qui la contient 
                                         </p>
                                         <p>&nbsp;</p>
@@ -177,7 +177,7 @@ console.log(array.map(f => f()));
 				                <section>
 					             <h2>const pour les constantes</h2>
 					                    <p>
-                                         <b>const</b> définie une variable dont la valeur
+                                         <b>const</b> définit une variable dont la valeur
                                         <br/>
                                          ne peut pas changer 
                                         </p>
@@ -209,7 +209,7 @@ const A = 4;
 				<section>
 					<h2>Définition d'une classe</h2>
 					<p>
-                                         Une classe définie un modéle de création d'objets.
+                                         Une classe définit un modèle de création d'objets.
                                         </p><p>
                                          Une classe contient des <b>méthodes</b> (fonctions qui agissent sur <b>this</b>) et
                                          un <b>constructeur</b> (méthode d'initialisation)
@@ -237,8 +237,8 @@ console.log(car.driverName());
 				                <section>
 					<h2>Classe et délégué/prototype</h2>
 					<p>
-					    Une classe est vu comme une fonction dont le code appel le constructeur.
-					    Les méthodes de la classe sont ajoutés au prototype de la fonction.
+					    Une classe est vue comme une fonction dont le code appelle le constructeur.
+					    Les méthodes de la classe sont ajoutées au prototype de la fonction.
                                         </p>
                                         <div style="float: left;">
                                         <small><textarea autojslog="js6-class3a" rows="12" cols="35">
@@ -287,7 +287,7 @@ console.log(square.surface());
                                          Permet de <b>regrouper</b> dans un même endroit l'initialisation et la manipulation d'un type nommé
                                         </p>
                                         <p class="fragment">
-                                         La notion de classe <b>existe déjà</b> dans plusieurs autres languages (C++, Java, Swift, Rust) et est donc mieux compris que la notion de délégation propre à JavaScript
+                                         La notion de classe <b>existe déjà</b> dans plusieurs autres languages (C++, Java, Swift, Rust) et est donc mieux comprise que la notion de délégation propre à JavaScript
                                         </p>
 				</section>
 				                <section>
@@ -367,7 +367,7 @@ array.map(v => v.str()).forEach(console.log);
                                 <section>
 					<h2>Problème de l'héritage</h2>
 					<p>
-                                         Si on insére une méthode dans une super-classe,
+                                         Si on insère une méthode dans une super-classe,
                                         <br/> 
                                          il <b>faut redéfinir</b> celle-ci dans toutes les sous-classes
                                         </p>
@@ -417,11 +417,11 @@ console.log(array.map(e => e.surface()));
 				</section>
 				
 				<section>
-				                        <h2>Assignation destructurée</h2>
+				                        <h2>Assignation déstructurée</h2>
 				</section>
 				                
                 <section>
-					 <h2>Assignation destructurée</h2>
+					 <h2>Assignation déstructurée</h2>
 					 <p>
                                           Il est possible de mettre des '[' ']' en partie gauche d'une assignation pour récupérer les valeurs d'un tableau
                                          </p>
@@ -436,12 +436,12 @@ x
                                         <small><div id="js6-destructured"></div></small>
                                         <p>&nbsp;</p>
                                         <p>
-                                         Attention a ne pas oublier le <b>var</b> ! 
+                                         Attention à ne pas oublier le <b>var</b> ! 
                                         </p>
 				</section>
 				
                                 <section>
-					 <h2>Assignation destructurée (2)</h2>
+					 <h2>Assignation déstructurée (2)</h2>
 					 <p>
                                           Il est possible d'omettre des variables si on ne veut pas récupérer certaines valeurs
                                          </p>
@@ -456,11 +456,11 @@ w
                                         <p>&nbsp;</p>
 				</section>
                                 <section>
-					 <h2>Assignation destructurée (3)</h2>
+					 <h2>Assignation déstructurée (3)</h2>
 					 <p>
                                           On peut aussi séparer la déclaration (let ...)
                                          <br/>
-                                          de l'assignation destructurée ([...] = ...)
+                                          de l'assignation déstructurée ([...] = ...)
                                          </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojs="js6-destructured3" rows="6" cols="35">
@@ -474,7 +474,7 @@ w
                                         <p>&nbsp;</p>
 				</section>
                                 <section>
-					 <h2>Assignation destructurée (4)</h2>
+					 <h2>Assignation déstructurée (4)</h2>
 					 <p>
                                           donc on peut écrire un <b>swap</b> facilement
                                          </p>
@@ -515,7 +515,7 @@ console.log(min + " " + max);
                                 <section>
 					 <h2>Avec un objet</h2>
 					 <p>
-                                          L'assignation destructurée marche aussi avec les objets
+                                          L'assignation déstructurée marche aussi avec les objets
                                          <br/>
                                           en utilisant '{' et '}' à la place de '[' et ']'.
                                          </p>

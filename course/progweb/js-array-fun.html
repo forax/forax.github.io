@@ -68,7 +68,7 @@
                                 <section>
 					<h1>JavaScript</h1>
                                        <br/>
-                                        <h2>Tableaux &amp; prog fonctionnel</h2>
+                                        <h2>Tableaux &amp; prog fonctionnelle</h2>
 					<p>
 					  Remi Forax
 					</p>
@@ -82,16 +82,16 @@
 					  &ldquo;In computer science, an array data structure, or simply an array, is a data structure consisting of a collection of elements (values or variables), each identified by at least one array index or key.&rdquo;
 					</blockquote>
                                         <p align="right">
-                                         source: Wikipedia.com - <a href="https://en.wikipedia.org/wiki/Array_data_structure">Array</a>
+                                         source: Wikipedia.org - <a href="https://en.wikipedia.org/wiki/Array_data_structure">Array</a>
                                         </p>
 				</section>
                 <section>
                                         <h2>Tableau ?</h2>
 					<blockquote cite="https://en.wikipedia.org/wiki/Array_data_structure">
-					  &ldquo;En informatique, la structure de donnée tableau, ou simplement tableau, est une structure de donnée consistant en une collection d'élements (valeur ou variables), chacun identifié par au moins un index de tableau ou clé.&rdquo;
+					  &ldquo;En informatique, la structure de données tableau, ou simplement tableau, est une structure de données consistant en une collection d'éléments (valeurs ou variables), chacun identifié par au moins un index de tableau ou clé.&rdquo;
 					</blockquote>
                                         <p align="right">
-                                         source: Wikipedia.com - <a href="https://en.wikipedia.org/wiki/Array_data_structure">Tableau</a>
+                                         source : Wikipedia.org - <a href="https://en.wikipedia.org/wiki/Array_data_structure">Tableau</a>
                                         </p>
 				</section>
 
@@ -100,7 +100,7 @@
 					                    <p>
                                           Un tableau en Javascript se déclare entre <b>[</b> et <b>]</b>.
                                          <br/>
-                                          Les élements sont séparés par des virgules.
+                                          Les éléments sont séparés par des virgules.
                                          </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojs="js-array1" rows="6" cols="25">
@@ -141,7 +141,7 @@ array[-1]
                                         </small></p>
 				                </section>
 				                <section>
-					                    <h2>Modfier un élement d'un tableau</h2>
+					                    <h2>Modfier un élément d'un tableau</h2>
 					                    <p>
                                          Les cases d'un tableau sont accessibles en lecture et écriture
                                         </p>
@@ -161,7 +161,7 @@ array
 					                    <p>
                                          Une boucle <b>for</b> de 0 à <b>length</b> - 1 permet de
                                         <br/>
-                                         parcourir tous les élements
+                                         parcourir tous les éléments
                                         </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojslog="js-array-loop" rows="9" cols="45">
@@ -233,9 +233,9 @@ console.log(indexOf(array, 'e'));
 				                <section>
 					                    <h2>indexOf/lastIndexOf</h2>
 					                    <p>
-                                         <b>indexOf()</b> utilise == pour trouver la première occurence d'un élement et renvoie son index (ou -1)
+                                         <b>indexOf()</b> utilise == pour trouver la première occurence d'un élément et renvoie son index (ou -1)
                                         <br/>
-                                         <b>lastIndexOf</b>, même chose mais pour la dernière occurence
+                                         <b>lastIndexOf()</b>, même chose mais pour la dernière occurrence
                                         </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojs="js-array-indexof" rows="7" cols="35">
@@ -288,7 +288,7 @@ text.split(", ")
 				                <section>
 					                    <h2>Tableaux dynamiques</h2>
 					                    <p>
-                                         <b>push()</b> permet d'ajouter un élement à la fin d'un tableau 
+                                         <b>push()</b> permet d'ajouter un élément à la fin d'un tableau 
                                         </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojslog="js-array-dyn" rows="10" cols="35">
@@ -304,7 +304,7 @@ console.log(range(2, 5));
                                         </textarea></small>
                                         <p></p>
                                         <small>
-                                          <div id="js-array-dyn" class="autojslog""></div>
+                                          <div id="js-array-dyn" class="autojslog"></div>
                                         </small>
 				                </section>
 				                <section>
@@ -335,15 +335,15 @@ console.log(stack);
 				                </section>
 				                
 				                <section>
-					                    <h2>Element en tête</h2>
+					                    <h2>&Eacute;lément en tête</h2>
 					                    <p>
-                                         <b>shift()</b> décale les élements vers la gauche
+                                         <b>shift()</b> décale les éléments vers la gauche
                                         <br/>
-                                         (supprime le premier élement)
+                                         (supprime le premier élément)
                                         <br/>
                                          <b>unshift</b> décale les éléments sur la droite
                                         <br/>
-                                         (insére le premier élement)
+                                         (insère le premier élément)
                                         </p>
                                         <p>&nbsp;</p>
                                         <img src="images/js-array-fun/shift.png"
@@ -360,7 +360,7 @@ array
                                          <small><div id="js-array-shift"></div></small>
                                         </div>
                                         <p></p>
-                                        <p><small>ces deux méthodes ont un temps d'exécution qui dépend du nombre d'élements</small></p>
+                                        <p><small>ces deux méthodes ont un temps d'exécution qui dépend du nombre d'éléments</small></p>
 				                </section>
 				                
 				                <section>
@@ -378,13 +378,13 @@ array.slice(2, 4)
                                         <small><div id="js-array-slice"></div></small>
                                         <p><small>
                                          contrairement aux méthodes précédentes, <b>slice</b> ne modifie pas le tableau sur lequel
-                                         on appel la méthode mais renvoie un nouveau tableau
+                                         on appelle la méthode mais renvoie un nouveau tableau
                                         </small></p>
 				                </section>
 				                <section>
 				                        <h2>Suppression/Insertion au milieu</h2>
 					                    <p>
-                                         <b>splice(start, deleteCount, elements)</b> supprime <em>deleteCount</em> élement à l'index <em>start</em>
+                                         <b>splice(start, deleteCount, elements)</b> supprime <em>deleteCount</em> éléments à l'index <em>start</em>
                                          et de les remplace par des <em>elements</em>
                                         </p>
                                         <p>&nbsp;</p>
@@ -399,7 +399,7 @@ console.log(array2);
                                         </textarea></small>
                                         <p></p>
                                         <small>
-                                          <div id="js-array-splice" class="autojslog""></div>
+                                          <div id="js-array-splice" class="autojslog"></div>
                                         </small>
                                         <p><small>
                                          Attention à ne pas confondre <b>slice</b> et <b>splice</b> !
@@ -407,7 +407,7 @@ console.log(array2);
 				                </section>
 				                
 				                <section>
-				                        <h2>Programmation Fonctionnel</h2>
+				                        <h2>Programmation fonctionnelle</h2>
 				                </section>
 				                <section>
 					<h2>Functional Programming ?</h2>
@@ -416,7 +416,7 @@ console.log(array2);
 					  and avoids changing-state and mutable data (side effects).
 					</blockquote>
                                         <p align="right">
-                                         source: Wikipedia.com - <a href="https://en.wikipedia.org/wiki/Functional_programming">Functional Programming</a>
+                                         source: Wikipedia.org - <a href="https://en.wikipedia.org/wiki/Functional_programming">Functional Programming</a>
                                         </p>
 				</section>
 				<section>
@@ -426,7 +426,7 @@ console.log(array2);
 					  de fonctions mathématiques et évite les changements d'état et les données mutables (effets de bord).&rdquo;
 					</blockquote>
                                         <p align="right">
-                                         source: Wikipedia.com - <a href="https://en.wikipedia.org/wiki/Functional_programming">Programmation Fonctionnel</a>
+                                         source: Wikipedia.org - <a href="https://en.wikipedia.org/wiki/Functional_programming">Programmation fonctionnelle</a>
                                         </p>
 				</section>
 				<section>
@@ -462,7 +462,7 @@ array
                                         <small><div id="js-array-sort2"></div></small>
                                         <p>&nbsp;</p>
                                         <p>
-                                         ce qui est pas forcément ce que l'on veut !
+                                         ce qui n'est pas forcément ce que l'on veut !
                                         </p>
 				</section>
 				<section>
@@ -482,7 +482,7 @@ console.log(array);
                                         </textarea></small>
                                         <p></p>
                                         <small>
-                                          <div id="js-array-sort3" class="autojslog""></div>
+                                          <div id="js-array-sort3" class="autojslog"></div>
                                         </small>
 				</section>
 				<section>
@@ -503,7 +503,7 @@ console.log(array);
                                         </textarea></small>
                                         <p></p>
                                         <small>
-                                          <div id="js-array-cmp" class="autojslog""></div>
+                                          <div id="js-array-cmp" class="autojslog"></div>
                                         </small>
 				</section>
 				
@@ -526,7 +526,7 @@ console.log(array);
                                         </textarea></small>
                                         <p></p>
                                         <small>
-                                          <div id="js-array-anonfun" class="autojslog""></div>
+                                          <div id="js-array-anonfun" class="autojslog"></div>
                                         </small>
 				</section>
 				<section>
@@ -544,7 +544,7 @@ console.log(array);
                                         </textarea></small>
                                         <p></p>
                                         <small>
-                                          <div id="js-array-anonfun2" class="autojslog""></div>
+                                          <div id="js-array-anonfun2" class="autojslog"></div>
                                         </small>
 				</section>
 				<section>
@@ -563,7 +563,7 @@ array.forEach(function(v) {
                                         </textarea></small>
                                         <p></p>
                                         <small>
-                                          <div id="js-array-forEach" class="autojslog""></div>
+                                          <div id="js-array-forEach" class="autojslog"></div>
                                         </small>
 				</section>
 				<section>
@@ -582,13 +582,13 @@ console.log(array2);
                                         </textarea></small>
                                         <p></p>
                                         <small>
-                                          <div id="js-array-map" class="autojslog""></div>
+                                          <div id="js-array-map" class="autojslog"></div>
                                         </small>
 				</section>
 				<section>
 					                    <h2>Filter</h2>
 					                    <p>
-                                         <b>filter(fun)</b> permet d'obtenir un tableau de valeur respectant une propriété
+                                         <b>filter(fun)</b> permet d'obtenir un tableau de valeurs respectant une propriété
                                         </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojslog="js-array-filter" rows="6" cols="35">
@@ -600,15 +600,15 @@ console.log(array2);
                                         </textarea></small>
                                         <p></p>
                                         <small>
-                                          <div id="js-array-filter" class="autojslog""></div>
+                                          <div id="js-array-filter" class="autojslog"></div>
                                         </small>
 				</section>
 				<section>
 					                    <h2>some/every</h2>
 					                    <p>
-                                         <b>some</b> renvoie vrai dès qu'une propriété est vérifié
+                                         <b>some</b> renvoie vrai dès qu'une propriété est vérifiée
                                         <br/>
-                                         <b>every</b> demande à ce que la propriété soit vrai sur toutes les valeurs
+                                         <b>every</b> demande à ce que la propriété soit vraie sur toutes les valeurs
                                         </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojslog="js-array-some-every" rows="8" cols="45">
@@ -622,14 +622,14 @@ console.log(array.every(greaterThan10));
                                         </textarea></small>
                                         <p></p>
                                         <small>
-                                          <div id="js-array-some-every" class="autojslog""></div>
+                                          <div id="js-array-some-every" class="autojslog"></div>
                                         </small>
 				</section>
 				<section>
 					                    <h2>et les index ?</h2>
 					                    <p>
                                    Les méthodes <b>forEach</b>, <b>map</b>, <b>filter</b>, <b>some</b>, <b>every</b>
-                                   prennent une fonction avec 2 arguments (<b>élement</b>, <b>index</b>) en paramètre
+                                   prennent une fonction avec 2 arguments (<b>élément</b>, <b>index</b>) en paramètres
                                         </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojs="js-array-fun-index" rows="7" cols="55">
@@ -658,7 +658,7 @@ console.log(sum);
                                         </textarea></small>
                                         <p></p>
                                         <small>
-                                          <div id="js-array-reduce" class="autojslog""></div>
+                                          <div id="js-array-reduce" class="autojslog"></div>
                                         </small>
 				</section>
 				<section>
@@ -666,7 +666,7 @@ console.log(sum);
 					                    <p>
                                          Il est possible de combiner les opérations
                                         <br/>
-                                         par ex., compter le nombre de mot commençant par 'b'
+                                         par ex., compter le nombre de mots commençant par 'b'
                                         </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojslog="js-array-fam" rows="10" cols="35">
@@ -682,20 +682,20 @@ console.log(count);
                                         </textarea></small>
                                         <p></p>
                                         <small>
-                                          <div id="js-array-fam" class="autojslog""></div>
+                                          <div id="js-array-fam" class="autojslog"></div>
                                         </small>
 				</section>
 				
 				<section>
 					                    <h2>closure</h2>
 					                    <p>
-                                         Une fonction anonyme à accès aux variables de la fonction englobante
+                                         Une fonction anonyme a accès aux variables de la fonction englobante
                                         </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojslog="js-array-closure" rows="11" cols="45">
 function greaterThan(max) {
   var fun = function(v)  {
-    return v >= max;           // on accede a max
+    return v >= max;           // on accède à max
   };
   return fun;
 }
@@ -706,7 +706,7 @@ console.log(array.every(greaterThan(10)));
                                         </textarea></small>
                                         <p></p>
                                         <small>
-                                          <div id="js-array-closure" class="autojslog""></div>
+                                          <div id="js-array-closure" class="autojslog"></div>
                                         </small>
 				</section>
 				<section>
@@ -718,7 +718,7 @@ console.log(array.every(greaterThan(10)));
                                         <small><textarea autojslog="js-array-closure2" rows="10" cols="45">
 function greaterThan(max) {
   return function(v)  {
-    return v >= max;           // on accede a max
+    return v >= max;           // on accède à max
   };
 }
 
@@ -728,7 +728,7 @@ console.log(array.every(greaterThan(10)));
                                         </textarea></small>
                                         <p></p>
                                         <small>
-                                          <div id="js-array-closure2" class="autojslog""></div>
+                                          <div id="js-array-closure2" class="autojslog"></div>
                                         </small>
 				</section>
 				<section>
@@ -748,10 +748,10 @@ array.forEach(function(f) { f(); });
                                         </textarea><div class="bad-image"></div></div></small>
                                         <p></p>
                                         <small>
-                                          <div id="js-array-closure-loop" class="autojslog""></div>
+                                          <div id="js-array-closure-loop" class="autojslog"></div>
                                         </small>
                                         <p><small>
-                                         La même variable <b>i</b> est utilisé par toutes les closures
+                                         La même variable <b>i</b> est utilisée par toutes les closures
                                         </small></p>
 				</section>
 				<section>
@@ -774,7 +774,7 @@ array.forEach(function(f) { f(); });
                                         </textarea></small>
                                         <p></p>
                                         <small>
-                                          <div id="js-array-closure-loop2" class="autojslog""></div>
+                                          <div id="js-array-closure-loop2" class="autojslog"></div>
                                         </small>
                                         <p>
                                          <small>Chaque appel à <b>pushToArray</b> crée une nouvelle variable <b>i</b></small>
@@ -798,7 +798,7 @@ array.forEach(function(f) { f(); });
                                         </textarea></small>
                                         <p></p>
                                         <small>
-                                          <div id="js-array-closure-loop3" class="autojslog""></div>
+                                          <div id="js-array-closure-loop3" class="autojslog"></div>
                                         </small>
                                         <p>
                                          <small>La closure crée une nouvelle variable <b>i</b></small>
