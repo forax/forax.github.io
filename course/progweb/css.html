@@ -137,7 +137,7 @@
  ...
                                         </code></pre>
                                         <p>
-                                         toutes les balises STRONG seront oranges.
+                                         toutes les balises STRONG seront oranges
                                         </p>
 				</section>
                                 <section>
@@ -160,10 +160,10 @@
 				</section>
 
                                 <section>
-					<h2>Id d'élément</h2>
+					<h2>Identifiant d'élément</h2>
 					<p>
                                          Si l'on veut que seule une balise ait un style particulier,
-                                         on peut donner un identifiant à cette balise.
+                                         on peut donner un identifiant à cette balise
                                         </p>
                                         <pre><code class="html" data-trim>
 <ul>
@@ -181,10 +181,10 @@ li#important {
                                         </code></pre>
 				</section>
                                 <section>
-					<h2>classe d'élément</h2>
+					<h2>Classe d'élément</h2>
 					<p>
-                                         On peut aussi vouloir distinguer plusieurs balises.
-                                         On indique les balises qui appartiennent
+                                         On peut aussi vouloir distinguer plusieurs balises,
+                                         en indiquant les balises qui appartiennent
                                          à une même classe. 
                                         </p>
                                         <pre><code class="html" data-trim>
@@ -196,7 +196,7 @@ li#important {
                                         </code></pre>
                                         <p>&nbsp;</p>
                                         <p>
-                                         on utilisera '.' et le nom de la classe dans le style
+                                         On utilisera '.' et le nom de la classe dans le style
                                         </p>
                                         <pre><code class="css" data-trim>
 li.important {
@@ -210,7 +210,7 @@ li.important {
 					<p>
                                          Un style est une liste de sélecteurs auxquels
                                         <br/>
-                                         sont associées des propriétés.
+                                         sont associées des propriétés
                                         </p>
                                         
                                         <pre><code class="css" data-trim>
@@ -235,7 +235,9 @@ selecteur2 {
                                          <tr>
                                           <td>E</td><td>éléments de type E</td>
                                          </tr><tr>
-                                          <td>E1 E2</td><td>un élément E1 suivi par E2</td>
+                                          <td>E1 E2</td><td>un élément E2 dont un ancètre est E1</td>
+                                         </tr><tr>
+                                          <td>E1 > E2</td><td>un élément E2 dont le père est E1</td>
                                          </tr><tr>
                                           <td>E#myid</td><td>élément dont l'<b>id</b> est myid</td>
                                          </tr><tr>
@@ -265,7 +267,7 @@ selecteur2 {
                     <p>
                      Exemple d'application d'un style à des éléments
                     <br/> 
-                     et des pseudos éléments.
+                     et des pseudos éléments
                     </p>
                                         <iframe id="example-frame"
                                                 src="images/css/example.html"
@@ -316,14 +318,14 @@ li {
                                         </p>
                                         <p>
                                          <small>
-                                          [1] ou hérité si l'on regarde du point de vue des enfants.
+                                          [1] ou hérité si l'on regarde du point de vue des enfants
                                          </small>
                                         </p>
 				</section>
                                 <section>
 					<h2>CSS (algo 1/2)</h2>
                                         <p>
-                                         L'algorithme marche en 2 temps
+                                         L'algorithme marche en 2 temps :
                                         <br/>
                                          1. on applique les sélecteurs dans l'ordre du fichier
                                         </p>
@@ -363,7 +365,7 @@ li {
 					<h2>Couleurs</h2>
                                         <div id="style-color">
                                          <p style="color: teal">
-                                          Il y a plusieurs façon d'indiquer une couleur
+                                          Il y a plusieurs façons d'indiquer une couleur
                                          </p>
                                         </div>
                                         <ul>
@@ -373,11 +375,11 @@ li {
                                          <li>#FFFFFF
                                         </ul>
                                         <p><small>
-                                         <a href="http://www.w3.org/TR/css3-color/">CSS3 Color</a> définit d'autres façons ...
+                                         <a href="http://www.w3.org/TR/css3-color/">CSS3 Color</a> définie d'autres façons ...
                                         </small></p>
                                         <small><textarea autoeval="style-color" rows="4" cols="50">
 <p style="color: teal">
-  Il y a plusieurs façon d'indiquer une couleur
+  Il y a plusieurs façons d'indiquer une couleur
 </p>
                                         </textarea></small>
 				</section>
@@ -418,7 +420,7 @@ li {
 				</section>
 
                                 <section>
-					<h2>Texte Decoration</h2>
+					<h2>Décoration de Texte</h2>
                                         <ul>
                                          <li>text-decoration: none | underline | overline | line-through
                                          <li>text-align: left | right | center | justify
@@ -443,10 +445,10 @@ p {
                                         </p>
 				</section>
                                 <section>
-					<h2>Familles de Police</h2>
+					<h2>Familles de police</h2>
                                         <p>
                                          Noms génériques de familles de police qui marchent
-                                         indépendamment des polices installés sur le client
+                                         indépendamment des polices installées sur le client
                                         </p>
                                         <p>&nbsp;</p>
                                         <table>
@@ -506,7 +508,7 @@ p {
                                         </p>
 				</section>
 				<section>
-					<h2>Image &amp; Alignement Vertical</h2>
+					<h2>Image &amp; Alignement vertical</h2>
                                         <dl>
                                          <dt>vertical-align:</dt>
                                          <dd>baseline | sub | super | top | text-top | middle | bottom | text-bottom</dd>
@@ -593,8 +595,8 @@ ul {
                 <section>
 					<h2>Bordure des tables</h2>
                                         <p>
-                                         Il est possible de mettre des bordures et sur la <b>table</b>
-                                         et sur les <b>td</b> et <b>th</b>
+                                         Il est possible de mettre des bordures à la <b>table</b>
+                                         et aux cases <b>td</b> et <b>th</b>
                                         </p>
                                         <iframe id="style-table"
                                                 src="images/css/table.html"
@@ -632,7 +634,7 @@ td { padding: 3px; }
                                          </textarea></small>
                                         </p>
                                         <p>
-                                          <b>padding</b> définit l'espacement entre le texte et la case
+                                          <b>padding</b> définie l'espacement entre le texte et la case
                                         </p>
 				</section>
 				<section>
@@ -715,7 +717,7 @@ th, td { border-bottom: 1px solid black; }
                                               affichés de gauche à droite
                                           <li>Les <b>blocks</b>, (boites) prennent toute la largeur
                                              <br/>
-                                              et dont la hauteur est de la somme des
+                                              et dont la hauteur est la somme des
                                              <br/>
                                               hauteurs des sous-éléments
                                          </p>
@@ -770,8 +772,8 @@ th, td { border-bottom: 1px solid black; }
                                 <section>
 					<h2>CSS Box Model</h2>
                                         <p>
-                                         Le CSS définit 3 propriétés définissant les boites
-                                         autour du contenu
+                                         Le CSS définit 3 propriétés spécifiant les espacements
+                                         et les bordures
                                         </p>
                                         <img src="images/css/box-model.png"
                                              width="578"
@@ -780,7 +782,7 @@ th, td { border-bottom: 1px solid black; }
                                              />
                                         <ul>
                                          <li>padding : espace à l'intérieur de la boite
-                                         <li>border : bordure autour des boites
+                                         <li>border : bordure de la boite
                                          <li>margin : espace entre les boites
                                         </ul>
 				</section>
@@ -888,7 +890,7 @@ th, td { border-bottom: 1px solid black; }
 					<h2>Inline Block</h2>
                                         <p>
                                          <b>display: inline-block</b> permet de voir un élément comme un inline
-                                         et donc de pourvoir utiliser <b>vertical-align</b>
+                                         et donc de pouvoir utiliser <b>vertical-align</b>
                                         </p>
                                         <iframe id="box-vertical-inline"
                                                 src="images/css/box-vertical-inline.html"
