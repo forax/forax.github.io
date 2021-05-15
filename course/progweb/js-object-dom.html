@@ -204,6 +204,7 @@ dict
                                          
                                         </p>
 				</section>
+
 				<section>
 					                    <h2>Object vs Dictionary</h2>
 					                    <p>
@@ -224,7 +225,31 @@ JSON.stringify(obj)
                                          <a href="http://json.org/">JSON</a> = JavaScript Object Notation  
                                         </p>
 				</section>
-				
+
+                <section>
+                    <h2>Objet pas primitif</h2>
+                    <p>
+                        Un objet n'est pas considéré comme un type primitif,
+                      <br/>
+                        == compare les addresses en mémoire
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><textarea autojs="js-dict-equal" rows="8" cols="38">
+var p1 = { name: "Bob", age: 14 };
+var p2 = { name: "Bob", age: 14 };
+var p3 = p1;
+
+p1 == p2
+p1 == p3
+p1.name == p2.name && p1.age == p2.age
+                                        </textarea></small>
+                    <small><div id="js-dict-equal"></div></small>
+                    <p>&nbsp;</p>
+                    <p>
+                        Il faut comparer chaque champ !
+                    </p>
+                </section>
+
 				<section>
 					                    <h2>Regrouper des propriétés</h2>
 					                    <p>
