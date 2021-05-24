@@ -94,12 +94,12 @@
 					                    <p>
                                          On réutilise le protocole HTTP pour faire
                                         <br/> 
-                                         les appels à des services
+                                         les appels à des services sur un serveur distant
                                         </p>
                                         <ul>
-                                         <li>client-server
+                                         <li>client-server mais sur HTTP
                                          <li>interface uniforme
-                                         <li>stateless, cacheable & load balanceur
+                                         <li>sans état (stateless), cacheable + load balancer
                                         </ul>
 				                </section>
 				                
@@ -134,190 +134,11 @@
 					             </tr><tr>
 					              <td>/users/</td><td>liste les utilisateurs</td><td>remplace les utilisateurs</td><td>crée un nouvel utilisateur</td><td>détruit les utilisateurs</td>
 					             </tr><tr>
-					              <td>/users/bob</tt><td>récupère les propriétés d'un utilisateur</td><td>met à jour un utilisateur</td><td></td><td>supprime un utilisateur</td>
+                                     <td>/users/bob</td><td>récupère les propriétés d'un utilisateur</td><td>met à jour un utilisateur</td><td></td><td>supprime un utilisateur</td>
 					             </tr>
 					             </table>
 				                </section>
-				
-				                <section>
-				                 <h2>Côté Serveur</h2>
-				                </section>
-				                
-				                <section>
-				                 <h2>Exemple avec Express.js</h2>
-				                 <p>
-				                  express.js est une bibliothèque qui permet de créer des points d'entrée (<b>endpoint</b>)
-				                  REST en JavaScript.
-				                 <br/>
-				                  Elle utilise le "serveur" node.js 
-				                 </p>
-				                </section>
-				
-				                <section>
-				                 <h2>Exemple avec Express.js</h2>
-				                 <pre><code class="js" data-trim>         
-let express = require('express');
-let app = express();
 
-app.get('/users', (req, res) =&gt; {
-  res.send('Hello World!');
-});
-
-app.listen(3000);
-                                </code></pre>
-                                <p><small>
-                                 On crée un endpoint sur l'URI /users puis on écoute les clients sur le port TCP 3000
-                                </small></p>
-				               </section>
-				               
-				               <section>
-				                 <h2>Créer un endpoint</h2>
-				                 <p>
-				                  on utilise les verbes get, post, put, delete (en minuscules)
-				                 </p>
-				                 <pre><code class="js" data-trim>         
-app.post('/users', (req, res) =&gt; {
-  ...
-})
-                                </code></pre>
-                                <pre><code class="js" data-trim>         
-app.put('/users', (req, res) =&gt; {
-  ...
-})
-                                </code></pre>
-                                <pre><code class="js" data-trim>         
-app.delete('/users', (req, res) =&gt; {
-  ...
-})
-                                </code></pre>
-				               </section>
-				               
-				               <section>
-				                 <h2>Extraire des paramètres de l'URI</h2>
-				                 <p>
-				                  la propriété <b>params</b> de l'objet requête permet d'obtenir les paramètres
-				                  nommés extraits de l'URI
-				                 </p>
-				                 <pre><code class="js" data-trim>         
-app.get('/users/:id', (req, res) =&gt; {
-  console.log('user id ' + req.params.id);
-})
-                                </code></pre>
-                                <p><small>
-                                 Les paramètres nommés commencent par ':' dans l'URI
-                                </small></p>
-				               </section>
-				               
-				               <section>
-				                 <h2>Récupérer les cookies dans la requête</h2>
-				                 <p>
-				                  Les cookies sont stockés par le client et envoyés à chaque requête
-				                 </p>
-				                 <pre><code class="js" data-trim>         
-app.get('/users/:id', (req, res) =&gt; {
-  console.log(req.cookies);
-})
-                                </code></pre>
-                                <p><small>
-                                 <b>cookies</b> contient tous les cookies valides pour l'URI
-                                <br/>
-                                 <b>cookies</b> est un objet dont les clés sont les noms des cookies
-                                </small></p>
-				               </section>
-				               
-				               <section>
-				                 <h2>Code de la réponse</h2>
-				                 <p>
-				                  <b>status</b> permet d'indiquer le code HTTP de la réponse
-				                 </p>
-				                 <pre><code class="js" data-trim>         
-app.get('/users/:id', (req, res) =&gt; {
-  res.status(404).send('Oops');
-})
-                                </code></pre>
-                                <p>
-                                 <small><a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">https://en.wikipedia.org/wiki/List_of_HTTP_status_codes</a></small>
-                                </p>
-				               </section>
-				               
-				               <section>
-				                 <h2>Envoyer une réponse (texte)</h2>
-				                 <p>
-				                  <b>send</b> permet d'envoyer une réponse textuelle
-				                 </p>
-				                 <pre><code class="js" data-trim>         
-app.get('/users/:id', (req, res) =&gt; {
-  res.send('OK !');
-})
-                                </code></pre>
-                                <p><small>
-                                 Le Content-Length est la longeur de la chaine de caractères
-                                <br/>
-                                 Si le <b>status</b> n'est pas positionné, la valeur est 200
-                                </small></p>
-				               </section>
-				               
-				               <section>
-				                 <h2>Envoyer une réponse (fichier)</h2>
-				                 <p>
-				                  <b>sendFile</b> permet d'envoyer un fichier en réponse
-				                 </p>
-				                 <pre><code class="js" data-trim>         
-app.get('/users/:id', (req, res) =&gt; {
-  res.sendFile('/absolute/path/to/ok.png');
-})
-                                </code></pre>
-                                <p><small>
-                                 Le Content-Type dépend de l'extension
-                                <br/>
-                                 le Content-Length est la taille du fichier.
-                                </small></p>
-				               </section>
-				               
-				               <section>
-				                 <h2>Envoyer une réponse (JSON)</h2>
-				                 <p>
-				                  <b>json</b> permet d'envoyer une réponse au format JSON
-				                 </p>
-				                 <pre><code class="js" data-trim>         
-app.get('/users/:id', (req, res) =&gt; {
-  let id = req.params.id;
-  res.json('{ user: ' + id + ' }');
-})
-                                </code></pre>
-                                <p><small>
-                                 Le Content-Type est <b>application/json</b>
-                                </small></p>
-				               </section>
-				               
-				               <section>
-				                 <h2>Envoyer des entêtes de réponse</h2>
-				                 <p>
-				                  Sur l'objet réponse, <b>set</b> et <b>append</b> permettent d'ajouter
-				                  des entêtes de réponse.
-				                 </p>
-				                 <pre><code class="js" data-trim>         
-app.get('/users/:id', (req, res) =&gt; {
-  res.set('Set-Cookie', 'foo=bar; Path=/; HttpOnly');
-})
-                                </code></pre>
-                                <p><small>
-                                 <b>HttpOnly</b> veut dire pas dans les requêtes AJAX !
-                                </small></p>
-				               </section>
-				               
-				               <section>
-				                 <h2>Content-Type</h2>
-				                 <p>
-				                  <b>type</b> permet d'indiquer le Content-Type.
-				                 </p>
-				                 <pre><code class="js" data-trim>         
-app.get('/users/:id', (req, res) =&gt; {
-  res.type('text/html').send('<html><body>Ok</body></html>');
-})
-                                </code></pre>
-				               </section>
-				               
 				               <section>
 				                 <h2>Côté Client</h2>
 				               </section>
@@ -340,7 +161,10 @@ ajax.onreadystatechange = () => {
 ajax.open('GET', 'http://api.foo.bar.com/users/bob', true);
 ajax.overrideMimeType("application/json");
 ajax.send();				                 
-                                </code></pre>       
+                                </code></pre>
+                                <p>
+                                 <small>En fait, il y a plus simple ... et mieux</small>
+                                </p>
 				               </section> 
 				               
 				               <section>
@@ -348,7 +172,7 @@ ajax.send();
 					                    <p>
 					                     Une <b>Promise</b> est la promesse d'une valeur (ou erreur) future
                                         </p>
-                                        <small><textarea autojslog="js6-promise" rows="11" cols="45">
+                                        <small><textarea autojslog="js6-promise" rows="12" cols="45">
 let promise = new Promise((resolve, reject) => {
   let value = Math.random();   // juste pour l'exemple
   if (value < 0.5) {
@@ -359,7 +183,7 @@ let promise = new Promise((resolve, reject) => {
 });
 
 promise.then(value => console.log(value))
-                .catch(err => console.log(err.message));
+       .catch(err => console.log(err.message));
                                         </textarea></small>
                                         <p></p>
                                         <small>
@@ -369,6 +193,7 @@ promise.then(value => console.log(value))
                                          
                                         </small></p>
 				</section>
+                <!--
 				<section>
 				                        <h2>Promesse &amp; AJAX à la main</h2>
 					                    <p>
@@ -400,7 +225,7 @@ ajaxPromise("images/js-object/demo.json")
                                          <div id="js6-promise-ajax" class="autojslog"></div>
                                         </small>
 				</section>
-				
+				-->
 				<section>
 				                        <h2>Fetch</h2>
 					                    <p>
@@ -425,11 +250,38 @@ fetch("http://api.foo.bar.com/users/bob")
 				<section>
 				                        <h2>Fetch en vrai</h2>
 					                    <p>
-					                     <b>fetch()</b> fait une requête AJAX et renvoie une Promise
-					                    <br/>
-					                     <b>response.json()</b> est aussi une Promise qui va parser le JSON
+					                     <b>fetch()</b> fait une requête AJAX et renvoie une Promise, qui
+                                         indique une réponse ou une erreur
                                         </p>
-                                        <small><textarea autojslog="js6-fetch" rows="10" cols="45">
+                                        <small><textarea autojslog="js6-fetch" rows="9" cols="45">
+fetch("images/js-object/demo.json")
+  .then(response => {
+     if (response.ok) {
+       return console.log(response.status)
+     }
+     throw Error(response.statusText);
+   })
+  .catch(err => console.log(err.message));
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js6-fetch" class="autojslog"></div>
+                                        </small>
+                                        <p><small>
+                                            <b>then()</b> et <b>catch()</b> permettent d'installer des closures
+                                           <br/>
+                                            qui seront appelées si la valeur est résolue ou si il y a une erreur.
+                                        </small></p>
+				</section>
+
+                <section>
+                    <h2>Fetch + JSON</h2>
+                    <p>
+                        Comme <b>fetch()</b>, <b>response.json()</b> est aussi une Promise,
+                       <br/>
+                        qui elle va parser le JSON
+                    </p>
+                    <small><textarea autojslog="js6-fetch-json" rows="10" cols="45">
 fetch("images/js-object/demo.json")
   .then(response => {
      if (response.ok) {
@@ -439,15 +291,16 @@ fetch("images/js-object/demo.json")
    })
   .then(object => console.log(object))
   .catch(err => console.log(err.message));
-                                        </textarea></small>
-                                        <p></p>
-                                        <small>
-                                         <div id="js6-fetch" class="autojslog"></div>
-                                        </small>
-                                        <p><small>
-                                         <b>then()</b> permet de combiner les promesses !
-                                        </small></p>
-				</section>
+                     </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js6-fetch-json" class="autojslog"></div>
+                    </small>
+                    <p><small>
+                        <b>then()</b> permet de combiner les promesses !
+                    </small></p>
+                </section>
+
 				<section>
 				                        <h2>Fetch d'une image</h2>
 					                    <p>
@@ -582,6 +435,185 @@ Promise.race([
                                         </small>
                                         <p></p>
 				</section>
+
+                <section>
+                    <h2>Côté Serveur</h2>
+                </section>
+
+                <section>
+                    <h2>Exemple avec Express.js</h2>
+                    <p>
+                        express.js est une bibliothèque qui permet de créer des points d'entrée (<b>endpoint</b>)
+                        REST en JavaScript.
+                        <br/>
+                        Elle utilise le "serveur" node.js
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Exemple avec Express.js</h2>
+                    <pre><code class="js" data-trim>
+let express = require('express');
+let app = express();
+
+app.get('/users', (req, res) =&gt; {
+  res.send('Hello World!');
+});
+
+app.listen(3000);
+                                </code></pre>
+                    <p><small>
+                        On crée un endpoint sur l'URI /users puis on écoute les clients sur le port TCP 3000
+                    </small></p>
+                </section>
+
+                <section>
+                    <h2>Créer un endpoint</h2>
+                    <p>
+                        on utilise les verbes get, post, put, delete (en minuscules)
+                    </p>
+                    <pre><code class="js" data-trim>
+app.post('/users', (req, res) =&gt; {
+  ...
+})
+                                </code></pre>
+                    <pre><code class="js" data-trim>
+app.put('/users', (req, res) =&gt; {
+  ...
+})
+                                </code></pre>
+                    <pre><code class="js" data-trim>
+app.delete('/users', (req, res) =&gt; {
+  ...
+})
+                                </code></pre>
+                </section>
+
+                <section>
+                    <h2>Extraire des paramètres de l'URI</h2>
+                    <p>
+                        la propriété <b>params</b> de l'objet requête permet d'obtenir les paramètres
+                        nommés extraits de l'URI
+                    </p>
+                    <pre><code class="js" data-trim>
+app.get('/users/:id', (req, res) =&gt; {
+  console.log('user id ' + req.params.id);
+})
+                                </code></pre>
+                    <p><small>
+                        Les paramètres nommés commencent par ':' dans l'URI
+                    </small></p>
+                </section>
+
+                <section>
+                    <h2>Récupérer les cookies dans la requête</h2>
+                    <p>
+                        Les cookies sont stockés par le client et envoyés à chaque requête
+                    </p>
+                    <pre><code class="js" data-trim>
+app.get('/users/:id', (req, res) =&gt; {
+  console.log(req.cookies);
+})
+                                </code></pre>
+                    <p><small>
+                        <b>cookies</b> contient tous les cookies valides pour l'URI
+                        <br/>
+                        <b>cookies</b> est un objet dont les clés sont les noms des cookies
+                    </small></p>
+                </section>
+
+                <section>
+                    <h2>Code de la réponse</h2>
+                    <p>
+                        <b>status</b> permet d'indiquer le code HTTP de la réponse
+                    </p>
+                    <pre><code class="js" data-trim>
+app.get('/users/:id', (req, res) =&gt; {
+  res.status(404).send('Oops');
+})
+                                </code></pre>
+                    <p>
+                        <small><a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">https://en.wikipedia.org/wiki/List_of_HTTP_status_codes</a></small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Envoyer une réponse (texte)</h2>
+                    <p>
+                        <b>send</b> permet d'envoyer une réponse textuelle
+                    </p>
+                    <pre><code class="js" data-trim>
+app.get('/users/:id', (req, res) =&gt; {
+  res.send('OK !');
+})
+                                </code></pre>
+                    <p><small>
+                        Le Content-Length est la longeur de la chaine de caractères
+                        <br/>
+                        Si le <b>status</b> n'est pas positionné, la valeur est 200
+                    </small></p>
+                </section>
+
+                <section>
+                    <h2>Envoyer une réponse (fichier)</h2>
+                    <p>
+                        <b>sendFile</b> permet d'envoyer un fichier en réponse
+                    </p>
+                    <pre><code class="js" data-trim>
+app.get('/users/:id', (req, res) =&gt; {
+  res.sendFile('/absolute/path/to/ok.png');
+})
+                                </code></pre>
+                    <p><small>
+                        Le Content-Type dépend de l'extension
+                        <br/>
+                        le Content-Length est la taille du fichier.
+                    </small></p>
+                </section>
+
+                <section>
+                    <h2>Envoyer une réponse (JSON)</h2>
+                    <p>
+                        <b>json</b> permet d'envoyer une réponse au format JSON
+                    </p>
+                    <pre><code class="js" data-trim>
+app.get('/users/:id', (req, res) =&gt; {
+  let id = req.params.id;
+  res.json('{ user: ' + id + ' }');
+})
+                                </code></pre>
+                    <p><small>
+                        Le Content-Type est <b>application/json</b>
+                    </small></p>
+                </section>
+
+                <section>
+                    <h2>Envoyer des entêtes de réponse</h2>
+                    <p>
+                        Sur l'objet réponse, <b>set</b> et <b>append</b> permettent d'ajouter
+                        des entêtes de réponse.
+                    </p>
+                    <pre><code class="js" data-trim>
+app.get('/users/:id', (req, res) =&gt; {
+  res.set('Set-Cookie', 'foo=bar; Path=/; HttpOnly');
+})
+                                </code></pre>
+                    <p><small>
+                        <b>HttpOnly</b> veut dire pas dans les requêtes AJAX !
+                    </small></p>
+                </section>
+
+                <section>
+                    <h2>Content-Type</h2>
+                    <p>
+                        <b>type</b> permet d'indiquer le Content-Type.
+                    </p>
+                    <pre><code class="js" data-trim>
+app.get('/users/:id', (req, res) =&gt; {
+  res.type('text/html').send('<html><body>Ok</body></html>');
+})
+                                </code></pre>
+                </section>
 			</div>
 
 		</div>
