@@ -106,10 +106,6 @@ if (a == 3) {
                     <small>
                         <div id="js-var" class="autojslog"></div>
                     </small>
-
-                    <p>
-                        Le code marche !
-                    </p>
                 </section>
 
                 <section>
@@ -182,7 +178,7 @@ var a = 3;
                     </p>
                     <p>&nbsp;</p>
                     <small><div class="bad-container"><textarea autojslog="js-var-loop" rows="5" cols="35">
-for(var index = 0; index < 3; index++) {
+for(var index = 0; index < 2; index++) {
   console.log("loop " + index);
 }
 console.log("after " + index);
@@ -201,7 +197,7 @@ console.log("after " + index);
                     </p>
                     <p>&nbsp;</p>
                     <small><textarea autojslog="js-let-loop" rows="7" cols="35">
-for(let index = 0; index < 3; index++) {
+for(let index = 0; index < 2; index++) {
   console.log("loop " + index);
 }  // <-- index meurt ici
 
@@ -225,7 +221,7 @@ console.log("after " + index);
                     <p>&nbsp;</p>
                     <small><textarea autojslog="js-loop-iife" rows="8" cols="35">
 (function() {
-  for(var index = 0; index < 3; index++) {
+  for(var index = 0; index < 2; index++) {
     console.log("loop " + index);
   }
 })();
@@ -279,7 +275,7 @@ a = 42;
                                          </p>
                                          <p>&nbsp;</p>
                                         <small><div class="bad-container"><textarea autojslog="js-block" rows="6" cols="25">
-var a = 3;
+let a = 3;
 if (a == 4)
   console.log('1');
   console.log('2');
@@ -305,7 +301,7 @@ if (a == 4)
                                         <p>&nbsp;</p>
                                         <small><div class="bad-container"><textarea autojslog="js-asi" rows="6" cols="30">
 function f(x) { return x }
-var a = f
+let a = f
 (f(3))
        
 console.log(a)
