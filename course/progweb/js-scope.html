@@ -179,9 +179,9 @@ var a = 3;
                     <p>&nbsp;</p>
                     <small><div class="bad-container"><textarea autojslog="js-var-loop" rows="5" cols="35">
 for(var index = 0; index < 2; index++) {
-  console.log("loop " + index);
+  console.log("loop", index);
 }
-console.log("after " + index);
+console.log("after", index);
                                          </textarea><div class="bad-image"></div></div></small>
                     <p></p>
                     <small>
@@ -198,10 +198,10 @@ console.log("after " + index);
                     <p>&nbsp;</p>
                     <small><textarea autojslog="js-let-loop" rows="7" cols="35">
 for(let index = 0; index < 2; index++) {
-  console.log("loop " + index);
+  console.log("loop", index);
 }  // <-- index meurt ici
 
-console.log("after " + index);
+console.log("after", index);
                     </textarea></small>
                     <p></p>
                     <small>
@@ -221,11 +221,11 @@ console.log("after " + index);
                     <small><textarea autojslog="js-loop-iife" rows="8" cols="35">
 (function() {
   for(var index = 0; index < 2; index++) {
-    console.log("loop " + index);
+    console.log("loop", index);
   }
 })();
 
-console.log("after " + index);
+console.log("after", index);
                     </textarea></small>
                     <p></p>
                     <small>
