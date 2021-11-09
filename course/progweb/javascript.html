@@ -348,11 +348,12 @@ true != false
 				<section>
 					                     <h2>Concaténation de chaînes de caractères</h2>
 					                     <p>
-                                          le + fait la concaténation si l'opérande à gauche ou à droite est une <b>string</b>
+                                          le + fait la concaténation si l'opérande à gauche ou à droite
+                                          est une <b>string</b>
                                          </p>
                                         <p>&nbsp;</p>
-                                        <small><textarea autojs="js-operator5" rows="8" cols="15">
-'hello ' + 'bob'
+                                        <small><textarea autojs="js-concatenation" rows="8" cols="15">
+'hello ' + 'Bob'
 
 'hello' + 3
 3 + 'hello'
@@ -360,8 +361,26 @@ true != false
 'hello' + true
 false + 'hello'
                                         </textarea></small>
-                                        <small><div id="js-operator5"></div></small>
+                                        <small><div id="js-concatenation"></div></small>
 				</section>
+                <section>
+                    <h2>Interpolation de chaînes de caractères</h2>
+                    <p>
+                      Les anti-quotes (`) permet de définir une chaine de caractère
+                      contenant des expressions.
+                     <br/>
+                        ${...} introduit une expression.
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><textarea autojs="js-interpolation" rows="6" cols="20">
+let name = 'Bob';
+`Hello ${name}`
+
+let x = 21;
+`result = ${ x * 2 }`
+                    </textarea></small>
+                    <small><div id="js-interpolation"></div></small>
+                </section>
                 <section>
                     <h1>Contrôle du flux d'instructions</h1>
                 </section>
@@ -376,7 +395,7 @@ let x = -3;
 if (x < 0) {
   console.log("x is negative");
 }
-                                        </textarea></small>
+                    </textarea></small>
                     <p></p>
                     <small>
                         <div id="js-if" class="autojslog"></div>
