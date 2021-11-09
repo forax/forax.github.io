@@ -88,7 +88,7 @@
                                          </small></p>
                                         <small><textarea autojslog="js-function" rows="7" cols="40">
 function hello(name) {
-  console.log("hello " + name + " !");
+  console.log(`hello ${name} !`);
 }
 
 hello("Bob");
@@ -107,7 +107,7 @@ hello("Kathy");
                                          <p>&nbsp;</p>
                                         <small><textarea autojslog="js-function2" rows="7" cols="30">
 function hello(name) {
-  return "hello " + name + " !";
+  return `hello ${name} !`;
 }
 
 console.log(hello("Bob"));
@@ -167,7 +167,7 @@ console.log(factorial(4));
                                          <p>&nbsp;</p>
                                         <small><textarea autojslog="js-function-param" rows="7" cols="40">
 function fun(x, y) {
-  console.log(x + ' et ' + y);
+  console.log(`${x} and ${y}`);
 }
 
 fun('1', '2', '3');    // '3' est ignoré
@@ -290,7 +290,7 @@ console.log(f() + g(1) + h(2, 3));
                     <small><textarea autojslog="js-fun-enclosed" rows="9" cols="30">
 function printHello(s) {
   function hello(v) {
-    return "hello " + v;
+    return `Hello ${v} !`;
   }
   console.log(hello(s));
 }
@@ -313,7 +313,7 @@ printHello("Bob");
                     <small><textarea autojslog="js-fun-enclosed2" rows="9" cols="30">
 function printHello(s) {
   function hello() {
-    return "hello " + s;
+    return `Hello ${s} !`;
   }
   console.log(hello());
 }
@@ -324,6 +324,12 @@ printHello("Bob");
                     <small>
                         <div id="js-fun-enclosed2" class="autojslog"></div>
                     </small>
+                    <p>
+                        <small>
+                            On appel une fonction qui utilise les variables englobantes
+                            une <b>closure</b>.
+                        </small>
+                    </p>
                 </section>
                 <section>
                     <h2>Fonction comme une valeur</h2>
@@ -384,12 +390,12 @@ console.log(c(40, 7));
                                          </p>
                                          <p> </p>
                                         <small><textarea autojslog="js-higher-order" rows="7" cols="30">
-function doIt(f, x) {
+function apply(f, x) {
   console.log(f(x));
 }
 
-doIt(x => x, 12);
-doIt(x => -x, 42);
+apply(x => x, 12);
+apply(x => -x, 42);
                                         </textarea></small>
                                         <p></p>
                                         <small>
