@@ -109,8 +109,13 @@
                                 running = true;
                               }
                               e.innerHTML = "";
-                              var console = { log: function(msg) {
-                                var text = pretty(msg);
+                              var console = { log: function() {
+                                var text = "";
+                                var separator = "";
+                                for(var i = 0; i < arguments.length; i++) {
+                                  text = text + separator + pretty(arguments[i]);
+                                  separator = " ";
+                                }
                                 e.appendChild(document.createTextNode(text));
                                 e.appendChild(document.createElement("br"));
                               } }; 
@@ -208,6 +213,7 @@
                                 if (instr.startsWith("console.") ||
                                     instr.startsWith("return") ||
                                     instr.startsWith("if") ||
+                                    instr.startsWith("else") ||
                                     instr.startsWith("while") ||
                                     instr.startsWith("for") ||
                                     instr.startsWith("}") ||
