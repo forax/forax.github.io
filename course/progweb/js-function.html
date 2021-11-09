@@ -179,6 +179,34 @@ fun('1');              // undefined est ajouté
                                         </small>
 				</section>
                 <section>
+                    <h2>Paramètre optionnel</h2>
+                    <p>
+                        On déclare le paramètre et on regarde
+                       <br/>
+                        si sa valeur est <b>undefined</b>.
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><textarea autojslog="js-function-opt-param" rows="9" cols="45">
+function compute(value, optMultiplier) {
+  let multiplier =
+      optMultiplier === undefined? 1: optMultiplier;
+  return value * multiplier;
+}
+
+console.log(compute(64));
+console.log(compute(32, 2));
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-function-opt-param" class="autojslog"></div>
+                    </small>
+                </section>
+
+
+                <section>
+                    <h2>Fonction anonyme et closure</h2>
+                </section>
+                <section>
                     <h2>Fonction sans nom (anonyme)</h2>
                     <p>
                         Si une fonction fait partie d'une expression,
@@ -251,41 +279,87 @@ console.log(f() + g(1) + h(2, 3));
                         <div id="js-arrow2" class="autojslog"></div>
                     </small>
                 </section>
+
                 <section>
-					                     <h2>Fonction comme une valeur</h2>
-					                     <p>
-                                          Une fonction comme instruction crée une variable
-                                         <br/>
-                                          du même nom que la fonction.
-                                         </p>
-                                        <small><textarea autojslog="js-function-as-value1" rows="5" cols="30">
+                    <h2>Imbrication de fonctions</h2>
+                    <p>
+                        Une fonction peut elle-même contenir une fonction nommée
+                        ou une fonction flèche.
+                    </p>
+                    <p> </p>
+                    <small><textarea autojslog="js-fun-enclosed" rows="9" cols="30">
+function printHello(s) {
+  function hello(v) {
+    return "hello " + v;
+  }
+  console.log(hello(s));
+}
+
+printHello("Bob");
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-fun-enclosed" class="autojslog"></div>
+                    </small>
+                </section>
+                <section>
+                    <h2>Closure</h2>
+                    <p>
+                        Une fonction peut accéder aux variables
+                       <br/>
+                        de la fonction englobante.
+                    </p>
+                    <p> </p>
+                    <small><textarea autojslog="js-fun-enclosed2" rows="9" cols="30">
+function printHello(s) {
+  function hello() {
+    return "hello " + s;
+  }
+  console.log(hello());
+}
+
+printHello("Bob");
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-fun-enclosed2" class="autojslog"></div>
+                    </small>
+                </section>
+                <section>
+                    <h2>Fonction comme une valeur</h2>
+                    <p>
+                        Une fonction comme instruction crée une variable
+                        <br/>
+                        du même nom que la fonction.
+                    </p>
+                    <small><textarea autojslog="js-function-as-value1" rows="5" cols="30">
 function foo(x) {
   return x + 1;
 }
 console.log(foo);
                                         </textarea></small>
-                                        <p></p>
-                                        <small>
-                                            <div id="js-function-as-value1" class="autojslog"></div>
-                                        </small>
-                                        <p>est équivalent à</p>
-                                        <small><textarea autojslog="js-function-as-value2" rows="5" cols="30">
+                    <p></p>
+                    <small>
+                        <div id="js-function-as-value1" class="autojslog"></div>
+                    </small>
+                    <p>est équivalent à</p>
+                    <small><textarea autojslog="js-function-as-value2" rows="5" cols="30">
 let foo = function foo(x) {
   return x + 1;
 }
 console.log(foo);
                                         </textarea></small>
-                                        <p></p>
-                                        <small>
-                                         <div id="js-function-as-value2" class="autojslog"></div>
-                                        </small>
-				</section>
+                    <p></p>
+                    <small>
+                        <div id="js-function-as-value2" class="autojslog"></div>
+                    </small>
+                </section>
                 <section>
                     <h2>Utiliser () sur des valeurs</h2>
                     <p>
-                     On peut utiliser () sur n'importe quelle valeur.
-                    <br/>
-                     Cela ne marche que sur les fonctions.
+                        On peut utiliser () sur n'importe quelle valeur.
+                        <br/>
+                        Cela ne marche que sur les fonctions.
                     </p>
                     <p>&nbsp;</p>
                     <small><textarea autojslog="js-apply" rows="8" cols="40">
@@ -302,6 +376,7 @@ console.log(c(40, 7));
                         <div id="js-apply" class="autojslog"></div>
                     </small>
                 </section>
+
                 <section>
 					                     <h2>Fonction qui prend une fonction en argument</h2>
 					                     <p>
@@ -322,9 +397,9 @@ doIt(x => -x, 42);
                                         </small>
 				</section>
                 <section>
-                    <h2>Fonction qui prend renvoie fonction en argument</h2>
+                    <h2>Fonction qui renvoie une fonction en argument</h2>
                     <p>
-                        Une fonction peut renvoyer fonction.
+                        Une fonction peut renvoyer une fonction.
                     </p>
                     <p> </p>
                     <small><textarea autojslog="js-higher-order2" rows="11" cols="30">
