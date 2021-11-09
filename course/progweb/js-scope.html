@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>JavaScript</title>
+
+		<meta name="description" content="JavaScript">
+		<meta name="author" content="Remi Forax">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+		
+		<!-- autojs result -->
+		<style>
+		  div.autojsresult {
+		    text-align: left;
+		    color: lime;
+		  }
+		  div.autojslog {
+		    color: orange;
+		  }
+		  div.autojserror {
+		    color: red;
+		  }
+		  .bad-container {
+            position: relative;
+            display:inline-block;
+          }
+		  .bad-image:after {
+            content: url(images/js/bad.png);
+            position: absolute;
+            z-index: 9999;
+            right: 5px;
+            bottom: 0px;
+          }
+		</style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+                <section>
+					<h1>JavaScript - Scope et Bizarrerie</h1>
+					<p>
+					  Remi Forax
+					</p>
+				</section>
+                <section>
+                    <h1>Scope</h1>
+                </section>
+                <section>
+                    <h2>Le problèmle de 'var'</h2>
+                    <p>
+                      Historiquement, on utilisait <b>'var'</b> pour déclarer les variables locales
+                      en JavaScript.
+                     <br/>
+                      EcmaScript 6 (2015), introduit <b>'let'</b> et <b>'const'</b>
+                        car <b>'var'</b> est pas <i>scopé</i> comme il faudrait.
+                    </p>
+				</section>
+
+                <section>
+                    <h2>Portées de 'var'</h2>
+                    <p>
+                        La déclaration d'un 'var' est <bold>indépendante</bold> du bloc,
+                        <br/>
+                        les '{' '}' dans lequel elle est déclarée.
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><div class="bad-container"><textarea autojslog="js-var" rows="9" cols="20">
+var a = 3;
+if (a == 3) {
+  var b = 2;
+}
+if (a == 3) {
+  console.log(b);
+}
+                    </textarea><div class="bad-image"></div></div></small>
+                    <p></p>
+                    <small>
+                        <div id="js-var" class="autojslog"></div>
+                    </small>
+
+                    <p>
+                        Le code marche !
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Portées des variables</h2>
+                    <p>
+                        Les 'var' sont déclarées en <bold>début</bold> de fonction.
+                    </p>
+                    <p>&nbsp;</p>
+                    <div style="float:left; margin: 20px">
+                        <small><div class="bad-container"><textarea autojslog="js-var-scope" rows="12" cols="22">
+function f() {
+  var a = 3;
+  if (a == 3) {
+    var b = 2;
+  }
+  if (a == 3) {
+    console.log(b);
+  }
+}
+                                         </textarea><div class="bad-image"></div></div></small>
+                        <p></p>
+                        <small>
+                            <div id="js-var-scope" class="autojslog"></div>
+                        </small>
+                    </div>
+                    <div style="float:right; margin: 20px">
+                        <small><div class="bad-container"><textarea autojslog="js-var-scope2" rows="12" cols="22">
+function f() {
+  var a;
+  var b;
+  a = 3;
+  if (a == 3) {
+    b = 2;
+  }
+  if (a == 3) {
+    console.log(b);
+  }
+}
+                                         </textarea><div class="bad-image"></div></div></small>
+                        <p></p>
+                        <small>
+                            <div id="js-var-scope2" class="autojslog"></div>
+                        </small>
+                    </div>
+                    <p>
+                        Les deux codes sont équivalents !
+                    </p>
+                </section>
+                <section>
+                    <h2>Utilisation avant la déclaration</h2>
+                    <p>
+                        Il est possible de demander la valeur d'une variable qui sera déclarée
+                        plus tard :(
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><div class="bad-container"><textarea autojslog="js-var-decl" rows="4" cols="20">
+console.log(a);
+var a = 3;
+                                         </textarea><div class="bad-image"></div></div></small>
+                    <p></p>
+                    <small>
+                        <div id="js-var-decl" class="autojslog"></div>
+                    </small>
+                </section>
+
+                <section>
+                    <h2>Utilisation avec les boucles</h2>
+                    <p>
+                        On peut aussi accéder au variables de boucle après la boucle.
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><div class="bad-container"><textarea autojslog="js-var-loop" rows="5" cols="35">
+for(var index = 0; index < 3; index++) {
+  console.log("loop " + index);
+}
+console.log("after " + index);
+                                         </textarea><div class="bad-image"></div></div></small>
+                    <p></p>
+                    <small>
+                        <div id="js-var-loop" class="autojslog"></div>
+                    </small>
+                </section>
+
+                <section>
+                    <h2>'let' résout le problème</h2>
+                    <p>
+                        <b>let</b> meurt quand le block meurt, au niveau de l'accolade
+                        fermante du block.
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><textarea autojslog="js-let-loop" rows="7" cols="35">
+for(let index = 0; index < 3; index++) {
+  console.log("loop " + index);
+}  // <-- index meurt ici
+
+console.log("after " + index);
+                    </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-let-loop" class="autojslog"></div>
+                    </small>
+                </section>
+
+                <section>
+                    <h2>Comment on fait si on a pas 'let'</h2>
+                    <p>
+                        Avant EcmaScript 6, on utilise une fonction anonyme intermédiaire.
+                       <br/>
+                        <small>
+                            On doit mettre la fonction entre '(' ')', sinon elle doit être nommée.
+                        </small>
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><textarea autojslog="js-loop-iife" rows="8" cols="35">
+(function() {
+  for(var index = 0; index < 3; index++) {
+    console.log("loop " + index);
+  }
+})();
+
+console.log("after " + index);
+                    </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-loop-iife" class="autojslog"></div>
+                    </small>
+                    <p><small>
+                        Ce <i>pattern</i> s'appel
+                        <a href="https://developer.mozilla.org/en-US/docs/Glossary/IIFE">IIFE</a>
+                        (Immediately Invoked Function Expression)
+                    </small></p>
+                </section>
+
+                <section>
+                    <h2>Et 'const' alors</h2>
+                    <p>
+                        <b>const</b> sert à indiquer une variable que l'on peut initialiser
+                        qu'une seule fois.
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><textarea autojslog="js-const" rows="5" cols="30">
+const a = 13;
+console.log(a);
+
+a = 42;
+                    </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-const" class="autojslog"></div>
+                    </small>
+                    <p><small>
+                        On ne peut pas déclarer un 'const' sans l'initialiser.
+                    </small></p>
+                </section>
+
+				<section>
+					<h2>Les bizarreries de JavaScript</h2>
+				</section>
+				<section>
+					                     <h2>Bloc d'instructions</h2>
+					                     <p>
+                                          Il n'est pas nécessaire de déclarer un bloc de code
+                                         <br/>
+                                          (avec les <b>{</b> et <b>}</b> ) après un if/else/while/for
+                                         <br/>
+                                          s'il n'y a qu'une seule instruction
+                                         </p>
+                                         <p>&nbsp;</p>
+                                        <small><div class="bad-container"><textarea autojslog="js-block" rows="6" cols="25">
+var a = 3;
+if (a == 4)
+  console.log('1');
+  console.log('2');
+                                        </textarea><div class="bad-image"></div></div></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js-block" class="autojslog"></div>
+                                        </small>
+                                        <p class="fragment">
+                                         La bonne pratique est de toujours mettre des blocs
+                                        <br/>
+                                         pour éviter les <a href="https://en.wikipedia.org/wiki/Goto_fail">bugs</a> idiots
+                                        </p>
+				</section>
+				<section>
+					                     <h2>Instruction et ;</h2>
+					                     <p>
+                                          Les règles ASI (Automatic Semicolon Insertion) insère automatiquement les ';'
+                                         </p>
+                                         <p>
+                                          Mais la grammaire de JavaScript est ambigüe
+                                         </p>
+                                        <p>&nbsp;</p>
+                                        <small><div class="bad-container"><textarea autojslog="js-asi" rows="6" cols="30">
+function f(x) { return x }
+var a = f
+(f(3))
+       
+console.log(a)
+                                        </textarea><div class="bad-image"></div></div></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js-asi" class="autojslog"></div>
+                                        </small>
+                                        <p class="fragment">
+                                         La bonne pratique est de mettre des ';'
+                                        </p>
+				</section>
+
+				<section>
+					                     <h2>Variable globale</h2>
+					                     <p>
+                                          Si on déclare une variable sans <b>let</b>/<b>const</b> ou <b>var</b>,
+                                         <br/>
+                                          elle est globale et accessible par tout le monde.
+                                         </p>
+                                        <p>&nbsp;</p>
+                                        <small><div class="bad-container"><textarea autojslog="js-var-scope4" rows="10" cols="35">
+function phoneHome() {
+  console.log(evil);
+}
+function doEvil() {
+  evil = "i'm evil !";  // no let !
+}
+
+doEvil();
+phoneHome();
+                                         </textarea><div class="bad-image"></div></div></small>
+                                         <p></p>
+                                         <small>
+                                          <div id="js-var-scope4" class="autojslog"></div>
+                                         </small>
+                                         <p class="fragment">
+                                          Les globales sont interdites par la convention de Genève !
+                                         </p>
+				</section>
+				<section>
+				                         <h2>Opérations arithmétiques sur des types différents</h2>
+					                     <p>
+                                          Effectuer une opération arithmétique sur des valeurs de type différents
+                                          donne des résultats surprenants
+                                         </p>
+                                        <p>&nbsp;</p>
+                                        <small><div class="bad-container"><textarea autojs="js-wat" rows="7" cols="25">
+"foo" + 1
+"foo" - 1
+
+null > 0
+null == 0
+null >= 0
+                                         </textarea><div class="bad-image"></div></div></small>
+                                         <small>
+                                          <div id="js-wat"></div>
+                                         </small>
+                                         <p><small>
+                                          <a href="https://www.destroyallsoftware.com/talks/wat">Wat ! de Gary Bernhardt</a>
+                                         </small></p>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                                        { src: 'plugin/autoeval/autoeval.js', async: true },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

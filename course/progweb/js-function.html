@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>JavaScript</title>
+
+		<meta name="description" content="JavaScript">
+		<meta name="author" content="Remi Forax">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+		
+		<!-- autojs result -->
+		<style>
+		  div.autojsresult {
+		    text-align: left;
+		    color: lime;
+		  }
+		  div.autojslog {
+		    color: orange;
+		  }
+		  div.autojserror {
+		    color: red;
+		  }
+		  .bad-container {
+            position: relative;
+            display:inline-block;
+          }
+		  .bad-image:after {
+            content: url(images/js/bad.png);
+            position: absolute;
+            z-index: 9999;
+            right: 5px;
+            bottom: 0px;
+          }
+		</style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+                <section>
+					<h1>JavaScript - Function</h1>
+					<p>
+					  Remi Forax
+					</p>
+				</section>
+
+                <section>
+                    <h1>Les fonctions</h1>
+                </section>
+
+				<section>
+					                     <h2>Fonction</h2>
+					                     <p>
+                                          Pour éviter de dupliquer le code,
+                                         <br/>
+                                          on déclare des fonctions (avec le mot clé <b>function</b>).
+                                         </p>
+                                         <p><small>
+                                          <b>name</b> est un paramètre qui prend successivement les valeurs "bob" puis "kathy"
+                                         </small></p>
+                                        <small><textarea autojslog="js-function" rows="7" cols="40">
+function hello(name) {
+  console.log("hello " + name + " !");
+}
+
+hello("bob");
+hello("kathy");
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js-function" class="autojslog"></div>
+                                        </small>
+				</section>
+				<section>
+					                     <h2>Fonction et valeur de retour</h2>
+					                     <p>
+                                          Une fonction peut avoir une valeur de retour que l'on renvoie avec le mot-clef <b>return</b>.
+                                         </p>
+                                         <p>&nbsp;</p>
+                                        <small><textarea autojslog="js-function2" rows="7" cols="30">
+function hello(name) {
+  return "hello " + name + " !";
+}
+
+console.log(hello("bob"));
+console.log(hello("kathy"));
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js-function2" class="autojslog"></div>
+                                        </small>
+				</section>
+				<section>
+					                     <h2>Fonction et return</h2>
+					                     <p>
+                                          Si on omet le <b>return</b>, la valeur de retour est <b>undefined</b>.
+                                         </p>
+                                         <p>&nbsp;</p>
+                                        <small><textarea autojslog="js-function3" rows="7" cols="30">
+function addOne(x) {
+  x + 1;
+  // oops !
+}
+
+console.log(addOne(3));
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js-function3" class="autojslog"></div>
+                                        </small>
+				</section>
+                <section>
+                    <h2>Fonction récursive</h2>
+                    <p>
+                        Les fonctions en JavaScript peuvent être récursives.
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><textarea autojslog="js-fun-rec" rows="9" cols="30">
+function factorial(x) {
+  if (x == 1) {
+    return 1;
+  }
+  return x * factorial(x - 1);
+}
+
+console.log(factorial(3));
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-fun-rec" class="autojslog"></div>
+                    </small>
+                </section>
+                <section>
+					                     <h2>Paramètres et arguments</h2>
+					                     <p>
+                                    Lors de l'appel, si il y a trop d'arguments, ils seront ignorés,
+                                    si il y a pas assez d'arguments, les paramètres auront la valeur <b>undefined</b>
+                                         </p>
+                                         <p>&nbsp;</p>
+                                        <small><textarea autojslog="js-function-param" rows="7" cols="40">
+function fun(x, y) {
+  console.log(x + ' et ' + y);
+}
+
+fun('1', '2', '3');    // '3' est ignoré
+fun('1');              // undefined est ajouté
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js-function-param" class="autojslog"></div>
+                                        </small>
+				</section>
+                <section>
+                    <h2>Fonction sans nom (anonyme)</h2>
+                    <p>
+                        Si une fonction fait partie d'une expression,
+                       <br/>
+                        elle n'a pas nécessairement un nom
+                    </p>
+                    <small><textarea autojslog="js-anonymous1" rows="5" cols="30">
+let a = function(x) {
+  return x + 1;
+};
+console.log(a);
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-anonymous1" class="autojslog"></div>
+                    </small>
+                    <p></p>
+                    <small><textarea autojslog="js-anonymous2" rows="4" cols="30">
+function(x) {
+  return x + 1;
+}
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-anonymous2" class="autojslog"></div>
+                    </small>
+                </section>
+                <section>
+                    <h2>Fonction flèche</h2>
+                    <p>
+                        Pour les fonctions anonymes, on peut utiliser
+                        les syntaxes
+                       <br/>
+                        (arguments) => expression
+                       <br/>
+                        (arguments) => { instructions }
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><textarea autojslog="js-arrow" rows="6" cols="40">
+let a = function(a, b) { return a + b; };
+console.log(a(40, 7));
+
+let b = (a, b) => a + b;
+console.log(b(40, 7));
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-arrow" class="autojslog"></div>
+                    </small>
+                </section>
+                <section>
+                    <h2>Function flèche (2)</h2>
+                    <p>
+                        Si on a un seul argument, on peut omettre les parenthèses
+                       <br/>
+                        argument => expression
+                       <br/>
+                        argument => { instructions }
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><textarea autojslog="js-arrow2" rows="6" cols="40">
+let f = () => 7;
+let g = x => x + 7;
+let h = (u, v) => u * v + 7;
+
+console.log(f() + g(1) + h(2, 3));
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-arrow2" class="autojslog"></div>
+                    </small>
+                </section>
+                <section>
+					                     <h2>Fonction comme une valeur</h2>
+					                     <p>
+                                          Une fonction comme instruction crée une variable
+                                         <br/>
+                                          du même nom que la fonction.
+                                         </p>
+                                        <small><textarea autojslog="js-function-as-value1" rows="5" cols="30">
+function foo(x) {
+  return x + 1;
+}
+console.log(foo);
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                            <div id="js-function-as-value1" class="autojslog"></div>
+                                        </small>
+                                        <p>est équivalent à</p>
+                                        <small><textarea autojslog="js-function-as-value2" rows="5" cols="30">
+let foo = function foo(x) {
+  return x + 1;
+}
+console.log(foo);
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js-function-as-value2" class="autojslog"></div>
+                                        </small>
+				</section>
+                <section>
+                    <h2>Utiliser () sur des valeurs</h2>
+                    <p>
+                     On peut utiliser () sur n'importe quelle valeur.
+                    <br/>
+                     Cela ne marche que sur les fonctions.
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><textarea autojslog="js-apply" rows="8" cols="40">
+let a = (a, b) => a + b;
+let b = function(a, b) { return a + b; }
+console.log(a(40, 7));
+console.log(b(40, 7));
+
+let c = 3;
+console.log(c(40, 7));
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-apply" class="autojslog"></div>
+                    </small>
+                </section>
+                <section>
+					                     <h2>Fonction qui prend une fonction en argument</h2>
+					                     <p>
+                                          Une fonction peut prendre une fonction en paramètre
+                                         </p>
+                                         <p> </p>
+                                        <small><textarea autojslog="js-higher-order" rows="7" cols="30">
+function doIt(f, x) {
+  console.log(f(x));
+}
+
+doIt(x => x, 12);
+doIt(x => -x, 42);
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js-higher-order" class="autojslog"></div>
+                                        </small>
+				</section>
+                <section>
+                    <h2>Fonction qui prend renvoie fonction en argument</h2>
+                    <p>
+                        Une fonction peut renvoyer fonction.
+                    </p>
+                    <p> </p>
+                    <small><textarea autojslog="js-higher-order2" rows="11" cols="30">
+function print(allowPrinting) {
+  if (allowPrinting) {
+    return v => console.log(v);
+  } else {
+    return v => {};
+  }
+}
+
+print(true)(42);
+print(false)(42);
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-higher-order2" class="autojslog"></div>
+                    </small>
+                </section>
+                
+				<section>
+					<h2>Fonctions prédéfinies</h2>
+				</section>
+				<section>
+					                     <h2>String vers number</h2>
+					                     <p>
+                                          <b>parseInt()</b> et <b>parseFloat()</b> permettent la conversion de String vers number,
+                                          <b>toString()</b> fait le contraire.
+                                         </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojs="js-math3" rows="9" cols="25">
+parseInt("123")
+parseFloat("123.5")
+
+var v = 78;
+v.toString()
+
+parseInt("hello")
+parseInt("21.3")
+                                         </textarea></small>
+                                         <small>
+                                          <div id="js-math3"></div>
+                                         </small>
+                                         <p><small>
+                                          toString() est une fonction que l'on applique sur une valeur, on appelle cela une méthode
+                                         </small></p>
+				</section>
+				<section>
+					                     <h2>Math</h2>
+					                     <p>
+                                          <b>Math</b> contient les fonctions pour le calcul flottant
+                                         </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojs="js-math" rows="9" cols="30">
+Math.max(3, 7)
+Math.min(3, 7)
+Math.floor(3.6)
+Math.abs(-7)
+
+Math.PI
+Math.cos(Math.PI)
+Math.sin(Math.PI / 2)
+                                         </textarea></small>
+                                         <small>
+                                          <div id="js-math"></div>
+                                         </small>
+                                         <p><small>
+                                          <b>Math</b> permet de ranger les fonctions en évitant qu'elles polluent l'environement global
+                                         </small></p>
+				</section>
+				<section>
+					                     <h2>Random</h2>
+					                     <p>
+                                          <b>Math.random()</b> permet d'obtenir une valeur pseudo-aléatoire entre [0, 1[
+                                         </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojs="js-math2" rows="5" cols="30">
+Math.random()
+Math.random()
+Math.random() * 10
+Math.floor(Math.random() * 10)
+                                         </textarea></small>
+                                         <small>
+                                          <div id="js-math2"></div>
+                                         </small>
+                                         <p></p>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                                        { src: 'plugin/autoeval/autoeval.js', async: true },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
