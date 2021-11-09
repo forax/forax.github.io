@@ -314,6 +314,34 @@ console.log(a)
                                         </p>
 				</section>
 
+                <section>
+                    <h2>Closure et Variables</h2>
+                    <p>
+                        Une fonction peut <b>modifier</b> les variables
+                        <br/>
+                        de la function englobante (ahhh).
+                    </p>
+                    <p> </p>
+                    <small><textarea autojslog="js-fun-enclosed3" rows="9" cols="30">
+let x = 12;
+
+function changeX() {
+  x = 42;
+}
+
+changeX();
+console.log(x);
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-fun-enclosed3" class="autojslog"></div>
+                    </small>
+                    <p class="fragment">
+                        Cela rend le code dure à lire !
+                       <br/>
+                        Solution utiliser 'const'.
+                    </p>
+                </section>
 				<section>
 					                     <h2>Variable globale</h2>
 					                     <p>
