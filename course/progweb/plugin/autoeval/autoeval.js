@@ -133,7 +133,8 @@
                           })(element, e, once);
                         }
 
-                        // evaluate a JS script that draw on a canvas
+                        // evaluate a JS script that draw on a canvas,
+                        // create a fake window object
                         if (element.attributes.autojscanvas != undefined) {
                           var canvasId = element.attributes.autojscanvas.value;
                           var canvas = document.getElementById(canvasId);
@@ -144,24 +145,46 @@
                           var once = element.attributes['once'] != undefined; 
                           //console.log("found " + canvasId + " " + element + " " + once);
 
+                          var oldWindow = window;
                           (function(element, canvas, once) {
                             var running = false;
+                            var cleanups = [];
                             var listener = function(isKeyListener, event) {
                               var animations = {};
                               if (once) {
                                 //console.log("running " + running);
-                                if(running) {
-                                  //console.log("snippet for " + canvasId + " already running");
-                                  //if (isKeyListener) {
-                                  //   Objetcts.key(animations).forEach(function(key) { animations[key](); });
-                                     
-                                    
-                                  //} else {
-                                    return;
-                                  //}
+                                if (running) {
+                                  return;
                                 }
                                 running = true;  
                               }
+
+                              // cleanup
+                              cleanups.forEach(cleanup => cleanup());
+                              cleanups = [];
+
+                              // create fake window object
+                              var window = {
+                                "addEventListener": function(type, callback, rest) {
+                                  //console.log("addEventListener");
+                                  oldWindow.addEventListener(type, callback, rest);
+                                  cleanups.push(function() { oldWindow.removeEventListener(type, callback, rest); });
+                                },
+                                "setTimeout": function(callback, duration) {
+                                  //console.log("setTimeout");
+                                  var timeoutId = oldWindow.setTimeout(callback, duration);
+                                  cleanups.push(function() { oldWindow.clearTimeout(timeoutId); });
+                                },
+                                "setInterval": function(callback, duration) {
+                                  //console.log("setInterval");
+                                  var intervalId = oldWindow.setInterval(callback, duration);
+                                  cleanups.push(function() { oldWindow.clearInterval(intervalId); });
+                                },
+                                "requestAnimationFrame": function(callback) {
+                                  //console.log("requestAnimationFrame");
+                                  oldWindow.requestAnimationFrame(callback);
+                                },
+                              };
 
                               var context = canvas.getContext("2d");
                               context.clearRect(0, 0, canvas.width, canvas.height);
