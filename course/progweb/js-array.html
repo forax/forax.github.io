@@ -67,14 +67,11 @@
 			<div class="slides">
                                 <section>
 					<h1>JavaScript</h1>
-                                       <br/>
-                                        <h2>Tableaux &amp; prog fonctionnelle</h2>
+                   <br/>
+                    <h2>Les Tableaux</h2>
 					<p>
 					  Remi Forax
 					</p>
-				</section>
-				<section>
-				                        <h2>Les Tableaux</h2>
 				</section>
 				<section>
                                         <h2>Array ?</h2>
@@ -127,7 +124,7 @@
                                         </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojs="js-array-index" rows="8" cols="20">
-var array = [1, 2, 3];
+let array = [1, 2, 3];
 array.length
 array[0]
 array[2]
@@ -147,7 +144,7 @@ array[-1]
                                         </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojs="js-array-index2" rows="6" cols="30">
-var array = ['a', 'b', 'c'];
+let array = ['a', 'b', 'c'];
 array[0]
 
 array[1] = 'bb8';
@@ -166,8 +163,8 @@ array
                                         <p>&nbsp;</p>
                                         <small><textarea autojslog="js-array-loop" rows="9" cols="45">
 function printAll(array) {
-  for(var i = 0; i < array.length; i++) {
-    var element = array[i];
+  for(let i = 0; i < array.length; i++) {
+    let element = array[i];
     console.log(element);
   }
 }
@@ -187,7 +184,7 @@ printAll([42, true]);
                                         <p>&nbsp;</p>
                                         <small><textarea autojslog="js-array-loop3" rows="13" cols="45">
 function indexOf(array, value) {
-  for(var i = 0; i < array.length; i++) {
+  for(let i = 0; i < array.length; i++) {
     if (array[i] == value) {
       return i;
     }
@@ -195,7 +192,7 @@ function indexOf(array, value) {
   return -1;
 }
 
-var array = ['h', 'e', 'l', 'l', 'o'];
+let array = ['h', 'e', 'l', 'l', 'o'];
 console.log(indexOf(array, 'e'));
 console.log(indexOf(array, 'z'));
                                         </textarea></small>
@@ -210,10 +207,11 @@ console.log(indexOf(array, 'z'));
                                          Ne <b style="color: red">jamais</b> sortir d'une boucle en changeant un drapeau
                                         </p>
                                         <p>&nbsp;</p>
-                                        <small><div class="bad-container"><textarea autojslog="js-array-loop4" rows="13" cols="45">
+                                        <small><div class="bad-container"><textarea autojslog="js-array-loop4" rows="14" cols="45">
 function indexOf(array, value) {
-  var notFound = true;
-  for(var i = 0; notFound && i < array.length; i++) {
+  let notFound = true;
+  let i = 0;
+  for(; notFound && i < array.length; i++) {
     if (array[i] == value) {
       notFound = false;
     }
@@ -221,7 +219,7 @@ function indexOf(array, value) {
   if (notFound) { return -1; } else { return i; }
 }
 
-var array = ['h', 'e', 'l', 'l', 'o'];
+let array = ['h', 'e', 'l', 'l', 'o'];
 console.log(indexOf(array, 'e'));
                                         </textarea><div class="bad-image"></div></div></small>
                                         <p></p>
@@ -239,7 +237,7 @@ console.log(indexOf(array, 'e'));
                                         </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojs="js-array-indexof" rows="7" cols="35">
-var array = ['h', 'e', 'l', 'l', 'o'];
+let array = ['h', 'e', 'l', 'l', 'o'];
 array.indexOf('l')
 array.indexOf('z')
 
@@ -258,7 +256,7 @@ array.lastIndexOf('z')
                                         </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojs="js-array-join" rows="4" cols="30">
-var array = [1, 2, 5, 8];
+let array = [1, 2, 5, 8];
 array.join(",")
 array.join(" ")
                                         </textarea></small>
@@ -276,7 +274,7 @@ array.join(" ")
                                         </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojs="js-array-split" rows="4" cols="30">
-var text = "1, 2, 5, 8";
+let text = "1, 2, 5, 8";
 text.split(",")
 text.split(", ") 
                                         </textarea></small>
@@ -293,14 +291,14 @@ text.split(", ")
                                         <p>&nbsp;</p>
                                         <small><textarea autojslog="js-array-dyn" rows="10" cols="35">
 function range(start, end) {
-  var array = [];
-  for(var i = start; i < end; i++) {
+  let array = [];
+  for(let i = start; i < end; i++) {
     array.push(i);
   }
   return array;
 }
 
-console.log(range(2, 5));
+console.log(range(2, 6));
                                         </textarea></small>
                                         <p></p>
                                         <small>
@@ -318,11 +316,11 @@ console.log(range(2, 5));
                                                style="display: inline-block; vertical-align: top; margin: 0px 40px 0px 0px;"/>
                                         <div style="display: inline-block; vertical-align: top;">
                                          <small><textarea autojslog="js-array-stack" rows="8" cols="35">
-var stack = [];
+let stack = [];
 stack.push('a');
 stack.push('b');
 stack.push('c');
-var value = stack.pop();
+let value = stack.pop();
 console.log(value);
 console.log(stack);
                                          </textarea></small>
@@ -350,7 +348,7 @@ console.log(stack);
                                                style="display: inline-block; vertical-align: top; margin: 0px 40px 0px 0px;"/>
                                         <div style="display: inline-block; vertical-align: top;">
                                          <small><textarea autojs="js-array-shift" rows="7" cols="30">
-var array = ['a', 'b', 'c', 'd'];
+let array = ['a', 'b', 'c', 'd'];
 array.shift()
 array
 
@@ -370,7 +368,7 @@ array
                                         </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojs="js-array-slice" rows="5" cols="35">
-var array = ['a', 'b', 'c', 'd', 'e'];
+let array = ['a', 'b', 'c', 'd', 'e'];
 array.slice()
 array.slice(1)
 array.slice(2, 4)
@@ -389,11 +387,11 @@ array.slice(2, 4)
                                         </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojslog="js-array-splice" rows="8" cols="40">
-var array1 = ['a', 'b', 'c', 'd', 'e'];
+let array1 = ['a', 'b', 'c', 'd', 'e'];
 array1.splice(1, 2);
 console.log(array1);
 
-var array2 = ['a', 'b', 'c', 'd', 'e'];
+let array2 = ['a', 'b', 'c', 'd', 'e'];
 array2.splice(2, 0, 'c3po', 'd2r2');
 console.log(array2);
                                         </textarea></small>
@@ -406,29 +404,7 @@ console.log(array2);
                                         </small></p>
 				                </section>
 				                
-				                <section>
-				                        <h2>Programmation fonctionnelle</h2>
-				                </section>
-				                <section>
-					<h2>Functional Programming ?</h2>
-					<blockquote cite="https://en.wikipedia.org/wiki/Functional_programming">
-					  &ldquo;In computer science, functional programming is a programming paradigm that treats computation as the evaluation of mathematical functions
-					  and avoids changing-state and mutable data (side effects).
-					</blockquote>
-                                        <p align="right">
-                                         source: Wikipedia.org - <a href="https://en.wikipedia.org/wiki/Functional_programming">Functional Programming</a>
-                                        </p>
-				</section>
-				<section>
-					<h2>Programmation Fonctionnel ?</h2>
-					<blockquote cite="https://en.wikipedia.org/wiki/Functional_programming">
-					  &ldquo;En informatique, la programmation fonctionnelle est un paradigme de programmation qui traite chaque calcul comme l'évaluation
-					  de fonctions mathématiques et évite les changements d'état et les données mutables (effets de bord).&rdquo;
-					</blockquote>
-                                        <p align="right">
-                                         source: Wikipedia.org - <a href="https://en.wikipedia.org/wiki/Functional_programming">Programmation fonctionnelle</a>
-                                        </p>
-				</section>
+
 				<section>
 					                    <h2>Trier un tableau</h2>
 					                    <p>
@@ -436,7 +412,7 @@ console.log(array2);
                                         </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojs="js-array-sort" rows="5" cols="35">
-var array = ['vera', 'bob', 'elena'];
+let array = ['vera', 'bob', 'elena'];
 
 array.sort();
 array
@@ -454,7 +430,7 @@ array
                                         </p>
                                         <p>&nbsp;</p>
                                         <small><div class="bad-container"><textarea autojs="js-array-sort2" rows="6" cols="35">
-var array = [1, 10, 2, 100];
+let array = [1, 10, 2, 100];
 
 array.sort();
 array
@@ -476,7 +452,7 @@ function cmp(v1, v2) {
   return v1 - v2;
 }
 
-var array = [1, 10, 2, 100];
+let array = [1, 10, 2, 100];
 array.sort(cmp);
 console.log(array);
                                         </textarea></small>
@@ -497,7 +473,7 @@ function cmp(v1, v2) {
   return v2 - v1;
 }
 
-var array = [1, 10, 2, 100];
+let array = [1, 10, 2, 100];
 array.sort(cmp);
 console.log(array);
                                         </textarea></small>
@@ -508,302 +484,24 @@ console.log(array);
 				</section>
 				
 				<section>
-					                    <h2>Fonction anonyme</h2>
+					                    <h2>Rappel: Fonction anonyme</h2>
 					                    <p>
-                                         JavaScript possède une notation
+                                         JavaScript possède la notation '=>'
                                         <br/> 
-                                         pour les <b>fonctions anonymes</b>
+                                         pour déclarer des <b>fonctions anonymes</b>
                                         </p>
                                         <p>&nbsp;</p>
-                                        <small><textarea autojslog="js-array-anonfun" rows="8" cols="30">
-var cmp = function(v1, v2) {
-  return v1 - v2;
-}
-
+                                        <small><textarea autojslog="js-array-anonymous-fun" rows="4" cols="30">
 var array = [1, 10, 2, 100];
-array.sort(cmp);
+array.sort((v1, v2) => v1 - v2);
 console.log(array);
                                         </textarea></small>
                                         <p></p>
                                         <small>
-                                          <div id="js-array-anonfun" class="autojslog"></div>
+                                          <div id="js-array-anonymous-fun" class="autojslog"></div>
                                         </small>
 				</section>
-				<section>
-					                    <h2>Fonction anonyme (2)</h2>
-					                    <p>
-                                         que l'on peut passer directement en argument
-                                        </p>
-                                        <p>&nbsp;</p>
-                                        <small><textarea autojslog="js-array-anonfun2" rows="6" cols="30">
-var array = [1, 10, 2, 100];
-array.sort(function(v1, v2) {
-  return v1 - v2;
-});
-console.log(array);
-                                        </textarea></small>
-                                        <p></p>
-                                        <small>
-                                          <div id="js-array-anonfun2" class="autojslog"></div>
-                                        </small>
-				</section>
-				<section>
-					                    <h2>ForEach</h2>
-					                    <p>
-                                         <b>forEach(fun)</b> applique la même fonction à chaque valeur
-                                        <br/>
-                                         <small>comme une boucle sans écrire la boucle !</small>
-                                        </p>
-                                        <p>&nbsp;</p>
-                                        <small><textarea autojslog="js-array-forEach" rows="5" cols="35">
-var array = [1, 2, 5, 6, 7];
-array.forEach(function(v) {
-  console.log(v);
-});
-                                        </textarea></small>
-                                        <p></p>
-                                        <small>
-                                          <div id="js-array-forEach" class="autojslog"></div>
-                                        </small>
-				</section>
-				<section>
-					                    <h2>Map</h2>
-					                    <p>
-                                         <b>map(fun)</b> applique la même fonction à chaque valeur
-                                         dans un nouveau tableau
-                                        </p>
-                                        <p>&nbsp;</p>
-                                        <small><textarea autojslog="js-array-map" rows="6" cols="35">
-var array = [1, 2, 5, 6, 7];
-var array2 = array.map(function(v) {
-  return 2 * v;
-});
-console.log(array2);
-                                        </textarea></small>
-                                        <p></p>
-                                        <small>
-                                          <div id="js-array-map" class="autojslog"></div>
-                                        </small>
-				</section>
-				<section>
-					                    <h2>Filter</h2>
-					                    <p>
-                                         <b>filter(fun)</b> permet d'obtenir un tableau de valeurs respectant une propriété
-                                        </p>
-                                        <p>&nbsp;</p>
-                                        <small><textarea autojslog="js-array-filter" rows="6" cols="35">
-var array = [1, 2, 5, 6, 7];
-var array2 = array.filter(function(v) {
-  return v % 2 == 0;
-});
-console.log(array2);
-                                        </textarea></small>
-                                        <p></p>
-                                        <small>
-                                          <div id="js-array-filter" class="autojslog"></div>
-                                        </small>
-				</section>
-				<section>
-					                    <h2>some/every</h2>
-					                    <p>
-                                         <b>some</b> renvoie vrai dès qu'une propriété est vérifiée
-                                        <br/>
-                                         <b>every</b> demande à ce que la propriété soit vraie sur toutes les valeurs
-                                        </p>
-                                        <p>&nbsp;</p>
-                                        <small><textarea autojslog="js-array-some-every" rows="8" cols="45">
-function greaterThan10(v) {
-  return v >= 10;
-}
 
-var array = [12, 32, 4];
-console.log(array.some(greaterThan10));
-console.log(array.every(greaterThan10));
-                                        </textarea></small>
-                                        <p></p>
-                                        <small>
-                                          <div id="js-array-some-every" class="autojslog"></div>
-                                        </small>
-				</section>
-				<section>
-					                    <h2>et les index ?</h2>
-					                    <p>
-                                   Les méthodes <b>forEach</b>, <b>map</b>, <b>filter</b>, <b>some</b>, <b>every</b>
-                                   prennent une fonction avec 2 arguments (<b>élément</b>, <b>index</b>) en paramètres
-                                        </p>
-                                        <p>&nbsp;</p>
-                                        <small><textarea autojs="js-array-fun-index" rows="7" cols="55">
-var array = [1, 7, 14, 55];
-
-array.map(function(e, index) { return index; })
-array.filter(function(e, index) { return index >= 2; })
-array.some(function(e, index) { return index >= 2 && e <= 15; })
-array.every(function(e, index) { return index >= 2 && e <= 15; })
-                                        </textarea></small>
-                                        <small><div id="js-array-fun-index"></div></small>
-                                        <p><small>En JavaScript, une fonction peut prendre moins de paramètres que d'arguments</small></p>
-				</section>
-				<section>
-					                    <h2>Reduce</h2>
-					                    <p>
-                                         <b>reduce(fun, init)</b> résume par une valeur en appliquant une fonction d'agrégation
-                                        </p>
-                                        <p>&nbsp;</p>
-                                        <small><textarea autojslog="js-array-reduce" rows="6" cols="35">
-var array = [1, 2, 5, 6, 7];
-var sum = array.reduce(function(acc, v) {
-  return acc + v;
-}, 0);
-console.log(sum);
-                                        </textarea></small>
-                                        <p></p>
-                                        <small>
-                                          <div id="js-array-reduce" class="autojslog"></div>
-                                        </small>
-				</section>
-				<section>
-					                    <h2>filter/map/reduce</h2>
-					                    <p>
-                                         Il est possible de combiner les opérations
-                                        <br/>
-                                         par ex., compter le nombre de mots commençant par 'b'
-                                        </p>
-                                        <p>&nbsp;</p>
-                                        <small><textarea autojslog="js-array-fam" rows="10" cols="35">
-var array = ['foo', 'bar', 'baz'];
-var count = array.filter(function(s) {
-  return s.charAt(0)== 'b';
-}).map(function(s) {
-  return 1;
-}).reduce(function(v1, v2) {
-  return v1 + v2;
-}, 0);
-console.log(count);
-                                        </textarea></small>
-                                        <p></p>
-                                        <small>
-                                          <div id="js-array-fam" class="autojslog"></div>
-                                        </small>
-				</section>
-				
-				<section>
-					                    <h2>closure</h2>
-					                    <p>
-                                         Une fonction anonyme a accès aux variables de la fonction englobante
-                                        </p>
-                                        <p>&nbsp;</p>
-                                        <small><textarea autojslog="js-array-closure" rows="11" cols="45">
-function greaterThan(max) {
-  var fun = function(v)  {
-    return v >= max;           // on accède à max
-  };
-  return fun;
-}
-
-var array = [12, 32, 4];
-console.log(array.some(greaterThan(10)));
-console.log(array.every(greaterThan(10)));
-                                        </textarea></small>
-                                        <p></p>
-                                        <small>
-                                          <div id="js-array-closure" class="autojslog"></div>
-                                        </small>
-				</section>
-				<section>
-					                    <h2>closure (2)</h2>
-					                    <p>
-                                         que l'on peut aussi écrire comme cela
-                                        </p>
-                                        <p>&nbsp;</p>
-                                        <small><textarea autojslog="js-array-closure2" rows="10" cols="45">
-function greaterThan(max) {
-  return function(v)  {
-    return v >= max;           // on accède à max
-  };
-}
-
-var array = [12, 32, 4];
-console.log(array.some(greaterThan(10)));
-console.log(array.every(greaterThan(10)));
-                                        </textarea></small>
-                                        <p></p>
-                                        <small>
-                                          <div id="js-array-closure2" class="autojslog"></div>
-                                        </small>
-				</section>
-				<section>
-					                    <h2>closure et boucle</h2>
-					                    <p>
-                                         Mettre une closure dans une boucle est <b style="color: red">interdit</b> !
-                                        </p>
-                                        <p>&nbsp;</p>
-                                        <small><div class="bad-container"><textarea autojslog="js-array-closure-loop" rows="8" cols="45">
-var array = [];
-for(var i = 0; i < 3; i++) {
-  array.push(function() {
-    console.log(i);
-  });
-}
-array.forEach(function(f) { f(); });
-                                        </textarea><div class="bad-image"></div></div></small>
-                                        <p></p>
-                                        <small>
-                                          <div id="js-array-closure-loop" class="autojslog"></div>
-                                        </small>
-                                        <p><small>
-                                         La même variable <b>i</b> est utilisée par toutes les closures
-                                        </small></p>
-				</section>
-				<section>
-					                    <h2>closure et boucle (2)</h2>
-					                    <p>
-                                         On utilise une fonction intermédiaire !
-                                        </p>
-                                        <small><textarea autojslog="js-array-closure-loop2" rows="12" cols="45">
-function pushToArray(array, i) {
-  array.push(function() {
-    console.log(i);
-  });
-}
-
-var array = [];
-for(var i = 0; i < 3; i++) {
-  pushToArray(array, i);
-}
-array.forEach(function(f) { f(); });
-                                        </textarea></small>
-                                        <p></p>
-                                        <small>
-                                          <div id="js-array-closure-loop2" class="autojslog"></div>
-                                        </small>
-                                        <p>
-                                         <small>Chaque appel à <b>pushToArray</b> crée une nouvelle variable <b>i</b></small>
-                                        </p>
-				</section>
-				<section>
-					                    <h2><a href="https://en.wikipedia.org/wiki/Immediately-invoked_function_expression">Immediately Invoked Function Expression</a> (IIFE)</h2>
-					                    <p>
-                                         ou encore une closure en tant que fonction intermédiaire
-                                        </p>
-                                        <small><textarea autojslog="js-array-closure-loop3" rows="10" cols="45">
-var array = [];
-for(var i = 0; i < 3; i++) {
-  (function(i) {        // on cree un nouveau scope
-    array.push(function() {
-      console.log(i);
-    });
-  })(i);   // on envoie i
-}
-array.forEach(function(f) { f(); });
-                                        </textarea></small>
-                                        <p></p>
-                                        <small>
-                                          <div id="js-array-closure-loop3" class="autojslog"></div>
-                                        </small>
-                                        <p>
-                                         <small>La closure crée une nouvelle variable <b>i</b></small>
-                                        </p>
-				</section>
 			</div>
 
 		</div>

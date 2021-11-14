@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>JavaScript - Array and functional programming</title>
+
+		<meta name="description" content="javascript, array, functional programming">
+		<meta name="author" content="Remi Forax">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+		
+		<!-- autojs result -->
+		<style>
+		  div.autojsresult {
+		    text-align: left;
+		    color: lime;
+		  }
+		  div.autojslog {
+		    color: orange;
+		  }
+		  div.autojserror {
+		    color: red;
+		  }
+		  .bad-container {
+            position: relative;
+            display:inline-block;
+          }
+		  .bad-image:after {
+            content: url(images/js/bad.png);
+            position: absolute;
+            z-index: 9999;
+            right: 5px;
+            bottom: 0px;
+          }
+		</style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+                <section>
+					<h1>JavaScript</h1>
+                   <br/>
+                     <h2>Programmation fonctionnelle</h2>
+					<p>
+					  Remi Forax
+					</p>
+				</section>
+
+
+                <section>
+                    <h2>Functional Programming ?</h2>
+                    <blockquote cite="https://en.wikipedia.org/wiki/Functional_programming">
+                        &ldquo;In computer science, functional programming is a programming paradigm that treats computation as the evaluation of mathematical functions
+                        and avoids changing-state and mutable data (side effects).
+                    </blockquote>
+                    <p align="right">
+                        source: Wikipedia.org - <a href="https://en.wikipedia.org/wiki/Functional_programming">Functional Programming</a>
+                    </p>
+                </section>
+                <section>
+                    <h2>Programmation Fonctionnel ?</h2>
+                    <blockquote cite="https://en.wikipedia.org/wiki/Functional_programming">
+                        &ldquo;En informatique, la programmation fonctionnelle est un paradigme de programmation qui traite chaque calcul comme l'évaluation
+                        de fonctions mathématiques et évite les changements d'état et les données mutables (effets de bord).&rdquo;
+                    </blockquote>
+                    <p align="right">
+                        source: Wikipedia.org - <a href="https://en.wikipedia.org/wiki/Functional_programming">Programmation fonctionnelle</a>
+                    </p>
+                </section>
+
+				<section>
+					                    <h2>Rappel: Fonction anonyme</h2>
+					                    <p>
+                                         JavaScript possède deux notations pour
+                                        <br/> 
+                                         pour les <b>fonctions anonymes</b>
+                                        </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojslog="js-anonymous-fun" rows="8" cols="30">
+let f = function(v1, v2) {
+  return v1 + v2;
+};
+console.log(f);
+
+let f2 = (v1, v2) => v1 + v2;
+console.log(f2);
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                          <div id="js-anonymous-fun" class="autojslog"></div>
+                                        </small>
+				</section>
+
+				<section>
+					                    <h2>ForEach</h2>
+					                    <p>
+                                         <b>forEach(fun)</b> applique la même fonction à chaque valeur
+                                        <br/>
+                                         <small>comme une boucle sans écrire la boucle !</small>
+                                        </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojslog="js-array-forEach" rows="3" cols="35">
+let array = [1, 2, 5, 6, 7];
+array.forEach(v => console.log(v));
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                          <div id="js-array-forEach" class="autojslog"></div>
+                                        </small>
+				</section>
+				<section>
+					                    <h2>Map</h2>
+					                    <p>
+                                          <b>map(fun)</b> créer un tableau qui contient les valeurs résultant
+                                          de l'application la fonction à chaque valeur
+                                        </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojslog="js-array-map" rows="4" cols="35">
+let array = [1, 2, 5, 6, 7];
+let array2 = array.map(v => 2 * v);
+console.log(array2);
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                          <div id="js-array-map" class="autojslog"></div>
+                                        </small>
+				</section>
+				<section>
+					                    <h2>Filter</h2>
+					                    <p>
+                                         <b>filter(fun)</b> créer un tableau avec les valeurs
+                                         pour lesquelles l'appel de la fonction renvoie vrai
+                                        </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojslog="js-array-filter" rows="4" cols="35">
+let array = [1, 2, 5, 6, 7];
+let array2 = array.filter(v => v % 2 == 0);
+console.log(array2);
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                          <div id="js-array-filter" class="autojslog"></div>
+                                        </small>
+				</section>
+				<section>
+					                    <h2>some</h2>
+					                    <p>
+                                         <b>some</b> renvoie vrai dès qu'une propriété est vérifiée
+                                        </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojslog="js-array-some" rows="7" cols="45">
+function greaterThan10(v) {
+  return v >= 10;
+}
+
+let array = [12, 32, 4];
+console.log(array.some(greaterThan10));
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                          <div id="js-array-some" class="autojslog"></div>
+                                        </small>
+                                        <p>
+                                            <small>
+                                                Note: il n'y a pas de parenthèse après <b>greaterThan10</b> !
+                                            </small>
+                                        </p>
+				</section>
+                <section>
+                    <h2>every</h2>
+                    <p>
+                        <b>every</b> demande à ce que la propriété soit vraie sur toutes les valeurs
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><textarea autojslog="js-array-every" rows="7" cols="45">
+function greaterThan10(v) {
+  return v >= 10;
+}
+
+let array = [12, 32, 4];
+console.log(array.every(greaterThan10));
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-array-every" class="autojslog"></div>
+                    </small>
+                </section>
+                <section>
+                    <h2>some/every avec une closure</h2>
+                    <p>
+                        Et si on veut écrire <b>greaterThan(max)</b> ?
+                       <br/>
+                        On renvoie une closure !
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><textarea autojslog="js-array-some-every" rows="8" cols="45">
+function greaterThan(max) {
+  return v => v >= max;
+}
+
+let array = [12, 32, 4];
+console.log(array.some(greaterThan(10)));
+console.log(array.every(greaterThan(10)));
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-array-some-every" class="autojslog"></div>
+                    </small>
+                    <p>
+                        <small>
+                            Note: il y a des parenthèse après <b>greaterThan()</b>  car la fonction
+                            renvoie une fonction !
+                        </small>
+                    </p>
+                </section>
+
+				<section>
+					                    <h2>et les index ?</h2>
+					                    <p>
+                                   Les méthodes <b>forEach</b>, <b>map</b>, <b>filter</b>, <b>some</b>, <b>every</b>
+                                   prennent une fonction avec 2 arguments (<b>élément</b>, <b>index</b>) en paramètres
+                                        </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojs="js-array-fun-index" rows="7" cols="55">
+let array = [1, 7, 14, 55];
+
+array.map((e, index) => index)
+array.filter((e, index) => index >= 2)
+array.some((e, index) => index >= 2 && e <= 15)
+array.every((e, index) => index >= 2 && e <= 15)
+                                        </textarea></small>
+                                        <small><div id="js-array-fun-index"></div></small>
+                                        <p><small>En JavaScript, une fonction peut prendre moins de paramètres que d'arguments</small></p>
+				</section>
+				<section>
+					                    <h2>Reduce</h2>
+					                    <p>
+                                         <b>reduce(fun, init)</b> résume par une valeur en appliquant une fonction d'agrégation
+                                        </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojslog="js-array-reduce" rows="4" cols="45">
+let array = [1, 2, 5, 6, 7];
+var sum = array.reduce((acc, v) => acc + v, 0);
+console.log(sum);
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                          <div id="js-array-reduce" class="autojslog"></div>
+                                        </small>
+				</section>
+				<section>
+					                    <h2>filter/map/reduce</h2>
+					                    <p>
+                                         Il est possible de combiner les opérations
+                                        <br/>
+                                         par ex., compter le nombre de mots commençant par 'b'
+                                        </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojslog="js-array-fam" rows="7" cols="35">
+let array = ['foo', 'bar', 'baz'];
+let count = array
+    .filter(s => s.charAt(0)== 'b')
+    .map(s => 1)
+    .reduce((v1, v2) => v1 + v2, 0);
+console.log(count);
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                          <div id="js-array-fam" class="autojslog"></div>
+                                        </small>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                                        { src: 'plugin/autoeval/autoeval.js', async: true },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
