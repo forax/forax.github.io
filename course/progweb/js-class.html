@@ -75,45 +75,156 @@
 				</section>
 
                 <section>
-                    <h2>Les Classes</h2>
+                    <h2>Classe</h2>
+                </section>
+                <section>
+                    <h2>Classe ?</h2>
+                    <blockquote cite="https://en.wikipedia.org/wiki/Class_(computer_programming)">
+                        &ldquo;In object-oriented programming, a class is an extensible program-code-template for creating objects, providing initial values for state (member variables) and implementations of behavior (member functions or methods).&rdquo;
+                    </blockquote>
+                    <p align="right">
+                        source: Wikipedia.org - <a href="https://en.wikipedia.org/wiki/Class_(computer_programming)">Class</a>
+                    </p>
+                </section>
+                <section>
+                    <h2>Classe ?</h2>
+                    <blockquote cite="https://en.wikipedia.org/wiki/Class_(computer_programming)">
+                        &ldquo;En programmation orienté objet, une classe est un programme-code-template extensible pour créer des objets, fournissant des valeurs initiales pour l'état (les variables membres) et les implantations de comportement (fonction membres ou méthodes).&rdquo;
+                    </blockquote>
+                    <p align="right">
+                        source : Wikipedia.org - <a href="https://en.wikipedia.org/wiki/Class_(computer_programming)">Class</a>
+                    </p>
                 </section>
 
                 <section>
                     <h2>Définition d'une classe</h2>
                     <p>
-                        Une classe définit un modèle de création d'objets.
-                    </p><p>
-                    Une classe contient des <b>méthodes</b> (fonctions qui agissent sur <b>this</b>) et
-                    un <b>constructeur</b> (méthode d'initialisation)
-                </p>
+                        Une classe définit un modèle/template de création d'objets.
+                       <br/>
+                        On créé une instance (un objet) en utilisant l'opérateur <b>new</b>.
+                    </p>
 
-                    <small><textarea autojslog="js6-class" rows="13" cols="35">
+                    <small><textarea autojslog="js-class" rows="6" cols="35">
 class Car {
-  constructor(driver) {
-    this.driver = driver;
-    this.wheels = 4;
-  }
-  driverName() {
-    return this.driver;
-  }
 }
 
-let car = new Car("bob");
-console.log(car.driverName());
+let car = new Car();
+console.log(car);
                                         </textarea></small>
                     <p></p>
                     <small>
-                        <div id="js6-class" class="autojslog"></div>
+                        <div id="js-class" class="autojslog"></div>
                     </small>
                 </section>
+
                 <section>
-                    <h2>Classe et délégué/prototype</h2>
+                    <h2>Méthodes</h2>
                     <p>
-                        Une classe est vue comme une fonction dont le code appelle le constructeur.
-                        Les méthodes de la classe sont ajoutées au prototype de la fonction.
+                        Une classe contient des fonctions associées à un objet appelées méthodes.
                     </p>
-                    <div style="float: left;">
-                        <small><textarea autojslog="js6-class3a" rows="12" cols="35">
+
+                    <small><textarea autojslog="js-method" rows="9" cols="35">
+class Hello {
+  say(person) {
+    console.log(`Hello ${person}`);
+  }
+}
+
+let hello = new Hello();
+hello.say("Bob");
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-method" class="autojslog"></div>
+                    </small>
+                </section>
+
+                <section>
+                    <h2>this ?</h2>
+                    <p>
+                      Dans une méthode, <b>this</b> est un paramétre implicite correspondant à l'objet
+                      sur lequel une méthode est appelée
+                    </p>
+
+                    <small><textarea autojslog="js-this" rows="10" cols="35">
+class Person {
+  hello() {
+    console.log(this.name);
+  }
+}
+
+let person = new Person();
+person.name = "Bob";
+person.hello();
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-this" class="autojslog"></div>
+                    </small>
+                </section>
+
+            <section>
+                <h2>Constructeur</h2>
+                <p>
+                    On évite d'initialiser les champs directement, car
+                   <br/>
+                    une classe contient une méthode qui se charge de l'initialisation
+                    appelé <b>constructeur</b>.
+                </p>
+
+                <small><textarea autojslog="js-constructor" rows="13" cols="35">
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+  hello() {
+    console.log(this.name);
+  }
+}
+
+let person = new Person("Bob");
+//person.name = "Bob";
+person.hello();
+                                        </textarea></small>
+                <p></p>
+                <small>
+                    <div id="js-constructor" class="autojslog"></div>
+                </small>
+            </section>
+
+            <section>
+                <h2>Constructeur et this</h2>
+                <p>
+                    Au début du constructeur <b>this</b> vaut <b>{}</b> !
+                </p>
+
+                <small><textarea autojslog="js-constructor-this" rows="12" cols="35">
+class Point {
+  constructor(x, y) {
+    console.log(this);
+    this.x = x;
+    console.log(this);
+    this.y = y;
+    console.log(this);
+  }
+}
+
+new Point(1, 3);
+                                        </textarea></small>
+                <p></p>
+                <small>
+                    <div id="js-constructor-this" class="autojslog"></div>
+                </small>
+            </section>
+
+                <section>
+                    <h2>Classe ?</h2>
+                    <p>
+                        Une classe sert à regrouper au même endroit les fonctions/méthodes
+                        qui travail sur des objets ayant la même structure (les mêmes propriétés)
+                    </p>
+
+                    <small><textarea autojslog="js-class-example" rows="12" cols="40">
 class Square {
   constructor(side) {
     this.side = side;
@@ -123,180 +234,54 @@ class Square {
   }
 }
 
-let square = new Square(3);
-console.log(square.surface());
-                                        </textarea></small>
-                        <p><small>JavaScript 6</small></p>
-                        <small>
-                            <div id="js6-class3a" class="autojslog"></div>
-                        </small>
-                    </div><div>
-                    <small><textarea autojslog="js6-class3b" rows="12" cols="35">
-function Square(side) {
-  this.side = side;
-}
-
-Square.prototype.surface = function() {
-  return this.side * this.side;
-};
-
-let square = new Square(3);
-console.log(square.surface());
-                                        </textarea></small>
-                    <p><small>JavaScript &lt; 6</small></p>
-                    <small>
-                        <div id="js6-class3b" class="autojslog"></div>
-                    </small>
-                </div>
-                </section>
-                <section>
-                    <h2>La notation "class"</h2>
-                    <p>
-                        La notation est un peu plus verbeuse que la notation classique,
-                        donc quel est l'intérêt d'introduire cette nouvelle notation ?
-                    </p>
-                    <p class="fragment">
-                        Permet de <b>regrouper</b> dans un même endroit l'initialisation et la manipulation d'un type nommé
-                    </p>
-                    <p class="fragment">
-                        La notion de classe <b>existe déjà</b> dans plusieurs autres languages (C++, Java, Swift, Rust) et est donc mieux comprise que la notion de délégation propre à JavaScript
-                    </p>
-                </section>
-                <section>
-                    <h2>Héritage</h2>
-                </section>
-                <section>
-                    <h2>Héritage</h2>
-                    <p>
-                        Définir une classe en étendant des propriétés d'une classe existante
-                    </p>
-                    <p>&nbsp;</p>
-                    <small><textarea autojslog="js6-class-inheritance" rows="11" cols="45">
-class A {
-  hello() { return "hello"; }
-}
-class B extends A {
-  msg(name) { return this.hello() + " " + name; }
-}
-
-let b = new B();
-console.log(b.hello());
-console.log(b.msg("bob"));
+console.log(new Square(2).surface());
+console.log(new Square(3).surface());
                                         </textarea></small>
                     <p></p>
                     <small>
-                        <div id="js6-class-inheritance" class="autojslog"></div>
-                    </small>
-                </section>
-                <section>
-                    <h2>super()</h2>
-                    <p>
-                        super() permet d'appeler le constructeur de la super-classe
-                    </p>
-                    <p>&nbsp;</p>
-                    <small><textarea autojslog="js6-class-super" rows="11" cols="45">
-class Box {
-  constructor(x) { this.x = x; }
-  str() { return this.x; }
-}
-class Point extends Box {
-  constructor(x, y) { super(x); this.y = y; }
-}
-
-let array = [new Box(3), new Point(1, 2)];
-array.map(v => v.str()).forEach(console.log);
-                                        </textarea></small>
-                    <p></p>
-                    <small>
-                        <div id="js6-class-super" class="autojslog"></div>
-                    </small>
-                </section>
-                <section>
-                    <h2>super.m()</h2>
-                    <p>
-                        Une propriété cache la propriété existante dans la super classe,
-                        super.m() permet d'accéder à la méthode m de la super classe
-                    </p>
-
-                    <small><textarea autojslog="js6-class-super2" rows="11" cols="45">
-class Box {
-  constructor(x) { this.x = x; }
-  str() { return this.x; }
-}
-class Point extends Box {
-  constructor(x, y) { super(x); this.y = y; }
-  str() { return super.str() + ", " + this.y; }
-}
-let array = [new Box(3), new Point(1, 2)];
-array.map(v => v.str()).forEach(console.log);
-                                        </textarea></small>
-                    <p></p>
-                    <small>
-                        <div id="js6-class-super2" class="autojslog"></div>
+                        <div id="js-class-example" class="autojslog"></div>
                     </small>
                 </section>
 
                 <section>
-                    <h2>Problème de l'héritage</h2>
+                    <h2>Accès au Champs/Méthodes </h2>
                     <p>
-                        Si on insère une méthode dans une super-classe,
-                        <br/>
-                        il <b>faut redéfinir</b> celle-ci dans toutes les sous-classes
+                        <b>this</b> doit être écrit explicitement pour l'accès
+                        aux champs/méthodes (pas comme C++/Java)
                     </p>
-                    <small><div class="bad-container"><textarea autojslog="js6-class-inherit" rows="13" cols="45">
-class Square {
-  constructor(side) { this.side = side; }
-  surface() { return this.side * this.side; }
-}
-class Rectangle extends Square {
-  constructor(width, height) {
-    super(width); this.height = height;
+
+                    <small><textarea autojslog="js-class-java" rows="12" cols="40">
+class Car {
+  constructor(driver) {
+    this.driver = driver;
   }
-  //surface() { return this.width * this.height; }
-}
-var array = [new Square(3), new Rectangle(2, 3)];
-console.log(array.map(e => e.surface()));
-                                        </textarea><div class="bad-image"></div></div></small>
-                    <p></p>
-                    <small>
-                        <div id="js6-class-inherit" class="autojslog"></div>
-                    </small>
-                </section>
-                <section>
-                    <h2>Les limites de l'héritage</h2>
-                    <p>
-                        En fait, l'héritage sert pas à grand chose en JavaScript,
-                        on peut toujours faire sans !
-                    </p>
-                    <small><textarea autojslog="js6-inherit-limit2" rows="13" cols="45">
-class Square {
-  constructor(side) { this.side = side; }
-  surface() { return this.side * this.side; }
-}
-class Rectangle {
-  constructor(width, height) {
-    this.width = width; this.height = height;
+  driverName() {
+    return driver;  // this.driver
   }
-  surface() { return this.width * this.height; }
 }
-var array = [new Square(3), new Rectangle(2, 3)];
-console.log(array.map(e => e.surface()));
+
+let car = new Car("Bob");
+console.log(car.driverName());
                                         </textarea></small>
                     <p></p>
                     <small>
-                        <div id="js6-inherit-limit2" class="autojslog"></div>
+                        <div id="js-class-java" class="autojslog"></div>
                     </small>
                 </section>
 
                 <section>
-                    <h2>Objet prédéfini&nbsp;: tableau</h2>
+                    <h1>Classes et méthodes prédéfinies</h1>
+                </section>
+
+                <section>
+                    <h2>Classe prédéfinie&nbsp;: tableau</h2>
                     <p>
                         Pour JavaScript, un tableau (<b>Array</b>) est un objet,
                         <br/>
                         <b>length</b> est une propriété des objets tableaux
                     </p>
                     <p>&nbsp;</p>
-                    <small><textarea autojs="js-object-builtin-array" rows="9" cols="40">
+                    <small><textarea autojs="js-class-builtin-array" rows="9" cols="40">
 let array = [1, 2, 4];
 // propriété
 array.length
@@ -306,21 +291,21 @@ array.slice(1)
 let array2 = new Array();
 array2.length
                                         </textarea></small>
-                    <small><div id="js-object-builtin-array"></div></small>
+                    <small><div id="js-class-builtin-array"></div></small>
                     <p><small>
                         La syntaxe <b>new</b> permet de créer un objet
                     </small><p>
                 </section>
                 <section>
-                    <h2>Objet prédéfini&nbsp;: function</h2>
+                    <h2>Classe prédéfinie&nbsp;: function</h2>
                     <p>
                         Pour JavaScript, une function (<b>Function</b>) est un objet,
                         <br/>
                         <b>name</b> ou <b>length</b> sont des propriétés des objets fonctions
                     </p>
                     <p>&nbsp;</p>
-                    <small><textarea autojs="js-object-builtin-function" rows="10" cols="45">
-let f = function plus(x) { return x + 2 }
+                    <small><textarea autojs="js-class-builtin-function" rows="10" cols="45">
+let f = function plus(x) { return x + 2 };
 // propriété
 f.name
 // méthode
@@ -330,290 +315,373 @@ let f2 = new Function("a", "b", "return a + b;");
 f2(1, 2)
 f2.length
                                         </textarea></small>
-                    <small><div id="js-object-builtin-function"></div></small>
+                    <small><div id="js-class-builtin-function"></div></small>
                     <p><small>
                         <b>length</b> renvoie le nombre de paramètres
                     </small><p>
                 </section>
-				
-				<section>
-					                    <h2>Fonction vs Méthode</h2>
-					                    <p>
-					                     Un objet peut aussi contenir des fonctions comme valeurs
-					                    <br/>
-					                     Une fonction dans un objet est appelé une <b>méthode</b>
-                                        </p>
-                                        <small><textarea autojslog="js-object-method" rows="10" cols="40">
-var square = {
-  surface: function(x) { return x * x; }
-};
-var disc = {
-  surface: function(r) { return Math.PI * r * r; }
-};
-
-console.log(square.surface(3));
-console.log(disc.surface(3));
+                <section>
+                    <h2>Function.apply / Function.call</h2>
+                    <p>
+                        L'appel de fonction en JavaScript est équivalent
+                        à l'appel de la méthode <b>call</b> sur la fonction.
+                       <br/>
+                        <b>undefined</b> est la valeur de <b>this</b> !
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><textarea autojs="js-class-apply-call" rows="5" cols="45">
+let f = function add(a, b) { return  a + b };
+f(1, 2)
+f.call(undefined, 1, 2);
+f.apply(undefined, [1, 2]);
                                         </textarea></small>
-                                        <p></p>
-                                        <small>
-                                          <div id="js-object-method" class="autojslog"></div>
-                                        </small>
-                                        <p></p>
-				</section>
-				<section>
-					                    <h2>this</h2>
-					                    <p>
-					                     Paramètre implicite qui contient l'objet sur lequel
-					                    <br/>
-					                     on a appelé une méthode
-					                    <br/>
-					                     (l'objet sur lequel on utilise l'opérateur '.')
-                                        </p>
-                                        <small><textarea autojslog="js-object-this" rows="8" cols="40">
-var square = {
-  side: 2,
-  surface: function() {
-   return this.side * this.side;
+                    <small><div id="js-class-apply-call"></div></small>
+                    <p><small>
+                        <b>apply()</b> prend un tableau tandis que <b>call</b> prend
+                        les arguments séparés par des virgules
+                    </small><p>
+                </section>
+                <section>
+                    <h2>Appel de méthode</h2>
+                    <p>
+                        L'appel de méthode en JavaScript est équivalent
+                        à l'appel de la méthode <b>call</b> sur le champ de l'objet.
+                        <br/>
+                        le premier paramètre est la valeur de <b>this</b> !
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><textarea autojslog="js-class-method-call" rows="8" cols="55">
+class Person {
+  constructor(name) { this.name = name; }
+  say(message) { return `${message} from ${this.name}`; }
+}
+let p = new Person("Bob");
+console.log(p.say.call(p, "Hello"));
+console.log(p.say.apply(p, ["Hello"]));
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-class-method-call" class="autojslog"></div>
+                    </small>
+                </section>
+                <section>
+                    <h2>Function.bind</h2>
+                    <p>
+                        Permet de créer une fonction à partir d'une fonction existante
+                        en indiquant la valeur des premiers arguments.
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><textarea autojs="js-class-bind" rows="4" cols="45">
+let f = function add(a, b) { return  a + b };
+let f2 = f.bind(undefined, 42);
+f2(3)
+                                        </textarea></small>
+                    <small><div id="js-class-bind"></div></small>
+                    <p><small>
+                        Attention, le premier argument est la valeur de <b>this</b>,
+                        pas le premier paramètre !
+                    </small><p>
+                </section>
+                <section>
+                    <h2>Fonction anonyme vs this</h2>
+                    <p>
+                        Une fonction flèche capture <b>this</b> alors qu'une fonction
+                        classique prend <b>this</b> en tant que receveur (le paramètre devant le '.').
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><textarea autojslog="js-arrow-this" rows="9" cols="55">
+class Eval {
+  constructor(x) { this.x = x; }
+  add() { return v => this.x + v; }
+  add2() { return function(v) { return this.x + v; }; }
+}
+let eval = new Eval(40);
+console.log(eval.add()(2));
+console.log(eval.add2()(2));
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-arrow-this" class="autojslog"></div>
+                    </small>
+                </section>
+                <section>
+                    <h2>Fonction anonyme + bind(this)</h2>
+                    <p>
+                        Si on est en EcmaScript < 6, on peut s'en sortir en ajoutant
+                        un <b>bind(this)</b>.
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><textarea autojslog="js-bind-this" rows="9" cols="55">
+class Eval {
+  constructor(x) { this.x = x; }
+  add() { return v => this.x + v; }
+  add2() { return function(v) { return this.x + v; }.bind(this); }
+}
+let eval = new Eval(40);
+console.log(eval.add()(2));
+console.log(eval.add2()(2));
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-bind-this" class="autojslog"></div>
+                    </small>
+                </section>
+                <section>
+                    <img src="images/js-object/this_is_bullshit.png">
+                </section>
+
+                <section>
+                    <h1>Down the Rabbit Hole</h1>
+                </section>
+
+                <section>
+                    <h2>Et sans le mot-clé <b>class</b> ?</h2>
+                    <p>
+                        Le mot-clé <b>class</b> existe que depuis EcmaScript 6,
+                        avant on écrivait un code un peu différent.
+                       <br/>
+                        Pour cela, il va falloir regarder comment le mot-clé "class"
+                        marche vraiment ...
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Une classe est une fonction !</h2>
+                    <p>
+                        En JavaScript, une classe est une fonction !
+                    </p>
+                    <small><textarea autojslog="js-class-as-function" rows="9" cols="40">
+class Car {
+  constructor(driver) {
+    this.driver = driver;
   }
-};
-console.log(square.surface());
-                                        </textarea></small>
-                                        <p></p>
-                                        <small>
-                                          <div id="js-object-this" class="autojslog"></div>
-                                        </small>
-                                        <p>&nbsp;</p>
-				</section>
-				
-				<section>
-					                    <h2>this et appel de fonction</h2>
-					                    <p>
-					                     Que vaut <b>this</b> si on appel comme une fonction ?
-                                        </p>
-                                        <small><div class="bad-container"><textarea autojslog="js-object-this2" rows="10" cols="40">
-"use strict";
-function isAdult() {
-  return this.age >= 18;
 }
 
-var person = { age: 32, hasGrownUp: isAdult };
-console.log(person.hasGrownUp());
-
-console.log(isAdult(person));
-                                        </textarea><div class="bad-image"></div></div></small>
-                                        <p></p>
-                                        <small>
-                                          <div id="js-object-this2" class="autojslog"></div>
-                                        </small>
-                                        <p>
-                                         <b>isAdult</b> ne prend pas d'argument et "this" vaut undefined !
-                                        </p>
-				</section>
-				<section>
-		          <img src="images/js-object/this_is_bullshit.png">
-				</section>
-				
-				<section>
-					                    <h2>Partage de méthodes :(</h2>
-					                    <p>
-					                     Si on a deux objets, il faut définir <b>surface</b> deux fois,
-					                    <br/> 
-					                     même si c'est le même code !?
-                                        </p>
-                                        <small><div class="bad-container"><textarea autojslog="js-object-prototype" rows="11" cols="50">
-var square1 = {
-  side: 1,
-  surface: function() { return this.side * this.side; }
-};
-var square2 = {
-  side: 2,
-  surface: function() { return this.side * this.side; }
-};
-console.log(square1.surface());
-console.log(square2.surface());
-                                        </textarea><div class="bad-image"></div></div></small>
-                                        <p></p>
-                                        <small>
-                                          <div id="js-object-prototype" class="autojslog"></div>
-                                        </small>
-                                        <p>
-                                         Ça parait idiot !
-                                        </p>
-				</section>
-				<section>
-					                    <h2>Partage de méthode (astuce)</h2>
-					                    <p>
-					                     Lorsque l'on cherche une propriété, si elle n'existe pas sur l'objet,
-					                     on va chercher dans un objet délégué
-                                        </p>
-                                        <small><div class="bad-container"><textarea autojslog="js-object-prototype2" rows="11" cols="50">
-var proto = {
-  surface: function() { return this.side * this.side; }
-};
-var square1 = { side: 1 };
-var square2 = { side: 2 };
-Object.setPrototypeOf(square1, proto);
-Object.setPrototypeOf(square2, proto);
-
-console.log(square1.surface());
-console.log(square2.surface());
-                                        </textarea><div class="bad-image"></div></div></small>
-                                        <p></p>
-                                        <small>
-                                          <div id="js-object-prototype2" class="autojslog"></div>
-                                        </small>
-                                        <p><small>
-                                         <b>setPrototypeOf</b> permet d'indiquer pour un objet
-                                        <br/> 
-                                         son objet délégué
-                                        </small></p>
-				</section>
-				<section>
-					                    <h2>Le délégué</h2>
-					                    <p>
-					                     L'objet délégué est l'objet dans lequel on va chercher une propriété
-					                     si celle-ci n'est pas définie sur l'objet courant
-                                        </p>
-                                        <small><div class="bad-container"><textarea autojslog="js-object-prototype3" rows="8" cols="50">
-var proto = {
-  surface: function() { return this.side * this.side; }
-};
-var square1 = { side: 1 };
-Object.setPrototypeOf(square1, proto);
-
-console.log(square1.__proto__ == proto);
-                                        </textarea><div class="bad-image"></div></div></small>
-                                        <p></p>
-                                        <small>
-                                          <div id="js-object-prototype3" class="autojslog"></div>
-                                        </small>
-                                        <p>
-                                         On peut obtenir l'objet délégué avec la propriété <b>__proto__</b>
-                                        </p>
-				</section>
-				<section>
-					                    <h2>setPrototypeOf</h2>
-					                    <p>
-					                     Attention, changer le délégué d'un objet avec <b>setPrototypOf</b>
-					                     alors que celui-ci est déjà créé
-					                    <br/> 
-					                     est souvent très lent !
-					                    </p>
-					                    <p>
-					                     Firefox écrit même un message
-					                     <span style="text-decoration: line-through;">d'insulte</span> d'information
-					                    <br/> 
-					                     sur la console
-                                        </p>
-                                        <p style="color: red">
-mutating the [[Prototype]] of an object will cause your code to run very slowly;
-instead create the object with the correct initial [[Prototype]] value using Object.create
-                                        </p>
-                                        <p>&nbsp;</p>
-				</section>
-				<section>
-					                    <h2>La syntaxe New</h2>
-					                    <p>
-					                     <b>new</b> permet de créer des objets qui auront comme délégué
-					                     la valeur de la propriété <b>prototype</b> d'une fonction
-                                        </p>
-                                        <small><textarea autojslog="js-object-new" rows="10" cols="60">
-function Square(side) {
-  this.side = side;
-}
-Square.prototype.surface = function() { return this.side * this.side; };
-
-var square1 = new Square(1);
-var square2 = new Square(2);
-console.log(square1.surface());
-console.log(square2.surface());
+console.log(typeof Car);
+console.log(Car instanceof Function);
                                         </textarea></small>
-                                        <p></p>
-                                        <small>
-                                          <div id="js-object-new" class="autojslog"></div>
-                                        </small>
-                                        <p><small>
-                                         <b>new Square</b> crée un objet, initialise celui-ci avec la fonction <b>Square</b> et
-                                        <br/>
-                                         indique que son délégué est la valeur de <b>Square.prototype</b>
-                                        </small></p>
-				</section>
-				<section>
-					                    <h2>New et convention</h2>
-					                    <p>
-					                     Les fonctions utilisées par <b>new</b> ont un nom qui commence par une majuscule
-                                        </p>
-                                        <small><textarea autojslog="js-object-new2" rows="14" cols="60">
-function Point(x, y) {
-  this.x = x;
-  this.y = y;
+                    <p></p>
+                    <small>
+                        <div id="js-class-as-function" class="autojslog"></div>
+                    </small>
+                </section>
+                <section>
+                    <h2>Et une méthode est une fonction aussi !</h2>
+                    <p>
+                        Une méthode est une fonction stockée dans un objet
+                        avec le nom de la méthode comme nom de clé/propriété.
+                    </p>
+                    <small><textarea autojslog="js-method-as-function" rows="7" cols="45">
+let car = {
+  driver: "Bob",
+  driverName: function() { return this.driver; }
+};
+console.log(car);
+console.log(car.driverName());
+                    </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-method-as-function" class="autojslog"></div>
+                    </small>
+                </section>
+
+                <section>
+                    <h2>Object.create()</h2>
+                    <p>
+                        <b>Object.create(prototype)</b> permet de créer des objets comme <b>{}</b>
+                        mais en indiquant un <b>[Prototype]</b>.
+                    <br/>
+                        Un <b>[Prototype]</b> est un objet dans lequel aller chercher si on
+                        trouve pas dans l'objet courant
+                    </p>
+                    <small><textarea autojslog="js-object-create" rows="8" cols="40">
+let oldPets = {};
+oldPets.snoopy = "dog";
+let newPets = Object.create(oldPets);
+newPets.garfield = "cat";
+newPets.scooby = "dog";
+console.log(newPets.garfield);
+console.log(newPets.scooby);
+                    </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-object-create" class="autojslog"></div>
+                    </small>
+                </section>
+                <section>
+                    <h2>__proto__</h2>
+                    <p>
+                        On peut demander la valeur du <b>[Prototype]</b> d'un objet
+                        avec la clé <b>__proto__</b>.
+                    </p>
+                    <small><textarea autojslog="js-proto" rows="8" cols="40">
+let oldPets = {};
+oldPets.snoopy = "dog";
+let newPets = Object.create(oldPets);
+newPets.garfield = "cat";
+newPets.scooby = "dog";
+console.log(newPets);
+console.log(newPets.__proto__);
+                    </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-proto" class="autojslog"></div>
+                    </small>
+                </section>
+
+                <section>
+                    <h2>Où sont les champs et les méthodes ?</h2>
+                    <p>
+                        Comme on veut partager les méthodes, on va les mettre
+                        dans le <b>[Prototype]</b>
+                    </p>
+                    <small><textarea autojslog="js-layer" rows="10" cols="40">
+let methods = {
+  driverName: function() { return this.driver; }
+};
+let car1 = Object.create(methods);
+car1.driver = "Bob";
+let car2 = Object.create(methods);
+car2.driver = "Ana";
+console.log(car1.driverName());
+console.log(car2.driverName());
+                    </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-layer" class="autojslog"></div>
+                    </small>
+                </section>
+
+                <section>
+                    <h2>Comment on créer un objet en JavaScript &lt; 6</h2>
+                    <p>
+                        Une fonction joue le rôle de constructeur, le champ
+                        <b>prototype</b> de cette fonction joue le rôle de conteneur de méthodes.
+                    </p>
+                    <small><textarea autojslog="js-old-new" rows="7" cols="50">
+function Car(driver) { this.driver = driver; }
+Car.prototype.driverName = function driverName() {
+  return this.driver;
+};
+let car = new Car ("Bob");
+console.log(car.driverName());
+                    </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-old-new" class="autojslog"></div>
+                    </small>
+                </section>
+                <section>
+                    <h2>Classe, fonction et champ prototype</h2>
+                    <p>
+                        Une classe est vue comme une fonction dont le code appel le constructeur.
+                        Les méthodes de la classe sont ajoutées au champ prototype de cette fonction.
+                    </p>
+                    <div style="float: left;">
+                        <small><textarea autojslog="js-class-6a" rows="12" cols="32">
+class Car {
+  constructor(driver) {
+    this.driver = driver;
+  }
+  driverName() {
+    return this.driver;
+  }
 }
-Point.prototype.distance = function(p) { 
-  var dx = this.x - p.x;
-  var dy = this.y - p.y;
-  return Math.sqrt(dx * dx + dy * dy);
+
+let car = new Car("Bob");
+console.log(car.driverName());
+                                        </textarea></small>
+                        <p><small>JavaScript 6</small></p>
+                        <small>
+                            <div id="js-class-6a" class="autojslog"></div>
+                        </small>
+                    </div><div>
+                    <small><textarea autojslog="js-class-6b" rows="12" cols="38">
+function Car(driver) {
+  this.driver = driver;
+}
+
+Car.prototype.driverName = function() {
+  return this.driver;
 };
 
-var p1 = new Point(0, 0);
-var p2 = new Point(1, 1);
-console.log(p1.distance(p2));
+let car = new Car("Bob");
+console.log(car.driverName());
                                         </textarea></small>
-                                        <p></p>
-                                        <small>
-                                          <div id="js-object-new2" class="autojslog"></div>
-                                        </small>
-                                        <p></p>
-				</section>
-				<section>
-					                    <h2>Création d'objets</h2>
-					                    <p>
-					                     Deux syntaxes !
-					                    </p>
-					                    <dl>
-					                     <dt>Avec les accolades :
-					                     <dd>si on n'a que des valeurs, ou un seul objet
-					                    <br/>
-					                     <small><textarea rows="2" cols="35">
-var foo = { key1: 2, key2: 'hello' };
-					                     </textarea></small>
-					                     <p></p>
-					                     <dt>Avec new :
-					                     <dd>si on a plusieurs objets avec des méthodes
-					                     <small><textarea rows="6" cols="55">
-function Foo(key1, key2) { this.key1 = key1; this.key2 = key2; }
-Foo.prototype.meth1 = function(x) { return ...; };
+                    <p><small>JavaScript &lt; 6</small></p>
+                    <small>
+                        <div id="js-class-6b" class="autojslog"></div>
+                    </small>
+                </div>
+                </section>
+                <section>
+                    <h2>Création d'un objet: comment cela marche ?</h2>
+                    <p>
+                        On peut écrire le code de <b>new</b> en JavaScript.
+                        C'est <b>Object.create(fun.prototype)</b> + <b>fun.apply(...)</b>.
+                    </p>
+                    <small><textarea autojslog="js-my-new" rows="12" cols="50">
+function myNew(fun, ...args) {
+  var object = Object.create(fun.prototype);
+  fun.apply(object, args);
+  return object;
+}
+function Car(driver) { this.driver = driver; }
+Car.prototype.driverName = function driverName() {
+  return this.driver;
+};
+let car = myNew(Car, "Bob");  // <=> new Car("Bob");
+console.log(car.driverName());
+                    </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-my-new" class="autojslog"></div>
+                    </small>
+                </section>
 
-var foo = new Foo(2, 'hello');
-foo.meth1(false);
-					                     </textarea></small>
-					                    </dl>
-				</section>
-				
+
+                <section>
+                    <h2>La notation "class"</h2>
+                    <p>
+                        La notation est un peu plus verbeuse que la notation classique,
+                        donc quel est l'intérêt d'introduire cette nouvelle notation ?
+                    </p>
+                    <p class="fragment">
+                        Permet de <b>regrouper</b> dans un même endroit l'initialisation et
+                        la manipulation d'un type nommé
+                    </p>
+                    <p class="fragment">
+                        La notion de classe <b>existe déjà</b> dans plusieurs autres languages (C++, Java, Swift, Rust)
+                        et est donc mieux comprise que la notion de <b>[Prototype]</b> propre à JavaScript
+                    </p>
+                </section>
+
 				<section>
-					                    <h2>Exemple</h2>
 					                    <span style="float: inline-block">
-                                        <small><textarea autojscanvas="js-object-matrix" once="true" rows="23" cols="55">
-var canvas = document.getElementById('js-object-matrix');
-var context = canvas.getContext("2d"); 
-var data = [ 'U', 'P', 'E', 'M' ];             
-function Snake(x) {
-  this.x = x;
-  this.y = Math.floor(canvas.height * Math.random());
-}
-Snake.prototype.draw = function(context) {
-  context.fillStyle = 'rgb(0, 255 , 0)';
-  for(var i = 0; i < data.length; i++) {
-    context.fillText(data[i], 15 * this.x, this.y - 15 * i);
-    context.fillStyle = 'rgb(0, 164, 0)';
+                                        <small><textarea autojscanvas="js-object-matrix" rows="25" cols="55">
+class Snake {
+  constructor(x) {
+    this.x = x;
+    this.y = Math.floor(canvas.height * Math.random());
   }
-  this.y = this.y + 10;
-  if (this.y > canvas.height) this.y = 0;
+  draw(context) {
+    context.fillStyle = 'rgb(0, 255 , 0)';
+    for(let i = 0; i < data.length; i++) {
+      context.fillText(data[i], 15 * this.x, this.y - 15 * i);
+      context.fillStyle = 'rgb(0, 176, 0)';
+    }
+    this.y = this.y + 10;
+    if (this.y > canvas.height) this.y = 0;
+  }
 }
-snakes = [];
-for(var i = 0; i < 20; i++) { snakes.push(new Snake(i)); }
-window.setInterval(function() {
+let canvas = document.getElementById('js-object-matrix');
+let context = canvas.getContext("2d");
+let data = [ 'U', '-', 'E', 'I', 'F', 'F', 'E', 'L' ];
+let snakes = [];
+for(let i = 0; i < 20; i++) { snakes.push(new Snake(i)); }
+window.setInterval(() => {
   context.clearRect(0, 0, canvas.width, canvas.height);
-  snakes.forEach(function(snake) { snake.draw(context); });
+  snakes.forEach(snake => snake.draw(context));
 }, 50);
                                           
                                         </textarea></small>
