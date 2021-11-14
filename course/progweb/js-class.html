@@ -99,7 +99,7 @@
                 <section>
                     <h2>Définition d'une classe</h2>
                     <p>
-                        Une classe définit un modèle/template de création d'objets.
+                        Une classe définie un modèle/<em>template</em> de création d'objets.
                        <br/>
                         On créé une instance (un objet) en utilisant l'opérateur <b>new</b>.
                     </p>
@@ -148,7 +148,7 @@ hello.say("Bob");
 
                     <small><textarea autojslog="js-this" rows="10" cols="35">
 class Person {
-  hello() {
+  hello(/* this */) {
     console.log(this.name);
   }
 }
@@ -292,9 +292,6 @@ let array2 = new Array();
 array2.length
                                         </textarea></small>
                     <small><div id="js-class-builtin-array"></div></small>
-                    <p><small>
-                        La syntaxe <b>new</b> permet de créer un objet
-                    </small><p>
                 </section>
                 <section>
                     <h2>Classe prédéfinie&nbsp;: function</h2>
@@ -323,10 +320,10 @@ f2.length
                 <section>
                     <h2>Function.apply / Function.call</h2>
                     <p>
-                        L'appel de fonction en JavaScript est équivalent
-                        à l'appel de la méthode <b>call</b> sur la fonction.
+                        L'appel de fonction est équivalent
+                        à l'appel de la méthode <b>call(undefined, arguments...)</b> sur la fonction.
                        <br/>
-                        <b>undefined</b> est la valeur de <b>this</b> !
+                        Le premier paramètre est la valeur de <b>this</b>.
                     </p>
                     <p>&nbsp;</p>
                     <small><textarea autojs="js-class-apply-call" rows="5" cols="45">
@@ -344,10 +341,8 @@ f.apply(undefined, [1, 2]);
                 <section>
                     <h2>Appel de méthode</h2>
                     <p>
-                        L'appel de méthode en JavaScript est équivalent
-                        à l'appel de la méthode <b>call</b> sur le champ de l'objet.
-                        <br/>
-                        le premier paramètre est la valeur de <b>this</b> !
+                        L'appel de méthode est équivalent
+                        à l'appel de la méthode <b>call(objet, arguments..)</b> sur le champ de l'objet.
                     </p>
                     <p>&nbsp;</p>
                     <small><textarea autojslog="js-class-method-call" rows="8" cols="55">
@@ -385,8 +380,8 @@ f2(3)
                 <section>
                     <h2>Fonction anonyme vs this</h2>
                     <p>
-                        Une fonction flèche capture <b>this</b> alors qu'une fonction
-                        classique prend <b>this</b> en tant que receveur (le paramètre devant le '.').
+                        Une fonction flèche capture <b>this</b>.
+                        Une fonction classique prend <b>this</b> lors de l'appel (le paramètre devant le '.').
                     </p>
                     <p>&nbsp;</p>
                     <small><textarea autojslog="js-arrow-this" rows="9" cols="55">
@@ -575,7 +570,7 @@ console.log(car.driverName());
                     <h2>Classe, fonction et champ prototype</h2>
                     <p>
                         Une classe est vue comme une fonction dont le code appel le constructeur.
-                        Les méthodes de la classe sont ajoutées au champ prototype de cette fonction.
+                        Les méthodes de la classe sont ajoutées au champ "prototype" de cette fonction.
                     </p>
                     <div style="float: left;">
                         <small><textarea autojslog="js-class-6a" rows="12" cols="32">
@@ -659,6 +654,9 @@ console.log(car.driverName());
 				<section>
 					                    <span style="float: inline-block">
                                         <small><textarea autojscanvas="js-object-matrix" rows="25" cols="55">
+let canvas = document.getElementById('js-object-matrix');
+let context = canvas.getContext("2d");
+let data = [ 'U', '-', 'E', 'I', 'F', 'F', 'E', 'L' ];
 class Snake {
   constructor(x) {
     this.x = x;
@@ -674,9 +672,6 @@ class Snake {
     if (this.y > canvas.height) this.y = 0;
   }
 }
-let canvas = document.getElementById('js-object-matrix');
-let context = canvas.getContext("2d");
-let data = [ 'U', '-', 'E', 'I', 'F', 'F', 'E', 'L' ];
 let snakes = [];
 for(let i = 0; i < 20; i++) { snakes.push(new Snake(i)); }
 window.setInterval(() => {
