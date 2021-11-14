@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>JavaScript - Dictionnaire / Objet</title>
+
+		<meta name="description" content="javascript, data structure, DOM">
+		<meta name="author" content="Remi Forax">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+		
+		<!-- autojs result -->
+		<style>
+		  div.autojsresult {
+		    text-align: left;
+		    color: lime;
+		  }
+		  div.autojslog {
+		    color: orange;
+		  }
+		  div.autojserror {
+		    color: red;
+		  }
+		  .bad-container {
+            position: relative;
+            display:inline-block;
+          }
+		  .bad-image:after {
+            content: url(images/js/bad.png);
+            position: absolute;
+            z-index: 9999;
+            right: 5px;
+            bottom: 0px;
+          }
+		</style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+                                <section>
+					<h1>JavaScript</h1>
+                   <br/>
+                     <h2>Dictionnaire / Objet</h2>
+					<p>
+					  Remi Forax
+					</p>
+				</section>
+				
+				      
+				                <section>
+				                        <h2>Dictionnaire / Objet</h2>
+				                </section>
+                                <section>
+					<h2>Dictionary ?</h2>
+					<blockquote cite="https://en.wikipedia.org/wiki/Associative_array">
+					  &ldquo;In computer science, an associative array, map, symbol table, or dictionary is an abstract data type composed of a collection of (key, value) pairs, such that each possible key appears just once in the collection.&rdquo;
+					</blockquote>
+                                        <p align="right">
+                                         source: Wikipedia.org - <a href="https://en.wikipedia.org/wiki/Associative_array">Dictionary</a>
+                                        </p>
+				</section>
+				<section>
+					<h2>Dictionnaire ?</h2>
+					<blockquote cite="https://en.wikipedia.org/wiki/Associative_array">
+					  &ldquo;En informatique, un tableau associatif, map, table des symboles, ou dictionnaire est un type abstrait composé d'une collection de couples (clé, valeur), telle que chaque clé possible apparait une seule fois dans la collection.&rdquo;
+					</blockquote>
+                                        <p align="right">
+                                         source : Wikipedia.org - <a href="https://en.wikipedia.org/wiki/Associative_array">Dictionnaire</a>
+                                        </p>
+				</section>
+				<section>
+					                    <h2>Dictionnaire</h2>
+					                    <p>
+                                          Un dictionnaire en Javascript se déclare entre <b>{</b> et <b>}</b>
+                                         <br/>
+                                          Une clé et une valeur sont séparées par <code>:</code>
+                                          <br/>
+                                          Les couples sont séparés par des virgules
+                                         </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojs="js-dict1" rows="6" cols="35">
+{'key': 'value' } 
+{ wheels: 4, seats: 2 }
+
+{ color: 'red', align: true }
+{}    /* empty dictionary */
+                                        </textarea></small>
+                                        <small><div id="js-dict1"></div></small>
+                                        <p>&nbsp;</p>
+                                        <p>
+                                         En Javascript, les clés sont forcément des <b>string</b>s !
+                                        </p>
+				</section>
+				<section>
+					                    <h2>Accéder aux valeurs</h2>
+					                    <p>
+                                         L'opération '.' (<b>dot</b>) permet d'obtenir la valeur correspondant à une clé
+                                         </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojs="js-dict-index" rows="6" cols="35">
+let car = { wheels: 4, seats: 2 };
+car.wheels
+car.seats
+
+car.foo
+                                        </textarea></small>
+                                        <small><div id="js-dict-index"></div></small>
+                                        <p>&nbsp;</p>
+                                        <p>
+                                         Dans le cas où la clé n'existe pas, la valeur est <b>undefined</b>
+                                        </p>
+				</section>
+				<section>
+					                    <h2>Accéder aux valeurs (2)</h2>
+					                    <p>
+                                         Comme pour les tableaux, il est possible d'utiliser les <b>[</b> <b>]</b>
+                                         pour obtenir la valeur correspondant à une clé
+                                         </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojs="js-dict-index2" rows="7" cols="45">
+let car = { driver: "bob", seats: 2 };
+let licenses = { "bob": 1258, "ann": 1498 };
+car["seats"]
+licenses[car.driver]
+
+car["foo"]
+                                        </textarea></small>
+                                        <small><div id="js-dict-index2"></div></small>
+                                        <p>&nbsp;</p>
+                                        <p>
+                                         On utilise <b>.</b> si la clé est constante, <b>[]</b> si la clé est une <b>string</b>
+                                        </p>
+				</section>
+				<section>
+					                    <h2>Dictionnaire dynamique</h2>
+					                    <p>
+                                         Il est possible de changer la valeur associée à une clé ou d'ajouter
+                                         un couple clé/valeur
+                                         </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojs="js-dict-dyn" rows="9" cols="35">
+let basket = { pear: 2 };
+basket.apple
+
+basket.apple = 4;
+basket.apple
+
+basket["banana"] = 5;
+basket
+                                        </textarea></small>
+                                        <small><div id="js-dict-dyn"></div></small>
+                                        <p>&nbsp;</p>
+                                        <p>
+                                         
+                                        </p>
+				</section>
+				<section>
+					                    <h2>Pas de clé en double !</h2>
+					                    <p>
+                                         Le dictionnaire indexe les valeurs par leur clé,
+                                         il ne peut y avoir qu'une seule valeur pour une clé donnée
+                                         </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojs="js-dict-key" rows="8" cols="30">
+let dict = { dog: 3, dog: 4 };
+
+dict.dog = 5;
+dict
+
+dict["dog"] = 6;
+dict
+                                        </textarea></small>
+                                        <small><div id="js-dict-key"></div></small>
+                                        <p>&nbsp;</p>
+                                        <p>
+                                         
+                                        </p>
+				</section>
+
+				<section>
+					                    <h2>Object vs Dictionary</h2>
+					                    <p>
+                                         En JavaScript, les dictionnaires ne sont pas appelés 'dictionary' mais 'object'
+                                        </p><p>
+                                         L'affichage par défaut (<b>toString()</b>) n'est pas intéressant, on utilise <b>JSON.stringify()</b> à la place
+                                        </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojs="js-dict-object" rows="5" cols="30">
+let obj = { peer: 3 };
+obj.toString()
+
+JSON.stringify(obj)
+                                        </textarea></small>
+                                        <small><div id="js-dict-object"></div></small>
+                                        <p>&nbsp;</p>
+                                        <p>
+                                         <a href="http://json.org/">JSON</a> = JavaScript Object Notation  
+                                        </p>
+				</section>
+
+                <section>
+                    <h2>Objet pas primitif</h2>
+                    <p>
+                        Un objet n'est pas considéré comme un type primitif,
+                      <br/>
+                        == compare les addresses en mémoire
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><textarea autojs="js-dict-equal" rows="8" cols="40">
+let p1 = { name: "Bob", age: 14 };
+let p2 = { name: "Bob", age: 14 };
+let p3 = p1;
+
+p1 == p2
+p1 == p3
+p1.name == p2.name && p1.age == p2.age
+                                        </textarea></small>
+                    <small><div id="js-dict-equal"></div></small>
+                    <p>&nbsp;</p>
+                    <p>
+                        Il faut comparer chaque champ !
+                    </p>
+                </section>
+
+				<section>
+					                    <h2>Regrouper des propriétés</h2>
+					                    <p>
+					                     Un objet permet de regrouper des propriétés ayant trait à un même concept,
+					                     ce qui permet de structurer le code
+                                        </p>
+                                        <small><textarea autojslog="js-object-as-struct" rows="10" cols="40">
+function isAdult(person) {
+  return person.age >= 21;
+}
+
+let person1 = { name: "John", age: 23 };
+let person2 = { name: "Jane", age: 18 };
+
+console.log(isAdult(person1));
+console.log(isAdult(person2));
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                          <div id="js-object-as-struct" class="autojslog"></div>
+                                        </small>
+                                        <p></p>
+				</section>
+				<section>
+					                    <h2>Tableau d'objets</h2>
+					                    <p>
+					                     Si on veux manipuler plusieurs objets,
+					                    <br/>
+					                     on les regroupe dans un tableau
+                                        </p>
+                                        <small><textarea autojslog="js-object-with-array" rows="12" cols="40">
+function isAdult(person) {
+  return person.age >= 21;
+}
+
+let persons = [
+   { name: "John", age: 23 },
+   { name: "Jane", age: 18 }
+];
+
+let firstAdult = persons.filter(isAdult)[0];
+console.log(firstAdult.name);
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                          <div id="js-object-with-array" class="autojslog"></div>
+                                        </small>
+                                        <p></p>
+				</section>
+				
+				<section>
+					                    <h2>Le tableau des propriétés</h2>
+					                    <p>
+                                         La fonction <b>Object.keys</b> renvoie un tableau
+                                         des propriétés (clés) d'un objet
+                                         </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojs="js-object-keys" rows="4" cols="30">
+let letters = { 'a': 1, 'b': 2 };
+
+Object.keys(letters)
+                                        </textarea></small>
+                                        <small><div id="js-object-keys"></div></small>
+                                        <p>&nbsp;</p>
+                                        <p>
+                                         
+                                        </p>
+				</section>
+				<section>
+					                    <h2>Parcourir un objet</h2>
+					                    <p>
+                                         On peut pas parcourir un objet directement,
+                                         il faut parcourir ses propriétés, puis pour chaque propriété on peut aller chercher la valeur
+                                         </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojslog="js-object-iter" rows="8" cols="40">
+let obj = { 'a': 1, 'b': 2, 'c': 3 };
+let keys = Object.keys(obj);
+
+for(let i = 0; i < keys.length; i++) {
+  let key = keys[i];
+  console.log(key + " = " + obj[key]);
+}
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                          <div id="js-object-iter" class="autojslog"></div>
+                                        </small>
+                                        <p>
+                                         
+                                        </p>
+				</section>
+				<section>
+					                    <h2>Parcourir un objet (2)</h2>
+					                    <p>
+                                         Il existe une syntaxe spéciale pour parcourir les propriétés des objets,
+                                         <b>for(let <em>variable</em>&nbsp;in&nbsp;<em>obj</em>)</b> (comme en Python)
+                                         </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojslog="js-object-for-in" rows="6" cols="45">
+let obj = { 'a': 1, 'b': 2, 'c': 3 };
+
+for(let property in obj) {
+  console.log(property + " = " + obj[property]);
+}
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                          <div id="js-object-for-in" class="autojslog"></div>
+                                        </small>
+                                        <p><small>
+                                         Cette syntaxe est équivalente au code qui utilise <b>Object.keys()</b>
+                                        </small></p>
+				</section>
+			
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                                        { src: 'plugin/autoeval/autoeval.js', async: true },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

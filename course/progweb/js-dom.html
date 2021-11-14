@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>JavaScript - Document Object Model</title>
+
+		<meta name="description" content="javascript, data structure, DOM">
+		<meta name="author" content="Remi Forax">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+		
+		<!-- autojs result -->
+		<style>
+		  div.autojsresult {
+		    text-align: left;
+		    color: lime;
+		  }
+		  div.autojslog {
+		    color: orange;
+		  }
+		  div.autojserror {
+		    color: red;
+		  }
+		  .bad-container {
+            position: relative;
+            display:inline-block;
+          }
+		  .bad-image:after {
+            content: url(images/js/bad.png);
+            position: absolute;
+            z-index: 9999;
+            right: 5px;
+            bottom: 0px;
+          }
+		</style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+                <section>
+					<h1>JavaScript</h1>
+                    <br/>
+                    <h2>DOM - Document Object Model</h2>
+					<p>
+					  Remi Forax
+					</p>
+				</section>
+
+			    <section>
+					<h2>DOM ?</h2>
+					<blockquote cite="https://en.wikipedia.org/wiki/Document_Object_Model">
+					  &ldquo;The Document Object Model (DOM) is a cross-platform and language-independent convention for representing and interacting with objects in HTML, XHTML, and XML documents.&rdquo;
+					</blockquote>
+                                        <p align="right">
+                                         source: Wikipedia.org - <a href="https://en.wikipedia.org/wiki/Document_Object_Model">DOM</a>
+                                        </p>
+				</section>
+				<section>
+					<h2>DOM ?</h2>
+					<blockquote cite="https://en.wikipedia.org/wiki/Document_Object_Model">
+					  &ldquo;Le modèle objet de document (DOM) est une convention indépendante d'un language et multi-plateforme pour représenter et interagir avec des objets issus de documents HTML, XHTML et XML.&rdquo;
+					</blockquote>
+                                        <p align="right">
+                                         source : Wikipedia.org - <a href="https://en.wikipedia.org/wiki/Document_Object_Model">DOM</a>
+                                        </p>
+				</section>
+				
+				<section>
+				                        <div id="dom-example">
+					                    <h2>Arbre DOM</h2>
+					                    <p>
+					                     L'API DOM permet de manipuler l'arbre correspondant
+					                    <br/> 
+					                     à une page HTML en JavaScript
+                                        </p>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojs="js-dom1" rows="9" cols="55">
+document.toString()
+let element = document.getElementById("dom-example");
+element.toString()
+element.tagName
+element.attributes[0].name
+element.attributes[0].value
+element.children[0].tagName;
+element.children[1].tagName;
+                                        </textarea></small>
+                                        <small><div id="js-dom1"></div></small>
+                                        <p><small>
+                                         Le document (racine), les éléments, les attributs des éléments, le texte à l'intérieur des éléments
+					                     sont des n&oelig;uds de l'arbre
+					                    </small></p>
+					                    </div>
+				</section>
+				<section>
+					                    <h2>Children / childNodes</h2>
+					                    <p>
+					                     Il y a deux façons d'obtenir les enfants d'un élement
+					                    </p>
+					                     <dl id="dom-example2">
+					                      <dt>element.children</dt><dd>renvoie uniquement les sous-éléments</dd>
+					                      <dt>element.childNodes</dt><dd>renvoie les éléments, avec les textes et les commentaires</dd>
+					                     </dl>
+                                        <p></p>
+                                        <small><textarea autojs="js-dom2" rows="9" cols="55">
+let element = document.getElementById("dom-example2");
+element.tagName
+let child = element.children[0];
+child.toString()
+child.tagName
+let text = child.childNodes[0];
+text.toString()
+text.nodeValue
+                                        </textarea></small>
+                                        <small><div id="js-dom2"></div></small>
+                                        <p>
+                                         
+					                    </p>
+				</section>
+				<section>
+				                        <div id="dom-example3">
+					                    <h2>API DOM</h2>
+					                    <p>
+					                     <b>children</b> et <b>childNodes</b> renvoie des HTMLCollection,
+					                    <br/>
+                                         pas des tableaux, seul <b>length</b> et <b>[ ]</b> fonctionne
+					                    </p>
+					                    <p>&nbsp;</p>
+                                        <small><textarea autojs="js-dom3" rows="6" cols="55">
+let element = document.getElementById("dom-example3");
+element.children.toString()
+element.children.length
+element.children[0].tagName
+element.forEach
+                                        </textarea></small>
+                                        <small><div id="js-dom3"></div></small>
+                                        <p><small>
+                                         L'API est la même quel que soit le language de programmation
+					                     donc l'API n'est intégrée avec aucun language de programmation :(
+					                    </small></p>
+					                    </div>
+				</section>
+				<section>
+					                    <h2>Chercher des éléments</h2>
+					                     <dl id="dom-example4">
+					                      <dt>document.getElementById(id)</dt><dd>renvoie élément par son <b>id</b></dd>
+					                      <dt>document.getElementsByClassName(classname)</dt><dd>renvoie les éléments ayant la classe</dd>
+					                      <dt>document.querySelectorAll(css_selector)</dt><dd>renvoie les éléments par un sélecteur CSS</dd>
+					                     </dl>
+                                        <p>&nbsp;</p>
+                                        <small><textarea autojs="js-dom4" rows="6" cols="60">
+let cs = document.getElementsByClassName("bad-container");
+cs.length
+
+let dts = document.querySelectorAll("dl#dom-example4 dt");
+dts.length
+                                        </textarea></small>
+                                        <small><div id="js-dom4"></div></small>
+                                        <p>
+                                         
+					                    </p>
+				</section>
+				
+				<section>
+					                    <h2>Changer le contenu d'un élément</h2>
+					                    <dl>
+					                     <dt>element.innerHTML</dt><dd>accepte le contenu HTML</dd>
+					                     <dt>element.innerText</dt><dd>uniquement pour le contenu texte</dd>
+					                    </dl>
+					                    <p></p>
+					                    <div style="color: tomato"><small>
+					                     <div id="dom-content1"></div>
+					                     <div id="dom-content2"></div>
+					                    </small></div>
+                                        <small><textarea autojslog="js-dom-content" rows="6" cols="60">
+let div1 = document.getElementById("dom-content1");
+div1.innerHTML = "<b>" + new Date() + "</b>";
+
+let div2 = document.getElementById("dom-content2");
+div2.innerText = "<b>" + new Date() + "</b>";
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                          <div id="js-dom-content" class="autojslog"></div>
+                                        </small> 
+				</section>
+				<section>
+					                    <h2>&Eacute;vènement onclick</h2>
+					                    <p>
+					                     Il est possible d'enregistrer des évènements 
+					                    <br/> 
+					                     sur des éléments
+					                    </p>
+					                    <div id="dom-div" style="background-color: tomato; border: 2px solid silver; width: 200px; position: relative; left: 10px">
+					                     &nbsp;
+					                    </div>
+					                    <p>
+                                         <button type="button" id="dom-button">Click Me!</button>
+					                    </p>
+                                        <small><textarea autojslog="js-dom-event" rows="7" cols="60">
+let div = document.getElementById("dom-div");
+let button = document.getElementById("dom-button");
+button.onclick = () => {
+  console.log(div.style.left);
+  div.style.left = 30 + parseInt(div.style.left) + "px";
+};
+                                        </textarea></small>
+                                        <p><small>
+                                         element<b>.style</b> permet d'accéder au style d'un élément
+                                        </small></p>
+                                        <small>
+                                          <div id="js-dom-event" class="autojslog"></div>
+                                        </small> 
+				</section>
+				<section>
+					                    <h2>Champs de texte</h2>
+					                    <p>
+					                     La balise <b>input</b> permet à l'utilisateur de saisir des données 
+					                    </p>
+					                    <pre><code>
+&lt;input type=&quot;text&quot; id=&quot;dom-input-text&quot;&gt;&lt;/input&gt;
+					                    </code></pre>
+					                    <p>
+                                         <input type="text" id="dom-input-text"></input>
+					                    </p><p>
+					                     <div id="dom-input-text-div"></div>
+					                    </p>
+                                        <small><textarea autojslog="js-dom-inputtext" rows="6" cols="60">
+let div = document.getElementById("dom-input-text-div");
+let inputText = document.getElementById("dom-input-text");
+inputText.onkeyup = () => {
+  div.innerText = inputText.value;
+};
+                                        </textarea></small>
+                                        <p>&nbsp;</p>
+                                        <small>
+                                          <div id="js-dom-inputtext" class="autojslog"></div>
+                                        </small> 
+				</section>
+				<section>
+					                    <h2>Ajouter de nouveaux éléments</h2>
+					                    <p>
+					                     <b>document.createElement</b> permet de créer un élément
+					                    <br/>
+					                     <b>parent.appendChild(element)</b> ajoute un élément 
+					                    </p>
+					                    <style>
+					                     div#dom-new div {
+					                       float: left;
+					                       width: 50px;
+					                       height: 50px;
+					                       background-color: tomato;
+					                       border: 2px solid silver;
+					                       margin: 20px;
+					                     }
+					                    </style>
+					                    <div id="dom-new"></div>
+					                    <br style="clear: both"/>
+					                    <p>
+                                         <button type="button" id="dom-new-button">Add a box !</button>
+					                    </p>
+                                        <small><textarea autojslog="js-dom-event2" rows="7" cols="60">
+let div = document.getElementById("dom-new");
+let button = document.getElementById("dom-new-button");
+button.onclick = () => {
+  var element = document.createElement("DIV");
+  div.appendChild(element);
+};
+                                        </textarea></small>
+                                        <p><small>
+                                         
+                                        </small></p>
+                                        <small>
+                                          <div id="js-dom-event2" class="autojslog"></div>
+                                        </small> 
+				</section>
+			
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                                        { src: 'plugin/autoeval/autoeval.js', async: true },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
