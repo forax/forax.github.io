@@ -160,7 +160,6 @@ array
                                         <br/>
                                          parcourir tous les éléments
                                         </p>
-                                        <p>&nbsp;</p>
                                         <small><textarea autojslog="js-array-loop" rows="9" cols="45">
 function printAll(array) {
   for(let i = 0; i < array.length; i++) {
@@ -177,12 +176,11 @@ printAll([42, true]);
                                         </small>
 				                </section>
 				                <section>
-					                    <h2>Boucle sur un tableau (2)</h2>
+					                    <h2>Boucle et return</h2>
 					                    <p>
                                          Si on trouve le résultat, on peut arrêter la boucle
                                         </p>
-                                        <p>&nbsp;</p>
-                                        <small><textarea autojslog="js-array-loop3" rows="13" cols="45">
+                                        <small><textarea autojslog="js-array-loop-return" rows="13" cols="45">
 function indexOf(array, value) {
   for(let i = 0; i < array.length; i++) {
     if (array[i] == value) {
@@ -198,7 +196,7 @@ console.log(indexOf(array, 'z'));
                                         </textarea></small>
                                         <p></p>
                                         <small>
-                                         <div id="js-array-loop3" class="autojslog"></div>
+                                         <div id="js-array-loop-return" class="autojslog"></div>
                                         </small>
 				                </section>
 				                <section>
@@ -206,8 +204,7 @@ console.log(indexOf(array, 'z'));
 					                    <p>
                                          Ne <b style="color: red">jamais</b> sortir d'une boucle en changeant un drapeau
                                         </p>
-                                        <p>&nbsp;</p>
-                                        <small><div class="bad-container"><textarea autojslog="js-array-loop4" rows="14" cols="45">
+                                        <small><div class="bad-container"><textarea autojslog="js-array-flag" rows="14" cols="45">
 function indexOf(array, value) {
   let notFound = true;
   let i = 0;
@@ -224,10 +221,60 @@ console.log(indexOf(array, 'e'));
                                         </textarea><div class="bad-image"></div></div></small>
                                         <p></p>
                                         <small>
-                                          <div id="js-array-loop4" style="color: red"></div>
+                                          <div id="js-array-flag" style="color: red"></div>
                                         </small>
 				                </section>
-				                
+
+                <section>
+                    <h2>Boucle for(of)</h2>
+                    <p>
+                        Permet d'indiquer une boucle sans écrire l'incrémentation
+                    </p>
+                    <small><textarea autojslog="js-array-for-in" rows="12" cols="45">
+function contains(array, value) {
+  for(let element of array) {
+    if (element == value) {
+      return true;
+    }
+  }
+  return false;
+}
+
+let array = ['h', 'e', 'l', 'l', 'o'];
+console.log(contains(array, 'e'));
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-array-for-in" class="autojslog"></div>
+                    </small>
+                    <p>
+                        <small>
+                            Cette boucle est plus lisible mais l'index n'est pas disponible !
+                        </small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Fonction à nombre variable d'arguments</h2>
+                    <p>
+                        Si le dernier paramètre est déclaré avec '...',
+                        les arguments sont mis dans un tableau.
+                    </p>
+                    <small><textarea autojslog="js-array-varargs" rows="8" cols="40">
+function all(text, ...args) {
+  for(let arg of args) {
+    console.log(text, arg);
+  }
+}
+all("val ", 1, 4);
+all("empty");
+                    </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-array-varargs" class="autojslog"></div>
+                    </small>
+                </section>
+
 				                <section>
 					                    <h2>indexOf/lastIndexOf</h2>
 					                    <p>
@@ -486,9 +533,8 @@ console.log(array);
 				<section>
 					                    <h2>Rappel: Fonction anonyme</h2>
 					                    <p>
-                                         JavaScript possède la notation '=>'
-                                        <br/> 
-                                         pour déclarer des <b>fonctions anonymes</b>
+                                            On peut utiliser une fonction <b>fonctions anonymes</b>
+                                            pour simplifier le code.
                                         </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojslog="js-array-anonymous-fun" rows="4" cols="30">
@@ -501,6 +547,9 @@ console.log(array);
                                           <div id="js-array-anonymous-fun" class="autojslog"></div>
                                         </small>
 				</section>
+
+
+
 
 			</div>
 
