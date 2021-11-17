@@ -226,11 +226,36 @@ JSON.stringify(obj)
                                         </p>
 				</section>
 
+
+
+                <section>
+                    <h2>Destructuration d'objet</h2>
+                    <p>
+                       Comme pour les tableaux, on peut destructurer les valeurs d'un objet
+                       avec la syntaxe <b>let {key1, key2, ...} = object</b>.
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><textarea autojslog="js-object-destructuring" rows="4" cols="40">
+let person = { name: "Ana", age: 42 };
+let {name, age} = person;
+console.log(`Person ${name} ${age}`);
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-object-destructuring" class="autojslog"></div>
+                    </small>
+                    <p>
+                        <small>
+                            Syntaxe introduite avec ECMAScript 6 !
+                        </small>
+                    </p>
+                </section>
+
                 <section>
                     <h2>Objet pas primitif</h2>
                     <p>
                         Un objet n'est pas considéré comme un type primitif,
-                      <br/>
+                        <br/>
                         == compare les addresses en mémoire
                     </p>
                     <p>&nbsp;</p>
