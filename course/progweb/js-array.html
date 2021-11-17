@@ -250,13 +250,13 @@ console.log(minmax([1, 7, 5]));
                 </section>
 
                 <section>
-                    <h2>Destructuration avec des tableaux</h2>
+                    <h2>Assignation multiple</h2>
                     <p>
                         On peut assigner plusieurs variables avec
                         <br/>
-                        la syntaxe <b>[var1, var2, ...] = ...</b>.
+                        la syntaxe <b>[var1, var2, ...] = array</b>.
                     </p>
-                    <small><textarea autojslog="js-array-destructuring" rows="6" cols="30">
+                    <small><textarea autojslog="js-array-multiple-assign" rows="6" cols="30">
 let array = [40, 2];
 let a;
 let b;
@@ -265,7 +265,7 @@ console.log(a + b);
                     </textarea></small>
                     <p></p>
                     <small>
-                        <div id="js-array-destructuring" class="autojslog"></div>
+                        <div id="js-array-multiple-assign" class="autojslog"></div>
                     </small>
                     <p>
                         <small>
@@ -275,20 +275,44 @@ console.log(a + b);
                 </section>
 
                 <section>
-                    <h2>Declaration et destructuration</h2>
+                    <h2>Assignation multiple (2)</h2>
                     <p>
-                        On peut combiner la declaration et la destructuration avec
-                       <br/>
-                        la syntaxe <b>let [var1, var2, ...] = ...</b>.
+                        On peut ignorer des valeurs avec une virgule sans nom et
+                        on peut indiquer que le reste va dans un tableau.
                     </p>
-                    <small><textarea autojslog="js-array-destructuring-let" rows="4" cols="30">
+                    <small><textarea autojslog="js-array-multiple-assign2" rows="6" cols="30">
+let array = [1, 2, 3, 4, 5];
+let first, rest;
+[first, , ...rest] = array;
+console.log(first);
+console.log(rest);
+                    </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-array-multiple-assign2" class="autojslog"></div>
+                    </small>
+                    <p>
+                        <small>
+                            Syntaxe introduite avec ECMAScript 6 !
+                        </small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Destructuration</h2>
+                    <p>
+                        On peut combiner la declaration et l'assignation multiple avec
+                       <br/>
+                        la syntaxe <b>let [var1, var2, ...] = array</b>.
+                    </p>
+                    <small><textarea autojslog="js-array-destructuring" rows="4" cols="30">
 let array = [40, 2];
 let [a, b] = array;
 console.log(a + b);
                     </textarea></small>
                     <p></p>
                     <small>
-                        <div id="js-array-destructuring-let" class="autojslog"></div>
+                        <div id="js-array-destructuring" class="autojslog"></div>
                     </small>
                     <p>
                         <small>
