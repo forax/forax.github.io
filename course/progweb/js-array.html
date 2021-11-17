@@ -175,55 +175,6 @@ printAll([42, true]);
                                          <div id="js-array-loop" class="autojslog"></div>
                                         </small>
 				                </section>
-				                <section>
-					                    <h2>Boucle et return</h2>
-					                    <p>
-                                         Si on trouve le résultat, on peut arrêter la boucle
-                                        </p>
-                                        <small><textarea autojslog="js-array-loop-return" rows="13" cols="45">
-function indexOf(array, value) {
-  for(let i = 0; i < array.length; i++) {
-    if (array[i] == value) {
-      return i;
-    }
-  }
-  return -1;
-}
-
-let array = ['h', 'e', 'l', 'l', 'o'];
-console.log(indexOf(array, 'e'));
-console.log(indexOf(array, 'z'));
-                                        </textarea></small>
-                                        <p></p>
-                                        <small>
-                                         <div id="js-array-loop-return" class="autojslog"></div>
-                                        </small>
-				                </section>
-				                <section>
-					                    <h2>Boucle sur un tableau (3)</h2>
-					                    <p>
-                                         Ne <b style="color: red">jamais</b> sortir d'une boucle en changeant un drapeau
-                                        </p>
-                                        <small><div class="bad-container"><textarea autojslog="js-array-flag" rows="14" cols="45">
-function indexOf(array, value) {
-  let notFound = true;
-  let i = 0;
-  for(; notFound && i < array.length; i++) {
-    if (array[i] == value) {
-      notFound = false;
-    }
-  }
-  if (notFound) { return -1; } else { return i; }
-}
-
-let array = ['h', 'e', 'l', 'l', 'o'];
-console.log(indexOf(array, 'e'));
-                                        </textarea><div class="bad-image"></div></div></small>
-                                        <p></p>
-                                        <small>
-                                          <div id="js-array-flag" style="color: red"></div>
-                                        </small>
-				                </section>
 
                 <section>
                     <h2>Boucle for(of)</h2>
@@ -273,6 +224,81 @@ all("empty");
                     <small>
                         <div id="js-array-varargs" class="autojslog"></div>
                     </small>
+                </section>
+
+                <section>
+                    <h2>Fonction avec plusieurs valeurs de retour</h2>
+                    <p>
+                        On renvoie un tableau si on a plusieurs valeurs de retour.
+                    </p>
+                    <small><textarea autojslog="js-array-return" rows="11" cols="40">
+function minmax(array) {
+  let min = Number.POSITIVE_INFINITY;
+  let max = Number.NEGATIVE_INFINITY;
+  for(let value of array) {
+    min = Math.min(min, value);
+    max = Math.max(max, value);
+  }
+  return [min, max];
+}
+console.log(minmax([1, 7, 5]));
+                    </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-array-return" class="autojslog"></div>
+                    </small>
+                </section>
+
+                <section>
+                    <h2>Destructuration avec des tableaux</h2>
+                    <p>
+                        On peut assigner plusieurs variables avec
+                        <br/>
+                        la syntaxe <b>[var1, var2, ...] = ...</b>.
+                    </p>
+                    <small><textarea autojslog="js-array-destructuring" rows="6" cols="30">
+let array = [40, 2];
+let a;
+let b;
+[a, b] = array;
+console.log(a + b);
+                    </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-array-destructuring" class="autojslog"></div>
+                    </small>
+                    <p>
+                        <small>
+                            Syntaxe introduite avec ECMAScript 6 !
+                        </small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Declaration et destructuration</h2>
+                    <p>
+                        On peut combiner la declaration et la destructuration avec
+                       <br/>
+                        la syntaxe <b>let [var1, var2, ...] = ...</b>.
+                    </p>
+                    <small><textarea autojslog="js-array-destructuring-let" rows="4" cols="30">
+let array = [40, 2];
+let [a, b] = array;
+console.log(a + b);
+                    </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-array-destructuring-let" class="autojslog"></div>
+                    </small>
+                    <p>
+                        <small>
+                            Syntaxe introduite avec ECMAScript 6 !
+                        </small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Méthodes sur les tableaux</h2>
                 </section>
 
 				                <section>
