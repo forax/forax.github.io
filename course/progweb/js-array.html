@@ -206,27 +206,6 @@ console.log(contains(array, 'e'));
                 </section>
 
                 <section>
-                    <h2>Fonction à nombre variable d'arguments</h2>
-                    <p>
-                        Si le dernier paramètre est déclaré avec '...',
-                        les arguments sont mis dans un tableau.
-                    </p>
-                    <small><textarea autojslog="js-array-varargs" rows="8" cols="40">
-function all(text, ...args) {
-  for(let arg of args) {
-    console.log(text, arg);
-  }
-}
-all("val ", 1, 4);
-all("empty");
-                    </textarea></small>
-                    <p></p>
-                    <small>
-                        <div id="js-array-varargs" class="autojslog"></div>
-                    </small>
-                </section>
-
-                <section>
                     <h2>Fonction avec plusieurs valeurs de retour</h2>
                     <p>
                         On renvoie un tableau si on a plusieurs valeurs de retour.
@@ -250,13 +229,66 @@ console.log(minmax([1, 7, 5]));
                 </section>
 
                 <section>
+                    <h2>Fonction à nombre variable d'arguments</h2>
+                    <p>
+                        Si le dernier paramètre est déclaré avec '...' (<b>rest</b>),
+                        les arguments sont mis dans un tableau.
+                    </p>
+                    <small><textarea autojslog="js-array-varargs" rows="8" cols="40">
+function all(text, ...args) {
+  for(let arg of args) {
+    console.log(text, arg);
+  }
+}
+all("val ", 1, 4);
+all("empty");
+                    </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-array-varargs" class="autojslog"></div>
+                    </small>
+                </section>
+                <section>
+                    <h2>Appel de fonction avec un tableau</h2>
+                    <p>
+                        A l'appel de fonction l'opérateur '...' (<b>spread</b>) transfert les valeurs
+                        d'un tableau en tant qu'arguments.
+                    </p>
+                    <small><textarea autojslog="js-array-spread" rows="7" cols="40">
+function minOf3(a, b, c) {
+  return Math.min(a, b, c);
+}
+let array = [40, 2];
+let min = minOf3(7, ...array);
+console.log(min);
+                    </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-array-spread" class="autojslog"></div>
+                    </small>
+                </section>
+                <section>
+                    <h2>Création de tableau + spread</h2>
+                    <p>
+                        L'opérateur spread '...' marche aussi pour la création de tableau.
+                    </p>
+                    <small><textarea autojs="js-array-create-spread" rows="3" cols="32">
+var array = [1, 2, 3, 4];
+let array2 = [0, ...array];
+                    </textarea></small>
+                    <small>
+                        <div id="js-array-create-spread" class="autojs"></div>
+                    </small>
+                </section>
+
+                <section>
                     <h2>Assignation multiple</h2>
                     <p>
                         On peut assigner plusieurs variables avec
                         <br/>
                         la syntaxe <b>[var1, var2, ...] = array</b>.
                     </p>
-                    <small><textarea autojslog="js-array-multiple-assign" rows="6" cols="30">
+                    <small><textarea autojslog="js-array-multiple-assign" rows="6" cols="35">
 let array = [40, 2];
 let a;
 let b;
@@ -267,11 +299,6 @@ console.log(a + b);
                     <small>
                         <div id="js-array-multiple-assign" class="autojslog"></div>
                     </small>
-                    <p>
-                        <small>
-                            Syntaxe introduite avec ECMAScript 6 !
-                        </small>
-                    </p>
                 </section>
 
                 <section>
@@ -280,7 +307,7 @@ console.log(a + b);
                         On peut ignorer des valeurs avec une virgule sans nom et
                         on peut indiquer que le reste va dans un tableau.
                     </p>
-                    <small><textarea autojslog="js-array-multiple-assign2" rows="6" cols="30">
+                    <small><textarea autojslog="js-array-multiple-assign2" rows="6" cols="35">
 let array = [1, 2, 3, 4, 5];
 let first, rest;
 [first, , ...rest] = array;
@@ -291,11 +318,6 @@ console.log(rest);
                     <small>
                         <div id="js-array-multiple-assign2" class="autojslog"></div>
                     </small>
-                    <p>
-                        <small>
-                            Syntaxe introduite avec ECMAScript 6 !
-                        </small>
-                    </p>
                 </section>
 
                 <section>
@@ -314,11 +336,6 @@ console.log(a + b);
                     <small>
                         <div id="js-array-destructuring" class="autojslog"></div>
                     </small>
-                    <p>
-                        <small>
-                            Syntaxe introduite avec ECMAScript 6 !
-                        </small>
-                    </p>
                 </section>
 
                 <section>
