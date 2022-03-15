@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Flexbox & Grid</title>
+
+    <meta name="description" content="CSS">
+    <meta name="author" content="Remi Forax">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <style>
+		  .bad-container {
+            position: relative;
+            display:inline-block;
+          }
+		  .bad-image:after {
+            content: url(images/js/bad.png);
+            position: absolute;
+            z-index: 9999;
+            right: 5px;
+            bottom: 0px;
+          }
+	</style>
+    <style>
+          .resize_anim {
+            width: 500px;
+            transition: width 1s;
+          }
+         .resize_anim.animation {
+           width: 200px;
+         }
+    </style>
+    <script>
+window.onload = function() {
+  var frames = document.querySelectorAll('iframe');
+  frames.forEach(function(frame) {
+    //console.log('found frame ' + frame.id);
+    if (frame.attributes.buttonresizable != undefined) {
+      var button = document.getElementById(frame.id + '_button');
+      //console.log(button);
+      button.onclick = function() {
+        frame.classList.toggle('animation');
+      };
+    }
+  });
+};
+    </script>
+</head>
+
+<body>
+
+<div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+        <section>
+            <h1>Flexbox & Grid</h1>
+            <p>
+                Remi Forax
+            </p>
+        </section>
+        <section>
+            <h2>CSS ?</h2>
+            <blockquote cite="https://en.wikipedia.org/wiki/CSS">
+                &ldquo;CSS Flexible Box Layout, commonly known as Flexbox, is a CSS 3 web layout model.
+                The flex layout allows responsive elements within a container to be automatically
+                arranged depending upon screen size (or device).&rdquo;
+            </blockquote>
+            <p align="right">
+                source: Wikipedia.org - <a href="https://en.wikipedia.org/wiki/CSS_Flexible_Box_Layout">Flexbox</a>
+            </p>
+        </section>
+        <section>
+            <h2>CSS ?</h2>
+            <blockquote cite="https://en.wikipedia.org/wiki/CSS">
+                &ldquo;CSS Flexible Box Layout, ou communément FlexBox, est un modèle de layout CSS 3 pour le web.
+                Ce layout flexible permet d'arranger automatiquement les éléments à l'intérieur d'un conteneur
+                de façon responsive en fonction de la taille de l'écran (ou de l'appareil).&rdquo;
+            </blockquote>
+            <p align="right">
+                sources : Wikipedia.org - <a href="https://en.wikipedia.org/wiki/CSS_Flexible_Box_Layout">Flexbox</a>
+            </p>
+        </section>
+        <section>
+            <h2>Historique des versions</h2>
+            <table>
+                <tr>
+                    <td>Création</td><td>2009</td>
+                </tr><tr>
+                    <td>Support dans Firefox/Chrome, Safari</td><td>2014, 1015</td>
+                </tr><tr>
+                    <td><a href="https://drafts.csswg.org/css-flexbox/">W3c FlexBox</a></td><td>2022</td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>Réponds à deux questions</h2>
+            <ul>
+                <li>Comment aligner verticalement des boites ?</li>
+                <li>Comment placer des boites de façon responsive ?</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Propriétés du conteneur</h2>
+        </section>
+
+        <section>
+            <h2>Display: flex</h2>
+            <p>
+
+            </p>
+            <pre>
+                &lt;div class="container"&gt;
+                  &lt;div class="item"&gt;1&lt;/div&gt;
+                  &lt;div class="item"&gt;2&lt;/div&gt;
+                  &lt;div class="item"&gt;3&lt;/div&gt;
+                &lt;/div>
+            </pre>
+            <p> </p>
+            <iframe id="flexbox-example"
+                    src="images/flex/flexbox-example.html"
+                    width="500"
+                    height="70">
+            </iframe>
+            <p></p>
+            <p>
+                <small><textarea autostyle="flexbox-example" rows="10" cols="30">
+.container {
+  display: flex; /* inline-flex */
+}
+.item {
+  background-color: pink;
+  margin: 15px;
+  width: 100px;
+  height: 40px;
+}
+                </textarea></small>
+            </p>
+        </section>
+
+        <section>
+            <h2>Direction et Alignement</h2>
+            <small><ul>
+              <li>flex-direction: row | row-reverse | column | column-reverse</li>
+              <li>justify-content: center | flex-start | flex-end |
+                  space-between | space-evenly | space-around</li>
+            </ul></small>
+            <p> </p>
+            <iframe id="flexbox-property"
+                    src="images/flex/flexbox-property.html"
+                    width="500"
+                    height="200">
+            </iframe>
+            <p></p>
+            <p>
+                <small><textarea autostyle="flexbox-property" rows="5" cols="35">
+.container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+.item {
+  background-color: pink;
+  margin: 15px;
+  width: 100px;
+  height: 40px;
+}
+                </textarea></small>
+            </p>
+        </section>
+
+        <section>
+            <h2>Alignement Vertical</h2>
+            <p>
+                En fait, alignement sur l'axe opposé à <i>flex-direction</i>
+            </p>
+            <small><ul>
+                <li>align-items: flex-start | flex-end | center | baseline | stretch</li>
+            </ul></small>
+            <p> </p>
+            <iframe id="flexbox-vertical-align"
+                    src="images/flex/flexbox-vertical-align.html"
+                    width="500"
+                    height="100">
+            </iframe>
+            <p></p>
+            <p>
+                <small><textarea autostyle="flexbox-vertical-align" rows="6" cols="35">
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.item1 {
+  background-color: pink;
+  margin: 15px;
+  width: 100px;
+  height: 20px;
+}
+.item2 {
+  background-color: pink;
+  margin: 15px;
+  width: 100px;
+  height: 40px;
+}
+.item3 {
+  background-color: pink;
+  margin: 15px;
+  width: 100px;
+  height: 60px;
+}
+                </textarea></small>
+            </p>
+        </section>
+
+        <section>
+            <h2>Aller à la ligne</h2>
+            <p>
+                Si il n'y a pas assez de place sur une ligne ...
+            </p>
+            <small><ul>
+                <li>flex-wrap: nowrap | wrap | wrap-reverse</li>
+                <li>align-content: center | flex-start | flex-end | space-between | space-around | space-evenly | stretch</li>
+            </ul></small>
+            <p> </p>
+            <button id="flexbox-wrap_button">resize</button>
+            <iframe id="flexbox-wrap"
+                    class="resize_anim"
+                    buttonresizable
+                    src="images/flex/flexbox-wrap.html"
+                    width="500"
+                    height="175">
+            </iframe>
+            <p></p>
+            <p>
+                <small><textarea autostyle="flexbox-wrap" rows="9" cols="35">
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  height: 200px;
+}
+.item {
+  background-color: pink;
+  margin: 10px;
+  width: 100px;
+  height: 40px;
+}
+                </textarea></small>
+            </p>
+        </section>
+
+        <section>
+            <h2>Flex-flow</h2>
+            <p>
+                La propriété <i>flex-flow</i> permet de définir <i>flex-direction</i> et <i>flex-wrap</i>
+                en une seule propriété
+            </p>
+            <small><ul>
+                <li>flex-flow: flex-direction flex-wrap</li>
+            </ul></small>
+            <p> </p>
+            <button id="flexbox-flow_button">resize</button>
+            <iframe id="flexbox-flow"
+                    class="resize_anim"
+                    buttonresizable
+                    src="images/flex/flexbox-flow.html"
+                    width="500"
+                    height="175">
+            </iframe>
+            <p></p>
+            <p>
+                <small><textarea autostyle="flexbox-flow" rows="7" cols="35">
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+.item {
+  background-color: pink;
+  margin: 10px;
+  width: 100px;
+  height: 40px;
+}
+                </textarea></small>
+            </p>
+        </section>
+
+        <section>
+            <h2>Espacement ligne/colonne</h2>
+            <p>
+                <i>gap</i> indique un espacement minimal entre les boites
+            </p>
+            <small><ul>
+                <li>row-gap: 10px et column-gap: 20px</li>
+                <li>gap: 10px 20px /* row-gap column-gap */</li>
+                <li>gap: 10px /* 10px 10px */</li>
+            </ul></small>
+            <p> </p>
+            <button id="flexbox-gap_button">resize</button>
+            <iframe id="flexbox-gap"
+                    class="resize_anim"
+                    buttonresizable
+                    src="images/flex/flexbox-gap.html"
+                    width="500"
+                    height="150">
+            </iframe>
+            <p></p>
+            <p>
+                <small><textarea autostyle="flexbox-gap" rows="7" cols="35">
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: flex-start;
+  gap: 10px 30px;
+  height: 150px;
+}
+.item {
+  background-color: pink;
+  margin: 10px;
+  width: 100px;
+  height: 40px;
+}
+                </textarea></small>
+            </p>
+        </section>
+
+        <section>
+            <h2>Propriétés des éléments</h2>
+        </section>
+
+        <section>
+            <h2>Alignement vertical spécifique</h2>
+            <p>
+                Un élément peut indiquer qu'il a un alignement spécifique
+                <i>align-self</i> au lieu d'utiliser <i>align-items</i>
+                du conteneur
+            </p>
+            <small><ul>
+                <li>align-self: auto | flex-start | flex-end | center | baseline | stretch</li>
+            </ul></small>
+            <p> </p>
+            <iframe id="flexbox-item-align-self"
+                    src="images/flex/flexbox-item-align-self.html"
+                    width="500"
+                    height="100">
+            </iframe>
+            <p></p>
+            <p>
+                <small><textarea autostyle="flexbox-item-align-self" rows="8" cols="35">
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100px;
+}
+.item1 {
+  align-self: flex-end;
+  background-color: pink;
+  margin: 15px;
+  width: 100px;
+  height: 20px;
+}
+.item2 {
+  background-color: pink;
+  margin: 15px;
+  width: 100px;
+  height: 20px;
+}
+.item3 {
+  background-color: pink;
+  margin: 15px;
+  width: 100px;
+  height: 20px;
+}
+                </textarea></small>
+            </p>
+        </section>
+
+        <section>
+            <h2>Taille d'un élément</h2>
+            <p>
+                <i>flex-basis</i> définie la taille
+            </p>
+            <small><ul>
+                <li>flex-basis: auto /* use width/height */</li>
+                <li>flex-basis: 100px</li>
+                <li>flex-basis: 20%</li>
+            </ul></small>
+            <p> </p>
+            <button id="flexbox-item-basis_button">resize</button>
+            <iframe id="flexbox-item-basis"
+                    class="resize_anim"
+                    buttonresizable
+                    src="images/flex/flexbox-item-basis.html"
+                    width="500"
+                    height="100">
+            </iframe>
+            <p></p>
+            <p>
+                <small><textarea autostyle="flexbox-item-basis" rows="8" cols="35">
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.item1 {
+  flex-basis: 20%;
+  background-color: pink;
+  margin: 10px;
+  width: 100px;
+  height: 40px;
+}
+.item2 {
+  flex-basis: 60%;
+  background-color: pink;
+  margin: 10px;
+  width: 100px;
+  height: 40px;
+}
+.item3 {
+  flex-basis: 20%;
+  background-color: pink;
+  margin: 10px;
+  width: 100px;
+  height: 40px;
+}
+                </textarea></small>
+            </p>
+        </section>
+
+        <section>
+            <h2>Agrandissement responsive</h2>
+            <p>
+                <i>flex-grow</i> indique qu'un élement participe à l'agrandissement
+               <br/>
+                0= pas d'agrandissement, 1= agrandissement
+            </p>
+            <p> </p>
+            <button id="flexbox-item-grow_button">resize</button>
+            <iframe id="flexbox-item-grow"
+                    class="resize_anim"
+                    buttonresizable
+                    src="images/flex/flexbox-item-grow.html"
+                    width="500"
+                    height="100">
+            </iframe>
+            <p></p>
+            <p>
+                <small><textarea autostyle="flexbox-item-grow" rows="8" cols="35">
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.item1 {
+  flex-grow: 1;
+  background-color: pink;
+  margin: 10px;
+  width: 100px;
+  height: 40px;
+}
+.item2 {
+  background-color: pink;
+  margin: 10px;
+  width: 100px;
+  height: 40px;
+}
+.item3 {
+  background-color: pink;
+  margin: 10px;
+  width: 100px;
+  height: 40px;
+}
+                </textarea></small>
+            </p>
+        </section>
+
+        <section>
+            <h2>Agrandissement responsive</h2>
+            <p>
+                si plusieurs <i>flex-grow</i>s, alors l'agrandissement
+                est proportionnel aux valeurs
+            </p>
+            <p> </p>
+            <button id="flexbox-item-grow2_button">resize</button>
+            <iframe id="flexbox-item-grow2"
+                    class="resize_anim"
+                    buttonresizable
+                    src="images/flex/flexbox-item-grow2.html"
+                    width="500"
+                    height="100">
+            </iframe>
+            <p></p>
+            <p>
+                <small><textarea autostyle="flexbox-item-grow2" rows="8" cols="35">
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.item1 {
+  flex-grow: 2;
+  background-color: pink;
+  margin: 10px;
+  width: 100px;
+  height: 40px;
+}
+.item2 {
+  flex-grow: 1;
+  background-color: pink;
+  margin: 10px;
+  width: 100px;
+  height: 40px;
+}
+.item3 {
+  background-color: pink;
+  margin: 10px;
+  width: 100px;
+  height: 40px;
+}
+                </textarea></small>
+            </p>
+        </section>
+        <section>
+            <h2>Rétrécissement responsive</h2>
+            <p>
+                <i>flex-shrink</i> indique le facteur de rétrécissement
+               <br/>
+                <small>
+                    proportionnel comme <i>flex-grow</i> mais avec 1 comme valeur par défaut
+                </small>
+            </p>
+            <p> </p>
+            <button id="flexbox-item-shrink_button">resize</button>
+            <iframe id="flexbox-item-shrink"
+                    class="resize_anim"
+                    buttonresizable
+                    src="images/flex/flexbox-item-shrink.html"
+                    width="500"
+                    height="100">
+            </iframe>
+            <p></p>
+            <p>
+                <small><textarea autostyle="flexbox-item-shrink" rows="8" cols="35">
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.item1 {
+  flex-shrink: 2;
+  background-color: pink;
+  margin: 10px;
+  width: 100px;
+  height: 40px;
+}
+.item2 {
+  background-color: pink;
+  margin: 10px;
+  width: 100px;
+  height: 40px;
+}
+.item3 {
+  background-color: pink;
+  margin: 10px;
+  width: 100px;
+  height: 40px;
+}
+                </textarea></small>
+            </p>
+        </section>
+
+        <section>
+            <h2>Attribut flex</h2>
+            <p>
+                <i>flex</i> indique les différents facteurs en une seule propriété
+                <small>
+                    flex: flex-grow flex-shrink flex-basis
+                </small>
+            </p>
+            <p> </p>
+            <button id="flexbox-item-flex_button">resize</button>
+            <iframe id="flexbox-item-flex"
+                    class="resize_anim"
+                    buttonresizable
+                    src="images/flex/flexbox-item-shrink.html"
+                    width="500"
+                    height="100">
+            </iframe>
+            <p></p>
+            <p>
+                <small><textarea autostyle="flexbox-item-flex" rows="8" cols="35">
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.item1 {
+  flex: 0 2 auto;
+  background-color: pink;
+  margin: 10px;
+  width: 100px;
+  height: 40px;
+}
+.item2 {
+  flex: 1 1 auto;
+  background-color: pink;
+  margin: 10px;
+  width: 100px;
+  height: 40px;
+}
+.item3 {
+  flex: 1 1 auto;
+  background-color: pink;
+  margin: 10px;
+  width: 100px;
+  height: 40px;
+}
+                </textarea></small>
+            </p>
+        </section>
+    </div>
+
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                                        { src: 'plugin/autoeval/autoeval.js', async: true },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+</body>
+</html>
