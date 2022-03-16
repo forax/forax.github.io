@@ -79,6 +79,19 @@ window.onload = function() {
     <!-- Any section element inside of this container is displayed as a slide -->
     <div class="slides">
         <section>
+            <h1>Histoire des Layouts</h1>
+            <p>
+                Différents modèles de placement (layout)
+            </p>
+            <ul>
+                <li>pre-CSS: table (avant 1996)</li>
+                <li>CSS1: float (1996+)</li>
+                <li>CSS1/CSS2: position (1996/2011+)</li>
+                <li>CSS3: Flexbox et Grid (2015)</li>
+            </ul>
+        </section>
+
+        <section>
             <h1>Flexbox & Grid</h1>
             <p>
                 Remi Forax
@@ -651,6 +664,57 @@ window.onload = function() {
   margin: 10px;
   width: 100px;
   height: 40px;
+}
+                </textarea></small>
+            </p>
+        </section>
+
+        <section>
+            <h2>En résumé</h2>
+            <p>
+                Flexbox permet d'avoir un layout adaptatif,
+                <small>
+                    mais on a que le choix entre
+                    wrap/nowrap, sinon il faut utiliser les media-query
+                </small>
+            </p>
+            <small><ul>
+                <li>Sur le conteneur, <i>display: flexbox</i> + <i>flex-flow</i></li>
+                <li>Sur les élements, <i>flex</i></li>
+            </ul></small>
+            <p> </p>
+            <button id="flexbox-summary_button">resize</button>
+            <iframe id="flexbox-summary"
+                    class="resize_anim"
+                    buttonresizable
+                    src="images/flex/flexbox-summary.html"
+                    width="500"
+                    height="150">
+            </iframe>
+            <p></p>
+            <p>
+                <small><textarea autostyle="flexbox-summary" rows="6" cols="35">
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+}
+.side {
+  flex: 1 1 auto;
+  background-color: lightgrey;
+  margin: 5px;
+}
+.main {
+  display: flex;
+  flex-flow: row wrap;
+  flex: 2 1 auto
+  background-color: lightgrey;
+  margin: 5px;
+}
+.story {
+  background-color: pink;
+  flex: 1 1 auto;
+  margin: 5px;
+  padding: 5px;
 }
                 </textarea></small>
             </p>
