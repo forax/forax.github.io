@@ -492,11 +492,11 @@ console.log(car.driverName());
                     <small><textarea autojslog="js-object-create" rows="8" cols="40">
 let oldPets = {};
 oldPets.snoopy = "dog";
+oldPets.garfield = "cat";
 let newPets = Object.create(oldPets);
-newPets.garfield = "cat";
-newPets.scooby = "dog";
-console.log(newPets.garfield);
-console.log(newPets.scooby);
+newPets.goose = "flerken";
+console.log(newPets.goose);
+console.log(newPets.snoopy);
                     </textarea></small>
                     <p></p>
                     <small>
@@ -512,9 +512,9 @@ console.log(newPets.scooby);
                     <small><textarea autojslog="js-proto" rows="8" cols="40">
 let oldPets = {};
 oldPets.snoopy = "dog";
+oldPets.garfield = "cat";
 let newPets = Object.create(oldPets);
-newPets.garfield = "cat";
-newPets.scooby = "dog";
+newPets.goose = "flerken";
 console.log(newPets);
 console.log(newPets.__proto__);
                     </textarea></small>
