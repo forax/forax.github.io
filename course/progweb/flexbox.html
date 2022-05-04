@@ -79,6 +79,13 @@ window.onload = function() {
     <!-- Any section element inside of this container is displayed as a slide -->
     <div class="slides">
         <section>
+            <h1>Flexbox & Grid</h1>
+            <p>
+                Remi Forax
+            </p>
+        </section>
+
+        <section>
             <h1>Histoire des Layouts</h1>
             <p>
                 Différents modèles de placement (layout)
@@ -89,13 +96,6 @@ window.onload = function() {
                 <li>CSS1/CSS2: position (1996/2011+)</li>
                 <li>CSS3: Flexbox et Grid (2015)</li>
             </ul>
-        </section>
-
-        <section>
-            <h1>Flexbox & Grid</h1>
-            <p>
-                Remi Forax
-            </p>
         </section>
         <section>
             <h2>CSS ?</h2>
@@ -125,10 +125,10 @@ window.onload = function() {
                 <tr>
                     <td>Création</td><td>2009</td>
                 </tr><tr>
-                    <td>Support dans Firefox/Chrome, Safari</td><td>2014, 1015</td>
-                </tr><tr>
-                    <td><a href="https://drafts.csswg.org/css-flexbox/">W3c FlexBox</a></td><td>2022</td>
-                </tr>
+                <td>Support dans Firefox, Chrome, Safari</td><td>2014, 2015</td>
+            </tr><tr>
+                <td><a href="https://drafts.csswg.org/css-flexbox/">W3c FlexBox</a></td><td>2022</td>
+            </tr>
             </table>
         </section>
 
@@ -141,21 +141,17 @@ window.onload = function() {
         </section>
 
         <section>
-            <h2>Propriétés du conteneur</h2>
-        </section>
-
-        <section>
-            <h2>Display: flex</h2>
+            <h2>Exemple</h2>
             <p>
-
+              Modèle d'affichage <i>display: flex</i>
             </p>
-            <pre>
+            <small><pre>
                 &lt;div class="container"&gt;
                   &lt;div class="item"&gt;1&lt;/div&gt;
                   &lt;div class="item"&gt;2&lt;/div&gt;
                   &lt;div class="item"&gt;3&lt;/div&gt;
                 &lt;/div>
-            </pre>
+            </pre></small>
             <p> </p>
             <iframe id="flexbox-example"
                     src="images/flex/flexbox-example.html"
@@ -179,21 +175,52 @@ window.onload = function() {
         </section>
 
         <section>
-            <h2>Direction et Alignement</h2>
+            <h2>Propriétés du conteneur</h2>
+        </section>
+
+        <section>
+            <h2>Direction</h2>
             <small><ul>
               <li>flex-direction: row | row-reverse | column | column-reverse</li>
-              <li>justify-content: center | flex-start | flex-end |
-                  space-between | space-evenly | space-around</li>
             </ul></small>
             <p> </p>
-            <iframe id="flexbox-property"
-                    src="images/flex/flexbox-property.html"
+            <iframe id="flexbox-direction"
+                    src="images/flex/flexbox-direction.html"
                     width="500"
                     height="200">
             </iframe>
             <p></p>
             <p>
-                <small><textarea autostyle="flexbox-property" rows="5" cols="35">
+                <small><textarea autostyle="flexbox-direction" rows="6" cols="35">
+.container {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.item {
+  background-color: pink;
+  margin: 15px;
+  width: 100px;
+  height: 40px;
+}
+                </textarea></small>
+            </p>
+        </section>
+
+        <section>
+            <h2>Alignement Horizontal</h2>
+            <small><ul>
+                <li>justify-content: start | end | center |
+                    space-between | space-evenly | space-around</li>
+            </ul></small>
+            <p> </p>
+            <iframe id="flexbox-alignment"
+                    src="images/flex/flexbox-alignment.html"
+                    width="500"
+                    height="200">
+            </iframe>
+            <p></p>
+            <p>
+                <small><textarea autostyle="flexbox-alignment" rows="5" cols="35">
 .container {
   display: flex;
   flex-direction: row-reverse;
@@ -208,14 +235,13 @@ window.onload = function() {
                 </textarea></small>
             </p>
         </section>
-
         <section>
             <h2>Alignement Vertical</h2>
             <p>
                 En fait, alignement sur l'axe opposé à <i>flex-direction</i>
             </p>
             <small><ul>
-                <li>align-items: flex-start | flex-end | center | baseline | stretch</li>
+                <li>align-items: start | end | center | baseline | stretch</li>
             </ul></small>
             <p> </p>
             <iframe id="flexbox-vertical-align"
@@ -255,13 +281,13 @@ window.onload = function() {
         </section>
 
         <section>
-            <h2>Aller à la ligne</h2>
+            <h2>Multi-lignes</h2>
             <p>
                 Si il n'y a pas assez de place sur une ligne ...
             </p>
             <small><ul>
                 <li>flex-wrap: nowrap | wrap | wrap-reverse</li>
-                <li>align-content: center | flex-start | flex-end | space-between | space-around | space-evenly | stretch</li>
+                <li>align-content: start | end | center | space-between | space-around | space-evenly | stretch</li>
             </ul></small>
             <p> </p>
             <button id="flexbox-wrap_button">resize</button>
@@ -333,6 +359,7 @@ window.onload = function() {
         </section>
 
         <section>
+            <a href="#flexbox-gap"></a>
             <h2>Espacement ligne/colonne</h2>
             <p>
                 <i>gap</i> indique un espacement minimal entre les boites
@@ -719,6 +746,289 @@ window.onload = function() {
                 </textarea></small>
             </p>
         </section>
+
+        <section>
+            <h1>Grid</h1>
+        </section>
+        <section>
+            <h2>Grid ?</h2>
+            <blockquote cite="https://en.wikipedia.org/wiki/CSS">
+                &ldquo;CSS grid layout or CSS grid creates complex responsive web design grid layouts more easily
+                and consistently across browsers.&rdquo;
+            </blockquote>
+            <p align="right">
+                source: Wikipedia.org - <a href="https://en.wikipedia.org/wiki/CSS_grid_layout">Grid layout</a>
+            </p>
+        </section>
+        <section>
+            <h2>Grid ?</h2>
+            <blockquote cite="https://en.wikipedia.org/wiki/CSS">
+                &ldquo;CSS grid Layout ou CSS grid crée des grilles de placement complexe et <i>responsive</i>
+                plus simplement et de la même façon quel que soit le navigateur.&rdquo;
+            </blockquote>
+            <p align="right">
+                sources : Wikipedia.org - <a href="https://en.wikipedia.org/wiki/CSS_grid_layout">Grid layout</a>
+            </p>
+        </section>
+        <section>
+            <h2>Historique des versions</h2>
+            <table>
+                <tr>
+                    <td>Création</td><td>2011</td>
+                </tr><tr>
+                    <td>Support dans Firefox, Chrome, Safari</td><td>2017</td>
+                </tr><tr>
+                    <td><a href="https://www.w3.org/TR/css-grid-1/">W3c CSS Grid</a></td><td>2020</td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>Exemple</h2>
+            <p>
+                Modèle d'affichage <i>display: grid</i>
+            </p>
+            <small><pre>
+                &lt;div class="container"&gt;
+                  &lt;div class="item"&gt;1&lt;/div&gt;
+                  &lt;div class="item"&gt;2&lt;/div&gt;
+                  &lt;div class="item"&gt;3&lt;/div&gt;
+                &lt;/div>
+            </pre></small>
+            <p> </p>
+            <iframe id="grid-example"
+                    src="images/flex/grid-example.html"
+                    width="500"
+                    height="100">
+            </iframe>
+            <p></p>
+            <p>
+                <small><textarea autostyle="grid-example" rows="7" cols="35">
+.container {
+  display: grid; /* inline-grid */
+  grid-template-columns: 50% 80px;
+  grid-template-rows: auto auto;
+  border: solid black;
+}
+.item {
+  border: solid black;
+  background-color: pink;
+  margin: 5px;
+}
+                </textarea></small>
+            </p>
+        </section>
+
+        <section>
+            <h2>Propriétés du conteneur</h2>
+        </section>
+        <section>
+            <h2>Grid-template-[columns|rows]</h2>
+            <p>
+                Indique les tailles de chaque colonne et de chaque ligne
+            </p>
+
+            <p> </p>
+            <iframe id="grid-template"
+                    src="images/flex/grid-template.html"
+                    width="500"
+                    height="100">
+            </iframe>
+            <p></p>
+            <p>
+                <small><textarea autostyle="grid-template" rows="7" cols="37">
+.container {
+  display: grid;
+  grid-template-columns: 40% 1fr 20%;
+  grid-template-rows: auto 50px;
+  border: solid black;
+}
+.item {
+  border: solid black;
+  background-color: pink;
+  margin: 5px;
+}
+                </textarea></small>
+            </p>
+        </section>
+        <section>
+            <h2>Grid-template-* Unités</h2>
+            <small><ul>
+               <li>en pixels: 100px</li>
+               <li>en %: 20% (pourcentage su conteneur)</li>
+               <li>en fr: 2fr (espace libre/proportionnel)</li>
+               <li>min-content: (texte) taille du plus grand mot</li>
+               <li>max-content: (texte) taille de tous les mots</li>
+            </ul></small>
+
+            <p> </p>
+            <iframe id="grid-template-unit"
+                    src="images/flex/grid-template-unit.html"
+                    width="500"
+                    height="100">
+            </iframe>
+            <p></p>
+            <p>
+                <small><textarea autostyle="grid-template-unit" rows="7" cols="45">
+.container {
+  display: grid;
+  grid-template-columns: 1fr max-content 2fr;
+  grid-template-rows: auto 50px;
+  border: solid black;
+}
+.item {
+  border: solid black;
+  background-color: pink;
+  margin: 5px;
+}
+                </textarea></small>
+            </p>
+        </section>
+        <section>
+            <h2>Grid-template-* repeat</h2>
+            <p>
+                La macro <i>repeat(times, value)</i> permet d'appliquer la même
+                valeur à toute les colonnes (resp. lignes) d'une grille
+            </p>
+
+            <p> </p>
+            <iframe id="grid-repeat"
+                    src="images/flex/grid-repeat.html"
+                    width="500"
+                    height="100">
+            </iframe>
+            <p></p>
+            <p>
+                <small><textarea autostyle="grid-repeat" rows="5" cols="45">
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, auto);
+  border: solid black;
+}
+.item {
+  border: solid black;
+  background-color: pink;
+  margin: 5px;
+}
+                </textarea></small>
+            </p>
+        </section>
+
+        <section>
+            <h2>Alignement Horizontal</h2>
+            <small><ul>
+                <li>justify-content: start | end | center</li>
+            </ul></small>
+            <p> </p>
+            <iframe id="grid-alignment"
+                    src="images/flex/grid-alignment.html"
+                    width="500"
+                    height="100">
+            </iframe>
+            <p></p>
+            <p>
+                <small><textarea autostyle="grid-alignment" rows="7" cols="40">
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: auto;
+  justify-content: center;
+  border: solid black;
+}
+.item {
+  border: solid black;
+  background-color: pink;
+  margin: 5px;
+}
+                </textarea></small>
+            </p>
+        </section>
+
+        <section>
+            <h2>Alignement Vertical</h2>
+            <p>
+                Alignement le long de l'axe des colonnes
+            </p>
+            <small><ul>
+                <li>align-items: start | end | center | baseline | stretch</li>
+            </ul></small>
+            <p> </p>
+            <iframe id="grid-vertical-align"
+                    src="images/flex/grid-vertical-align.html"
+                    width="500"
+                    height="100">
+            </iframe>
+            <p></p>
+            <p>
+                <small><textarea autostyle="grid-vertical-align" rows="7" cols="40">
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 150px);
+  grid-template-rows: auto;
+  align-items: center;
+  border: solid black;
+}
+.item1 {
+  border: solid black;
+  background-color: pink;
+  margin: 5px;
+  height: 20px;
+}
+.item2 {
+  border: solid black;
+  background-color: pink;
+  margin: 5px;
+  height: 40px;
+}
+.item3 {
+  border: solid black;
+  background-color: pink;
+  margin: 5px;
+  height: 60px;
+}
+                </textarea></small>
+            </p>
+        </section>
+
+        <section>
+            <h2>Espacement ligne/colonne</h2>
+            <p>
+                <i>gap</i> définie l'espacement entre les colonnes ou les lignes
+               <br/>
+                <small>marche comme avec <a href="#flexbox-gap">flexbox</a></small>
+            </p>
+            <small><ul>
+                <li>row-gap: espacement entre lignes</li>
+                <li>column-gap: espacement entre les colonnes</li>
+                <li>gap: row-gap column-gap</li>
+            </ul></small>
+
+            <p> </p>
+            <iframe id="grid-gap"
+                    src="images/flex/grid-gap.html"
+                    width="500"
+                    height="100">
+            </iframe>
+            <p></p>
+            <p>
+                <small><textarea autostyle="grid-gap" rows="6" cols="45">
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 10px 40px;
+  border: solid black;
+}
+.item {
+  border: solid black;
+  background-color: pink;
+  margin: 5px;
+}
+                </textarea></small>
+            </p>
+        </section>
+
     </div>
 
 </div>
