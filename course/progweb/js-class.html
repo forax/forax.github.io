@@ -351,8 +351,8 @@ class Person {
   say(message) { return `${message} from ${this.name}`; }
 }
 let p = new Person("Bob");
+console.log(p.say("Hello"));
 console.log(p.say.call(p, "Hello"));
-console.log(p.say.apply(p, ["Hello"]));
                                         </textarea></small>
                     <p></p>
                     <small>
@@ -402,7 +402,7 @@ console.log(eval.add2()(2));
                 <section>
                     <h2>Fonction anonyme + bind(this)</h2>
                     <p>
-                        Si on est en ECMAScript < 6, on peut s'en sortir en ajoutant
+                        Si on est en ECMAScript &lt; 6, on peut s'en sortir en ajoutant
                         un <b>bind(this)</b>.
                     </p>
                     <p>&nbsp;</p>
@@ -548,7 +548,7 @@ console.log(car2.driverName());
                 </section>
 
                 <section>
-                    <h2>Comment on créer un objet en JavaScript &lt; 6</h2>
+                    <h2>Comment on crée un objet en JavaScript &lt&lt; 6</h2>
                     <p>
                         Une fonction joue le rôle de constructeur, le champ
                         <b>prototype</b> de cette fonction joue le rôle de conteneur de méthodes.
