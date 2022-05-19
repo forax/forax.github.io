@@ -265,7 +265,7 @@ inputText.onkeyup = () => {
                                         </small> 
 				</section>
 				<section>
-					                    <h2>Ajouter de nouveaux éléments</h2>
+					                    <h2>Ajouter un nouvel élément</h2>
 					                    <p>
 					                     <b>document.createElement</b> permet de créer un élément
 					                    <br/>
@@ -286,7 +286,7 @@ inputText.onkeyup = () => {
 					                    <p>
                                          <button type="button" id="dom-new-button">Add a box !</button>
 					                    </p>
-                                        <small><textarea autojslog="js-dom-event2" rows="7" cols="60">
+                                        <small><textarea autojslog="js-dom-create" rows="7" cols="60">
 let div = document.getElementById("dom-new");
 let button = document.getElementById("dom-new-button");
 button.onclick = () => {
@@ -298,8 +298,80 @@ button.onclick = () => {
                                          
                                         </small></p>
                                         <small>
-                                          <div id="js-dom-event2" class="autojslog"></div>
+                                          <div id="js-dom-create" class="autojslog"></div>
                                         </small> 
+				</section>
+				<section>
+					<h2>Ajouter du texte</h2>
+					<p>
+						Pour le DOM, le texte est un nœud <b>TextNode</b> qui doit
+						être un fils d'un élément classique (comme un DIV).
+					</p>
+					<style>
+					                     div#dom-new-text div {
+					                       float: left;
+					                       margin: 20px;
+					                     }
+					                    </style>
+					<div id="dom-new-text"></div>
+					<br style="clear: both"/>
+					<p>
+						<button type="button" id="dom-new-text-button">Add a text !</button>
+					</p>
+					<small><textarea autojslog="js-dom-create-text" rows="9" cols="60">
+let div = document.getElementById("dom-new-text");
+let button = document.getElementById("dom-new-text-button");
+button.onclick = () => {
+  var element = document.createElement("DIV");
+  var text = document.createTextNode("Hello");
+  element.appendChild(text);
+  div.appendChild(element);
+};
+                                        </textarea></small>
+					<p><small>
+
+					</small></p>
+					<small>
+						<div id="js-dom-create-text" class="autojslog"></div>
+					</small>
+				</section>
+
+				<section>
+					<h2>Element.append(...text|element)</h2>
+					<p>
+						Permet d'ajouter des éléments ou des textes (concaténés)
+					  <br/>
+						<small>appel appendChild() et createTextNode() si nécessaire</small>
+					</p>
+					<style>
+					                     div#dom-append div {
+					                       float: left;
+					                       width: 90px;
+					                       height: 50px;
+					                       background-color: tomato;
+					                       border: 2px solid black;
+					                       margin: 20px;
+					                     }
+					                    </style>
+					<div id="dom-append"></div>
+					<br style="clear: both"/>
+					<p>
+						<button type="button" id="dom-append-button">Add element and text !</button>
+					</p>
+					<small><textarea autojslog="js-dom-append-log" rows="7" cols="60">
+let div = document.getElementById("dom-append");
+let button = document.getElementById("dom-append-button");
+button.onclick = () => {
+  var element = document.createElement("DIV");
+  div.append("text", element);
+};
+                                        </textarea></small>
+					<p><small>
+
+					</small></p>
+					<small>
+						<div id="js-dom-append-log" class="autojslog"></div>
+					</small>
 				</section>
 			
 			</div>
