@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>JavaScript - REST - Promesse</title>
+		<title>JavaScript - REST - AJAX</title>
 
 		<meta name="description" content="javascript, REST, Promise">
 		<meta name="author" content="Remi Forax">
@@ -67,27 +67,11 @@
 			<div class="slides">
                                 <section>
 					<h1>JavaScript</h1>
-                                       <br/>
-                                        <h2>API REST</h2>
+                    <br/>
+                    <h2>API REST et AJAX</h2>
 					<p>
 					  Remi Forax
 					</p>
-				</section>
-				                <section>
-				                        <h2>Server REST</h2>
-				                </section>             
-				                <section>
-					<h2>REST</h2>
-					<blockquote cite="https://en.wikipedia.org/wiki/Representational_state_transfer">
-					  &ldquo;Representational state transfer (REST) or RESTful Web services are
-					  one way of providing interoperability between computer systems on the Internet.
-					  REST-compliant Web services allow requesting systems to access and manipulate
-					  textual representations of Web resources using a uniform and predefined
-					  set of stateless operations.&rdquo;
-					</blockquote>
-                                        <p align="right">
-                                         source: Wikipedia.org - <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">Representational state transfer</a>
-                                        </p>
 				</section>
 
                 <section>
@@ -141,6 +125,23 @@
                     <img src="images/rest/server4.png"
                          width="794"
                          height="432">
+                </section>
+
+                <section>
+                    <h2>Server REST</h2>
+                </section>
+                <section>
+                    <h2>REST</h2>
+                    <blockquote cite="https://en.wikipedia.org/wiki/Representational_state_transfer">
+                        &ldquo;Representational state transfer (REST) or RESTful Web services are
+                        one way of providing interoperability between computer systems on the Internet.
+                        REST-compliant Web services allow requesting systems to access and manipulate
+                        textual representations of Web resources using a uniform and predefined
+                        set of stateless operations.&rdquo;
+                    </blockquote>
+                    <p align="right">
+                        source: Wikipedia.org - <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">Representational state transfer</a>
+                    </p>
                 </section>
 
                                 <section>
@@ -198,13 +199,131 @@
 				               </section>
 
 
+                <section>
+                    <h2>JSON</h2>
+                </section>
+                <section>
+                    <h2>JSON ?</h2>
+                    <blockquote cite="https://en.wikipedia.org/wiki/JSON">
+                        &ldquo;JSON (JavaScript Object Notation) is an open-standard format that uses human-readable text to transmit data objects consisting of attribute–value pairs. It is the most common data format used for asynchronous browser/server communication.&rdquo;
+                    </blockquote>
+                    <p align="right">
+                        source: Wikipedia.org - <a href="https://en.wikipedia.org/wiki/JSON">JSON</a>
+                    </p>
+                </section>
+                <section>
+                    <h2>JSON ?</h2>
+                    <blockquote cite="https://en.wikipedia.org/wiki/Document_Object_Model">
+                        &ldquo;JSON (Notation objet JavaScript) est un format standard ouvert qui utilise un texte lisible par un humain pour transmettre des données objets sous forme de couples attribut/valeur. C'est le format d'échange de données le plus couramment utilisé pour la communication asynchrone entre browser et serveur.&rdquo;
+                    </blockquote>
+                    <p align="right">
+                        source : Wikipedia.org - <a href="https://en.wikipedia.org/wiki/JSON">JSON</a>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Notation JSON</h2>
+                    <p>
+                        Sous ensemble de la notation sur les objets et les tableaux JavaScript
+                        qui sert de format d'échange de données
+                    </p>
+                    <small><textarea autojslog="js-json1" rows="11" cols="40">
+var aquarium = {
+	name: "my-aquarium",
+	fishs: [{
+		name: "guppi",
+	}, {
+		name: "sushi",
+		price: 20
+	}]
+  };
+console.log(JSON.stringify(aquarium));
+                                        </textarea></small>
+                    <small>
+                        <div id="js-json1" class="autojslog"></div>
+                    </small>
+                    <div><small>
+                        seuls les types primitifs sont suppportés,
+                        boolean, number, string, array &amp; object.
+                        <br/>
+                        Les noms des propriétés apparaissent entre " " !
+                    </small></div>
+                </section>
+                <section>
+                    <h2>JSON.parse</h2>
+                    <p>
+                        Permet de décoder en JavaScript une chaine de caractères comme un objet JSON
+                    </p>
+                    <small><textarea autojslog="js-json2" rows="8" cols="55">
+var array = JSON.parse('[1, 2, 4, true]');
+console.log(array);
+
+var object = JSON.parse('{ "name": "john", "age": 26 }');
+console.log(object);
+
+JSON.parse('{ name: "john", age: 26 }');  // oops
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-json2" class="autojslog"></div>
+                    </small>
+                </section>
+
+                <section>
+                    <h2>Asynchronous Javascript And XML</h2>
+                </section>
+                <section>
+                    <h2>AJAX ?</h2>
+                    <blockquote cite="https://en.wikipedia.org/wiki/Ajax_%28programming%29">
+                        &ldquo;Ajax (also AJAX; short for asynchronous JavaScript and XML) is a set of web development techniques using many web technologies on the client-side to create asynchronous Web applications.&rdquo;
+                    </blockquote>
+                    <p align="right">
+                        source: Wikipedia.org - <a href="https://en.wikipedia.org/wiki/Ajax_%28programming%29">AJAX</a>
+                    </p>
+                </section>
+                <section>
+                    <h2>AJAX ?</h2>
+                    <blockquote cite="https://en.wikipedia.org/wiki/Ajax_%28programming%29">
+                        &ldquo;Ajax (aussi AJAX; acronyme pour JavaScript asynchrone et XML) est un ensemble de techniques de développement web utilisant plusieurs technologies web côté client dans le but de créer des applications Web asynchrones.&rdquo;
+                    </blockquote>
+                    <p align="right">
+                        source : Wikipedia.org - <a href="https://en.wikipedia.org/wiki/Ajax_%28programming%29">AJAX</a>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>AJAX ou AJAJ</h2>
+                    <p>
+                        AJAX, permet en Javascript de faire des requêtes à un serveur en enregistrant une fonction
+                        qui sera exécutée plus tard, lorsque les données du serveur seront disponibles.
+                    </p>
+                    <p>
+                        Le fait de faire le traitement plus tard lorsque les données seront présentes est appelé
+                        traitement <strong>asynchrone</strong>
+                    </p>
+                    <p>
+                        Dans la réalité, on utilise plutôt JSON que XML comme format de transport,
+                        mais on garde le nom AJAX (au lieu de AJAJ).
+                    </p>
+                </section>
+                <section>
+                    <h2>XML ou JSON ?</h2>
+                    <p>
+                        JSON est non structuré et non validable facilement donc
+                        il est utilisé pour les transferts de petites données (en kilo)
+                    </p>
+                    <p>
+                        XML est plus lourd mais structuré et validable,
+                        il est utilisé pour le transfert de données plus importantes (en méga)
+                    </p>
+                </section>
 
 
-
-				<section>
+                <section>
 				                        <h2>Fetch</h2>
 					                    <p>
 					                     <b>fetch()</b> effectue l'appel asynchrone, et <b>then()</b>
+                                         indique quoi faire avec la réponse
                                         </p>
                                         <pre><code class="js" data-trim>
 fetch("http://api.foo.bar.com/users/bob")
@@ -484,46 +603,6 @@ Promise.race([
                 </section>
 
                 <section>
-                    <h2>Await une promesse</h2>
-                    <p>
-                        await attend une promesse et met le code qui suit dans
-                        un <b>then</b> en tant que closure
-                    </p>
-                    <div style="float: left;">
-                        <small><textarea autojslog="js-await-a" rows="7" cols="43">
-(async function() {
-  let response =
-      await fetch("images/js-object/demo.json");
-  if (response.ok) {
-    console.log(response.status);
-  }
-})();
-                                        </textarea></small>
-                        <p></p>
-                        <small>
-                            <div id="js-await-a" class="autojslog"></div>
-                        </small>
-                    </div><div>
-                    <small><textarea autojslog="js-await-b" rows="7" cols="37">
-let promise =
-    fetch("images/js-object/demo.json");
-promise.then(response => {
-  if (response.ok) {
-    console.log(response.status);
-  }
-})
-                                        </textarea></small>
-                    <p></p>
-                    <small>
-                        <div id="js-await-b" class="autojslog"></div>
-                    </small>
-                    </div>
-                    <p>
-                        <small>On ne peut mettre await que dans une fonction async</small>
-                    </p>
-                </section>
-
-                <section>
                 <h2>Async fonction</h2>
                 <p>
                     Async met la valeur de retour de la fonction dans une promesse
@@ -595,9 +674,72 @@ promise.catch(err => console.log(err.message));
                 </section>
 
                 <section>
-                    <h2>Fetch + async</h2>
+                    <h2>Await une promesse</h2>
                     <p>
-                        Comme fetch() renvoie une promesse, il marche avec await
+                        await attend une promesse et met le code qui suit dans
+                        un <b>then</b> en tant que closure
+                    </p>
+                    <div style="float: left;">
+                        <small><textarea autojslog="js-await-a" rows="10" cols="43">
+(async function() {
+  let response =
+      await fetch("images/js-object/demo.json");
+  if (response.ok) {
+    console.log(response.status);
+  }
+})();
+                                        </textarea></small>
+                        <p></p>
+                        <small>
+                            <div id="js-await-a" class="autojslog"></div>
+                        </small>
+                    </div><div>
+                    <small><textarea autojslog="js-await-b" rows="10" cols="37">
+(function() {
+  let promise =
+      fetch("images/js-object/demo.json");
+  promise.then(response => {
+    if (response.ok) {
+      console.log(response.status);
+    }
+  });
+})();
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-await-b" class="autojslog"></div>
+                    </small>
+                </div>
+                    <p>
+                        <small>On ne peut mettre await que dans une fonction async</small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Await sans async</h2>
+                    <p>
+                        await ne marche que à l'intérieur d'une fonction async
+                    </p>
+                    <small><textarea autojslog="js6-await-without-async" rows="8" cols="45">
+function noAsync() {
+  let response =
+      await fetch("images/js-object/demo.json");
+  if (response.ok) {
+    console.log(response.status);
+  }
+}
+                     </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js6-await-without-async" class="autojslog"></div>
+                    </small>
+                    <p></p>
+                </section>
+
+                <section>
+                    <h2>Async Fetch + JSON</h2>
+                    <p>
+                        Comme response.json() renvoie une promesse, il marche aussi avec await
                     </p>
                     <small><textarea autojslog="js6-fetch-async-json" rows="13" cols="55">
 async function callAPI() {
