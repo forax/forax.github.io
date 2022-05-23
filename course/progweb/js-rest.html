@@ -68,13 +68,13 @@
                                 <section>
 					<h1>JavaScript</h1>
                                        <br/>
-                                        <h2>REST - Promesse</h2>
+                                        <h2>API REST</h2>
 					<p>
 					  Remi Forax
 					</p>
 				</section>
 				                <section>
-				                        <h2>REST</h2>
+				                        <h2>Server REST</h2>
 				                </section>             
 				                <section>
 					<h2>REST</h2>
@@ -89,8 +89,62 @@
                                          source: Wikipedia.org - <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">Representational state transfer</a>
                                         </p>
 				</section>
-				                <section>
-					                    <h2>Idée</h2>
+
+                <section>
+                    <h2>Discussion client/serveur</h2>
+                    <p>
+                        Historiquement, un client (browser) et un serveur
+                        discute par HTTP page par page
+                    </p>
+                    <img src="images/rest/server1.png"
+                         width="802"
+                         height="372">
+                    <p>
+                        <small>mais l'interactivité est limité</small>
+                    </p>
+                </section>
+                <section>
+                    <h2>AJAX en 1999</h2>
+                    <p>
+                        Pour Asynchronous JavaScript And XML.
+                        <small>
+                            On sépare la page et le contenu
+                            dynamique de la page. Le contenu dynamique est demandé en utilisant JavaScript.
+                        </small>
+                    </p>
+                    <img src="images/rest/server2.png"
+                         width="804"
+                         height="406">
+                    <p>
+                        <small>mais on envoie des morceaux d'arbre DOM, beurk !</small>
+                    </p>
+                </section>
+                <section>
+                    <h2>JSON en 2001</h2>
+                    <p>
+                        Douglas Crockford invente JSON
+                        <small>
+                            un format d'échange indépendant d'un langage en particulier
+                            utilisant un sous-ensemble de la syntaxe des objets de JavaScript.
+                        </small>
+                    </p>
+                    <img src="images/rest/server3.png"
+                         width="804"
+                         height="406">
+                </section>
+                <section>
+                    <h2>Architecture moderne</h2>
+                    <p>
+                        C'est le même serveur qui envoie les fichiers statiques et répond aux appels
+                        effectuer en JavaScript. L'API est au format REST.
+                    </p>
+                    <img src="images/rest/server4.png"
+                         width="794"
+                         height="432">
+                </section>
+
+                                <section>
+					                    <h2>Idée de REST</h2>
 					                    <p>
                                          On réutilise le protocole HTTP pour faire
                                         <br/> 
@@ -140,100 +194,19 @@
 				                </section>
 
 				               <section>
-				                 <h2>Côté Client</h2>
+				                 <h2>Côté Client: JavaScript</h2>
 				               </section>
-				               
-				               <section>
-				                        <h2>AJAX</h2>
-				                        <p>
-				                         Appel Asynchrone en utilisant un <b>HttpXMLRequest</b>
-				                        </p>
-				                        <pre><code class="js" data-trim> 
-let ajax = new XMLHttpRequest();
-ajax.onreadystatechange = () => {
-  if (ajax.readyState != 4) { return; }
-  if(ajax.status != 200) {
-     // TODO NOT OK ! (ajax.status)
-  } else {
-     // TODO OK (ajax.responseText)
-  }
-};
-ajax.open('GET', 'http://api.foo.bar.com/users/bob', true);
-ajax.overrideMimeType("application/json");
-ajax.send();				                 
-                                </code></pre>
-                                <p>
-                                 <small>En fait, il y a plus simple ... et mieux</small>
-                                </p>
-				               </section> 
-				               
-				               <section>
-				                        <h2>Promesse</h2>
-					                    <p>
-					                     Une <b>Promise</b> est la promesse d'une valeur (ou erreur) future
-                                        </p>
-                                        <small><textarea autojslog="js6-promise" rows="12" cols="45">
-let promise = new Promise((resolve, reject) => {
-  let value = Math.random();   // juste pour l'exemple
-  if (value < 0.5) {
-    resolve("It works");
-  } else {
-    reject(Error("oh no"));
-  }
-});
 
-promise.then(value => console.log(value))
-       .catch(err => console.log(err.message));
-                                        </textarea></small>
-                                        <p></p>
-                                        <small>
-                                         <div id="js6-promise" class="autojslog"></div>
-                                        </small>
-                                        <p><small>
-                                         
-                                        </small></p>
-				</section>
-                <!--
-				<section>
-				                        <h2>Promesse &amp; AJAX à la main</h2>
-					                    <p>
-					                     
-                                        </p>
-                                        <small><textarea autojslog="js6-promise-ajax" rows="20" cols="45">
-function ajaxPromise(doc) {
-  return new Promise((resolve, reject) => {
-    let ajax = new XMLHttpRequest();
-    ajax.onreadystatechange = () => {
-      if (ajax.readyState != 4) { return; }
-      if(ajax.status != 200) {
-        reject(Error("error " + ajax.status));
-      } else {
-        resolve(ajax.responseText);
-      }
-    };
-    ajax.open("GET", doc, true);
-    ajax.overrideMimeType("application/json");
-    ajax.send();
-  });
-}
-ajaxPromise("images/js-object/demo.json")
-  .then(value => console.log(value))
-  .catch(err => console.log(err.message));
-                                        </textarea></small>
-                                        <p></p>
-                                        <small>
-                                         <div id="js6-promise-ajax" class="autojslog"></div>
-                                        </small>
-				</section>
-				-->
+
+
+
+
 				<section>
 				                        <h2>Fetch</h2>
 					                    <p>
-					                     <b>fetch()</b>
+					                     <b>fetch()</b> effectue l'appel asynchrone, et <b>then()</b>
                                         </p>
-                                        <pre><code class="js" data-trim>         
-
-                                
+                                        <pre><code class="js" data-trim>
 fetch("http://api.foo.bar.com/users/bob")
   .then(response => {
      if (response.ok) {
@@ -273,6 +246,74 @@ fetch("images/js-object/demo.json")
                                             qui seront appelées si la valeur est résolue ou si il y a une erreur.
                                         </small></p>
 				</section>
+
+                <section>
+                    <h2>Promesse</h2>
+                    <p>
+                        Une <b>Promise</b> est la promesse d'une valeur (ou erreur) future
+                    </p>
+                    <small><textarea autojslog="js6-promise" rows="12" cols="45">
+let promise = new Promise((resolve, reject) => {
+  let value = Math.random();   // juste pour l'exemple
+  if (value < 0.5) {
+    resolve("It works");
+  } else {
+    reject(Error("oh no"));
+  }
+});
+
+promise.then(value => console.log(value))
+       .catch(err => console.log(err.message));
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js6-promise" class="autojslog"></div>
+                    </small>
+                    <p><small>
+
+                    </small></p>
+                </section>
+
+                <section>
+                    <h2>Promise et setTimeout</h2>
+                    <p>
+
+                    </p>
+                    <small><textarea autojslog="js6-promise-setTimeout" rows="8" cols="45">
+let promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+      resolve("hello promise");
+  }, 3000);
+});
+
+promise.then(value => console.log(value));
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js6-promise-setTimeout" class="autojslog"></div>
+                    </small>
+                    <p><small>la closure pris en paramètre du then est appelée au moment où la valeur est disponible</small></p>
+                </section>
+
+                <section>
+                    <h2>Promise.resolve()/reject()</h2>
+                    <p>
+                        On peut initialiser une promesse directement avec une valeur
+                        (<b>resolve()</b>) ou une erreur (<b>reject()</b>)
+                    </p>
+                    <small><textarea autojslog="js6-promise-init" rows="6" cols="45">
+let promise1 = Promise.resolve(42);
+let promise2 = Promise.reject(Error("oops"));
+
+promise1.then(value => console.log(value));
+promise2.catch(err => console.log(err.message));
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js6-promise-init" class="autojslog"></div>
+                    </small>
+                    <p></p>
+                </section>
 
                 <section>
                     <h2>Fetch + JSON</h2>
@@ -435,6 +476,210 @@ Promise.race([
                                         </small>
                                         <p></p>
 				</section>
+
+                <section>
+                    <h2>async / await</h2>
+                   <br/>
+                    JavaScript 2017
+                </section>
+
+                <section>
+                    <h2>Await une promesse</h2>
+                    <p>
+                        await attend une promesse et met le code qui suit dans
+                        un <b>then</b> en tant que closure
+                    </p>
+                    <div style="float: left;">
+                        <small><textarea autojslog="js-await-a" rows="7" cols="43">
+(async function() {
+  let response =
+      await fetch("images/js-object/demo.json");
+  if (response.ok) {
+    console.log(response.status);
+  }
+})();
+                                        </textarea></small>
+                        <p></p>
+                        <small>
+                            <div id="js-await-a" class="autojslog"></div>
+                        </small>
+                    </div><div>
+                    <small><textarea autojslog="js-await-b" rows="7" cols="37">
+let promise =
+    fetch("images/js-object/demo.json");
+promise.then(response => {
+  if (response.ok) {
+    console.log(response.status);
+  }
+})
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-await-b" class="autojslog"></div>
+                    </small>
+                    </div>
+                    <p>
+                        <small>On ne peut mettre await que dans une fonction async</small>
+                    </p>
+                </section>
+
+                <section>
+                <h2>Async fonction</h2>
+                <p>
+                    Async met la valeur de retour de la fonction dans une promesse
+                    si ce n'est pas déjà le cas
+                </p>
+                <div style="float: left;">
+                    <small><textarea autojslog="js-async-a" rows="7" cols="40">
+async function foo() {
+  return 3;
+}
+let promise = foo();
+promise.then(value => console.log(value));
+                    </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-async-a" class="autojslog"></div>
+                    </small>
+                </div><div>
+                <small><textarea autojslog="js-async-b" rows="7" cols="40">
+function foo() {
+  return Promise.resolve(3);
+}
+let promise = foo();
+promise.then(value => console.log(value));
+                </textarea></small>
+                <p></p>
+                <small>
+                    <div id="js-async-b" class="autojslog"></div>
+                </small>
+            </div>
+                <p>
+                    <small></small>
+                </p>
+                </section>
+
+                <section>
+                    <h2>Async fonction (2)</h2>
+                    <p>
+                        Async met les exceptions qui sorte de la fonction dans une promesse
+                    </p>
+                    <div style="float: left;">
+                        <small><textarea autojslog="js-async-error-a" rows="7" cols="44">
+async function foo() {
+  throw Error("oops");
+}
+let promise = foo();
+promise.catch(err => console.log(err.message));
+                    </textarea></small>
+                        <p></p>
+                        <small>
+                            <div id="js-async-error-a" class="autojslog"></div>
+                        </small>
+                    </div><div>
+                    <small><textarea autojslog="js-async-error-b" rows="7" cols="44">
+function foo() {
+  return Promise.reject(Error("oops"));
+}
+let promise = foo();
+promise.catch(err => console.log(err.message));
+                </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-async-error-b" class="autojslog"></div>
+                    </small>
+                </div>
+                    <p>
+                        <small></small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Fetch + async</h2>
+                    <p>
+                        Comme fetch() renvoie une promesse, il marche avec await
+                    </p>
+                    <small><textarea autojslog="js6-fetch-async-json" rows="13" cols="55">
+async function callAPI() {
+  let response = await fetch("images/js-object/demo.json");
+  if (response.ok) {
+    return await response.json();
+  }
+  throw Error(response.statusText);
+}
+
+callAPI()
+  .then(object => console.log(object))
+  .catch(err => console.log(err.message));
+                     </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js6-fetch-async-json" class="autojslog"></div>
+                    </small>
+                    <p>
+                        <small>comme cela pas de callback dans les callbacks</small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>AJAX: ancienne API</h2>
+                    <p>
+                        Appel Asynchrone en utilisant un <b>HttpXMLRequest</b>
+                    </p>
+                    <pre><code class="js" data-trim>
+let ajax = new XMLHttpRequest();
+ajax.onreadystatechange = () => {
+  if (ajax.readyState != 4) { return; }
+  if(ajax.status != 200) {
+     // TODO NOT OK ! (ajax.status)
+  } else {
+     // TODO OK (ajax.responseText)
+  }
+};
+ajax.open('GET', 'http://api.foo.bar.com/users/bob', true);
+ajax.overrideMimeType("application/json");
+ajax.send();
+                                </code></pre>
+                    <p>
+                        <small>fetch() est plus simple ... et mieux</small>
+                    </p>
+                </section>
+
+				<section>
+				                        <h2>Promesse &amp; AJAX à la main</h2>
+					                    <p>
+                                         <small>
+                                             On peut faire en sorte de voir un <b>HttpXMLRequest</b>
+                                             comme une promesse
+                                         </small>
+                                        </p>
+                                        <small><textarea autojslog="js6-promise-ajax" rows="20" cols="45">
+function ajaxPromise(doc) {
+  return new Promise((resolve, reject) => {
+    let ajax = new XMLHttpRequest();
+    ajax.onreadystatechange = () => {
+      if (ajax.readyState != 4) { return; }
+      if(ajax.status != 200) {
+        reject(Error("error " + ajax.status));
+      } else {
+        resolve(ajax.responseText);
+      }
+    };
+    ajax.open("GET", doc, true);
+    ajax.overrideMimeType("application/json");
+    ajax.send();
+  });
+}
+ajaxPromise("images/js-object/demo.json")
+  .then(value => console.log(value))
+  .catch(err => console.log(err.message));
+                                        </textarea></small>
+                                        <p></p>
+                                        <small>
+                                         <div id="js6-promise-ajax" class="autojslog"></div>
+                                        </small>
+				</section>
+
 
                 <section>
                     <h2>Côté Serveur</h2>
