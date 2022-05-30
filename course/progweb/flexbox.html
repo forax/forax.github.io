@@ -98,7 +98,10 @@ window.onload = function() {
             </ul>
         </section>
         <section>
-            <h2>CSS ?</h2>
+            <h1>Flexbox</h1>
+        </section>
+        <section>
+            <h2>CSS Flexbox ?</h2>
             <blockquote cite="https://en.wikipedia.org/wiki/CSS">
                 &ldquo;CSS Flexible Box Layout, commonly known as Flexbox, is a CSS 3 web layout model.
                 The flex layout allows responsive elements within a container to be automatically
@@ -109,7 +112,7 @@ window.onload = function() {
             </p>
         </section>
         <section>
-            <h2>CSS ?</h2>
+            <h2>CSS Flexbox ?</h2>
             <blockquote cite="https://en.wikipedia.org/wiki/CSS">
                 &ldquo;CSS Flexible Box Layout, ou communément FlexBox, est un modèle de layout CSS 3 pour le web.
                 Ce layout flexible permet d'arranger automatiquement les éléments à l'intérieur d'un conteneur
@@ -123,12 +126,14 @@ window.onload = function() {
             <h2>Historique des versions</h2>
             <table>
                 <tr>
-                    <td>Création</td><td>2009</td>
+                    <td>CC3 Flexbox</td><td>2009-2012</td>
                 </tr><tr>
-                <td>Support dans Firefox, Chrome, Safari</td><td>2014, 2015</td>
-            </tr><tr>
-                <td><a href="https://drafts.csswg.org/css-flexbox/">W3c FlexBox</a></td><td>2022</td>
-            </tr>
+                    <td>Support dans Firefox, Chrome, Safari</td><td>2014, 2015</td>
+                </tr><tr>
+                    <td>Flexbox 1.0</td><td>2016+</td>
+                </tr><tr>
+                    <td><a href="https://drafts.csswg.org/css-flexbox/">W3c FlexBox (draft)</a></td><td>2022</td>
+                </tr>
             </table>
         </section>
 
@@ -146,11 +151,11 @@ window.onload = function() {
               Modèle d'affichage <i>display: flex</i>
             </p>
             <small><pre>
-                &lt;div class="container"&gt;
-                  &lt;div class="item"&gt;1&lt;/div&gt;
-                  &lt;div class="item"&gt;2&lt;/div&gt;
-                  &lt;div class="item"&gt;3&lt;/div&gt;
-                &lt;/div>
+&lt;div class="container"&gt;
+  &lt;div class="item"&gt;1&lt;/div&gt;
+  &lt;div class="item"&gt;2&lt;/div&gt;
+  &lt;div class="item"&gt;3&lt;/div&gt;
+&lt;/div&gt;
             </pre></small>
             <p> </p>
             <iframe id="flexbox-example"
@@ -223,7 +228,7 @@ window.onload = function() {
                 <small><textarea autostyle="flexbox-alignment" rows="5" cols="35">
 .container {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   justify-content: center;
 }
 .item {
@@ -307,7 +312,7 @@ window.onload = function() {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  align-content: flex-start;
+  align-content: start;
   height: 200px;
 }
 .item {
@@ -751,7 +756,7 @@ window.onload = function() {
             <h1>Grid</h1>
         </section>
         <section>
-            <h2>Grid ?</h2>
+            <h2>CSS Grid ?</h2>
             <blockquote cite="https://en.wikipedia.org/wiki/CSS">
                 &ldquo;CSS grid layout or CSS grid creates complex responsive web design grid layouts more easily
                 and consistently across browsers.&rdquo;
@@ -761,7 +766,7 @@ window.onload = function() {
             </p>
         </section>
         <section>
-            <h2>Grid ?</h2>
+            <h2>CSS Grid ?</h2>
             <blockquote cite="https://en.wikipedia.org/wiki/CSS">
                 &ldquo;CSS grid Layout ou CSS grid crée des grilles de placement complexe et <i>responsive</i>
                 plus simplement et de la même façon quel que soit le navigateur.&rdquo;
@@ -789,11 +794,11 @@ window.onload = function() {
                 Modèle d'affichage <i>display: grid</i>
             </p>
             <small><pre>
-                &lt;div class="container"&gt;
-                  &lt;div class="item"&gt;1&lt;/div&gt;
-                  &lt;div class="item"&gt;2&lt;/div&gt;
-                  &lt;div class="item"&gt;3&lt;/div&gt;
-                &lt;/div>
+&lt;div class="container"&gt;
+  &lt;div class="item"&gt;1&lt;/div&gt;
+  &lt;div class="item"&gt;2&lt;/div&gt;
+  &lt;div class="item"&gt;3&lt;/div&gt;
+&lt;/div&gt;
             </pre></small>
             <p> </p>
             <iframe id="grid-example"
