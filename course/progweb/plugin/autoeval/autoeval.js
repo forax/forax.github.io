@@ -100,7 +100,7 @@
                           var once = element.attributes['once'] != undefined;
 
                           //var oldConsole = console;
-                          var oldReactDOM = ReactDOM;
+                          var oldReactDOM = globalThis.ReactDOM;
 
                           (function(element, e, once) {
                             var running = false;
@@ -143,7 +143,7 @@
                               var input = element.value;
                               try {
                                 // if Babel available, rewrite the React JSX input using Babel
-                                if (Babel != undefined) {
+                                if (globalThis.Babel != undefined) {
                                   var output = Babel.transform(input, { plugins: [ "transform-react-jsx" ] });
                                   input = output.code;
                                 }
