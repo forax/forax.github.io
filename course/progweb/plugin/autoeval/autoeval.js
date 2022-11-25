@@ -99,6 +99,9 @@
                           }
                           var once = element.attributes['once'] != undefined;
 
+                          //var oldConsole = console;
+                          var oldReactDOM = ReactDOM;
+
                           (function(element, e, once) {
                             var running = false;
                             var listener = function(event) {
@@ -109,18 +112,42 @@
                                 running = true;
                               }
                               e.innerHTML = "";
-                              var console = { log: function() {
-                                var text = "";
-                                var separator = "";
-                                for(var i = 0; i < arguments.length; i++) {
-                                  text = text + separator + pretty(arguments[i]);
-                                  separator = " ";
+
+                              // fake console.log()
+                              var console = {
+                                "log": function log() {
+                                  var text = "";
+                                  var separator = "";
+                                  for(var i = 0; i < arguments.length; i++) {
+                                    text = text + separator + pretty(arguments[i]);
+                                    separator = " ";
+                                  }
+                                  e.appendChild(document.createTextNode(text));
+                                  e.appendChild(document.createElement("br"));
                                 }
-                                e.appendChild(document.createTextNode(text));
-                                e.appendChild(document.createElement("br"));
-                              } }; 
+                              };
+                              
+                              // fake ReactDOM.createRoot() / ReactDOM.render()
+                              var ReactDOM = oldReactDOM == undefined ? undefined: {
+                                "createRoot": function createRoot(root) {
+                                  if (root._react_root_ != undefined) {  // cache !
+                                    return root._react_root_;
+                                  }
+                                  return root._react_root_ = oldReactDOM.createRoot(root);
+                                },
+                                "render": function render(element, root) {
+                                  return oldReactDOM.render(element, root);
+                                }
+                              };
+
+                              var input = element.value;
                               try {
-                                eval(element.value);
+                                // if Babel available, rewrite the React JSX input using Babel
+                                if (Babel != undefined) {
+                                  var output = Babel.transform(input, { plugins: [ "transform-react-jsx" ] });
+                                  input = output.code;
+                                }
+                                eval(input);
                               } catch(err) {
                                 var error = document.createElement("div");
                                 error.setAttribute("class", "autojserror");
@@ -165,22 +192,22 @@
 
                               // create fake window object
                               var window = {
-                                "addEventListener": function(type, callback, rest) {
+                                "addEventListener": function addEventListener(type, callback, rest) {
                                   //console.log("addEventListener");
                                   oldWindow.addEventListener(type, callback, rest);
                                   cleanups.push(function() { oldWindow.removeEventListener(type, callback, rest); });
                                 },
-                                "setTimeout": function(callback, duration) {
+                                "setTimeout": function setTimeout(callback, duration) {
                                   //console.log("setTimeout");
                                   var timeoutId = oldWindow.setTimeout(callback, duration);
                                   cleanups.push(function() { oldWindow.clearTimeout(timeoutId); });
                                 },
-                                "setInterval": function(callback, duration) {
+                                "setInterval": function setInterval(callback, duration) {
                                   //console.log("setInterval");
                                   var intervalId = oldWindow.setInterval(callback, duration);
                                   cleanups.push(function() { oldWindow.clearInterval(intervalId); });
                                 },
-                                "requestAnimationFrame": function(callback) {
+                                "requestAnimationFrame": function requestAnimationFrame(callback) {
                                   //console.log("requestAnimationFrame");
                                   oldWindow.requestAnimationFrame(callback);
                                 },
