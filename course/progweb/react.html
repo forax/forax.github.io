@@ -141,8 +141,8 @@
 					<div id="react-simple"></div>
 
           <small><textarea autojslog="react-simple-example" rows="4" cols="55">
-const node = document.getElementById("react-simple");
-const root = ReactDOM.createRoot(node);
+let node = document.getElementById("react-simple");
+let root = ReactDOM.createRoot(node);
 root.render(<i>Hello World !</i>);
           </textarea></small>
           <p></p>
@@ -160,9 +160,9 @@ root.render(<i>Hello World !</i>);
 					<div id="react-jsx"></div>
 
 					<small><textarea autojslog="react-jsx-example" rows="5" cols="55">
-const node = document.getElementById("react-jsx");
-const root = ReactDOM.createRoot(node);
 let value = 3;
+let node = document.getElementById("react-jsx");
+let root = ReactDOM.createRoot(node);
 root.render(<div align="center">result = {value} !</div>);
           </textarea></small>
 					<p><small>Nécessite un pré-processeur sur le code comme <a href="https://babeljs.io/">Babel</a></small></p>
@@ -179,13 +179,12 @@ root.render(<div align="center">result = {value} !</div>);
 				<p>&nbsp;</p>
 				<div id="react-jsx2"></div>
 
-				<small><textarea autojslog="react-jsx-translation" rows="7" cols="70">
-const node = document.getElementById("react-jsx2");
-const root = ReactDOM.createRoot(node);
+				<small><textarea autojslog="react-jsx-translation" rows="6" cols="76">
 let value = 42;
+let node = document.getElementById("react-jsx2");
+let root = ReactDOM.createRoot(node);
 root.render(<div align="center">result = {value} !</div>);
 //root.render(React.createElement("div", { align: "center" }, "result = ", value, " !"));
-//root.render(React.createElement("div", { align: "center" }, `result = ${value} !`));
           </textarea></small>
 					<p><small>"props" veut dire properties !</small></p>
 				  <small><div id="react-jsx-translation"></div></small>
@@ -198,7 +197,7 @@ root.render(<div align="center">result = {value} !</div>);
 				<section>
 					<h2>Les composants comme fonctions</h2>
 					<p>
-           On déclare un composant avec une fonctions
+           On déclare un composant réutilisable avec une fonction
 					</p>
 					<p>&nbsp;</p>
 					<div id="react-root"></div>
@@ -207,8 +206,8 @@ root.render(<div align="center">result = {value} !</div>);
 function Hello() {
   return <i>Hello !</i>;
 }
-const node = document.getElementById("react-root");
-const root = ReactDOM.createRoot(node);
+let node = document.getElementById("react-root");
+let root = ReactDOM.createRoot(node);
 root.render(<div><Hello/><Hello/></div>);
           </textarea></small>
 					<p><small>JSX fait la différence entre
@@ -220,21 +219,22 @@ root.render(<div><Hello/><Hello/></div>);
 				<section>
 					<h2>Propriété des composants</h2>
 					<p>
-           Les attributs JSX sont transformés en Objet/Dictionnaire
+           Les attributs JSX sont transformés en Objet ("props")
 					 pris en paramètre de la fonction
 					</p>
 					<p>&nbsp;</p>
 					<div id="react-prop"></div>
 
-					<small><textarea autojslog="react-prop-example" rows="7" cols="55">
+					<small><textarea autojslog="react-prop-example" rows="8" cols="70">
 function Hello(props) {
-  return <span>Hello { props.name } !</span>;
+  let {name} = props;
+  return <span>Hello { name } !</span>;
 }
-const node = document.getElementById("react-prop");
-const root = ReactDOM.createRoot(node);
+let node = document.getElementById("react-prop");
+let root = ReactDOM.createRoot(node);
 root.render(<div><Hello name="a"/><Hello name="b"/></div>);
           </textarea></small>
-					<p><small>&nbsp;</small></p>
+					<p><small>On peut utiliser la destructuration pour récupérer les valeurs !</small></p>
 					<small><div id="react-prop-example"></div></small>
 				</section>
 
@@ -248,13 +248,13 @@ root.render(<div><Hello name="a"/><Hello name="b"/></div>);
 					</p>
 					<p></p>
 					<div id="react-conditional"></div>
-					<small><textarea autojslog="react-conditional-example" rows="8" cols="60">
+					<small><textarea autojslog="react-conditional-example" rows="8" cols="70">
 function Hello(prop) {
   return prop.visible && <span>Hello !</span>;
   //return prop.visible? <span>Hello !</span>: "";
 }
-const node = document.getElementById("react-conditional");
-const root = ReactDOM.createRoot(node);
+let node = document.getElementById("react-conditional");
+let root = ReactDOM.createRoot(node);
 root.render(<div><Hello visible={true}/><Hello visible={false}/></div>);
           </textarea></small>
 					<p><small></small></p>
@@ -273,14 +273,14 @@ root.render(<div><Hello visible={true}/><Hello visible={false}/></div>);
 						<small>Warning: Each child in a list should have a unique "key" prop.</small>
 					</p>
 					<div id="react-list"></div>
-					<small><textarea autojslog="react-list-example" rows="9" cols="60">
+					<small><textarea autojslog="react-list-example" rows="9" cols="70">
 function Item(props) { return <li>{props.name}</li>; }
 function List(props) {
-  const {items} = props;
+  let {items} = props;
   return <ul>{items.map(item => <Item name={item.name}/>)}</ul>;
 }
-const data = [{id: 23, name: "Scooby"}, {id: 37, name: "Crypto"}];
-const node = document.getElementById("react-list");
+let data = [{id: 23, name: "Scooby"}, {id: 37, name: "Crypto"}];
+let node = document.getElementById("react-list");
 ReactDOM.createRoot(node).render(<List items={data}/>);
           </textarea></small>
 					<p><small>react demande un attribut "key" pour tracker les items</small></p>
@@ -293,15 +293,15 @@ ReactDOM.createRoot(node).render(<List items={data}/>);
 						Doit être unique, permet de savoir quels items changent
 					</p>
 					<div id="react-list-item"></div>
-					<small><textarea autojslog="react-list-item-example" rows="13" cols="70">
+					<small><textarea autojslog="react-list-item-example" rows="13" cols="76">
 function Item(props) { return <li>{props.name}</li>; }
 function List(props) {
-  const {items} = props;
+  let {items} = props;
   return <ul>{items.map(item => <Item key={item.id} name={item.name}/>)}</ul>;
 }
-const data = [{id: 23, name: "Scooby"}];
-const node = document.getElementById("react-list-item");
-const root = ReactDOM.createRoot(node)
+let data = [{id: 23, name: "Scooby"}];
+let node = document.getElementById("react-list-item");
+let root = ReactDOM.createRoot(node)
 root.render(<List items={data}/>);
 setTimeout(() => {
   root.render(<List items={data.concat({id: 77, name: "Laika"})}/>);
@@ -324,15 +324,15 @@ setTimeout(() => {
 					</p>
 					<div id="react-state"></div>
 
-					<small><textarea autojslog="react-state-example" rows="10" cols="55">
+					<small><textarea autojslog="react-state-example" rows="10" cols="65">
 function Toggle() {
-  const [name, setName] = React.useState("empty");
+  let [name, setName] = React.useState("empty");
   return <div>
      { name }
      <button onClick={ () => setName("clicked") }>Click me</button>
    </div>;
 }
-const node = document.getElementById("react-state");
+let node = document.getElementById("react-state");
 ReactDOM.createRoot(node).render(<Toggle/>);
           </textarea></small>
 					<p><small>React a sa propre gestion des évènements donc "onClick" au lieu de "onclick"</small></p>
@@ -348,14 +348,14 @@ ReactDOM.createRoot(node).render(<Toggle/>);
 
 					<small><textarea autojslog="react-update-example" rows="11" cols="65">
 function Toggle() {
-  const [name, setName] = React.useState("empty");
+  let [name, setName] = React.useState("empty");
   return <div>{name} <Clicker update={ setName }/></div>;
 }
 function Clicker(props) {
-  const {update} = props;
+  let {update} = props;
   return <button onClick={ () => update("clicked") }>Click me</button>;
 }
-const node = document.getElementById("react-update");
+let node = document.getElementById("react-update");
 ReactDOM.createRoot(node).render(<Toggle/>);
           </textarea></small>
 					<p><small>Il vaut mieux déconstruire "props" si on y accède dans une lambda</small></p>
@@ -371,17 +371,17 @@ ReactDOM.createRoot(node).render(<Toggle/>);
 
 					<small><textarea autojslog="react-counter-example" rows="14" cols="65">
 function Counter() {
-  const [count, setCount] = React.useState(0);
+  let [count, setCount] = React.useState(0);
   return <div>{count} &nbsp;
      <Clicker update={ setCount } inc= {1}/>
      <Clicker update={ setCount } inc={10}/>
    </div>;
 }
 function Clicker(props) {
-  const {update, inc} = props;
+  let {update, inc} = props;
   return <button onClick={ () => update(v => v + inc) }>+{inc}</button>;
 }
-const node = document.getElementById("react-counter");
+let node = document.getElementById("react-counter");
 ReactDOM.createRoot(node).render(<Counter/>);
           </textarea></small>
 					<p><small>Cette technique est appelé <i>render props</i></small></p>
@@ -395,18 +395,18 @@ ReactDOM.createRoot(node).render(<Counter/>);
 					</p>
 					<div id="react-calc"></div>
 
-					<small><textarea autojslog="react-calc-example" rows="13" cols="70">
-function Calc() {
-  const [a, setA] = React.useState(0);
-  const [b, setB] = React.useState(0);
-  return <div><Field hook={[a, setA]}/> + <Field hook={[b, setB]}/> = {a+b}</div>;
-}
+					<small><textarea autojslog="react-calc-example" rows="13" cols="78">
 function Field(props) {
-  const [value, setValue] = props.hook;
-  function onChange(e) { setValue(parseInt(e.target.value)); }
+  let [value, setValue] = props.hook;
+  let onChange = e => setValue(parseInt(e.target.value));
   return <input type="text" type="number" value={value} onChange={ onChange } />;
 }
-const node = document.getElementById("react-calc");
+function Calc() {
+  let [a, setA] = React.useState(0);
+  let [b, setB] = React.useState(0);
+  return <div><Field hook={[a, setA]}/> + <Field hook={[b, setB]}/> = {a+b}</div>;
+}
+let node = document.getElementById("react-calc");
 ReactDOM.createRoot(node).render(<Calc/>);
           </textarea></small>
 					<p><small>La propagation des valeurs se fait toujours du parent vers les enfants</small></p>
@@ -424,13 +424,13 @@ ReactDOM.createRoot(node).render(<Calc/>);
 
 					<small><textarea autojslog="react-effect-example" rows="10" cols="60">
 function Counter() {
-  const [count, setCount] = React.useState(0);
+  let [count, setCount] = React.useState(0);
   React.useEffect(() => {
     console.log("count", count);
    }, [count]);
   return <button onClick={ () => setCount(c => c + 1) }> { count }</button>;
 }
-const node = document.getElementById("react-effect");
+let node = document.getElementById("react-effect");
 ReactDOM.createRoot(node).render(<Counter/>);
           </textarea></small>
 					<small><div id="react-effect-example"></div></small>
@@ -446,13 +446,13 @@ ReactDOM.createRoot(node).render(<Counter/>);
 
 					<small><textarea autojslog="react-effect2-example" rows="10" cols="60">
 function Counter() {
-  const [count, setCount] = React.useState(0);
+  let [count, setCount] = React.useState(0);
   React.useEffect(() => {
     console.log("count", count);
    }, []);
   return <button onClick={ () => setCount(c => c + 1) }> { count }</button>;
 }
-const node = document.getElementById("react-effect2");
+let node = document.getElementById("react-effect2");
 ReactDOM.createRoot(node).render(<Counter/>);
           </textarea></small>
 					<small><div id="react-effect2-example"></div></small>
@@ -472,15 +472,15 @@ ReactDOM.createRoot(node).render(<Counter/>);
 					<p></p>
 					<div id="react-class"></div>
 
-					<small><textarea autojslog="react-class-example" rows="10" cols="55">
+					<small><textarea autojslog="react-class-example" rows="10" cols="65">
 class Hello extends React.Component {
   constructor(props) { super(props); }
   render() {
     return <span>Hello { this.props.name } !</span>;
   }
 }
-const node = document.getElementById("react-class");
-const root = ReactDOM.createRoot(node);
+let node = document.getElementById("react-class");
+let root = ReactDOM.createRoot(node);
 root.render(<div><Hello name="a"/><Hello name="b"/></div>);
           </textarea></small>
 					<p><small></small></p>
@@ -491,15 +491,15 @@ root.render(<div><Hello name="a"/><Hello name="b"/></div>);
 					<h2>États avec this.state / setState()</h2>
 					<p>
            setState(object) prend un  objet en paramètre, recopie tous les champs dans "this.state"
-					 et change l'UI
+					 puis change l'UI
 					</p>
 					<div id="react-setState"></div>
 
-					<small><textarea autojslog="react-setState-example" rows="14" cols="67">
-class Toggle extends React.Component {
+					<small><textarea autojslog="react-setState-example" rows="14" cols="75">
+class MyButton extends React.Component {
   constructor() {
     super();  // obligatoire en JS
-    this.state = { name: "empty" };
+    this.state = { name: "not clicked" };
   }
   render() {
     return <div>
@@ -507,35 +507,59 @@ class Toggle extends React.Component {
       <button onClick={ () => this.setState({ name: "clicked"}) }>Click me</button>
     </div>;
 } }
-const node = document.getElementById("react-setState");
-ReactDOM.createRoot(node).render(<Toggle/>);
+let node = document.getElementById("react-setState");
+ReactDOM.createRoot(node).render(<MyButton/>);
           </textarea></small>
 					<p><small>si on change "this.state" au lieu de setState, l'UI est pas mise à jour !</small></p>
 					<small><div id="react-setState-example"></div></small>
 				</section>
 
 				<section>
-					<h2>Méthode pour les mutations</h2>
+					<h2>Méthode de mutation (1/2)</h2>
 					<p>
-           Attention à ne pas m'oublier le bind(this) !
+						On écrit la gestion des évènements dans une méthode pour que le code soit plus lisible
 					</p>
-					<div id="react-setState2"></div>
+					<div id="react-mut-update"></div>
 
-					<small><textarea autojslog="react-setState2-example" rows="12" cols="67">
+					<small><textarea autojslog="react-mut-update-example" rows="12" cols="67">
 class Toggle extends React.Component {
-  constructor() { super(); this.state = { name: "empty" }; }
-  update() { this.setState({ name: "clicked" }); }
+  constructor() { super(); this.state = { value: false }; }
+  toggled() { this.setState({ value: !this.state.value }); }
   render() {
     return <div>
-      { this.state.name }
-      <button onClick={ this.update.bind(this) }>Click me</button>
+      { "" + this.state.value }
+      <input type="checkbox" onClick={ () => this.toggled() }/>
     </div>;
 } }
-const node = document.getElementById("react-setState2");
+let node = document.getElementById("react-mut-update");
 ReactDOM.createRoot(node).render(<Toggle/>);
           </textarea></small>
 					<p><small></small></p>
-					<small><div id="react-setState2-example"></div></small>
+					<small><div id="react-mut-update-example"></div></small>
+				</section>
+
+				<section>
+					<h2>Méthode de mutation (2/2)</h2>
+					<p>
+           Ou on utilise "bind(this)"
+					</p>
+					<div id="react-mut-update2"></div>
+
+					<small><textarea autojslog="react-mut-update2-example" rows="12" cols="67">
+class Toggle extends React.Component {
+  constructor() { super(); this.state = { value: false }; }
+  toggled() { this.setState({ value: !this.state.value }); }
+  render() {
+    return <div>
+      { "" + this.state.value }
+      <input type="checkbox" onClick={ this.toggled.bind(this) }/>
+    </div>;
+} }
+let node = document.getElementById("react-mut-update2");
+ReactDOM.createRoot(node).render(<Toggle/>);
+          </textarea></small>
+					<p><small></small></p>
+					<small><div id="react-mut-update2-example"></div></small>
 				</section>
 
 				<section>
@@ -545,16 +569,17 @@ ReactDOM.createRoot(node).render(<Toggle/>);
 					</p>
 					<div id="react-setState3"></div>
 
-					<small><textarea autojslog="react-setState3-example" rows="11" cols="70">
+					<small><textarea autojslog="react-setState3-example" rows="12" cols="65">
 class Counter extends React.Component {
   constructor() { super(); this.state = { count: 0 }; }
+  clicked() { this.setState(state => ({ count: state.count + 1 })); }
   render() {
-    return <button onClick={ () => this.setState(state => ({ count: state.count + 1 })) }>
+    return <button onClick={ this.clicked.bind(this) }>
         { this.state.count }
       </button>;
   }
 }
-const node = document.getElementById("react-setState3");
+let node = document.getElementById("react-setState3");
 ReactDOM.createRoot(node).render(<Counter/>);
           </textarea></small>
 					<p><small>Attention, lorsque l'on retourne un objet dans une lambda, il faut des parenthèses !</small></p>
@@ -581,15 +606,14 @@ ReactDOM.createRoot(node).render(<Counter/>);
 					</p>
 					<div id="react-lifecycle"></div>
 
-					<small><textarea autojslog="react-lifecycle-example" rows="10" cols="60">
+					<small><textarea autojslog="react-lifecycle-example" rows="8" cols="60">
 class Foo extends React.Component {
   componentWillUnmount() { console.log("willUnmount"); }
   componentDidMount() { console.log("didMount"); }
   render() { return "Foo !"; }
 }
-const node = document.getElementById("react-lifecycle");
-const root = ReactDOM.createRoot(node);
-root.render(<h3><Foo/></h3>);
+let node = document.getElementById("react-lifecycle");
+ReactDOM.createRoot(node).render(<h3><Foo/></h3>);
           </textarea></small>
 					<small><div id="react-lifecycle-example"></div></small>
 				</section>
@@ -623,7 +647,7 @@ class Counter extends React.Component {
         { this.state.count }
       </button>;
 } }
-const node = document.getElementById("react-lifecycle-state");
+let node = document.getElementById("react-lifecycle-state");
 ReactDOM.createRoot(node).render(<Counter/>);
           </textarea></small>
 					<small><div id="react-lifecycle-state-example"></div></small>
@@ -643,8 +667,8 @@ class Foo extends React.Component {
   componentDidUpdate() { console.log("didUpdate"); }
   render() { return "Foo !"; }
 }
-const node = document.getElementById("react-diff");
-const root = ReactDOM.createRoot(node);
+let node = document.getElementById("react-diff");
+let root = ReactDOM.createRoot(node);
 root.render(<h3><Foo/></h3>);
 window.setTimeout(() => root.render(<h2><Foo/></h2>), 2000);
           </textarea></small>
