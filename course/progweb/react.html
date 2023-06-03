@@ -120,10 +120,10 @@
         <section>
 				    <h2>React ?</h2>
             <ul>
-              <li>Deux points d'entrées : React et ReactDOM</li>
-              <li>Les composants sont des fonctions ou des classes</li>
+              <li>Des composants sous forme de fonctions (ou classes)</li>
               <li>JSX : JavaScript Syntax eXtension (optionnel)</li>
-              <li><i>Stateful Virtual DOM</i> et Reconciliation (diff)</li>
+			  <li>Deux points d'entrées : React et ReactDOM</li>
+              <li>Utilise un DOM virtuel mutable</li>
               <li>Gère ses propres évènements</li>
             </ul>
 				</section>
@@ -219,8 +219,8 @@ root.render(<div><Hello/><Hello/></div>);
 				<section>
 					<h2>Propriété des composants</h2>
 					<p>
-           Les attributs JSX sont transformés en Objet ("props")
-					 pris en paramètre de la fonction
+						Les attributs JSX sont transformés en Objet ("props")
+						pris en paramètre de la fonction
 					</p>
 					<p>&nbsp;</p>
 					<div id="react-prop"></div>
@@ -234,8 +234,66 @@ let node = document.getElementById("react-prop");
 let root = ReactDOM.createRoot(node);
 root.render(<div><Hello name="a"/><Hello name="b"/></div>);
           </textarea></small>
-					<p><small>On peut utiliser la destructuration pour récupérer les valeurs !</small></p>
+					<p><small></small></p>
 					<small><div id="react-prop-example"></div></small>
+				</section>
+
+				<style>
+				  .tomato {
+				    color: tomato;
+				    background-color: blue;
+				  }
+				</style>
+
+				<section>
+					<h2>Style d'un composant</h2>
+					<p>
+						On utilise plutôt l'attribut DOM "className" que "class" pour spécifier la classe CSS
+					</p>
+					<small><pre><code>
+.tomato {
+  color: tomato;
+  background-color: blue;
+}
+					</code></pre></small>
+					<div id="react-classname"></div>
+
+					<small><textarea autojslog="react-classname-example" rows="9" cols="60">
+function Hello(props) {
+  let { name } = props;
+  return <span className={ name }>Hello !</span>;
+  //return <span class={ name }>Hello !</span>;
+}
+let node = document.getElementById("react-classname");
+let root = ReactDOM.createRoot(node);
+root.render(<div><Hello name="tomato"/></div>);
+          </textarea></small>
+					<p><small>Pour éviter la confusion avec le mot-clé "class"</small></p>
+					<small><div id="react-classname-example"></div></small>
+				</section>
+
+				<section>
+					<h2>Fragment</h2>
+					<p>
+						Il existe une syntaxe spéciale (&lt;&gt; et &lt;/&gt;) pour encapsuler plusieurs
+						éléments et les renvoyer comme un seul fragment
+					</p>
+
+					<div id="react-fragment"></div>
+
+					<small><textarea autojslog="react-fragment-example" rows="10" cols="60">
+function Story() {
+  return <>
+      <div>Titre</div>
+      <div>blah blah</div>
+    </>;
+}
+let node = document.getElementById("react-fragment");
+let root = ReactDOM.createRoot(node);
+root.render(<div><Story/></div>);
+          </textarea></small>
+					<p></p>
+					<small><div id="react-fragment-example"></div></small>
 				</section>
 
 				<section>
@@ -262,6 +320,25 @@ root.render(<div><Hello visible={true}/><Hello visible={false}/></div>);
 				</section>
 
 				<section>
+					<h2>Le DOM virtuel</h2>
+				</section>
+
+				<section>
+					<h2>Virtual DOM ?</h2>
+					<small><p>
+						Le DOM virtuel est une copie du DOM qui utilise des objets JS
+						plutôt que des objets C++
+					</p></small>
+					<img src="images/react/virtual-dom.png" width="320" height="236">
+					<small><p>
+						Lors d'un render(elements), react regarde la différence entre l'arbre des élements
+						et le DOM virtuel
+					   <br/>
+						Puis, on applique uniquement les changements sur le DOM !
+					</p></small>
+				</section>
+
+				<section>
 					<h2>Les listes</h2>
 				</section>
 
@@ -283,7 +360,9 @@ let data = [{id: 23, name: "Scooby"}, {id: 37, name: "Crypto"}];
 let node = document.getElementById("react-list");
 ReactDOM.createRoot(node).render(<List items={data}/>);
           </textarea></small>
-					<p><small>react demande un attribut "key" pour tracker les items</small></p>
+					<p>
+						<small>React demande un attribut "key" pour tracker les items au niveau du DOM virtuel</small>
+					</p>
 					<small><div id="react-list-example"></div></small>
 				</section>
 
@@ -414,6 +493,17 @@ ReactDOM.createRoot(node).render(<Calc/>);
 				</section>
 
 				<section>
+					<h2>State hooks et DOM virtuel</h2>
+					<p>
+						Les states hooks sont stockés dans un tableau associé à chaque nœud du DOM virtuel
+					</p>
+					<img src="images/react/virtual-dom-state-hooks.png" width="300" height="300">
+					<p><small>
+						Tant qu'un nœud n'est pas supprimé l'état persiste
+					</small></p>
+				</section>
+
+				<section>
 					<h2><i>Effect Hook</i></h2>
 					<p>
             useEffect(lambda, [val1, val2, etc]) execute la lambda après qu'une des valeurs ait changé
@@ -460,6 +550,9 @@ ReactDOM.createRoot(node).render(<Counter/>);
 
 				<section>
 					<h2>Classe comme composant</h2>
+					<p><small>
+						(Ancienne façon de faire)
+					</small></p>
 				</section>
 
 				<section>
@@ -587,14 +680,7 @@ ReactDOM.createRoot(node).render(<Counter/>);
 				</section>
 
 				<section>
-					<h2>Comment cela marche ?</h2>
-				</section>
-
-				<section>
-					<h2>Elements vs DOM</h2>
-					<p>
-
-					</p>
+					<h2>Évènements et DOM virtuel</h2>
 				</section>
 
 				<section>
@@ -619,13 +705,6 @@ ReactDOM.createRoot(node).render(<h3><Foo/></h3>);
 				</section>
 
 				<section>
-					<h2>Mise à jour des éléments</h2>
-					<p>
-
-					</p>
-				</section>
-
-				<section>
 					<h2>Cycle de vie et état</h2>
 					<p>
 						Chaque mise à jour du DOM appelle componentDidUpdate()
@@ -636,7 +715,7 @@ ReactDOM.createRoot(node).render(<h3><Foo/></h3>);
 					</p>
 					<div id="react-lifecycle-state"></div>
 
-					<small><textarea autojslog="react-lifecycle-state-example" rows="13" cols="70">
+					<small><textarea autojslog="react-lifecycle-state-example" rows="13" cols="78">
 class Counter extends React.Component {
   constructor() { super(); this.state = { count: 0 }; }
   componentWillUnmount() { console.log("willUnmount"); }
@@ -653,7 +732,7 @@ ReactDOM.createRoot(node).render(<Counter/>);
 					<small><div id="react-lifecycle-state-example"></div></small>
 				</section>
 
-				<section>
+				<!-- section>
 					<h2>Reconciliation</h2>
 					<p>
 
@@ -673,7 +752,7 @@ root.render(<h3><Foo/></h3>);
 window.setTimeout(() => root.render(<h2><Foo/></h2>), 2000);
           </textarea></small>
 					<small><div id="react-diff-example"></div></small>
-				</section>
+				</section -->
 			</div>
 
 		</div>
