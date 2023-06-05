@@ -152,7 +152,7 @@ root.render(<i>Hello World !</i>);
 				<section>
 					<h2>JavaScript Syntax eXtension</h2>
 					<p>
-           Permet d'écrire du HTML comme une expression JavaScript
+                     Permet d'écrire du HTML comme une expression JavaScript
 					<br/>
 					 On utilise '{' et '}' pour insérer une expression JavaScript dans le JSX
 					</p>
@@ -166,7 +166,7 @@ let root = ReactDOM.createRoot(node);
 root.render(<div align="center">result = {value} !</div>);
           </textarea></small>
 					<p><small>Nécessite un pré-processeur sur le code comme
-						<a href="https://babeljs.io/repl/#?browsers=defaults%2C%20not%20ie%2011%2C%20not%20ie_mob%2011&build=&builtIns=false&corejs=3.21&spec=false&loose=false&code_lz=DYUwLgBAbghsCuIIF4IGYDcAoUkB2A9gCZKpEEDG8AtiHmAHQDm4AoqLfQEICeAkkQAUAIgBOIGBTABaAFYBnAB7CAlNlwRRBApFQAlCVIAiAeQCyDCuJhgQe7WEGESarFp0NxeEqMEAeIgBLKAg4QKY8ZGEKOltRYQA-cXl4YF0IAG9YBBAAXwgAQj8AeiCoBLUgA&debug=false&forceAllTransforms=false&modules=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=env%2Creact%2Cstage-2&prettier=false&targets=&version=7.22.4&externalPlugins=&assumptions=%7B%7D">Babel</a>
+						<a href="https://babeljs.io/repl/#?code_lz=DYUwLgBAbghsCuIIF4IGYDcAoUkB2A9gCZKpEEDG8AtiHmAHQDm4AoqLfQEICeAkkQAUAIgBOIGBTABaAFYBnAB7CAlNlwRRBApFQAlCVIAiAeQCyDCuJhgQe7WEGESarFp0NxeEqMEAeIgBLKAg4QKY8ZGEKOltRYQA-cXl4YF0IAG9YBBAAXwgAQj8AeiCoBLUgA">Babel</a>
 						ou <a href="https://esbuild.github.io/">esbuild</a>
 					</small></p>
 					<small><div id="react-jsx-example"></div></small>
@@ -205,18 +205,40 @@ root.render(<div align="center">result = {value} !</div>);
 					<p>&nbsp;</p>
 					<div id="react-root"></div>
 
-					<small><textarea autojslog="react-component-example" rows="7" cols="55">
+					<small><textarea autojslog="react-component-example" rows="7" cols="62">
 function Hello() {
   return <i>Hello !</i>;
 }
 let node = document.getElementById("react-root");
 let root = ReactDOM.createRoot(node);
-root.render(<div><Hello/><Hello/></div>);
+root.render(<div><Hello></Hello><Hello></Hello></div>);
           </textarea></small>
 					<p><small>JSX fait la différence entre
-					<a href="https://babeljs.io/repl/#?code_lz=GYVwdgxgLglg9mABACwKYBt1wBQEpEDeAUIogE6pQhlIA8AJjAG4B8tAEhlgPRueZxetbo1YBuIgF8iQA">une fonction ou un tag HTML</a>
+					<a href="https://babeljs.io/repl/#?code_lz=GYVwdgxgLglg9mABACwKYBt1wBQEpEDeAUIogE6pQhlIA8AJjAG4B8tAEhlmwPSeZw2_brT5dBoxqwDcRAL5EgA">une fonction ou un tag HTML</a>
 					avec les majuscules !</small></p>
 					<small><div id="react-component-example"></div></small>
+				</section>
+
+				<section>
+					<h2>Balise auto-fermante</h2>
+					<p>
+                     Comme un composant peut avoir n'importe quel nom,
+					 <br/>
+                     il existe une syntaxe pour "auto-fermer" une balise.
+					</p>
+					<p>&nbsp;</p>
+					<div id="react-root2"></div>
+
+					<small><textarea autojslog="react-jsx-autoclose" rows="7" cols="55">
+function Hello() {
+  return <i>Hello !</i>;
+}
+let node = document.getElementById("react-root2");
+let root = ReactDOM.createRoot(node);
+root.render(<div><Hello/><Hello/></div>);
+          </textarea></small>
+					<p><small>Cette notation vient du <a href="https://www.w3.org/TR/xhtml1/">XHTML</a></small></p>
+					<small><div id="react-jsx-autoclose"></div></small>
 				</section>
 
 				<section>
