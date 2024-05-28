@@ -504,7 +504,7 @@ fetch("images/js-canvas/html5.png")
                     si ce n'est pas déjà le cas
                 </p>
                 <div style="float: left;">
-                    <small><textarea autojslog="js-async-a" rows="7" cols="40">
+                    <small><textarea autojslog="js-async-a" rows="7" cols="38">
 async function foo() {
   return 3;
 }
@@ -516,7 +516,7 @@ promise.then(value => console.log(value));
                         <div id="js-async-a" class="autojslog"></div>
                     </small>
                 </div><div>
-                <small><textarea autojslog="js-async-b" rows="7" cols="40">
+                <small><textarea autojslog="js-async-b" rows="7" cols="38">
 function foo() {
   return Promise.resolve(3);
 }
@@ -539,7 +539,7 @@ promise.then(value => console.log(value));
                         Async met les exceptions qui sorte de la fonction dans une promesse
                     </p>
                     <div style="float: left;">
-                        <small><textarea autojslog="js-async-error-a" rows="7" cols="40">
+                        <small><textarea autojslog="js-async-error-a" rows="7" cols="38">
 async function foo() {
   throw Error("oops");
 }
@@ -551,7 +551,7 @@ promise.catch(err => console.log(err.message));
                             <div id="js-async-error-a" class="autojslog"></div>
                         </small>
                     </div><div>
-                    <small><textarea autojslog="js-async-error-b" rows="7" cols="40">
+                    <small><textarea autojslog="js-async-error-b" rows="7" cols="38">
 function foo() {
   return Promise.reject(Error("oops"));
 }
