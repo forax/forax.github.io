@@ -504,6 +504,7 @@ fetch("images/js-canvas/html5.png")
                     si ce n'est pas déjà le cas
                 </p>
                 <div style="float: left;">
+                    <small>JavaScript 2017</small><br/>
                     <small><textarea autojslog="js-async-a" rows="7" cols="38">
 async function foo() {
   return 3;
@@ -516,6 +517,7 @@ promise.then(value => console.log(value));
                         <div id="js-async-a" class="autojslog"></div>
                     </small>
                 </div><div>
+                <small>JavaScript 2015</small><br/>
                 <small><textarea autojslog="js-async-b" rows="7" cols="38">
 function foo() {
   return Promise.resolve(3);
@@ -536,27 +538,29 @@ promise.then(value => console.log(value));
                 <section>
                     <h2>Async fonction (2)</h2>
                     <p>
-                        Async met les exceptions qui sorte de la fonction dans une promesse
+                        Async met les exceptions qui sortent de la fonction dans une promesse
                     </p>
                     <div style="float: left;">
+                        <small>JavaScript 2017</small><br/>
                         <small><textarea autojslog="js-async-error-a" rows="7" cols="38">
-async function foo() {
+async function boom() {
   throw Error("oops");
 }
-let promise = foo();
-promise.catch(err => console.log(err.message));
+let p = boom();
+p.catch(err => console.log(err.message));
                     </textarea></small>
                         <p></p>
                         <small>
                             <div id="js-async-error-a" class="autojslog"></div>
                         </small>
                     </div><div>
+                    <small>JavaScript 2015</small><br/>
                     <small><textarea autojslog="js-async-error-b" rows="7" cols="38">
-function foo() {
+function boom() {
   return Promise.reject(Error("oops"));
 }
-let promise = foo();
-promise.catch(err => console.log(err.message));
+let p = boom();
+p.catch(err => console.log(err.message));
                 </textarea></small>
                     <p></p>
                     <small>
@@ -575,22 +579,25 @@ promise.catch(err => console.log(err.message));
                         un <b>then</b> en tant que closure
                     </p>
                     <div style="float: left;">
-                        <small><textarea autojslog="js-await-a" rows="10" cols="41">
-(async function() {
+                        <small>JavaScript 2017</small><br/>
+                        <small><textarea autojslog="js-await-a" rows="11" cols="43">
+async function foo() {
   let response =
       await fetch("images/js-object/demo.json");
   if (response.ok) {
     console.log(response.status);
   }
-})();
+}
+foo();
                                         </textarea></small>
                         <p></p>
                         <small>
                             <div id="js-await-a" class="autojslog"></div>
                         </small>
                     </div><div>
-                    <small><textarea autojslog="js-await-b" rows="10" cols="35">
-(function() {
+                    <small>JavaScript 2015</small><br/>
+                    <small><textarea autojslog="js-await-b" rows="11" cols="37">
+function foo() {
   let promise =
       fetch("images/js-object/demo.json");
   promise.then(response => {
@@ -598,7 +605,8 @@ promise.catch(err => console.log(err.message));
       console.log(response.status);
     }
   });
-})();
+}
+foo();
                                         </textarea></small>
                     <p></p>
                     <small>
@@ -639,10 +647,10 @@ function noAsync() {
                     <small><textarea autojslog="js6-fetch-async-json" rows="13" cols="55">
 async function callAPI() {
   let response = await fetch("images/js-object/demo.json");
-  if (response.ok) {
-    return await response.json();
+  if (!response.ok) {
+    throw Error(response.statusText);
   }
-  throw Error(response.statusText);
+  return await response.json();
 }
 
 (async () => {
