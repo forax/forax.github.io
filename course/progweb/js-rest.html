@@ -645,9 +645,10 @@ async function callAPI() {
   throw Error(response.statusText);
 }
 
-callAPI()
-  .then(object => console.log(object))
-  .catch(err => console.log(err.message));
+(async () => {
+  let object = await callAPI();
+  console.log(object);
+ })();
                      </textarea></small>
                     <p></p>
                     <small>
