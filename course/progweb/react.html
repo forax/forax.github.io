@@ -133,9 +133,11 @@
 				<section>
           <h2>Exemple simple</h2>
           <p>
-						createRoot() demande à React de gérer le nœud du DOM
-					<br/>
-						render(element) affiche l'élément JSX en tant que fils de la racine
+			<a href="https://react.dev/reference/react-dom/client/createRoot#createroot">createRoot</a>(domNode)
+			demande à React de gérer le nœud du DOM
+		   <br/>
+			<a href="https://react.dev/reference/react-dom/client/createRoot#root-render">render</a>(element)
+			affiche l'élément JSX en tant que fils de la racine
           </p>
 					<pre><code>
       &lt;div id="react-simple"&gt;&lt;/div&gt;
@@ -180,7 +182,7 @@ root.render(<div align="center">result = {value} !</div>);
 				<p>
 					Le JSX est transformé en appel à
 				<br/>
-          React.createElement(type, props, ...children)
+                 <a href="https://react.dev/reference/react/createElement">React.createElement</a>(type, props, ...children)
 				</p>
 				<p>&nbsp;</p>
 				<div id="react-jsx2"></div>
@@ -296,7 +298,9 @@ let node = document.getElementById("react-classname");
 let root = ReactDOM.createRoot(node);
 root.render(<div><Hello name="tomato"/></div>);
           </textarea></small>
-					<p><small>Pour éviter la confusion avec le mot-clé "class"</small></p>
+					<p><small>
+						<a href="https://stackoverflow.com/questions/46989454/class-vs-classname-in-react-16">Pour éviter la confusion avec le mot-clé "class"</a>
+					</small></p>
 					<small><div id="react-classname-example"></div></small>
 				</section>
 
@@ -304,7 +308,7 @@ root.render(<div><Hello name="tomato"/></div>);
 					<h2>Fragment</h2>
 					<p>
 						Il existe une syntaxe spéciale (&lt;&gt; et &lt;/&gt;) pour encapsuler plusieurs
-						éléments et les renvoyer comme un seul fragment
+						éléments et les renvoyer comme un seul élément
 					</p>
 
 					<div id="react-fragment"></div>
@@ -358,10 +362,10 @@ root.render(<div><Hello visible={true}/><Hello visible={false}/></div>);
 					</p></small>
 					<img src="images/react/virtual-dom.png" width="320" height="236">
 					<small><p>
-						Lors d'un render(elements), react regarde la différence entre l'arbre des élements
+						Lors d'un render(element), React regarde la différence entre l'arbre des élements
 						et le DOM virtuel
 					   <br/>
-						Puis, on applique uniquement les changements sur le DOM !
+						Puis, React applique uniquement les changements sur le DOM !
 					</p></small>
 				</section>
 
@@ -516,7 +520,7 @@ ReactDOM.createRoot(node)
 				<section>
 					<h2>State hooks et DOM virtuel</h2>
 					<p>
-						Les states hooks sont stockés dans un tableau associé à chaque nœud du DOM virtuel
+						Les <i>states hooks</i> sont stockés dans un tableau associé à chaque nœud du DOM virtuel
 					</p>
 					<img src="images/react/virtual-dom-state-hooks.png" width="300" height="300">
 					<p><small>
@@ -531,9 +535,10 @@ ReactDOM.createRoot(node)
 				</section>
 
 				<section>
-					<h2>Fonction de mise à jour comme props</h2>
+					<h2>set... en tant que props</h2>
 					<p>
-           La fonction de mise à jour peut prendre une fonction de l'ancienne valeur vers la nouvelle valeur
+                     Le composant parent peut envoyer sa fonction de mise à jour (set...)
+					 en tant que props des composants enfants
 					</p>
 					<div id="react-counter"></div>
 
@@ -588,9 +593,8 @@ ReactDOM.createRoot(node).render(<Calc/>);
 				<section>
 					<h2><i>Effect Hook</i></h2>
 					<p>
-            useEffect(lambda, [val1, val2, etc]) execute la lambda après qu'une des valeurs ait changé
-					<br/>
-						si on ne spécifie pas de valeurs, on exécute à chaque fois
+                     <a href="https://react.dev/reference/react/useEffect#useeffect">useEffect</a>(lambda, [val1, val2, etc])
+					 execute la lambda après qu'une des valeurs ait changé
 					</p>
 					<div id="react-effect"></div>
 
@@ -605,6 +609,7 @@ function Counter() {
 let node = document.getElementById("react-effect");
 ReactDOM.createRoot(node).render(<Counter/>);
           </textarea></small>
+					<p><small>Si on ne spécifie pas de valeurs, on exécute l'effet à chaque fois !</small></p>
 					<small><div id="react-effect-example"></div></small>
 				</section>
 
@@ -627,6 +632,7 @@ function Counter() {
 let node = document.getElementById("react-effect2");
 ReactDOM.createRoot(node).render(<Counter/>);
           </textarea></small>
+					<p><small></small></p>
 					<small><div id="react-effect2-example"></div></small>
 				</section>
 
@@ -647,7 +653,7 @@ async function fetchData() {
 }
 function Item(props) {
   let {value, id} = props;
-  return <li id={id}>{value}</li>;
+  return <li key={id}>{value}</li>;
 }
 function List() {
   let [data, setData] = React.useState([]);
@@ -679,7 +685,7 @@ async function fetchData(setData) {
 }
 function Item(props) {
   let {value, id} = props;
-  return <li id={id}>{value}</li>;
+  return <li key={id}>{value}</li>;
 }
 function List() {
   let [data, setData] = React.useState([]);
