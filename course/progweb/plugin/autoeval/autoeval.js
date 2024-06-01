@@ -129,14 +129,11 @@
                               
                               // fake ReactDOM.createRoot() / ReactDOM.render()
                               var ReactDOM = oldReactDOM == undefined ? undefined: {
-                                "createRoot": function createRoot(root) {
-                                  if (root._react_root_ != undefined) {  // cache !
-                                    return root._react_root_;
+                                "createRoot": function createRoot(domNode) {
+                                  if (domNode._react_root_ != undefined) {
+                                    domNode._react_root_.unmount();
                                   }
-                                  return root._react_root_ = oldReactDOM.createRoot(root);
-                                },
-                                "render": function render(element, root) {
-                                  return oldReactDOM.render(element, root);
+                                  return domNode._react_root_ = oldReactDOM.createRoot(domNode);
                                 }
                               };
 

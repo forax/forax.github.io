@@ -378,7 +378,7 @@ root.render(<div><Hello visible={true}/><Hello visible={false}/></div>);
 						<small>Warning: Each child in a list should have a unique "key" prop.</small>
 					</p>
 					<div id="react-list"></div>
-					<small><textarea autojslog="react-list-example" rows="9" cols="70">
+					<small><textarea autojslog="react-list-example" rows="9" cols="76">
 function Item(props) { return <li>{props.name}</li>; }
 function List(props) {
   let {items} = props;
@@ -400,19 +400,15 @@ ReactDOM.createRoot(node).render(<List items={data}/>);
 						Doit être unique, permet de savoir quels items changent
 					</p>
 					<div id="react-list-item"></div>
-					<small><textarea autojslog="react-list-item-example" rows="13" cols="76">
+					<small><textarea autojslog="react-list-item-example" rows="9" cols="76">
 function Item(props) { return <li>{props.name}</li>; }
 function List(props) {
   let {items} = props;
   return <ul>{items.map(item => <Item key={item.id} name={item.name}/>)}</ul>;
 }
-let data = [{id: 23, name: "Scooby"}];
+let data = [{id: 23, name: "Scooby"}, {id: 37, name: "Crypto"}];
 let node = document.getElementById("react-list-item");
-let root = ReactDOM.createRoot(node)
-root.render(<List items={data}/>);
-setTimeout(() => {
-  root.render(<List items={data.concat({id: 77, name: "Laika"})}/>);
-}, 2000);
+ReactDOM.createRoot(node).render(<List items={data}/>);
           </textarea></small>
 					<p><small>Les attributs "key" doivent être stables !</small></p>
 					<small><div id="react-list-item-example"></div></small>
