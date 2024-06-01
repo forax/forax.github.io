@@ -255,7 +255,7 @@ root.render(<div><Hello/><Hello/></div>);
 
 					<small><textarea autojslog="react-prop-example" rows="8" cols="70">
 function Hello(props) {
-  let {name} = props;
+  let name = props.name;
   return <span>Hello { name } !</span>;
 }
 let node = document.getElementById("react-prop");
@@ -288,7 +288,7 @@ root.render(<div><Hello name="a"/><Hello name="b"/></div>);
 
 					<small><textarea autojslog="react-classname-example" rows="9" cols="60">
 function Hello(props) {
-  let { name } = props;
+  let name = props.name;
   return <span className={ name }>Hello !</span>;
   //return <span class={ name }>Hello !</span>;
 }
@@ -331,7 +331,6 @@ root.render(<div><Story/></div>);
 						<pre><code>
     condition && &lt;Whatever/&gt;
 				    </code></pre>
-					</p>
 					<p></p>
 					<div id="react-conditional"></div>
 					<small><textarea autojslog="react-conditional-example" rows="8" cols="70">
@@ -381,7 +380,7 @@ root.render(<div><Hello visible={true}/><Hello visible={false}/></div>);
 					<small><textarea autojslog="react-list-example" rows="9" cols="76">
 function Item(props) { return <li>{props.name}</li>; }
 function List(props) {
-  let {items} = props;
+  let items = props.items;
   return <ul>{items.map(item => <Item name={item.name}/>)}</ul>;
 }
 let data = [{id: 23, name: "Scooby"}, {id: 37, name: "Crypto"}];
@@ -403,7 +402,7 @@ ReactDOM.createRoot(node).render(<List items={data}/>);
 					<small><textarea autojslog="react-list-item-example" rows="9" cols="76">
 function Item(props) { return <li>{props.name}</li>; }
 function List(props) {
-  let {items} = props;
+  let items = props.items;
   return <ul>{items.map(item => <Item key={item.id} name={item.name}/>)}</ul>;
 }
 let data = [{id: 23, name: "Scooby"}, {id: 37, name: "Crypto"}];
@@ -415,21 +414,23 @@ ReactDOM.createRoot(node).render(<List items={data}/>);
 				</section>
 
 				<section>
-					<h2>React <i>Hooks</i></h2>
+					<h2><i>State Hooks</i></h2>
 				</section>
 
 				<section>
-					<h2>Gestion des états / hook</h2>
+					<h2>Gestion des états / state hook</h2>
 					<p>
-           useState(initial) est une fonction "magique" qui renvoie la valeur actuelle
-					 (ou la valeur initiale si c'est la première fois)
-					 et une fonction qui met à jour la valeur et l'UI
+						useState(initial) renvoie un tableau
+						contenant la valeur actuelle (ou la valeur initiale si c'est la première fois)
+						et une fonction qui met à jour la valeur <u>et</u> l'UI
 					</p>
 					<div id="react-state"></div>
 
-					<small><textarea autojslog="react-state-example" rows="10" cols="65">
+					<small><textarea autojslog="react-state-example" rows="12" cols="65">
 function Toggle() {
-  let [name, setName] = React.useState("empty");
+  let array = React.useState("empty");
+  let name = array[0];     // value
+  let setName = array[1];  // update function
   return <div>
      { name }
      <button onClick={ () => setName("clicked") }>Click me</button>
@@ -443,30 +444,94 @@ ReactDOM.createRoot(node).render(<Toggle/>);
 				</section>
 
 				<section>
-					<h2>Fonction de mise à jour</h2>
+					<h2>State Hook (2)</h2>
 					<p>
-						On peut envoyer la fonction de mise à jour (ici setName) à qui on veut
+                     Chaque composant a son propre état
 					</p>
-					<div id="react-update"></div>
+					<div id="react-state2"></div>
 
-					<small><textarea autojslog="react-update-example" rows="11" cols="65">
-function Toggle() {
-  let [name, setName] = React.useState("empty");
-  return <div>{name} <Clicker update={ setName }/></div>;
+					<small><textarea autojslog="react-state-example2" rows="10" cols="65">
+function Counter() {
+  let [count, setCount] = React.useState(0);
+  return <span>
+     <button onClick={ () => setCount(count + 1) }>+1</button>
+	 &nbsp; { count }
+   </span>;
 }
-function Clicker(props) {
-  let {update} = props;
-  return <button onClick={ () => update("clicked") }>Click me</button>;
-}
-let node = document.getElementById("react-update");
-ReactDOM.createRoot(node).render(<Toggle/>);
+let node = document.getElementById("react-state2");
+ReactDOM.createRoot(node).render(<><Counter/> <Counter/></>);
           </textarea></small>
-					<p><small>Il vaut mieux déconstruire "props" si on y accède dans une lambda</small></p>
-					<small><div id="react-update-example"></div></small>
+					<p><small>Note: let [a,b] = c <=> let a = c[0]; let b = c[1]</small></p>
+					<small><div id="react-state-example2"></div></small>
 				</section>
 
 				<section>
-					<h2>Mise à jour par une fonction</h2>
+					<h2>State Hook (3)</h2>
+					<p>
+						La fonction de mise à jour peut prendre une lambda en paramètre
+						(oldValue =&gt; newValue)
+					</p>
+					<div id="react-state3"></div>
+
+					<small><textarea autojslog="react-state-example3" rows="10" cols="65">
+function Counter() {
+  let [count, setCount] = React.useState(0);
+  return <span>
+     <button onClick={ () => setCount(val => val + 1) }>+1</button>
+	 &nbsp; { count }
+   </span>;
+}
+let node = document.getElementById("react-state3");
+ReactDOM.createRoot(node).render(<><Counter/> <Counter/></>);
+          </textarea></small>
+					<p><small></small></p>
+					<small><div id="react-state-example3"></div></small>
+				</section>
+
+				<section>
+					<h2>State Hook (4)</h2>
+					<p>
+                     On utilise les props si on veut configurer les composants
+					 avec des valeurs différentes.
+					</p>
+					<div id="react-state4"></div>
+
+					<small><textarea autojslog="react-state-example4" rows="12" cols="70">
+function Counter(props) {
+  let {incr} = props;
+  let [count, setCount] = React.useState(0);
+  return <span>
+     <button onClick={ () => setCount(val => val + incr) }>+{incr}</button>
+	 &nbsp; { count }
+   </span>;
+}
+let node = document.getElementById("react-state4");
+ReactDOM.createRoot(node)
+    .render(<><Counter incr={1}/> <Counter incr={10}/></>);
+          </textarea></small>
+					<p><small>Note: let {a,b} = c <=> let a = c.a; let b = c.b</small></p>
+					<small><div id="react-state-example4"></div></small>
+				</section>
+
+				<section>
+					<h2>State hooks et DOM virtuel</h2>
+					<p>
+						Les states hooks sont stockés dans un tableau associé à chaque nœud du DOM virtuel
+					</p>
+					<img src="images/react/virtual-dom-state-hooks.png" width="300" height="300">
+					<p><small>
+						Tant qu'un nœud n'est pas supprimé l'état persiste
+					</small></p>
+				</section>
+
+
+
+				<section>
+					<h2>Communication inter-composants</i></h2>
+				</section>
+
+				<section>
+					<h2>Fonction de mise à jour comme props</h2>
 					<p>
            La fonction de mise à jour peut prendre une fonction de l'ancienne valeur vers la nouvelle valeur
 					</p>
@@ -491,10 +556,10 @@ ReactDOM.createRoot(node).render(<Counter/>);
 					<small><div id="react-counter-example"></div></small>
 				</section>
 
-				<section>
+				<!-- section>
 					<h2>Plusieurs <i>State Hooks</i> ?</h2>
 					<p>
-            On peut avoir plusieurs appels à useState() pourvu que cela soit toujours dans le même ordre !
+						On peut avoir plusieurs appels à useState() pourvu que cela soit toujours dans le même ordre !
 					</p>
 					<div id="react-calc"></div>
 
@@ -514,17 +579,10 @@ ReactDOM.createRoot(node).render(<Calc/>);
           </textarea></small>
 					<p><small>La propagation des valeurs se fait toujours du parent vers les enfants</small></p>
 					<small><div id="react-calc-example"></div></small>
-				</section>
+				</section -->
 
 				<section>
-					<h2>State hooks et DOM virtuel</h2>
-					<p>
-						Les states hooks sont stockés dans un tableau associé à chaque nœud du DOM virtuel
-					</p>
-					<img src="images/react/virtual-dom-state-hooks.png" width="300" height="300">
-					<p><small>
-						Tant qu'un nœud n'est pas supprimé l'état persiste
-					</small></p>
+					<h2><i>Effect Hook</i></h2>
 				</section>
 
 				<section>
@@ -570,6 +628,71 @@ let node = document.getElementById("react-effect2");
 ReactDOM.createRoot(node).render(<Counter/>);
           </textarea></small>
 					<small><div id="react-effect2-example"></div></small>
+				</section>
+
+				<section>
+					<h2>Appel asynchrone</h2>
+				</section>
+
+				<section>
+					<h2>Après un click</h2>
+					<p>
+						On met à jour en fonction du résultat de l'appel à fetch()
+					</p>
+					<div id="react-async1"></div>
+
+					<small><textarea autojslog="react-async-example1" rows="19" cols="76">
+async function fetchData() {
+  return (await fetch("images/react/data.json")).json();  // FIXME
+}
+function Item(props) {
+  let {value, id} = props;
+  return <li id={id}>{value}</li>;
+}
+function List() {
+  let [data, setData] = React.useState([]);
+  return <div>
+       <button onClick={ async () => setData(await fetchData()) }>Update</button>
+	   <ul>
+        { data.map(d => <Item id={d.id} value={d.value}/>) }
+	   </ul>
+	 </div>;
+}
+let node = document.getElementById("react-async1");
+ReactDOM.createRoot(node).render(<List/>);
+          </textarea></small>
+					<p><small></small></p>
+					<small><div id="react-async-example1"></div></small>
+				</section>
+
+				<section>
+					<h2>Lors du chargement</h2>
+					<p>
+						On utilise useEffect(function, [])
+					</p>
+					<div id="react-async2"></div>
+
+					<small><textarea autojslog="react-async-example2" rows="18" cols="76">
+async function fetchData(setData) {
+  let data = await (await fetch("images/react/data.json")).json();  // FIXME
+  setData(data);
+}
+function Item(props) {
+  let {value, id} = props;
+  return <li id={id}>{value}</li>;
+}
+function List() {
+  let [data, setData] = React.useState([]);
+  React.useEffect(() => { fetchData(setData); }, []);
+  return <ul>
+        { data.map(d => <Item id={d.id} value={d.value}/>) }
+	   </ul>;
+}
+let node = document.getElementById("react-async2");
+ReactDOM.createRoot(node).render(<List/>);
+          </textarea></small>
+					<p><small>useEffect() ne permet pas les fonctions async, il faut passer setData en paramètre</small></p>
+					<small><div id="react-async-example2"></div></small>
 				</section>
 
 				<section>
