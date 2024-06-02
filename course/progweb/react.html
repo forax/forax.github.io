@@ -172,7 +172,7 @@ root.render(<div align="center">result = {value} !</div>);
           </textarea></small>
 					<p><small>Nécessite un pré-processeur sur le code comme
 						<a href="https://babeljs.io/repl/#?browsers=defaults%2C%20not%20ie%2011%2C%20not%20ie_mob%2011&build=&builtIns=false&corejs=3.21&spec=false&loose=false&code_lz=GYVwdgxgLglg9mABACQKYBt1wBQEpEDeAvgFAmiSwKIAiqAtjvgSYogE6pQjtIA8AExgA3AHx80mOOID0krOPnS-cjApVCxAbhKkgA&debug=false&forceAllTransforms=false&modules=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=env%2Creact%2Cstage-2&prettier=false&targets=&version=7.24.6&externalPlugins=&assumptions=%7B%7D">Babel</a>
-						ou <a href="https://esbuild.github.io/">esbuild</a>
+						ou esbuild
 					</small></p>
 					<small><div id="react-jsx-example"></div></small>
 				</section>
@@ -196,6 +196,28 @@ root.render(<div align="center">result = {value} !</div>);
           </textarea></small>
 					<p><small>"props" veut dire properties !</small></p>
 				  <small><div id="react-jsx-translation"></div></small>
+				</section>
+
+				<section>
+					<h2><a href="https://esbuild.github.io/">esbuild</a></h2>
+						<ul>
+							<li>transforme les fichiers JSX (toto.jsx) en fichier JS (toto.js)</li>
+							<li>inclu (<i>bundle</i>) les libraries (react et react-dom)</li>
+						</ul>
+					<p><small>
+						Installation de esbuild en utilisant npm<br/>
+						<code>
+							npm install --save-exact --save-dev esbuild
+						</code>
+					</small></p>
+					<p><small>
+						Transpilation de JSX vers JS<br/>
+						<code>
+							./node_modules/.bin/esbuild toto.jsx --bundle --outfile=toto.js
+						</code>
+					</small></p>
+					<p><small>L'option --watch permet de rebuilder automatiquement</small></p>
+
 				</section>
 
 				<section>
