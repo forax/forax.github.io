@@ -250,7 +250,6 @@ root.render(<div><Hello></Hello><Hello></Hello></div>);
 					<h2>Balise auto-fermante</h2>
 					<p>
                      Comme un composant peut avoir n'importe quel nom,
-					 <br/>
                      il existe une syntaxe pour "auto-fermer" une balise.
 					</p>
 					<p>&nbsp;</p>
@@ -470,6 +469,29 @@ ReactDOM.createRoot(node).render(<Toggle/>);
 				</section>
 
 				<section>
+					<h2>Destructuration des tableaux</h2>
+					<p>
+                     Comme le résultat de useState() est un tableau, on peut extraire
+				     les valeurs en utilisant la destructuration des tableaux
+				    </p>
+					<div id="react-state-change"></div>
+
+					<small><textarea autojslog="react-state-change-example" rows="10" cols="72">
+function TextField() {
+  let [text, setText] = React.useState("hello");  // destructuration
+  return <div>
+     { text } &amp;nbsp;
+     <input type="text" value={text} onChange={e => setText(e.target.value)} />
+   </div>;
+}
+let node = document.getElementById("react-state-change");
+ReactDOM.createRoot(node).render(<TextField/>);
+          </textarea></small>
+					<p><small>Et aussi "onChange" au lieu de "onchange"</small></p>
+					<small><div id="react-state-change-example"></div></small>
+				</section>
+
+				<section>
 					<h2>State Hook (2)</h2>
 					<p>
                      Chaque composant a son propre état
@@ -487,7 +509,7 @@ function Counter() {
 let node = document.getElementById("react-state2");
 ReactDOM.createRoot(node).render(<><Counter/> <Counter/></>);
           </textarea></small>
-					<p><small>Note: let [a,b] = c <=> let a = c[0]; let b = c[1]</small></p>
+					<p><small></small></p>
 					<small><div id="react-state-example2"></div></small>
 				</section>
 
