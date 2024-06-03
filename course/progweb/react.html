@@ -289,6 +289,28 @@ root.render(<div><Hello name="a"/><Hello name="b"/></div>);
 					<small><div id="react-prop-example"></div></small>
 				</section>
 
+				<section>
+					<h2>Propriété (2)</h2>
+					<p>
+						Si une propriété n'est pas de type string,
+						il faut passer la valeur entre '{' '}'
+					</p>
+					<p>&nbsp;</p>
+					<div id="react-prop2"></div>
+
+					<small><textarea autojslog="react-prop-example2" rows="8" cols="70">
+function Hello(props) {
+  let value = props.value;
+  return <span>Hello { value } !</span>;
+}
+let node = document.getElementById("react-prop2");
+let root = ReactDOM.createRoot(node);
+root.render(<div><Hello value={12}/><Hello value={42}/></div>);
+          </textarea></small>
+					<p><small></small></p>
+					<small><div id="react-prop-example2"></div></small>
+				</section>
+
 				<style>
 				  .tomato {
 				    color: tomato;
@@ -299,7 +321,7 @@ root.render(<div><Hello name="a"/><Hello name="b"/></div>);
 				<section>
 					<h2>Style d'un composant</h2>
 					<p>
-						On utilise plutôt l'attribut DOM "className" que "class" pour spécifier la classe CSS
+						On utilise l'attribut DOM "className" plutôt que "class" pour spécifier la classe CSS
 					</p>
 					<small><pre><code>
 .tomato {
@@ -329,7 +351,7 @@ root.render(<div><Hello name="tomato"/></div>);
 					<h2>Fragment</h2>
 					<p>
 						Il existe une syntaxe spéciale (&lt;&gt; et &lt;/&gt;) pour encapsuler plusieurs
-						éléments et les renvoyer comme un seul élément
+						éléments et les envoyer comme un seul élément
 					</p>
 
 					<div id="react-fragment"></div>
@@ -361,7 +383,7 @@ root.render(<div><Story/></div>);
 					<small><textarea autojslog="react-conditional-example" rows="8" cols="70">
 function Hello(prop) {
   return prop.visible && <span>Hello !</span>;
-  //return prop.visible? <span>Hello !</span>: "";
+  //return prop.visible ? <span>Hello !</span> : "";
 }
 let node = document.getElementById("react-conditional");
 let root = ReactDOM.createRoot(node);
