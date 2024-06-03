@@ -443,7 +443,7 @@ ReactDOM.createRoot(node).render(<List items={data}/>);
 				<section>
 					<h2>L'attribut "key"</h2>
 					<p>
-						Doit être unique, permet de savoir quels items changent
+						Doit être unique, permet de savoir quels éléments changent
 					</p>
 					<div id="react-list-item"></div>
 					<small><textarea autojslog="react-list-item-example" rows="9" cols="76">
@@ -467,8 +467,9 @@ ReactDOM.createRoot(node).render(<List items={data}/>);
 				<section>
 					<h2>Gestion des états / state hook</h2>
 					<p>
-						useState(initial) renvoie un tableau
-						contenant la valeur actuelle (ou la valeur initiale si c'est la première fois)
+						<a href="https://react.dev/reference/react/useState">useState(initial)</a>
+						renvoie un tableau contenant la valeur actuelle
+						(ou la valeur initiale si c'est la première fois)
 						et une fonction qui met à jour la valeur <u>et</u> l'UI
 					</p>
 					<div id="react-state"></div>
@@ -536,6 +537,17 @@ ReactDOM.createRoot(node).render(<><Counter/> <Counter/></>);
 				</section>
 
 				<section>
+					<h2>State hooks et DOM virtuel</h2>
+					<p>
+						Les <i>states hooks</i> sont stockés dans un tableau associé à chaque nœud du DOM virtuel
+					</p>
+					<img src="images/react/virtual-dom-state-hooks.png" width="300" height="300">
+					<p><small>
+						Tant qu'un nœud n'est pas supprimé l'état persiste
+					</small></p>
+				</section>
+
+				<section>
 					<h2>State Hook (3)</h2>
 					<p>
 						La fonction de mise à jour peut prendre une lambda en paramètre
@@ -582,18 +594,6 @@ ReactDOM.createRoot(node)
 					<p><small>Note: let {a,b} = c <=> let a = c.a; let b = c.b</small></p>
 					<small><div id="react-state-example4"></div></small>
 				</section>
-
-				<section>
-					<h2>State hooks et DOM virtuel</h2>
-					<p>
-						Les <i>states hooks</i> sont stockés dans un tableau associé à chaque nœud du DOM virtuel
-					</p>
-					<img src="images/react/virtual-dom-state-hooks.png" width="300" height="300">
-					<p><small>
-						Tant qu'un nœud n'est pas supprimé l'état persiste
-					</small></p>
-				</section>
-
 
 
 				<section>
@@ -683,7 +683,7 @@ ReactDOM.createRoot(node).render(<Counter/>);
 					<h2><i>Effect Hook</i> (2)</h2>
 					<p>
 						useEffect(lambda, []), si on spécifie un tableau vide, l'effet est exécuté
-						une fois à la création, une fois à la destruction
+						une fois à la création
 					</p>
 					<div id="react-effect2"></div>
 
@@ -713,20 +713,17 @@ ReactDOM.createRoot(node).render(<Counter/>);
 					</p>
 					<div id="react-async1"></div>
 
-					<small><textarea autojslog="react-async-example1" rows="19" cols="76">
+					<small><textarea autojslog="react-async-example1" rows="16" cols="76">
 async function fetchData() {
   return (await fetch("images/react/data.json")).json();  // FIXME
 }
-function Item(props) {
-  let {value, id} = props;
-  return <li key={id}>{value}</li>;
-}
+function Item({value}) { return <li>{value}</li>; }
 function List() {
   let [data, setData] = React.useState([]);
   return <div>
        <button onClick={ async () => setData(await fetchData()) }>Update</button>
 	   <ul>
-        { data.map(d => <Item id={d.id} value={d.value}/>) }
+        { data.map(d => <Item key={d.id} value={d.value}/>) }
 	   </ul>
 	 </div>;
 }
@@ -744,20 +741,17 @@ ReactDOM.createRoot(node).render(<List/>);
 					</p>
 					<div id="react-async2"></div>
 
-					<small><textarea autojslog="react-async-example2" rows="18" cols="76">
+					<small><textarea autojslog="react-async-example2" rows="15" cols="76">
 async function fetchData(setData) {
   let data = await (await fetch("images/react/data.json")).json();  // FIXME
   setData(data);
 }
-function Item(props) {
-  let {value, id} = props;
-  return <li key={id}>{value}</li>;
-}
+function Item({value}) { return <li>{value}</li>; }
 function List() {
   let [data, setData] = React.useState([]);
   React.useEffect(() => { fetchData(setData); }, []);
   return <ul>
-        { data.map(d => <Item id={d.id} value={d.value}/>) }
+        { data.map(d => <Item key={d.id} value={d.value}/>) }
 	   </ul>;
 }
 let node = document.getElementById("react-async2");
