@@ -326,16 +326,16 @@ JSON.parse('{ name: "john", age: 26 }');  // oops
                 <section>
 				                        <h2>Fetch</h2>
 					                    <p>
-					                     <b>fetch()</b> effectue l'appel asynchrone, et <b>then()</b>
-                                         indique quoi faire avec la réponse
+					                     <b>fetch(uri, option?)</b> effectue un appel HTTP asynchrone,
+                                         et <b>then()</b> indique quoi faire avec la réponse (une fois qu'elle arrive)
                                         </p>
                                         <pre><code class="js" data-trim>
-fetch("http://api.foo.bar.com/users/bob")
+fetch("http://api.foo.bar.com/users/bob", { method: "POST" })
   .then(response => {
-     if (response.ok) {
-       return ...
+     if (!response.ok) {
+       throw Error(response.statusText);
      }
-     throw Error(response.statusText);
+     return ...
    })
                                         </code></pre>
                                         <p><small>
@@ -346,16 +346,16 @@ fetch("http://api.foo.bar.com/users/bob")
 				<section>
 				                        <h2>Fetch en vrai</h2>
 					                    <p>
-					                     <b>fetch()</b> fait une requête AJAX et renvoie une Promise, qui
-                                         indique une réponse ou une erreur
+					                     <b>fetch(uri, options?)</b> fait une requête AJAX et renvoie une Promise,
+                                         qui indique une réponse ou une erreur
                                         </p>
-                                        <small><textarea autojslog="js6-fetch" rows="9" cols="45">
-fetch("images/js-object/demo.json")
+                                        <small><textarea autojslog="js6-fetch" rows="9" cols="57">
+fetch("images/js-object/demo.json", { method: "GET" })
   .then(response => {
-     if (response.ok) {
-       return console.log(response.status)
+     if (!response.ok) {
+       throw Error(response.statusText);
      }
-     throw Error(response.statusText);
+     console.log(response.status);
    })
   .catch(err => console.log(err.message));
                                         </textarea></small>
@@ -364,8 +364,7 @@ fetch("images/js-object/demo.json")
                                          <div id="js6-fetch" class="autojslog"></div>
                                         </small>
                                         <p><small>
-                                            <b>then()</b> et <b>catch()</b> permettent d'installer des closures
-                                           <br/>
+                                           <b>then()</b> et <b>catch()</b> permettent d'installer des closures
                                             qui seront appelées si la valeur est résolue ou si il y a une erreur.
                                         </small></p>
 				</section>
@@ -375,9 +374,9 @@ fetch("images/js-object/demo.json")
                     <p>
                         Une <b>Promise</b> est la promesse d'une valeur (ou erreur) future
                     </p>
-                    <small><textarea autojslog="js6-promise" rows="12" cols="45">
+                    <small><textarea autojslog="js6-promise" rows="12" cols="50">
 let promise = new Promise((resolve, reject) => {
-  let value = Math.random();   // juste pour l'exemple
+  let value = Math.random();   // just an example
   if (value < 0.5) {
     resolve("It works");
   } else {
@@ -398,47 +397,6 @@ promise.then(value => console.log(value))
                 </section>
 
                 <section>
-                    <h2>Promise et setTimeout</h2>
-                    <p>
-
-                    </p>
-                    <small><textarea autojslog="js6-promise-setTimeout" rows="8" cols="45">
-let promise = new Promise((resolve, reject) => {
-  setTimeout(() => {
-      resolve("hello promise");
-  }, 3000);
-});
-
-promise.then(value => console.log(value));
-                                        </textarea></small>
-                    <p></p>
-                    <small>
-                        <div id="js6-promise-setTimeout" class="autojslog"></div>
-                    </small>
-                    <p><small>la closure pris en paramètre du then est appelée au moment où la valeur est disponible</small></p>
-                </section>
-
-                <section>
-                    <h2>Promise.resolve()/reject()</h2>
-                    <p>
-                        On peut initialiser une promesse directement avec une valeur
-                        (<b>resolve()</b>) ou une erreur (<b>reject()</b>)
-                    </p>
-                    <small><textarea autojslog="js6-promise-init" rows="6" cols="45">
-let promise1 = Promise.resolve(42);
-let promise2 = Promise.reject(Error("oops"));
-
-promise1.then(value => console.log(value));
-promise2.catch(err => console.log(err.message));
-                                        </textarea></small>
-                    <p></p>
-                    <small>
-                        <div id="js6-promise-init" class="autojslog"></div>
-                    </small>
-                    <p></p>
-                </section>
-
-                <section>
                     <h2>Fetch + JSON</h2>
                     <p>
                         Comme <b>fetch()</b>, <b>response.json()</b> est aussi une Promise,
@@ -447,14 +405,14 @@ promise2.catch(err => console.log(err.message));
                     </p>
                     <small><textarea autojslog="js6-fetch-json" rows="10" cols="45">
 fetch("images/js-object/demo.json")
-  .then(response => {
-     if (response.ok) {
+    .then(response => {
+       if (!response.ok) {
+         throw Error(response.statusText);
+       }
        return response.json();
-     }
-     throw Error(response.statusText);
-   })
-  .then(object => console.log(object))
-  .catch(err => console.log(err.message));
+     })
+    .then(object => console.log(object))
+    .catch(err => console.log(err.message));
                      </textarea></small>
                     <p></p>
                     <small>
@@ -475,10 +433,10 @@ fetch("images/js-object/demo.json")
 image = document.getElementById('fetch-image-example');
 fetch("images/js-canvas/html5.png")
   .then(response => {
-     if (response.ok) {
-       return response.blob();
+     if (!response.ok) {
+       throw Error(response.statusText);
      }
-     throw Error(response.statusText);
+     return response.blob();
    })
   .then(blob => {
     let objectURL = URL.createObjectURL(blob);
@@ -498,6 +456,26 @@ fetch("images/js-canvas/html5.png")
                 </section>
 
                 <section>
+                    <h2>Promise.resolve()/reject()</h2>
+                    <p>
+                        On peut initialiser une promesse directement avec une valeur
+                        (<b>resolve()</b>) ou une erreur (<b>reject()</b>)
+                    </p>
+                    <small><textarea autojslog="js6-promise-init" rows="6" cols="45">
+let promise1 = Promise.resolve(42);
+promise1.then(value => console.log(value));
+
+let promise2 = Promise.reject(Error("oops"));
+promise2.catch(err => console.log(err.message));
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js6-promise-init" class="autojslog"></div>
+                    </small>
+                    <p></p>
+                </section>
+
+                <section>
                 <h2>Async fonction</h2>
                 <p>
                     Async met la valeur de retour de la fonction dans une promesse
@@ -509,8 +487,8 @@ fetch("images/js-canvas/html5.png")
 async function foo() {
   return 3;
 }
-let promise = foo();
-promise.then(value => console.log(value));
+foo()
+  .then(value => console.log(value));
                     </textarea></small>
                     <p></p>
                     <small>
@@ -522,8 +500,8 @@ promise.then(value => console.log(value));
 function foo() {
   return Promise.resolve(3);
 }
-let promise = foo();
-promise.then(value => console.log(value));
+foo()
+  .then(value => console.log(value));
                 </textarea></small>
                 <p></p>
                 <small>
@@ -546,8 +524,8 @@ promise.then(value => console.log(value));
 async function boom() {
   throw Error("oops");
 }
-let p = boom();
-p.catch(err => console.log(err.message));
+boom()
+  .catch(err => console.log(err.message));
                     </textarea></small>
                         <p></p>
                         <small>
@@ -559,8 +537,8 @@ p.catch(err => console.log(err.message));
 function boom() {
   return Promise.reject(Error("oops"));
 }
-let p = boom();
-p.catch(err => console.log(err.message));
+boom()
+  .catch(err => console.log(err.message));
                 </textarea></small>
                     <p></p>
                     <small>
@@ -613,9 +591,6 @@ foo();
                         <div id="js-await-b" class="autojslog"></div>
                     </small>
                 </div>
-                    <p>
-                        <small>On ne peut mettre await que dans une fonction async</small>
-                    </p>
                 </section>
 
                 <section>
@@ -623,13 +598,10 @@ foo();
                     <p>
                         await ne marche que à l'intérieur d'une fonction async
                     </p>
-                    <small><textarea autojslog="js6-await-without-async" rows="8" cols="45">
+                    <small><textarea autojslog="js6-await-without-async" rows="5" cols="45">
 function noAsync() {
   let response =
       await fetch("images/js-object/demo.json");
-  if (response.ok) {
-    console.log(response.status);
-  }
 }
                      </textarea></small>
                     <p></p>
@@ -650,7 +622,7 @@ async function callAPI() {
   if (!response.ok) {
     throw Error(response.statusText);
   }
-  return await response.json();
+  return response.json();
 }
 
 (async () => {
@@ -679,15 +651,15 @@ async function callAPI() {
 async function fetchAll() {
   let response1 = await fetch('images/js-object/demo.json');
   let response2 = await fetch('images/js-object/demo2.json');
-  if (response1.ok && response2.ok) {
-    return [await response1.json(), await response2.json()];
+  if (!response1.ok || !response2.ok) {
+    throw Error(response1.statusText + ' ' + response2.statusText);
   }
-  throw Error(response1.statusText + ' ' + response2.statusText);
+  return [await response1.json(), await response2.json()];
 }
 
 fetchAll()
-.then(array => array.forEach(o => console.log(o)))
-.catch(err => console.log(err.message));
+  .then(array => array.forEach(o => console.log(o)))
+  .catch(err => console.log(err.message));
                                         </textarea><div class="bad-image"></div></div></small>
                     <p></p>
                     <small>
@@ -704,10 +676,10 @@ fetchAll()
                     <small><textarea autojslog="js6-promise-all" rows="15" cols="60">
 async function callAPI(url) {
   let response = await fetch(url);
-  if (response.ok) {
-    return await response.json();
+  if (!response.ok) {
+    throw Error(response.statusText);
   }
-  throw Error(response.statusText);
+  return await response.json();
 }
 
 Promise.all([
@@ -731,10 +703,10 @@ Promise.all([
                     <small><textarea autojslog="js6-promise-race" rows="15" cols="60">
 async function callAPI(url) {
   var response = await fetch(url);
-  if (response.ok) {
-    return await response.json();
+  if (!response.ok) {
+    throw Error(response.statusText);
   }
-  throw Error(response.statusText);
+  return await response.json();
 }
 
 Promise.race([
