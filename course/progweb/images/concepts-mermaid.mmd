@@ -1,0 +1,67 @@
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+      'primaryColor': 'green',
+      'primaryTextColor': '#fff',
+      'primaryBorderColor': '#7C0000',
+      'lineColor': 'orange',
+      'secondaryColor': '#006100',
+      'tertiaryColor': '#fff'
+    }
+  }
+}%%
+stateDiagram-v2
+    React --> JSX
+					React --> ReactProps
+					React --> StateHook
+					React --> EffectHook
+					React --> ReactComponent
+					React --> ReactClassName
+
+					JSX --> DOM
+					JSX --> ArrayMethods
+					JSX --> ReactEvent
+					JSX --> HTML
+
+					DOMEvent --> DOM
+
+					StateHook --> Array
+
+					ReactProps --> Object
+
+					state "Class" as clazz
+					clazz --> Function
+					clazz --> Object
+
+					EffectHook --> ArrowFunction
+					EffectHook --> AJAX_Fetch
+
+					AJAX_Fetch --> AsyncFunction
+					AJAX_Fetch --> HTTP
+
+					ReactComponent --> Function
+					ReactComponent --> clazz
+
+					ReactClassName --> CSS
+
+					ReactEvent --> AJAX_Fetch
+					ReactEvent --> ArrowFunction
+
+					ArrayMethods --> Array
+
+					Function --> Object
+					Array --> Object
+
+					ArrowFunction --> DOMEvent
+					ArrowFunction --> Function
+					AsyncFunction --> Function
+
+					DOM --> Object
+
+					Object --> JavaScript
+
+					HTTP --> Web
+					JavaScript --> Web
+					HTML --> Web
+					CSS --> Web
