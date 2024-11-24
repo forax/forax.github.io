@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Géomatique</title>
+
+		<meta name="description" content="javascript, data structure, DOM">
+		<meta name="author" content="Remi Forax">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+		
+		<!-- autojs result -->
+		<style>
+		  div.autojsresult {
+		    text-align: left;
+		    color: lime;
+		  }
+		  div.autojslog {
+		    color: orange;
+		  }
+		  div.autojserror {
+		    color: red;
+		  }
+		  .bad-container {
+            position: relative;
+            display:inline-block;
+          }
+		  .bad-image:after {
+            content: url(images/js/bad.png);
+            position: absolute;
+            z-index: 9999;
+            right: 5px;
+            bottom: 0px;
+          }
+		</style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+                <section>
+					<h1>Géomatique</h1>
+					<p>
+					  Remi Forax
+					</p>
+				</section>
+
+			    <section>
+					<h2>Géomatics ?</h2>
+					<blockquote cite="https://en.wikipedia.org/wiki/Geomatics">
+					  &ldquo;Geomatics is the "discipline concerned with the collection, distribution, storage,
+					   analysis, processing, presentation of geographic data or geographic information"&rdquo;
+					</blockquote>
+                                        <p align="right">
+                                         source: Wikipedia.org - <a href="https://en.wikipedia.org/wiki/Geomatics">Geomatics</a>
+                                        </p>
+				</section>
+				<section>
+					<h2>Géomatique ?</h2>
+					<blockquote cite="https://fr.wikipedia.org/wiki/G%C3%A9omatique">
+					  &ldquo;La géomatique est la discipline qui s'occupe de la collecte, la distribution, le stockage,
+					  l'analyse, le traitement et la présentation des données géographiques ou de l'information géographique&rdquo;
+					</blockquote>
+                                        <p align="right">
+                                         source : Wikipedia.org - <a href="https://fr.wikipedia.org/wiki/G%C3%A9omatique">Géomatique</a>
+                                        </p>
+				</section>
+
+				<section>
+					<h2>Spatial Reference System (SRS)</h2>
+					<p>
+						<small>
+							La terre n'est pas vraiment ronde, pas plate du tout, donc trouver un système
+							de coordonnées pour indiquer où l'on se situe sur la terre n'est pas facile.
+						</small>
+					</p>
+					  <img src="images/geomatic/WGS_84_reference_frame.png"
+						   width="205"
+						   height="182">
+				    <p>
+				     <small>
+					   Ce n'est pas une patate non plus, mais c'est pour comprendre le problème !
+					 </small>
+					</p>
+				</section>
+
+				<section>
+					<h2>Code EPSG</h2>
+					<p>
+                     Le code EPSG identifie de façon unique un SRS.
+					<br/>
+					 Le site <a href="https://epsg.io/">https://epsg.io/</a> permet d'obtenir les informations
+				     correspondant à un code EPSG.
+					</p>
+					<p>
+					  <small>
+						European Petroleum Survey Group (EPSG) a été créé sous l'impulsion
+						de ELF (ex Total) en 1985
+					  </small>
+					</p>
+				</section>
+
+				<section>
+					<h2>Geographic Coordinate System</h2>
+					<p>
+						En 1884, la conférence internationale sur le méridien a lieu aux États-Unis et
+						les représentants de 25 nations decident que la longitude 0 passe par
+						le Royal Observatoire de Greenwich.
+					</p>
+					<p>
+						<small>
+							La france a voté contre, la longitude 0 doit passer par Paris :)
+						</small>
+					</p>
+				</section>
+
+				<section>
+					<h2>Latitude, Longitude</h2>
+					<p><small>
+						La latitude est l'angle entre le centre de la terre et le cercle d'un parallèle,
+						<br/>
+						L'équateur est à 0 degré, les pôles à 90 degrés.
+					</small></p><p><small>
+						La longitude est l'angle entre le centre de la terre et un méridien,
+						<br/>
+						Le méridien de Greenwich est à 0 degré.
+					</small>
+					</p>
+					<a href="images/geomatic/Lat_long.png">
+						<img src="images/geomatic/Lat_long.png"
+							 width="256"
+							 height="200">
+					</a>
+				</section>
+
+				<section>
+					<h2>Unité pour Latitude, Longitude</h2>
+					<p>
+					  La latitude et la longitude peuvent s'exprimer avec deux unités différentes
+					</p>
+					<dl>
+                     <dt>Décimal</dt>
+				     <dd>Par ex: 41.9, 12.483333</dd>
+					 <dt>Degré Minute Seconde (DMS)</dt>
+					 <dd>Par ex: 41° 54′ 0″ N, 12° 29′ 0″ E</dd>
+					</dl>
+				   <br/>
+					<p>
+					  <small>
+						Il existe des <a href="https://www.latlong.net/lat-long-dms.html">convertisseur</a>s
+						sur le Web
+					  </small>
+					</p>
+				</section>
+
+				<section>
+					<h2>GCS WGS 84</h2>
+					<p><small>
+					  On utilise la surface d'une sphère aplatit pour indiquer la position sur la terre.
+				     <br/>
+					  Le World Geodetic System (WGS) 84
+					  (<a href="https://epsg.io/4326">EPSG 4326</a>)
+					  est le standard utilisé en cartographie 2D.
+					</small>
+					<br/>
+						<img src="images/geomatic/WGS_84_reference_frame.png"
+							 width="510"
+							 height="365">
+					</p>
+				</section>
+
+				<section>
+					<h2>GNSS</h2>
+					<img src="images/geomatic/Galileo_satellite_model.jpg"
+						 width="306"
+						 height="214">
+					<p>
+					  Le système de navigation GPS, fabriqué par les américains,
+					  utilise le WGS 84.
+					</p>
+					<p>
+					 <small>
+					  Les autres systèmes de navigation
+					 <br/>
+					  (GLONASS, BeiDou, Galileo) utilise aussi WGS 84.
+					 </small>
+					</p>
+				</section>
+
+				<section>
+					<h2>Le problème des cartes</h2>
+					<p><small>
+					  Une carte est une surface 2D, donc il faut projeter la surface de la sphère sur un plan.
+					 <br/>
+					  Le WGS 84 possède plusieurs projections.
+					</small>
+					</p>
+					<a href="images/geomatic/Lambert-equal-area-projection.jpg">
+					  <img src="images/geomatic/Lambert-equal-area-projection.jpg"
+					       width="192"
+					       height="192">
+					</a>
+					<p>
+					<small>
+					   Il n'existe pas de bonne projection, cela dépend de ce que l'on veut conserver,
+					  <br/>
+					   les angles (Lambert conique, Mercator), les surfaces (Albers conique), etc
+					</small>
+					</p>
+				</section>
+
+				<section>
+					<h2>Projection de Lambert 93</h2>
+					<a href="images/geomatic/Lambert_conformal_conic_projection.jpg">
+					<img src="images/geomatic/Lambert_conformal_conic_projection.jpg"
+					     width="350"
+					     height="220">
+					</a>
+					<p>
+					 <small>
+						 Dérivé de la projection conique de Johann Heinrich Lamber
+						 (<a href="https://epsg.io/2154">EPSG 2154</a>)
+					 </small>
+				    </p><p>
+                     <small>C'est la projection utilisée pour la France Métropolitaine depuis 2000</small>
+					</p>
+				</section>
+
+				<section>
+					<h2>Projection Web Mercator 2006</h2>
+					<p>
+					 <small>
+					  <a href="https://epsg.io/3857">EPSG 3857</a>,
+					  initialement utilisé par Google Maps et maintenant utilisé par tous les fournisseurs
+					  de carte en ligne CARTO, Mapbox, Bing Maps, OpenStreetMap, Mapquest, Esri
+					 </small>
+					</p>
+					<img src="images/geomatic/web-mercator.png"
+					     width="394"
+					     height="212">
+					<p>
+					 <small>
+					  Attention, <u>ce n'est pas</u> la projection cylindrique de Mercator,
+					 <br/>
+					  la projection Web Mercator ne conserve pas les angles, elle est juste jolie
+					 </small>
+					</p>
+				</section>
+
+				<section>
+					<h1>GIS</h1>
+				</section>
+
+				<section>
+					<h2>Geographical Information System</h2>
+					<blockquote cite="https://en.wikipedia.org/wiki/Geographic_information_system">
+						&ldquo;A geographic information system (GIS) consists of integrated computer hardware and software
+						that store, manage, analyze, edit, output, and visualize geographic data.&rdquo;
+					</blockquote>
+					<p align="right">
+						source: Wikipedia.org - <a href="https://en.wikipedia.org/wiki/Geographic_information_system">GIS</a>
+					</p>
+				</section>
+				<section>
+					<h2>Système d'information Géographique</h2>
+					<blockquote cite="https://fr.wikipedia.org/wiki/Syst%C3%A8me_d%27information_g%C3%A9ographique">
+						&ldquo;Un système d'information géographique (SIG) se compose de matériel et de logiciels
+						informatiques intégrés permettant de stocker, gérer, analyser, éditer, produire et
+						visualiser des données géographiques.&rdquo;
+					</blockquote>
+					<p align="right">
+						source : Wikipedia.org - <a href="https://fr.wikipedia.org/wiki/Syst%C3%A8me_d%27information_g%C3%A9ographique">SIG</a>
+					</p>
+				</section>
+
+				<section>
+					<h2>Histoire des SIG</h2>
+					<p>
+					    Les premiers GIS sont des cartes d'épidémiologie
+						pour suivre le cholera à Paris (1832) et à Londres (1858)
+						en positionnant des données chiffrées (nombre de morts) sur une carte.
+					</p>
+					<a href="images/geomatic/600px-Snow-cholera-map.jpg">
+					  <img src="images/geomatic/600px-Snow-cholera-map.jpg"
+					       width="300"
+						   height="293">
+					</a>
+					<p><small>
+						Carte des morts dans le quartier Soho de Londres (1958)
+					</small></p>
+				</section>
+
+				<section>
+					<h2>SIG sur ordinateur</h2>
+					<p>
+						<small>
+						  <a href="https://en.wikipedia.org/wiki/Esri">Esri</a>
+						  est créé à la fin des année 70,
+						<br/>
+						  Mapping Display and Analysis System, renommé en 90 en
+						  <a href="https://en.wikipedia.org/wiki/Esri">MapInfo</a>,
+						 <br/>
+						  créé le premier système sous DOS (1986)
+						<br/>
+						  ESRI créé
+						  <a href="https://en.wikipedia.org/wiki/ArcGIS">ArcGIS</a>
+						  fin 1999,
+						  <a href="https://en.wikipedia.org/wiki/QGIS">QGIS</a>
+						  (opensource) est créé en 2002.
+						</small>
+					</p>
+					<img src="images/geomatic/ArcGIS.png"
+						 width="422"
+						 height="236">
+				   <br/>
+					<small>
+						Le logiciel ArcGIS
+					</small>
+				</section>
+
+				<section>
+					<h2>QGIS</h2>
+					<ul>
+					  <li>outil de création de carte</li>
+					  <li>outil de visualisation avec personalisation de la symbologie</li>
+					  <li>utilise des plugins pour les analyses géographiques plus complexes</li>
+					</ul>
+					<a href="images/geomatic/qgis.png">
+					  <img src="images/geomatic/qgis.png"
+					    width="400"
+					    height="217">
+					</a>
+					<br/>
+					<small>
+						Le logiciel QGIS
+					</small>
+				</section>
+
+				<section>
+					<h2>Format des données</h2>
+					<ul>
+					<li>Raster
+					  <br/>
+						<small>
+						  <a href="https://en.wikipedia.org/wiki/GeoTIFF">GeoTiff</a>
+						</small>
+					</li>
+					<li>Vector
+					 <br/>
+					  <small>
+					   CSV,
+					   Esri <a href="https://en.wikipedia.org/wiki/Shapefile">ShapeFile</a>,
+					   AutoCAD <a href="https://en.wikipedia.org/wiki/AutoCAD_DXF">DXF</a>,
+					   <a href="https://en.wikipedia.org/wiki/GeoJSON">GeoJSON</a>,
+					   Google Earth <a href="https://en.wikipedia.org/wiki/Keyhole_Markup_Language">KML</a>,
+					   MapBox <a href="https://docs.mapbox.com/data/tilesets/guides/vector-tiles-standards/">Vector Tiles</a>,
+					   <a href="https://en.wikipedia.org/wiki/GPS_Exchange_Format">GPS eXchange Format</a> (GPX)
+					  </small>
+					</li>
+					<li>Raster + Vector
+					  <br/>
+						<small>
+						  <a href="https://en.wikipedia.org/wiki/GeoPackage">GeoPackage</a> (SQLite3)
+						</small>
+					</li>
+					</ul>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                                        { src: 'plugin/autoeval/autoeval.js', async: true },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
