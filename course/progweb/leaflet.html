@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Leaflet</title>
+
+		<meta name="description" content="javascript, data structure, DOM">
+		<meta name="author" content="Remi Forax">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+		
+		<!-- autojs result -->
+		<style>
+		  div.autojsresult {
+		    text-align: left;
+		    color: lime;
+		  }
+		  div.autojslog {
+		    color: orange;
+		  }
+		  div.autojserror {
+		    color: red;
+		  }
+		  .bad-container {
+            position: relative;
+            display:inline-block;
+          }
+		  .bad-image:after {
+            content: url(images/js/bad.png);
+            position: absolute;
+            z-index: 9999;
+            right: 5px;
+            bottom: 0px;
+          }
+		</style>
+
+		<!-- leaflet -->
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+		<style>
+			.map {
+			  width: 100%;
+			  height: 150px;
+			}
+			.reveal section img {
+				margin: 0px;
+				border: 0px;
+			}
+		</style>
+		<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+		<script>
+	      // wrap leaflet L.map()
+		  L._oldMapMethod = L.map;
+		  L.map = function(...args) {
+			  let firstArg = args[0];
+			  let htmlElement = firstArg instanceof HTMLElement ? firstArg : document.getElementById(firstArg);
+			  let __map__ = htmlElement["__map__"];
+			  if (__map__ !== undefined && __map__ !== null) {
+				//console.log("__map__", __map__);
+				__map__.remove();
+				htmlElement["__map__"] = null;
+			  }
+			  //console.log(...args);
+			  let map = L._oldMapMethod(...args);
+			  //console.log("map", map);
+			  htmlElement["__map__"] = map;
+			  return map;
+		  }
+		</script>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+                <section>
+					<h1>Leaflet</h1>
+					<p>
+					  Remi Forax
+					</p>
+				</section>
+
+			    <section>
+					<h2>Leaflet ?</h2>
+					<blockquote cite="https://en.wikipedia.org/wiki/Leaflet_(software)">
+					  &ldquo;It allows developers without a GIS background to display tiled web maps hosted on a public server,
+					   with optional tiled overlays.&rdquo;
+					</blockquote>
+                                        <p align="right">
+                                         source: Wikipedia.org - <a href="https://en.wikipedia.org/wiki/Leaflet_(software)">Geomatics</a>
+                                        </p>
+				</section>
+
+				<section>
+					<h2>Une Carte (map)</h2>
+					<p>
+					  On déclare un div qui va contenir la carte
+					</p>
+					<pre><code class="html" data-trim>
+                      &lt;div id="map-id"&gt;&lt;/div&gt;
+                    </code></pre>
+					<div id="map-id" class="map"></div>
+					<p><small>
+					  On appele la méthode map() sur l'objet L (pour leaflet)
+					  avec en premier paramètre l'id du div
+					</small></p>
+					<small><textarea autojslog="leaflet-map" rows="2" cols="40">
+let map = L.map('map-id');
+                    </textarea></small>
+					<p></p>
+					<small>
+						<div id="leaflet-map" class="autojslog"></div>
+					</small>
+				</section>
+
+				<section>
+					<h2>La méthode L.map()</h2>
+					<p>
+                     C'est équivalent à appeler la méthode map() avec
+				     le résultat de document.getElementById()
+					</p>
+					<pre><code class="html" data-trim>
+                      &lt;div id="map-id2"&gt;&lt;/div&gt;
+                    </code></pre>
+					<div id="map-id2" class="map"></div>
+					<p></p>
+					<small><textarea autojslog="leaflet-map2" rows="3" cols="47">
+let div = document.getElementById("map-id2");
+let map = L.map(div);
+                    </textarea></small>
+					<p></p>
+					<small>
+						<div id="leaflet-map2" class="autojslog"></div>
+					</small>
+				</section>
+
+				<section>
+					<h2>L.map(id, options)</h2>
+					<p>
+						Une map doit avoir un "center" [lat, long] et
+						un facteur de "zoom"
+					</p>
+					<div id="map-id3" class="map"></div>
+					<p></p>
+					<small><textarea autojslog="leaflet-map3" rows="6" cols="55">
+let map = L.map("map-id3", {
+    center: [21.2752, -157.8312],
+    // or center: L.latLng(21.2752, -157.8312),
+    zoom: 12
+});
+                    </textarea></small>
+					<p></p>
+					<small>
+						<div id="leaflet-map3" class="autojslog"></div>
+					</small>
+				</section>
+
+				<section>
+					<h2>Le layer de tuile</h2>
+					<p>
+                     L.tileLayer() permet de créer un layer utilisant des tuiles
+				    <br/>
+					 On peut spécifier le tableau des layers dans les options de la map
+					</p>
+					<div id="map-tile" class="map"></div>
+					<p></p>
+					<small><textarea autojslog="leaflet-tile" rows="9" cols="75">
+let layer = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OSM</a>'
+});
+let map = L.map("map-tile", {
+    center: [21.2752, -157.8312],
+    zoom: 13,
+    layers: [layer]
+});
+                    </textarea></small>
+					<p></p>
+					<small>
+						<div id="leaflet-tile" class="autojslog"></div>
+					</small>
+				</section>
+
+				<section>
+					<h2>Ajouter un layer</h2>
+					<p>
+					  On peut ajouter un layer après la création de la map avec layer.addTo(map)
+					</p>
+					<div id="map-tile2" class="map"></div>
+					<p></p>
+					<small><textarea autojslog="leaflet-tile2" rows="9" cols="75">
+let map = L.map("map-tile2", {
+    center: [37.819912, -122.478661],
+    zoom: 10
+});
+let layer = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OSM</a>'
+});
+layer.addTo(map);
+                    </textarea></small>
+					<p></p>
+					<small>
+						<div id="leaflet-tile2" class="autojslog"></div>
+					</small>
+				</section>
+
+				<section>
+					<h2>Control</h2>
+					<p>
+                     Lors de la création de la map, on peut indiquer si on veut
+					 les différents controls (zoom, attribution)
+					</p>
+					<div id="map-control" class="map"></div>
+					<p></p>
+					<small><textarea autojslog="leaflet-control" rows="8" cols="75">
+let map = L.map("map-control", {
+    center: [40.716667, -74],
+    zoom: 11,
+    zoomControl: false,
+    attributionControl: false,
+    layers : [L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png")]
+});
+                    </textarea></small>
+					<p></p>
+					<small>
+						<div id="leaflet-control" class="autojslog"></div>
+					</small>
+				   <br/>
+					<small>Attention, la plupart des tuiles demandent une attribution !</small>
+				</section>
+
+				<section>
+					<h2>Ajouter un marker</h2>
+					<p>
+                     Un marker permet de distinguer un point précis de la carte
+					</p>
+					<div id="map-marker" class="map"></div>
+					<p></p>
+					<small><textarea autojslog="leaflet-marker" rows="8" cols="75">
+let map = L.map("map-marker", {
+    center: [51.5, -0.133333],
+    zoom: 10,
+    layers : [L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png")]
+});
+let marker = L.marker([51.5, -0.133333], { opacity: 0.75 });
+marker.addTo(map);
+                    </textarea></small>
+					<p></p>
+					<small>
+						<div id="leaflet-marker" class="autojslog"></div>
+					</small>
+				</section>
+
+				<section>
+					<h2>Ajouter un tooltip</h2>
+					<p>
+                      Un tooltip est un texte avec un contenu
+					</p>
+					<div id="map-tooltip" class="map"></div>
+					<p></p>
+					<small><textarea autojslog="leaflet-tooltip" rows="8" cols="75">
+let map = L.map("map-tooltip", {
+    center: [45.4375, 12.335833],
+    zoom: 10,
+    layers : [L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png")]
+});
+let tooltip = L.tooltip([45.4375, 12.335833], {content: "Venise"});
+tooltip.addTo(map);
+                    </textarea></small>
+					<p></p>
+					<small>
+						<div id="leaflet-tooltip" class="autojslog"></div>
+					</small>
+				</section>
+
+				<section>
+					<h2>Un marker avec un tooltip</h2>
+					<p>
+                     marker.bindTooltip() permet d'ajouter un tooltip
+				     qui sera visible si on passe la souris dessus (hover)
+					</p>
+					<div id="map-marker2" class="map"></div>
+					<p></p>
+					<small><textarea autojslog="leaflet-marker2" rows="9" cols="75">
+let map = L.map("map-marker2", {
+    center: [35.49214, 23.57984],
+    zoom: 14,
+    layers : [L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png")]
+});
+let marker = L.marker([35.49214, 23.57984]);
+marker.bindTooltip("Beach");
+marker.addTo(map);
+                    </textarea></small>
+					<p></p>
+					<small>
+						<div id="leaflet-marker2" class="autojslog"></div>
+					</small>
+				</section>
+
+				<section>
+					<h2>Objets Géométriques</h2>
+					<p>
+                     On peut ajouter des objets géométriques pour indiquer une zone
+					 particulière
+					</p>
+					<div id="map-rect" class="map"></div>
+					<p></p>
+					<small><textarea autojslog="leaflet-rect" rows="8" cols="75">
+let map = L.map("map-rect", {
+    center: [46.051389, 14.506111],
+    zoom: 10,
+    layers : [L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png")]
+});
+L.circle([46.051389, 14.506111], {radius: 5000}).addTo(map);
+L.rectangle([[46, 14], [46.1, 14.1]], {color: "red"}).addTo(map);
+                    </textarea></small>
+					<p></p>
+					<small>
+						<div id="leaflet-rect" class="autojslog"></div>
+					</small>
+				</section>
+
+				<section>
+					<h2>GeoJSON</h2>
+				</section>
+
+				<section>
+					<h2>GeoJSON ?</h2>
+					<blockquote cite="https://en.wikipedia.org/wiki/GeoJSON">
+						&ldquo;an open standard format designed for representing simple geographical features,
+						 along with their non-spatial attributes&rdquo;
+					</blockquote>
+					<p align="right">
+						source: Wikipedia.org - <a href="https://en.wikipedia.org/wiki/GeoJSON">GeoJSON</a>
+					</p>
+				</section>
+
+				<section>
+					<h2>Exemple de fichier GeoJSON</h2>
+					<p>
+					  <small>
+						Une feature groupe une géométrie et des propriétés.
+					  </small>
+					  <pre>
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      <span style="color: green">"geometry"</span>: {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [1.9221462784913, 48.457599361977],
+            ...
+            [1.9221462784913, 48.457599361977]
+          ]
+        ]
+      },
+      <span style="color: green">"properties"</span>: {
+        "code": "11",
+        "nom": "Île-de-France"
+      }
+    }, ...
+			    	  </pre>
+					</p>
+				</section>
+
+				<section>
+					<h2>Layer GeoJSON</h2>
+					<p>
+                      La méthode L.geoJSON() permet de créer un layer à partir des données
+					  <a href="images/geomatic/regions.geojson">geoJSON</a>
+					</p>
+					<div id="map-geojson" class="map"></div>
+					<p></p>
+					<small><textarea autojslog="leaflet-geojson" rows="11" cols="75">
+(async () => {
+  let response = await fetch("images/geomatic/regions.geojson");
+  let data = await response.json();
+  let geoLayer = L.geoJSON(data);
+  let map = L.map("map-geojson", {
+      center: [47.0844, 2.3964],
+      zoom: 4,
+      layers : [geoLayer]
+  });
+})();
+                    </textarea></small>
+					<p></p>
+					<small>
+						<div id="leaflet-geojson" class="autojslog"></div>
+					</small>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                                        { src: 'plugin/autoeval/autoeval.js', async: true },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
