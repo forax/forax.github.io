@@ -228,6 +228,59 @@ layer.addTo(map);
 				</section>
 
 				<section>
+					<h2>Les tuiles de Google Maps</h2>
+					<p>
+                     On peut changer de provider et par exemple utiliser les tuiles de GoogleMap
+					</p>
+					<div id="map-google" class="map"></div>
+					<p></p>
+					<small><textarea autojslog="leaflet-googlemap" rows="9" cols="75">
+let street = L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}', {
+    subdomains:['mt0','mt1','mt2','mt3']
+});
+let map = L.map("map-google", {
+    center: [21.2752, -157.8312],
+    zoom: 11,
+    layers: [street]
+});
+                    </textarea></small>
+					<p></p>
+					<small>
+						<div id="leaflet-googlemap" class="autojslog"></div>
+					</small>
+				  <br/>
+				    <small>
+				     <a href="https://stackoverflow.com/questions/33343881/leaflet-in-google-maps"/>Leaflet using GoogleMap</a>
+					</small>
+				</section>
+
+				<section>
+					<h2>Les autres tuiles</h2>
+					<p>
+                      Le site
+					  <span style="font-size: 0.7em">
+					   <a href="https://leaflet-extras.github.io/leaflet-providers/preview/">https://leaflet-extras.github.io/leaflet-providers/preview/</a>
+					  </span>
+					 <br/>
+					  possède plein d'autres références de tuiles.
+					</p>
+					<div id="map-other-tiles" class="map"></div>
+					<p></p>
+					<small><textarea autojslog="leaflet-other-tiles" rows="9" cols="75">
+let esriLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', { attribution: '© Esri' });
+let map = L.map("map-other-tiles", {
+    center: [21.2752, -157.8312],
+    zoom: 11,
+    layers: [esriLayer]
+});
+                    </textarea></small>
+					<p></p>
+					<small>
+						<div id="leaflet-other-tiles" class="autojslog"></div>
+					</small>
+				</section>
+
+				<section>
 					<h2>Control</h2>
 					<p>
                      Lors de la création de la map, on peut indiquer si on veut
