@@ -116,6 +116,25 @@
 				</section>
 
 				<section>
+					<h2>Installer leaflet</h2>
+					<p>
+					  Leaflet est composée d'un fichier CSS et d'un fichier JavaScript.
+					<br/>
+					  On déclare ceux-ci dans la balise "head" de la page.
+					</p>
+					<pre><small><code class="html" data-trim>
+&lt;head&gt;
+  ...
+  &lt;link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/&gt;
+  &lt;script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""&gt;&lt;/script&gt;
+&lt;/head&gt;
+					</code></small></pre>
+					<p><small>
+					  Le fichier CSS doit être AVANT le fichier JS !
+					</small></p>
+				</section>
+
+				<section>
 					<h2>Une Carte (map)</h2>
 					<p>
 					  On déclare un div qui va contenir la carte
@@ -423,17 +442,17 @@ L.rectangle([[46, 14], [46.1, 14.1]], {color: "red"}).addTo(map);
   "features": [
     {
       "type": "Feature",
-      <span style="color: green">"geometry"</span>: {
+      <span style="color: tomato">"geometry"</span>: {
         "type": "Polygon",
         "coordinates": [
           [
-            [1.9221462784913, 48.457599361977],
+            [<span style="color: teal">1.9221462784913, 48.457599361977</span>],
             ...
             [1.9221462784913, 48.457599361977]
           ]
         ]
       },
-      <span style="color: green">"properties"</span>: {
+      <span style="color: tomato">"properties"</span>: {
         "code": "11",
         "nom": "Île-de-France"
       }
