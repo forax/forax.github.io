@@ -112,10 +112,24 @@
                                          Les tableaux sont hétérogènes, ils peuvent contenir des valeurs de types différents.
                                         </p>
 				                </section>
+                <section>
+                    <h2>Taille d'un tableau</h2>
+                    <p>
+                        Les tableaux connaissent leur taille,
+                        accessible par la propriété <b>length</b>
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><textarea autojs="js-array-length" rows="4" cols="25">
+[1, 2, 4].length
+["hello"].length
+[].length
+                                        </textarea></small>
+                    <small><div id="js-array-length"></div></small>
+                </section>
                                 <section>
 					                    <h2>Index de tableau</h2>
 					                    <p>
-                                         Les cases d'un tableau sont accessible par un index
+                                         Les cases d'un tableau sont accessibles par un index
                                         </p>
                                         <p>
                                          Un accès hors des bornes (0, <b>length</b> -1) du tableau
@@ -123,9 +137,8 @@
                                          renvoie <b>undefined</b>
                                         </p>
                                         <p>&nbsp;</p>
-                                        <small><textarea autojs="js-array-index" rows="8" cols="20">
+                                        <small><textarea autojs="js-array-index" rows="7" cols="20">
 let array = [1, 2, 3];
-array.length
 array[0]
 array[2]
 
@@ -517,12 +530,16 @@ console.log(array2);
                                          Attention à ne pas confondre <b>slice</b> et <b>splice</b> !
                                         </small></p>
 				                </section>
-				                
+
+
+                <section>
+                    <h2>Trier un tableau</h2>
+                </section>
 
 				<section>
 					                    <h2>Trier un tableau</h2>
 					                    <p>
-                                         La fonction <b>sort()</b> permet de trier un tableau sur place
+                                         La méthode <b>sort()</b> permet de trier un tableau sur place
                                         </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojs="js-array-sort" rows="5" cols="35">
@@ -600,7 +617,7 @@ console.log(array);
 				<section>
 					                    <h2>Rappel: Fonction anonyme</h2>
 					                    <p>
-                                            On peut utiliser une <b>fonctions anonyme</b>
+                                            On peut utiliser une <b>fonction anonyme</b>
                                             pour simplifier le code.
                                         </p>
                                         <p>&nbsp;</p>
