@@ -240,31 +240,6 @@ button.onclick = () => {
                                         </small> 
 				</section>
 				<section>
-					                    <h2>Champs de texte</h2>
-					                    <p>
-					                     La balise <b>input</b> permet à l'utilisateur de saisir des données 
-					                    </p>
-					                    <pre><code>
-&lt;input type=&quot;text&quot; id=&quot;dom-input-text&quot;&gt;&lt;/input&gt;
-					                    </code></pre>
-					                    <p>
-                                         <input type="text" id="dom-input-text"></input>
-					                    </p><p>
-					                     <div id="dom-input-text-div"></div>
-					                    </p>
-                                        <small><textarea autojslog="js-dom-inputtext" rows="6" cols="60">
-let div = document.getElementById("dom-input-text-div");
-let inputText = document.getElementById("dom-input-text");
-inputText.onkeyup = () => {
-  div.innerText = inputText.value;
-};
-                                        </textarea></small>
-                                        <p>&nbsp;</p>
-                                        <small>
-                                          <div id="js-dom-inputtext" class="autojslog"></div>
-                                        </small> 
-				</section>
-				<section>
 					                    <h2>Ajouter un nouvel élément</h2>
 					                    <p>
 					                     <b>document.createElement</b> permet de créer un élément
@@ -373,7 +348,140 @@ button.onclick = () => {
 						<div id="js-dom-append-log" class="autojslog"></div>
 					</small>
 				</section>
-			
+
+				<section>
+					<h2>Champs de texte</h2>
+					<p>
+						La balise <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input">input</a>
+						permet à l'utilisateur de saisir des données
+					</p>
+					<pre><code>
+&lt;input type=&quot;text&quot; id=&quot;dom-input-text&quot;&gt;&lt;/input&gt;
+					</code></pre>
+					<p>
+						<input type="text" id="dom-input-text"></input>
+					</p>
+					 <small><div id="dom-input-text-div"></div></small>
+					<br>
+					<small><textarea autojslog="js-dom-inputtext" rows="6" cols="60">
+let div = document.getElementById("dom-input-text-div");
+let inputText = document.getElementById("dom-input-text");
+inputText.onkeyup = () => {
+  div.innerText = inputText.value;
+};
+                                        </textarea></small>
+				 <br>
+					<small>
+						<div id="js-dom-inputtext" class="autojslog"></div>
+					</small>
+			      <br>
+					<small>
+						onkeyup est appelée pour chaque touche
+					</small>
+				</section>
+
+				<section>
+					<h2>Label</h2>
+					<p>
+						On peut associer un label à un champ texte
+					</p>
+					<pre><code>
+&lt;label for="username">Enter your username:&lt;/label&gt;
+&lt;input type=&quot;text&quot; id=&quot;username&quot;&gt;&lt;/input&gt;
+					</code></pre>
+					<p>
+				     <label for="username">Enter your username:</label>
+				     <input type="text" id="username"></input>
+					</p>
+					<small><div id="username-div"></div></small>
+				  <br>
+					<small><textarea autojslog="js-dom-label" rows="6" cols="60">
+let div = document.getElementById("username-div");
+let inputText = document.getElementById("username");
+inputText.onchange = () => {
+  div.innerText = inputText.value;
+};
+                    </textarea></small>
+				  <br>
+					<small>
+						<div id="js-dom-label" class="autojslog"></div>
+					</small>
+				  <br>
+					<small>
+				      onchange est appelée lorsque l'on valide (ou hors focus)
+					</small>
+				</section>
+
+				<section>
+					<h2>Autre types d'inputs</h2>
+					<p>
+                      L'attribute <b>type</b> permet de spécifier un type particulier
+				      de champ.
+					</p>
+					<p>
+				     <small>
+						<label for="dom-input-number">&lt;input type="number"&gt;</label>
+						<input type="number" placeholder="number" id="dom-input-number"></input>
+					   <br>
+						<label for="dom-input-number">&lt;input type="email"&gt;</label>
+						<input type="email" placeholder="email" id="dom-input-email"></input>
+					   <br>
+						<label for="dom-input-password">&lt;input type="password"&gt;</label>
+						<input type="password" placeholder="password" id="dom-input-password"></input>
+					 </small>
+					</p>
+					<small><div id="dom-input-type-div"></div></small>
+				   <br>
+					<small><textarea autojslog="js-dom-inputtype" rows="9" cols="70">
+let div = document.getElementById("dom-input-type-div");
+let inputNumber = document.getElementById("dom-input-number");
+let inputEmail = document.getElementById("dom-input-email");
+let inputPassword = document.getElementById("dom-input-password");
+[inputNumber, inputEmail, inputPassword]
+  .forEach(input => input.onchange = e => {
+     div.innerText = e.target.value;
+  });
+                                        </textarea></small>
+				   <br>
+					<small>
+						<div id="js-dom-inputtype" class="autojslog"></div>
+					</small>
+				</section>
+
+				<section>
+					<h2>Choix d'options</h2>
+					<p>
+						La balise <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select">select</a>
+						permet de sectionner parmi plusieurs options.
+					</p>
+					<pre><code>
+&lt;select id="food"&gt;
+  &lt;option value="chicken"&gt;Poulet&lt;/option&gt;
+  &lt;option value="beef"&gt;Boeuf&lt;/option&gt;
+&lt;/select&gt;
+					</code></pre>
+					<p>
+						<small>
+							<select id="food">
+								<option value="chicken">Poulet</option>
+								<option value="beef">Boeuf</option>
+							</select>
+						</small>
+					</p>
+					<small><div id="food-div"></div></small>
+					<br>
+					<small><textarea autojslog="js-dom-select" rows="6" cols="60">
+let div = document.getElementById("food-div");
+let select = document.getElementById("food");
+select.onchange = e => {
+  div.innerText = e.target.value;
+};
+                                        </textarea></small>
+					<br>
+					<small>
+						<div id="js-dom-select" class="autojslog"></div>
+					</small>
+				</section>
 			</div>
 
 		</div>
