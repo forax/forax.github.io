@@ -726,7 +726,8 @@ fetch("images/js-object/demo.json", { method: "GET" })
                     <h2>Await une promesse</h2>
                     <p>
                         await attend une promesse et met le code qui suit dans
-                        un <b>then</b> en tant que closure
+                        un <b>then</b> en tant que closure et re-propage les
+                        exceptions
                     </p>
                     <div style="float: left;">
                         <small>JavaScript 2017</small><br/>
@@ -781,7 +782,7 @@ async function fetchAll() {
   let response1 = await fetch('images/js-object/demo.json');
   let response2 = await fetch('images/js-object/demo2.json');
   if (!response1.ok || !response2.ok) {
-    throw Error(response1.statusText + ' ' + response2.statusText);
+    throw new Error(response1.statusText + ' ' + response2.statusText);
   }
   return [await response1.json(), await response2.json()];
 }
@@ -802,21 +803,20 @@ fetchAll()
                         Calcul en parallèle, le résultat est une promesse
                         contenant le tableau des valeurs
                     </p>
-                    <small><textarea autojslog="js6-promise-all" rows="15" cols="60">
+                    <small><textarea autojslog="js6-promise-all" rows="14" cols="60">
 async function callAPI(url) {
   let response = await fetch(url);
-  if (!response.ok) {
-    throw Error(response.statusText);
-  }
+  if (!response.ok) { throw new Error(response.statusText); }
   return await response.json();
 }
-
-Promise.all([
-  callAPI('images/js-object/demo.json'),
-  callAPI('images/js-object/demo2.json')
-  ])
-.then(array => { let [o1, o2] = array; console.log(o1, o2); })
-.catch(err => console.log(err.message));
+async function fetchAll() {
+  let [o1, o2] = await Promise.all([
+    callAPI('images/js-object/demo.json'),
+    callAPI('images/js-object/demo2.json')
+  ]);
+  console.log(o1, o2);
+}
+fetchAll();
                                         </textarea></small>
                     <p></p>
                     <small>
@@ -827,23 +827,22 @@ Promise.all([
                 <section>
                     <h2>Promise.race</h2>
                     <p>
-                        La promesse résultante est calculée dès qu'une des promesses a fini
+                      La promesse résultante est calculée dès qu'une des promesses a fini
                     </p>
-                    <small><textarea autojslog="js6-promise-race" rows="15" cols="60">
+                    <small><textarea autojslog="js6-promise-race" rows="14" cols="60">
 async function callAPI(url) {
-  var response = await fetch(url);
-  if (!response.ok) {
-    throw Error(response.statusText);
-  }
+  let response = await fetch(url);
+  if (!response.ok) { throw new Error(response.statusText); }
   return await response.json();
 }
-
-Promise.race([
-  callAPI('images/js-object/demo.json'),
-  callAPI('images/js-object/demo2.json')
-  ])
-.then(object => console.log(object))
-.catch(err => console.log(err.message));
+async function fetchAny() {
+  let object = await Promise.race([
+    callAPI('images/js-object/demo.json'),
+    callAPI('images/js-object/demo2.json')
+  ]);
+  console.log(object);
+}
+fetchAny();
                                         </textarea></small>
                     <p></p>
                     <small>
@@ -890,7 +889,7 @@ function ajaxPromise(doc) {
     ajax.onreadystatechange = () => {
       if (ajax.readyState != 4) { return; }
       if(ajax.status != 200) {
-        reject(Error("error " + ajax.status));
+        reject(new Error("error " + ajax.status));
       } else {
         resolve(ajax.responseText);
       }
