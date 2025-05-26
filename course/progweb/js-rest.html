@@ -226,11 +226,39 @@
                 <section>
                     <h2>Notation JSON</h2>
                     <p>
-                        Sous ensemble de la notation sur les objets et les tableaux JavaScript
-                        qui sert de format d'échange de données
+                      Format d'échange <bold>textuel</bold> qui utilise un sous ensemble de la notation
+                      sur les objets et les tableaux JavaScript
                     </p>
                     <small><textarea autojslog="js-json1" rows="11" cols="40">
-var aquarium = {
+let aquarium = `{
+	name: "my-aquarium",
+	fishs: [{
+		name: "guppi",
+	}, {
+		name: "sushi",
+		price: 20
+	}]
+  }`;
+  console.log(typeof aquarium);
+                                        </textarea></small>
+                    <div><small>
+                        <div id="js-json1" class="autojslog"></div>
+                    </small></div>
+                    <div><small>
+                        seuls les types primitifs sont suppportés,
+                        boolean, number, string, array &amp; object.
+                      <br/>
+                        Les noms des propriétés apparaissent entre " " !
+                    </small></div>
+                </section>
+
+                <section>
+                <h2>JSON.stringify</h2>
+                <p>
+                  Permet d'encoder des objets/tableaux JavaScript au format textuel JSON
+                </p>
+                <small><textarea autojslog="js-json-stringify" rows="11" cols="40">
+let aquarium = {
 	name: "my-aquarium",
 	fishs: [{
 		name: "guppi",
@@ -241,20 +269,15 @@ var aquarium = {
   };
 console.log(JSON.stringify(aquarium));
                                         </textarea></small>
-                    <small>
-                        <div id="js-json1" class="autojslog"></div>
-                    </small>
-                    <div><small>
-                        seuls les types primitifs sont suppportés,
-                        boolean, number, string, array &amp; object.
-                        <br/>
-                        Les noms des propriétés apparaissent entre " " !
-                    </small></div>
+                <small>
+                    <div id="js-json-stringify" class="autojslog"></div>
+                </small>
                 </section>
+
                 <section>
                     <h2>JSON.parse</h2>
                     <p>
-                        Permet de décoder en JavaScript une chaine de caractères comme un objet JSON
+                      Permet de décoder en JavaScript une chaine de caractères comme un objet JSON
                     </p>
                     <small><textarea autojslog="js-json2" rows="8" cols="55">
 var array = JSON.parse('[1, 2, 4, true]');
