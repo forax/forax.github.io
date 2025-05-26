@@ -482,6 +482,40 @@ select.onchange = e => {
 						<div id="js-dom-select" class="autojslog"></div>
 					</small>
 				</section>
+
+				<section>
+					<h2>Formulaire</h2>
+					<p>
+					  Un formulaire regroupe différents inputs et empèche la validation
+				      si les conditions ne sont pas remplies
+					</p>
+					<pre><small><code>
+&lt;form id="myform">
+  &lt;input type="text" name="text1" placeholder="first text" required>
+  &lt;input type="text" name="text2" placeholder="second text" required>
+  &lt;button type="submit">Add&lt;/button>
+&lt;/form>
+					</code></small></pre>
+					<small>
+					    <form id="myform">
+						  <input type="text" name="text1" placeholder="first text" required>
+						  <input type="text" name="text2" placeholder="second text" required>
+						  <button type="submit">Add</button>
+						</form>
+					</small>
+					<small><textarea autojslog="js-dom-form" rows="7" cols="60">
+let form = document.getElementById("myform");
+form.onsubmit = e => {
+  e.preventDefault();  // do not reload the page
+  let data = new FormData(form);
+  console.log(data.get("text1"), data.get("text2"));
+};
+                                        </textarea></small>
+					<br>
+					<small>
+						<div id="js-dom-form" class="autojslog"></div>
+					</small>
+				</section>
 			</div>
 
 		</div>
