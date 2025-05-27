@@ -413,8 +413,7 @@ if (!response.ok) {
                     </p>
                     <pre><code class="js" data-trim>
 let object = ...
-let id = ...
-let response = await fetch(`/api/users/${id}`, {
+let response = await fetch("/api/users", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(object)
