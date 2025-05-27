@@ -413,7 +413,8 @@ if (!response.ok) {
                     </p>
                     <pre><code class="js" data-trim>
 let object = ...
-let response = await fetch("/api/users", {
+let id = ...
+let response = await fetch(`/api/users/${id}`, {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(object)
@@ -431,7 +432,8 @@ if (!response.ok) {
                     </p>
                     <pre><code class="js" data-trim>
 let object = ...
-let response = await fetch("/api/users/id", {
+let id = ...
+let response = await fetch(`/api/users/${id}`, {
     method: "DELETE"
 });
 if (!response.ok) {
