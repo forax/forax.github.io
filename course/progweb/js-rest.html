@@ -432,13 +432,17 @@ if (!response.ok) {
                     <pre><code class="js" data-trim>
 let object = ...
 let id = ...
-let response = await fetch(`/api/users/${id}`, {
+let response = await fetch(`/api/users/${encodeURIComponent(id)}`, {
     method: "DELETE"
 });
 if (!response.ok) {
   throw new Error(response.statusText);
 }
                     </code></pre>
+                    <small>
+                      encodeURIComponent() ou encodeURI() permettent d'escaper
+                      les caractères invalides dans une URI
+                    </small>
                 </section>
 
                 <section>
