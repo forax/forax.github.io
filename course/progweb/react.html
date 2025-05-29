@@ -317,6 +317,46 @@ root.render(<div><Hello value={12}/><Hello value={42}/></div>);
 				</style>
 
 				<section>
+					<h2>Destructuration des props</h2>
+					<p>
+					  Un props est un objet, on peut extraire les valeurs
+					  en utilisant la destructuration des objets
+					</p>
+					<div id="react-prop-destructure"></div>
+
+					<small><textarea autojslog="react-prop-destructure-example" rows="8" cols="72">
+function Hello(props) {
+  let {text, value} = props;
+  return <span>{text} {value} !</span>;
+}
+let node = document.getElementById("react-prop-destructure");
+let root = ReactDOM.createRoot(node);
+root.render(<div><Hello text="Hello" value={"Bob"}/></div>);
+          </textarea></small>
+					<p><small></small></p>
+					<small><div id="react-prop-destructure-example"></div></small>
+				</section>
+
+				<section>
+					<h2>Destructuration des props (2)</h2>
+					<p>
+					  En JS, on peut même destructurer les paramètres
+					</p>
+					<div id="react-prop-destructure2"></div>
+
+					<small><textarea autojslog="react-prop-destructure2-example" rows="7" cols="72">
+function Hello({text, value}) {
+  return <span>{text} {value} !</span>;
+}
+let node = document.getElementById("react-prop-destructure2");
+let root = ReactDOM.createRoot(node);
+root.render(<div><Hello text="Hello" value={"Bob"}/></div>);
+          </textarea></small>
+					<p><small>Cela permet de lister les clés des props que l'on attend</small></p>
+					<small><div id="react-prop-destructure2-example"></div></small>
+				</section>
+
+				<section>
 					<h2>Style d'un composant</h2>
 					<p>
 						On utilise l'attribut DOM "className" plutôt que "class" pour spécifier la classe CSS
@@ -329,9 +369,8 @@ root.render(<div><Hello value={12}/><Hello value={42}/></div>);
 					</code></pre></small>
 					<div id="react-classname"></div>
 
-					<small><textarea autojslog="react-classname-example" rows="9" cols="60">
-function Hello(props) {
-  let name = props.name;
+					<small><textarea autojslog="react-classname-example" rows="8" cols="60">
+function Hello({name}) {
   return <span className={ name }>Hello !</span>;
   //return <span class={ name }>Hello !</span>;
 }
@@ -365,7 +404,7 @@ let node = document.getElementById("react-fragment");
 let root = ReactDOM.createRoot(node);
 root.render(<div><Story/></div>);
           </textarea></small>
-					<p></p>
+					<p><small>&lt;Fragment&gt;...&lt;/Fragment&gt; est aussi une syntaxe valide</small></p>
 					<small><div id="react-fragment-example"></div></small>
 				</section>
 
@@ -379,9 +418,9 @@ root.render(<div><Story/></div>);
 					<p></p>
 					<div id="react-conditional"></div>
 					<small><textarea autojslog="react-conditional-example" rows="8" cols="70">
-function Hello(prop) {
-  return prop.visible && <span>Hello !</span>;
-  //return prop.visible ? <span>Hello !</span> : "";
+function Hello({visible}) {
+  return visible && <span>Hello !</span>;
+  //return visible ? <span>Hello !</span> : "";
 }
 let node = document.getElementById("react-conditional");
 let root = ReactDOM.createRoot(node);
@@ -422,11 +461,10 @@ root.render(<div><Hello visible={true}/><Hello visible={false}/></div>);
 						<small>Warning: Each child in a list should have a unique "key" prop.</small>
 					</p>
 					<div id="react-list"></div>
-					<small><textarea autojslog="react-list-example" rows="9" cols="76">
-function Item(props) { return <li>{props.name}</li>; }
-function List(props) {
-  let items = props.items;
-  return <ul>{items.map(item => <Item name={item.name}/>)}</ul>;
+					<small><textarea autojslog="react-list-example" rows="8" cols="76">
+function Item({name}) { return <li>{name}</li>; }
+function List({items}) {
+  return <ul>{items.map(i => <Item name={i.name}/>)}</ul>;
 }
 let data = [{id: 23, name: "Scooby"}, {id: 37, name: "Crypto"}];
 let node = document.getElementById("react-list");
@@ -444,11 +482,10 @@ ReactDOM.createRoot(node).render(<List items={data}/>);
 						Doit être unique, permet de savoir quels éléments changent
 					</p>
 					<div id="react-list-item"></div>
-					<small><textarea autojslog="react-list-item-example" rows="9" cols="76">
-function Item(props) { return <li>{props.name}</li>; }
-function List(props) {
-  let items = props.items;
-  return <ul>{items.map(item => <Item key={item.id} name={item.name}/>)}</ul>;
+					<small><textarea autojslog="react-list-item-example" rows="8" cols="76">
+function Item({name}) { return <li>{name}</li>; }
+function List({items}) {
+  return <ul>{items.map(i => <Item key={i.id} name={i.name}/>)}</ul>;
 }
 let data = [{id: 23, name: "Scooby"}, {id: 37, name: "Crypto"}];
 let node = document.getElementById("react-list-item");
@@ -576,9 +613,8 @@ ReactDOM.createRoot(node).render(<><Counter/> <Counter/></>);
 					</p>
 					<div id="react-state4"></div>
 
-					<small><textarea autojslog="react-state-example4" rows="12" cols="70">
-function Counter(props) {
-  let {incr} = props;
+					<small><textarea autojslog="react-state-example4" rows="11" cols="70">
+function Counter({incr}) {
   let [count, setCount] = React.useState(0);
   return <span>
      <button onClick={ () => setCount(val => val + incr) }>+{incr}</button>
@@ -589,7 +625,7 @@ let node = document.getElementById("react-state4");
 ReactDOM.createRoot(node)
     .render(<><Counter incr={1}/> <Counter incr={10}/></>);
           </textarea></small>
-					<p><small>Note: let {a,b} = c <=> let a = c.a; let b = c.b</small></p>
+					<p><small></small></p>
 					<small><div id="react-state-example4"></div></small>
 				</section>
 
