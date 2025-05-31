@@ -20,10 +20,10 @@
 			var element = areas[i];
 
                         // evaluate the content of the textarea as JavaScript
-                        if (element.attributes.autoeval != undefined) {
+                        if (element.attributes.autoeval !== undefined) {
                           var name = element.attributes.autoeval.value;
                           var e = document.getElementById(name);
-                          if (e == undefined) {
+                          if (e === null) {
                             console.log("autoeval " + name + " not found");
                             continue;
                           }
@@ -37,14 +37,14 @@
 
 
                         // 
-                        if (element.attributes.autojsstyle != undefined) {
+                        if (element.attributes.autojsstyle !== undefined) {
                           var name = element.attributes.autojsstyle.value;
                           var e = document.getElementById(name);
-                          if (e == undefined) {
+                          if (e === null) {
                             console.log("autojsstyle " + name + " not found");
                             continue;
                           }
-                          var once = element.attributes['once'] != undefined;
+                          var once = element.attributes['once'] !== undefined;
 
                           (function(element, e, once) {
                             var running = false;
@@ -65,9 +65,9 @@
                         }
 
                         // evaluate the CSS style of a frame
-                        if (element.attributes.autostyle != undefined) {
+                        if (element.attributes.autostyle !== undefined) {
                           var frame = frames[element.attributes.autostyle.value];
-                          if (frame == undefined) {
+                          if (frame === undefined) {
                             console.log("unknown frame " + element.attributes.autostyle.value);
                           }
                           
@@ -90,14 +90,14 @@
                         }
 
                         // evaluate a JavaScript script and trap console.log
-                        if (element.attributes.autojslog != undefined) {
+                        if (element.attributes.autojslog !== undefined) {
                           var name = element.attributes.autojslog.value;
                           var e = document.getElementById(name);
-                          if (e == undefined) {
+                          if (e === null) {
                             console.log("autojslog " + name + " not found");
                             continue;
                           }
-                          var once = element.attributes['once'] != undefined;
+                          var once = element.attributes['once'] !== undefined;
 
                           //var oldConsole = console;
                           var oldReactDOM = globalThis.ReactDOM;
@@ -128,9 +128,9 @@
                               };
                               
                               // fake ReactDOM.createRoot() / ReactDOM.render()
-                              var ReactDOM = oldReactDOM == undefined ? undefined: {
+                              var ReactDOM = oldReactDOM === undefined ? undefined: {
                                 "createRoot": function createRoot(domNode) {
-                                  if (domNode._react_root_ != undefined) {
+                                  if (domNode._react_root_ !== undefined) {
                                     domNode._react_root_.unmount();
                                   }
                                   return domNode._react_root_ = oldReactDOM.createRoot(domNode);
@@ -140,7 +140,7 @@
                               var input = element.value;
                               try {
                                 // if Babel available, rewrite the React JSX input using Babel
-                                if (globalThis.Babel != undefined) {
+                                if (globalThis.Babel !== undefined) {
                                   var output = Babel.transform(input, { plugins: [ "transform-react-jsx" ] });
                                   input = output.code;
                                 }
@@ -159,14 +159,14 @@
 
                         // evaluate a JS script that draw on a canvas,
                         // create a fake window object
-                        if (element.attributes.autojscanvas != undefined) {
+                        if (element.attributes.autojscanvas !== undefined) {
                           var canvasId = element.attributes.autojscanvas.value;
                           var canvas = document.getElementById(canvasId);
-                          if (canvas == undefined) {
+                          if (canvas === null) {
                             console.log("autojscanvas " + canvasId + " not found");
                             continue;
                           }
-                          var once = element.attributes['once'] != undefined; 
+                          var once = element.attributes['once'] !== undefined;
                           //console.log("found " + canvasId + " " + element + " " + once);
 
                           var oldWindow = window;
@@ -225,13 +225,13 @@
 
 
                         // 
-                        if (element.attributes.autojs != undefined) {
+                        if (element.attributes.autojs !== undefined) {
                           var name = element.attributes.autojs.value;
                           var e = document.getElementById(name);
                           //console.log("found " + e);
 
                           var trimSemicolon = function(text) {
-                            if (text[text.length - 1] == ';') {
+                            if (text[text.length - 1] === ';') {
                               return text.substring(0, text.length - 1);
                             }
                             return text;
@@ -242,14 +242,14 @@
                               e.innerHTML = "";
                               var array = element.value.split('\n').map(function(line, num) {
                                 var instr = line.trim();
-                                if (instr == "") {
+                                if (instr === "") {
                                   return line;
                                 }
                                 if (instr.startsWith("var") ||
                                     instr.startsWith("let") ||
                                     instr.startsWith("const")) {
                                   var index = instr.indexOf('=');
-                                  if (index == -1) {
+                                  if (index === -1) {
                                     return line;
                                   } else {
                                     var init = trimSemicolon(instr.substring(index + 1));
