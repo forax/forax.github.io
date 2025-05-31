@@ -139,11 +139,76 @@
 
                               var input = element.value;
                               try {
-                                // if Babel available, rewrite the React JSX input using Babel
+                                // if Babel is available, rewrite the input using Babel
                                 if (globalThis.Babel !== undefined) {
                                   var output = Babel.transform(input, { plugins: [ "transform-react-jsx" ] });
                                   input = output.code;
                                 }
+
+                                // if Typescript is available, rewrite the input using TypeScript
+                                if (globalThis.ts !== undefined) {
+                                  // see https://github.com/microsoft/TypeScript/wiki/Using-the-Compiler-API
+                                  function typecheckUsingTypeScript(code) {
+                                    var compilerOptions = {
+                                      target: ts.ScriptTarget.Latest,
+                                      module: ts.ModuleKind.ES2015,
+                                      noLib: true, // Skip lib checking to avoid missing lib.d.ts issues
+                                      skipLibCheck: true,
+                                      strict: true,
+                                      noImplicitAny: true,
+                                      strictNullChecks: true
+                                    };
+
+                                    var sourceFile = ts.createSourceFile("temp.ts", code, ts.ScriptTarget.Latest);
+
+                                    var program = ts.createProgram(["temp.ts"], compilerOptions, {
+                                      getSourceFile: function (fileName) { return fileName === "temp.ts" ? sourceFile : undefined; },
+                                      writeFile: function () { },
+                                      getCurrentDirectory: function () { return ""; },
+                                      getDirectories: function () { return []; },
+                                      fileExists: function (fileName) { return fileName === "temp.ts"; },
+                                      readFile: function (fileName) { return fileName === "temp.ts" ? code : undefined; },
+                                      getCanonicalFileName: function (fileName) { return fileName; },
+                                      useCaseSensitiveFileNames: function () { return true; },
+                                      getNewLine: function () { return "\n"; },
+                                      getDefaultLibFileName: function () { return "lib.d.ts"; },
+                                      resolveModuleNames: function () { return undefined; }
+                                    });
+
+                                    var diagnostics = program.getSemanticDiagnostics(sourceFile);
+                                    if (diagnostics.length !== 0) {
+                                      var errorMessage = "";
+                                      var separator = "";
+                                      for(var i = 0; i < diagnostics.length; i++) {
+                                        var diagnostic = diagnostics[i];
+                                        var message = ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n");
+                                        if (message.includes('Cannot find name \'console\'') ||
+                                            //message.includes('Cannot find global type') ||
+                                            //message.includes('lib.d.ts')
+                                            message.includes('Cannot find name \'Math\'')) {
+                                            continue;
+                                        }
+                                        errorMessage += separator + message;
+                                        separator = "\n";
+                                      }
+                                      if (errorMessage.length !== 0) {
+                                        return { error: errorMessage };
+                                      }
+                                    }
+
+                                    var result = ts.transpileModule(code, compilerOptions);
+                                    return { output: result.outputText };
+                                  }
+
+                                  input = (function() {
+                                    var result = typecheckUsingTypeScript(input);
+                                    if (result.error !== undefined) {
+                                      throw new Error(result.error);
+                                    }
+                                    return result.output;
+                                  })();
+                                }
+
                                 eval(input);
                               } catch(err) {
                                 var error = document.createElement("div");
