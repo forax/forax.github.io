@@ -76,7 +76,7 @@
 
 
                 <section>
-                    <h2>Functional Programming ?</h2>
+                    <h2>Functional Programming?</h2>
                     <blockquote cite="https://en.wikipedia.org/wiki/Functional_programming">
                         &ldquo;In computer science, functional programming is a programming paradigm that treats computation as the evaluation of mathematical functions
                         and avoids changing-state and mutable data (side effects).
@@ -120,41 +120,24 @@ console.log(f2);
 				</section>
 
 				<section>
-					                    <h2>ForEach</h2>
+					                    <h2>forEach</h2>
 					                    <p>
                                          <b>forEach(fun)</b> applique la même fonction à chaque valeur
                                         <br/>
-                                         <small>comme une boucle sans écrire la boucle !</small>
+                                         <b>forEach</b> ne renvoie pas de valeur
                                         </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojslog="js-array-forEach" rows="3" cols="35">
 let array = [1, 2, 5, 6, 7];
 array.forEach(v => console.log(v));
                                         </textarea></small>
-                                        <p></p>
+                                        <p><small>comme une boucle !</small></p>
                                         <small>
                                           <div id="js-array-forEach" class="autojslog"></div>
                                         </small>
 				</section>
 				<section>
-					                    <h2>Map</h2>
-					                    <p>
-                                          <b>map(fun)</b> créer un tableau qui contient les valeurs résultant
-                                          de l'application la fonction à chaque valeur
-                                        </p>
-                                        <p>&nbsp;</p>
-                                        <small><textarea autojslog="js-array-map" rows="4" cols="35">
-let array = [1, 2, 5, 6, 7];
-let array2 = array.map(v => 2 * v);
-console.log(array2);
-                                        </textarea></small>
-                                        <p></p>
-                                        <small>
-                                          <div id="js-array-map" class="autojslog"></div>
-                                        </small>
-				</section>
-				<section>
-					                    <h2>Filter</h2>
+					                    <h2>filter</h2>
 					                    <p>
                                          <b>filter(fun)</b> créer un tableau avec les valeurs
                                          pour lesquelles l'appel de la fonction renvoie vrai
@@ -170,6 +153,40 @@ console.log(array2);
                                           <div id="js-array-filter" class="autojslog"></div>
                                         </small>
 				</section>
+                <section>
+                    <h2>map</h2>
+                    <p>
+                        <b>map(fun)</b> créer un tableau qui contient les valeurs résultant
+                        de l'application la fonction à chaque valeur
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><textarea autojslog="js-array-map" rows="4" cols="35">
+let array = [1, 2, 5, 6, 7];
+let array2 = array.map(v => 2 * v);
+console.log(array2);
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-array-map" class="autojslog"></div>
+                    </small>
+                </section>
+                <section>
+                    <h2>flatMap</h2>
+                    <p>
+                        <b>flatMap(fun)</b> créer un tableau qui pour chaque élément
+                        applique la fonction et concatène les résultats
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><textarea autojslog="js-array-flatmap" rows="4" cols="45">
+let array = [1, 2, 5, 6, 7];
+let array2 = array.flatMap(v => v > 5 ? [v, v] : []);
+console.log(array2);
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-array-flatmap" class="autojslog"></div>
+                    </small>
+                </section>
 				<section>
 					                    <h2>some</h2>
 					                    <p>
@@ -245,7 +262,7 @@ console.log(array.every(greaterThan(10)));
 				<section>
 					                    <h2>et les index ?</h2>
 					                    <p>
-                                   Les méthodes <b>forEach</b>, <b>map</b>, <b>filter</b>, <b>some</b>, <b>every</b>
+                                   Les méthodes <b>forEach</b>, <b>filter</b>, etc
                                    prennent une fonction avec 2 arguments (<b>élément</b>, <b>index</b>) en paramètres
                                         </p>
                                         <p>&nbsp;</p>
