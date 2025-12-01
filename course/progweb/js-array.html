@@ -299,7 +299,7 @@ let array2 = [0, ...array];
                     <p>
                         On peut assigner plusieurs variables avec
                         <br/>
-                        la syntaxe <b>[var1, var2, ...] = array</b>.
+                        la syntaxe <b>[var1, var2, ...rest] = array</b>.
                     </p>
                     <small><textarea autojslog="js-array-multiple-assign" rows="6" cols="35">
 let array = [40, 2];
@@ -338,12 +338,12 @@ console.log(rest);
                     <p>
                         On peut combiner la declaration et l'assignation multiple avec
                        <br/>
-                        la syntaxe <b>let [var1, var2, ...] = array</b>.
+                        la syntaxe <b>let [var1, var2, ...rest] = array</b>.
                     </p>
                     <small><textarea autojslog="js-array-destructuring" rows="4" cols="30">
 let array = [40, 2];
-let [a, b] = array;
-console.log(a + b);
+let [first, ...rest] = array;
+console.log(first, rest);
                     </textarea></small>
                     <p></p>
                     <small>
