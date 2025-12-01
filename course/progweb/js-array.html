@@ -575,12 +575,14 @@ array
 				<section>
 					                    <h2>Trier avec une fonction de comparaison</h2>
 					                    <p>
-                                         On utilise une fonction de comparaison pour paramétrer <b>sort(fun)</b> !
+                                         On doit utiliser une fonction de comparaison en paramétre de <b>sort(fun)</b> !
                                         </p>
                                         <p>&nbsp;</p>
-                                        <small><textarea autojslog="js-array-sort3" rows="8" cols="30">
+                                        <small><textarea autojslog="js-array-sort3" rows="10" cols="35">
 function cmp(v1, v2) {
-  return v1 - v2;
+  if (v1 < v2) { return -1; }
+  if (v1 > v2) { return 1; }
+  return 0;
 }
 
 let array = [1, 10, 2, 100];
@@ -592,6 +594,26 @@ console.log(array);
                                           <div id="js-array-sort3" class="autojslog"></div>
                                         </small>
 				</section>
+                <section>
+                    <h2>Avec une fonction anonyme</h2>
+                    <p>
+                        On va utiliser une <b>fonction flèche</b> pour simplifier le code
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><textarea autojslog="js-array-anonymous-fun" rows="8" cols="35">
+var array = [1, 10, 2, 100];
+array.sort((v1, v2) => {
+  if (v1 < v2) { return -1; }
+  if (v1 > v2) { return 1; }
+  return 0;
+});
+console.log(array);
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-array-anonymous-fun" class="autojslog"></div>
+                    </small>
+                </section>
 				<section>
 					                    <h2>Fonction de comparaison</h2>
 					                    <p>
@@ -599,40 +621,35 @@ console.log(array);
                                          0 si les deux valeurs sont égales et une valeur positive sinon
                                         </p>
                                         <p>&nbsp;</p>
-                                        <small><textarea autojslog="js-array-cmp" rows="8" cols="30">
-function cmp(v1, v2) {
-  return v2 - v1;
-}
-
-let array = [1, 10, 2, 100];
-array.sort(cmp);
-console.log(array);
-                                        </textarea></small>
-                                        <p></p>
-                                        <small>
-                                          <div id="js-array-cmp" class="autojslog"></div>
-                                        </small>
-				</section>
-				
-				<section>
-					                    <h2>Rappel: Fonction anonyme</h2>
-					                    <p>
-                                            On peut utiliser une <b>fonction anonyme</b>
-                                            pour simplifier le code.
-                                        </p>
-                                        <p>&nbsp;</p>
-                                        <small><textarea autojslog="js-array-anonymous-fun" rows="4" cols="30">
+                                        <small><textarea autojslog="js-array-cmp" rows="4" cols="30">
 var array = [1, 10, 2, 100];
 array.sort((v1, v2) => v1 - v2);
 console.log(array);
                                         </textarea></small>
-                                        <p></p>
+                                        <p><small>en JS, il n'y a pas d'overflow des numbers</small></p>
                                         <small>
-                                          <div id="js-array-anonymous-fun" class="autojslog"></div>
+                                          <div id="js-array-cmp" class="autojslog"></div>
                                         </small>
 				</section>
 
-
+                <section>
+                    <h2>Trier avec toSorted</h2>
+                    <p>
+                        Contrairement à sort(), toSorted() <sup>2023</sup> ne modifie pas le tableau original
+                        mais créé un nouveau tableau
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><textarea autojslog="js-array-tosorted" rows="5" cols="45">
+var array = [1, 10, 2, 100];
+var array2 = array.toSorted((v1, v2) => v1 - v2);
+console.log(array);
+console.log(array2);
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-array-tosorted" class="autojslog"></div>
+                    </small>
+                </section>
 
 
 			</div>
