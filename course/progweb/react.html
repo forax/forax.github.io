@@ -608,8 +608,8 @@ ReactDOM.createRoot(node).render(<><Counter/> <Counter/></>);
 				<section>
 					<h2>State Hook (4)</h2>
 					<p>
-                     On utilise les props si on veut configurer les composants
-					 avec des valeurs différentes.
+						On utilise les props si on veut configurer les composants
+						avec des valeurs différentes.
 					</p>
 					<div id="react-state4"></div>
 
@@ -627,6 +627,59 @@ ReactDOM.createRoot(node)
           </textarea></small>
 					<p><small></small></p>
 					<small><div id="react-state-example4"></div></small>
+				</section>
+
+				<section>
+					<h2>State hooks et objets</h2>
+					<p>
+						Pas de réaffichage si la valeur de l'état n'est pas modifiée
+					   <br/>
+						Problème avec les objets !
+					</p>
+					<div id="react-state-object"></div>
+
+					<small><div class="bad-container"><textarea autojslog="react-state-object-example" rows="13" cols="65">
+function CarViewer() {
+  let [car, setCar] = React.useState({ color: "red", brand: "Ferrari"});
+  return <span>
+     <button onClick={ () => {
+          car.color = "blue";
+          setCar(car);
+        }}>Change to blue</button>
+	 &nbsp; { car.color }
+   </span>;
+}
+let node = document.getElementById("react-state-object");
+ReactDOM.createRoot(node).render(<CarViewer/>);
+          </textarea><div class="bad-image"></div></div></small>
+					<p><small></small></p>
+					<small><div id="react-state-object-example"></div></small>
+				</section>
+
+				<section>
+					<h2>State hooks et objets (2)</h2>
+					<p>
+						Il faut recréer un nouvel objet pour modifier l'état !
+					   <br/>
+						On peut utiliser l'opérateur ... (spread) pour cela
+					</p>
+					<div id="react-state-object2"></div>
+
+					<small><textarea autojslog="react-state-object-example2" rows="12" cols="65">
+function CarViewer() {
+  let [car, setCar] = React.useState({ color: "red", brand: "Ferrari"});
+  return <span>
+     <button onClick={ () => { setCar(c => ({ ...c, color: "blue" })) }}>
+	  Change to blue
+	 </button>
+	 &nbsp; { car.color }
+   </span>;
+}
+let node = document.getElementById("react-state-object2");
+ReactDOM.createRoot(node).render(<CarViewer/>);
+          </textarea></small>
+					<p><small></small></p>
+					<small><div id="react-state-object-example2"></div></small>
 				</section>
 
 
