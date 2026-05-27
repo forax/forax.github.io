@@ -461,7 +461,7 @@ root.render(<div><Hello visible={true}/><Hello visible={false}/></div>);
 						<small>Warning: Each child in a list should have a unique "key" prop.</small>
 					</p>
 					<div id="react-list"></div>
-					<small><textarea autojslog="react-list-example" rows="8" cols="76">
+					<small><div class="bad-container"><textarea autojslog="react-list-example" rows="8" cols="76">
 function Item({name}) { return <li>{name}</li>; }
 function List({items}) {
   return <ul>{items.map(i => <Item name={i.name}/>)}</ul>;
@@ -469,7 +469,7 @@ function List({items}) {
 const data = [{id: 23, name: "Scooby"}, {id: 37, name: "Crypto"}];
 const node = document.getElementById("react-list");
 ReactDOM.createRoot(node).render(<List items={data}/>);
-          </textarea></small>
+					</textarea><div class="bad-image"></div></div></small>
 					<p>
 						<small>React demande un attribut "key" pour tracker les items au niveau du DOM virtuel</small>
 					</p>
@@ -688,24 +688,23 @@ ReactDOM.createRoot(node).render(<CarViewer/>);
 				</section>
 
 				<section>
-					<h2>set... en tant que props</h2>
+					<h2>fonction set... en tant que props</h2>
 					<p>
                      Le composant parent peut envoyer sa fonction de mise à jour (set...)
 					 en tant que props des composants enfants
 					</p>
 					<div id="react-counter"></div>
 
-					<small><textarea autojslog="react-counter-example" rows="14" cols="65">
+					<small><textarea autojslog="react-counter-example" rows="13" cols="65">
 function Counter() {
   const [count, setCount] = React.useState(0);
   return <div>{count} &nbsp;
-     <Clicker update={ setCount } inc= {1}/>
-     <Clicker update={ setCount } inc={10}/>
+     <Clicker update={ setCount } inc= {1} text="+1"/>
+     <Clicker update={ setCount } inc={-1} text="-1"/>
    </div>;
 }
-function Clicker(props) {
-  const {update, inc} = props;
-  return <button onClick={ () => update(v => v + inc) }>+{inc}</button>;
+function Clicker({update, inc, text}) {
+  return <button onClick={ () => update(v => v + inc) }>{text}</button>;
 }
 const node = document.getElementById("react-counter");
 ReactDOM.createRoot(node).render(<Counter/>);
