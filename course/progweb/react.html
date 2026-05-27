@@ -713,30 +713,31 @@ ReactDOM.createRoot(node).render(<Counter/>);
 					<small><div id="react-counter-example"></div></small>
 				</section>
 
-				<!-- section>
-					<h2>Plusieurs <i>State Hooks</i> ?</h2>
+				<section>
+					<h2>createContext/useContext</h2>
 					<p>
-						On peut avoir plusieurs appels à useState() pourvu que cela soit toujours dans le même ordre !
+                     Pour éviter de passer la fonction à travers trop de composants, on utilise le contexte.
 					</p>
-					<div id="react-calc"></div>
+					<div id="react-context"></div>
 
-					<small><textarea autojslog="react-calc-example" rows="13" cols="78">
-function Field(props) {
-  const [value, setValue] = props.hook;
-  const onChange = e => setValue(parseInt(e.target.value));
-  return <input type="text" type="number" value={value} onChange={ onChange } />;
+					<small><textarea autojslog="react-context-example" rows="14" cols="71">
+const CounterContext = React.createContext(null);
+function Counter() {
+  const [count, setCount] = React.useState(0);
+  return <CounterContext.Provider value={setCount}>
+    <div>{count} &nbsp;<Clicker inc={1} text="+1"/><Clicker inc={-1} text="-1"/></div>
+  </CounterContext.Provider>
 }
-function Calc() {
-  const [a, setA] = React.useState(0);
-  const [b, setB] = React.useState(0);
-  return <div><Field hook={[a, setA]}/> + <Field hook={[b, setB]}/> = {a+b}</div>;
+function Clicker({inc, text}) {
+  const setCount = React.useContext(CounterContext);
+  return <button onClick={() => setCount(v => v + inc)}>{text}</button>;
 }
-const node = document.getElementById("react-calc");
-ReactDOM.createRoot(node).render(<Calc/>);
+const node = document.getElementById("react-context");
+ReactDOM.createRoot(node).render(<Counter/>);
           </textarea></small>
-					<p><small>La propagation des valeurs se fait toujours du parent vers les enfants</small></p>
-					<small><div id="react-calc-example"></div></small>
-				</section -->
+					<p><small></small></p>
+					<small><div id="react-context-example"></div></small>
+				</section>
 
 				<section>
 					<h2><i>Effect Hook</i></h2>
