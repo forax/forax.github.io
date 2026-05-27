@@ -255,7 +255,7 @@ root.render(<div><Hello></Hello><Hello></Hello></div>);
 
 					<small><textarea autojslog="react-jsx-autoclose" rows="7" cols="55">
 function Hello() {
-  return <i>Hello !</i>;
+  return <b>Hello !</b>;
 }
 const node = document.getElementById("react-root2");
 const root = ReactDOM.createRoot(node);
@@ -263,6 +263,28 @@ root.render(<div><Hello/><Hello/></div>);
           </textarea></small>
 					<p><small>Cette notation vient du <a href="https://www.w3.org/TR/xhtml1/">XHTML</a></small></p>
 					<small><div id="react-jsx-autoclose"></div></small>
+				</section>
+
+				<section>
+					<h2>JSX vs ASI</h2>
+					<p>
+                     Après un return, si on veut aller à la ligne suivante, il faut utiliser des parenthèses
+					</p>
+					<p>&nbsp;</p>
+					<div id="react-parens"></div>
+
+					<small><textarea autojslog="react-jsx-parens" rows="9" cols="55">
+function Hello() {
+  return (
+    <h1>Hello !</h1>
+  );
+}
+const node = document.getElementById("react-parens");
+const root = ReactDOM.createRoot(node);
+root.render(<div><Hello/></div>);
+          </textarea></small>
+					<p><small></small></p>
+					<small><div id="react-jsx-parens"></div></small>
 				</section>
 
 				<section>
