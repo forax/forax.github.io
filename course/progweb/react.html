@@ -800,7 +800,7 @@ ReactDOM.createRoot(node).render(<Counter/>);
 					</p>
 					<div id="react-async1"></div>
 
-					<small><textarea autojslog="react-async-example1" rows="16" cols="76">
+					<small><textarea autojslog="react-async-example1" rows="14" cols="76">
 async function fetchData() {
   return (await fetch("images/react/data.json")).json();  // FIXME
 }
@@ -809,9 +809,7 @@ function List() {
   const [data, setData] = React.useState([]);
   return <div>
        <button onClick={ async () => setData(await fetchData()) }>Update</button>
-	   <ul>
-        { data.map(d => <Item key={d.id} value={d.value}/>) }
-	   </ul>
+	   <ul>{ data.map(d => <Item key={d.id} value={d.value}/>) }</ul>
 	 </div>;
 }
 const node = document.getElementById("react-async1");
@@ -828,7 +826,7 @@ ReactDOM.createRoot(node).render(<List/>);
 					</p>
 					<div id="react-async2"></div>
 
-					<small><textarea autojslog="react-async-example2" rows="15" cols="76">
+					<small><textarea autojslog="react-async-example2" rows="13" cols="76">
 async function fetchData(setData) {
   const data = await (await fetch("images/react/data.json")).json();  // FIXME
   setData(data);
@@ -837,9 +835,7 @@ function Item({value}) { return <li>{value}</li>; }
 function List() {
   const [data, setData] = React.useState([]);
   React.useEffect(() => { fetchData(setData); }, []);
-  return <ul>
-        { data.map(d => <Item key={d.id} value={d.value}/>) }
-	   </ul>;
+  return <ul>{ data.map(d => <Item key={d.id} value={d.value}/>) }</ul>;
 }
 const node = document.getElementById("react-async2");
 ReactDOM.createRoot(node).render(<List/>);
