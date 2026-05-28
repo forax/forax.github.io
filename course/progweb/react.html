@@ -717,7 +717,7 @@ ReactDOM.createRoot(node).render(<CarViewer/>);
 					</p>
 					<div id="react-counter"></div>
 
-					<small><textarea autojslog="react-counter-example" rows="13" cols="65">
+					<small><textarea autojslog="react-counter-example" rows="10" cols="65">
 function Counter() {
   const [count, setCount] = React.useState(0);
   return <div>{count} &nbsp;
@@ -742,7 +742,7 @@ ReactDOM.createRoot(node).render(<Counter/>);
 					</p>
 					<div id="react-context"></div>
 
-					<small><textarea autojslog="react-context-example" rows="14" cols="71">
+					<small><textarea autojslog="react-context-example" rows="11" cols="71">
 const CounterContext = React.createContext(null);
 function Counter() {
   const [count, setCount] = React.useState(0);
@@ -773,7 +773,7 @@ ReactDOM.createRoot(node).render(<Counter/>);
 					</p>
 					<div id="react-effect"></div>
 
-					<small><textarea autojslog="react-effect-example" rows="10" cols="60">
+					<small><textarea autojslog="react-effect-example" rows="7" cols="70">
 function Counter() {
   const [count, setCount] = React.useState(0);
   React.useEffect(() => {
@@ -796,7 +796,7 @@ ReactDOM.createRoot(node).render(<Counter/>);
 					</p>
 					<div id="react-effect2"></div>
 
-					<small><textarea autojslog="react-effect2-example" rows="10" cols="60">
+					<small><textarea autojslog="react-effect2-example" rows="7" cols="70">
 function Counter() {
   const [count, setCount] = React.useState(0);
   React.useEffect(() => {
@@ -812,6 +812,30 @@ ReactDOM.createRoot(node).render(<Counter/>);
 				</section>
 
 				<section>
+					<h2>Annulation d'<i>Effect Hook</i></h2>
+					<p>
+                      useEffect() peut renvoyer une fonction de nettoyage
+					</p>
+					<div id="react-effect3"></div>
+
+					<small><textarea autojslog="react-effect3-example" rows="12" cols="60">
+function Wait({timeout}) {
+  React.useEffect(() => {
+    const timerId = window.setTimeout(() => {
+        console.log("timeout !");
+      }, timeout);
+    return () => { window.clearTimeout(timerId); };
+   }, []);
+  return <div/>;
+}
+const node = document.getElementById("react-effect3");
+ReactDOM.createRoot(node).render(<Wait timeout={3000}/>);
+          </textarea></small>
+					<p><small></small></p>
+					<small><div id="react-effect3-example"></div></small>
+				</section>
+
+				<section>
 					<h2>Appel asynchrone</h2>
 				</section>
 
@@ -820,9 +844,9 @@ ReactDOM.createRoot(node).render(<Counter/>);
 					<p>
 						On met à jour en fonction du résultat de l'appel à fetch()
 					</p>
-					<div id="react-async1"></div>
+					<div id="react-async-event"></div>
 
-					<small><textarea autojslog="react-async-example1" rows="14" cols="76">
+					<small><textarea autojslog="react-async-event-example" rows="11" cols="76">
 async function fetchData() {
   return (await fetch("images/react/data.json")).json();  // FIXME
 }
@@ -834,36 +858,91 @@ function List() {
 	   <ul>{ data.map(d => <Item key={d.id} value={d.value}/>) }</ul>
 	 </div>;
 }
-const node = document.getElementById("react-async1");
+const node = document.getElementById("react-async-event");
 ReactDOM.createRoot(node).render(<List/>);
           </textarea></small>
 					<p><small></small></p>
-					<small><div id="react-async-example1"></div></small>
+					<small><div id="react-async-event-example"></div></small>
 				</section>
 
 				<section>
-					<h2>Lors du chargement</h2>
+					<h2>Lors du premier chargement</h2>
 					<p>
 						On utilise useEffect(function, [])
 					</p>
+					<div id="react-async"></div>
+
+					<small><textarea autojslog="react-async-example" rows="11" cols="76">
+async function fetchData() {
+  return (await fetch("images/react/data.json")).json();  // FIXME
+}
+function Item({value}) { return <td>{value}</td>; }
+function Table() {
+  const [data, setData] = React.useState([]);
+  React.useEffect(() => {
+      fetchData().then(d => setData(d)).catch(e => console.error(e));
+  }, []);
+  return <table>{ data.map(d => <Item key={d.id} value={d.value}/>) }</table>;
+}
+const node = document.getElementById("react-async");
+ReactDOM.createRoot(node).render(<Table/>);
+          </textarea></small>
+					<p><small>useEffect() ne permet pas les fonctions async, on utilise then/catch</small></p>
+					<small><div id="react-async-example"></div></small>
+				</section>
+
+				<section>
+					<h2>Lors du premier chargement (2)</h2>
+					<p>
+						On passe la fonction d'update en paramètre
+					</p>
 					<div id="react-async2"></div>
 
-					<small><textarea autojslog="react-async-example2" rows="13" cols="76">
+					<small><textarea autojslog="react-async-example2" rows="10" cols="76">
 async function fetchData(setData) {
   const data = await (await fetch("images/react/data.json")).json();  // FIXME
   setData(data);
 }
-function Item({value}) { return <li>{value}</li>; }
-function List() {
+function Item({value}) { return <td>{value}</td>; }
+function Table() {
   const [data, setData] = React.useState([]);
   React.useEffect(() => { fetchData(setData); }, []);
-  return <ul>{ data.map(d => <Item key={d.id} value={d.value}/>) }</ul>;
+  return <table>{ data.map(d => <Item key={d.id} value={d.value}/>) }</table>;
 }
 const node = document.getElementById("react-async2");
-ReactDOM.createRoot(node).render(<List/>);
+ReactDOM.createRoot(node).render(<Table/>);
           </textarea></small>
-					<p><small>useEffect() ne permet pas les fonctions async, il faut passer setData en paramètre</small></p>
+					<p><small>On ignore la valeur de retour de fetchData()</small></p>
 					<small><div id="react-async-example2"></div></small>
+				</section>
+
+				<section>
+					<h2>AbortController</h2>
+					<p></p>
+					<div id="react-abort"></div>
+
+					<small><textarea autojslog="react-abort-example" rows="16" cols="78">
+async function fetchData(signal) {
+  try {
+    const response = await fetch("images/react/data.json", {signal: signal});
+    if (!response.ok) { throw new Error("HTTP error " + response.status); }
+    return await response.json();
+  } catch(err) { if (err.name !== 'AbortError') { throw err; }}
+}
+function View() {
+  React.useEffect(() => {
+    const controller = new AbortController();
+    fetchData(controller.signal)
+        .then(d => console.log(d.map(v => v.value))).catch(e => console.error(e));
+    return () => { controller.abort(); };
+  }, []);
+  return <div/>;
+}
+const node = document.getElementById("react-abort");
+ReactDOM.createRoot(node).render(<View/>);
+          </textarea></small>
+					<p><small>controller.abort() annule le fetch (avec le signal)</small></p>
+					<small><div id="react-abort-example"></div></small>
 				</section>
 
 				<section>
