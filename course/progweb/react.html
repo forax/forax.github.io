@@ -290,7 +290,7 @@ root.render(<div><Hello/></div>);
 				<section>
 					<h2>Propriété des composants</h2>
 					<p>
-						Les attributs JSX sont transformés en Objet ("props")
+						Les attributs JSX sont transformés en un objet "props"
 						pris en paramètre de la fonction
 					</p>
 					<p>&nbsp;</p>
@@ -321,11 +321,11 @@ root.render(<div><Hello name="a"/><Hello name="b"/></div>);
 					<small><textarea autojslog="react-prop-example2" rows="8" cols="70">
 function Hello(props) {
   const value = props.value;
-  return <span>Hello { value } !</span>;
+  return <span>Hello { value + 2 } !</span>;
 }
 const node = document.getElementById("react-prop2");
 const root = ReactDOM.createRoot(node);
-root.render(<div><Hello value={12}/><Hello value={42}/></div>);
+root.render(<div><Hello value={10}/><Hello value={40}/></div>);
           </textarea></small>
 					<p><small></small></p>
 					<small><div id="react-prop-example2"></div></small>
@@ -450,6 +450,85 @@ root.render(<div><Hello visible={true}/><Hello visible={false}/></div>);
           </textarea></small>
 					<p><small></small></p>
 					<small><div id="react-conditional-example"></div></small>
+				</section>
+
+				<section>
+					<h2>Export/Import de composants</h2>
+					<p>
+					  Les modules EcmaScript (ESM)
+					</p>
+				</section>
+
+				<section>
+					<h2>export/import de fonctions</h2>
+					<pre><code>
+// In api.js
+function fetchEvents() { ... }
+export fetchEvents;
+
+export function deleteEvent(eventId) { ... }
+                    </code></pre>
+					<p><small>En fait, on peut exporter n'importe quelle valeur, pas que des fonctions</small></p>
+					<pre><code>
+// In app.js
+import { fetchEvents, deleteEvent } from './api.js';
+
+const events = fetchEvents();
+					</code></pre>
+					<p><small>Il n'est pas nécessaire d'indiquer l'extension du fichier</small></p>
+				</section>
+
+				<section>
+					<h2>export/import de fonctions (2)</h2>
+					<pre><code>
+// In api.js
+function fetchEvents() { ... }
+function deleteEvent(eventId) { ... }
+
+export {fetchEvents, deleteEvent};
+                    </code></pre>
+					<p><small>On peut grouper les exports</small></p>
+					<pre><code>
+// In app.js
+import * as React from 'react';
+import * as API from './api';
+
+const events = API.fetchEvents();
+					</code></pre>
+					<p><small>Si on import depuis nodes_modules, on utilise le nom du package sans './'</small></p>
+				</section>
+
+				<section>
+					<h2>export d'un composant par défaut</h2>
+					<p>
+						Si on a un fichier par composant,
+					  <br/>
+						on va utiliser l'export par défaut
+					</p>
+					<pre><code>
+// In RoundButton.jsx
+function RoundButton() {
+  return <button>Hello Module !</button>;
+}
+
+export default RoundButton;
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>import d'un composant</h2>
+					<p>
+						Lors de l'import, on change le nom (RoundButton)
+					    uniquement s'il y a une collision de nom
+					</p>
+					<pre><code>
+// In App.jsx
+import RoundButton from './RoundButton';
+
+function App() {
+  return <div>&lt;RoundButton/&gt;</div>;
+}
+					</code></pre>
 				</section>
 
 				<section>
