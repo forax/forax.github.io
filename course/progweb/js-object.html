@@ -227,19 +227,20 @@ JSON.stringify(obj)
                                         </p>
 				</section>
 
-
-
                 <section>
                     <h2>Destructuration d'objet</h2>
                     <p>
                        Comme pour les tableaux, on peut destructurer les valeurs d'un objet
-                       avec la syntaxe <b>let {key1, key2, ...} = object</b>.
+                       avec <b>let {key1:name1, key2:name2, etc} = object</b>
                     </p>
                     <p>&nbsp;</p>
-                    <small><textarea autojslog="js-object-destructuring" rows="4" cols="40">
-let person = { name: "Ana", age: 42 };
+                    <small><textarea autojslog="js-object-destructuring" rows="7" cols="50">
+let person = { name: "Ana", age: 42, job: "teacher" };
+let { job: jobName } = person;
+console.log(jobName);
+
 let {name, age} = person;
-console.log(`Person ${name} ${age}`);
+console.log(`${name} ${age}`);
                                         </textarea></small>
                     <p></p>
                     <small>
@@ -247,9 +248,57 @@ console.log(`Person ${name} ${age}`);
                     </small>
                     <p>
                         <small>
-                            Syntaxe introduite avec ECMAScript 6 !
+                            <b>let {key1} = object</b> est équivalent à <b>let {key1: key1} = object</b>
                         </small>
                     </p>
+                </section>
+
+                <section>
+                    <h2>Syntaxe de propriété raccourcie</h2>
+                    <p>
+                        À la création, on peut utiliser une variable à la place de <b>clé: valeur</b>
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><textarea autojslog="js-object-structuring" rows="5" cols="50">
+let name = "Ana";
+let age = 42;
+let person = { name, age, job: "teacher" };
+console.log(person);
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-object-structuring" class="autojslog"></div>
+                    </small>
+                    <p>
+                        <small>
+                            <b>{name}</b> est équivalent à <b>{name: name}</b>
+                        </small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>L'opérateur spread (...)</h2>
+                    <p>
+                     copie les propriétés d'un objet dans un nouvel objet
+                    </p>
+                    <p>
+                        <small>
+                        Attention à l'ordre des propriétés, l'opérateur ... écrase les valeurs existantes
+                        </small>
+                    </p>
+                    <small><textarea autojslog="js-object-spread" rows="7" cols="50">
+let person = { name: "Ana", age: 42 };
+let person2 = { ...person, job: "teacher" };
+console.log(person2);
+
+let person3 = { name: "Bob", ...person};
+console.log(person2);
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-object-spread" class="autojslog"></div>
+                    </small>
+                    <p></p>
                 </section>
 
                 <section>
