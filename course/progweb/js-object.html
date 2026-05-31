@@ -228,80 +228,6 @@ JSON.stringify(obj)
 				</section>
 
                 <section>
-                    <h2>Destructuration d'objet</h2>
-                    <p>
-                       Comme pour les tableaux, on peut destructurer les valeurs d'un objet
-                       avec <b>let {key1:name1, key2:name2, etc} = object</b>
-                    </p>
-                    <p>&nbsp;</p>
-                    <small><textarea autojslog="js-object-destructuring" rows="7" cols="50">
-let person = { name: "Ana", age: 42, job: "teacher" };
-let { job: jobName } = person;
-console.log(jobName);
-
-let {name, age} = person;
-console.log(`${name} ${age}`);
-                                        </textarea></small>
-                    <p></p>
-                    <small>
-                        <div id="js-object-destructuring" class="autojslog"></div>
-                    </small>
-                    <p>
-                        <small>
-                            <b>let {key1} = object</b> est équivalent à <b>let {key1: key1} = object</b>
-                        </small>
-                    </p>
-                </section>
-
-                <section>
-                    <h2>Syntaxe de propriété raccourcie</h2>
-                    <p>
-                        À la création, on peut utiliser une variable à la place de <b>clé: valeur</b>
-                    </p>
-                    <p>&nbsp;</p>
-                    <small><textarea autojslog="js-object-shorthand" rows="5" cols="50">
-let name = "Ana";
-let age = 42;
-let person = { name, age, job: "teacher" };
-console.log(person);
-                                        </textarea></small>
-                    <p></p>
-                    <small>
-                        <div id="js-object-shorthand" class="autojslog"></div>
-                    </small>
-                    <p>
-                        <small>
-                            <b>{name}</b> est équivalent à <b>{name: name}</b>
-                        </small>
-                    </p>
-                </section>
-
-                <section>
-                    <h2>L'opérateur spread (...)</h2>
-                    <p>
-                     copie les propriétés d'un objet dans un nouvel objet
-                    </p>
-                    <p>
-                        <small>
-                        Attention à l'ordre des propriétés, l'opérateur ... écrase les valeurs existantes
-                        </small>
-                    </p>
-                    <small><textarea autojslog="js-object-spread" rows="7" cols="50">
-let person = { name: "Ana", age: 42 };
-let person2 = { ...person, job: "teacher" };
-console.log(person2);
-
-let person3 = { name: "Bob", ...person};
-console.log(person2);
-                                        </textarea></small>
-                    <p></p>
-                    <small>
-                        <div id="js-object-spread" class="autojslog"></div>
-                    </small>
-                    <p></p>
-                </section>
-
-                <section>
                     <h2>Objet pas primitif</h2>
                     <p>
                         Un objet n'est pas considéré comme un type primitif,
@@ -378,7 +304,7 @@ console.log(firstAdult.name);
 				<section>
 					                    <h2>Le tableau des propriétés</h2>
 					                    <p>
-                                         La fonction <b>Object.keys</b> renvoie un tableau
+                                         La fonction <b>Object.keys()</b> renvoie un tableau
                                          des propriétés (clés) d'un objet
                                          </p>
                                         <p>&nbsp;</p>
@@ -394,10 +320,9 @@ Object.keys(letters)
                                         </p>
 				</section>
 				<section>
-					                    <h2>Parcourir un objet</h2>
+					                    <h2>Parcourir les propriétés d'un objet</h2>
 					                    <p>
-                                         On ne peut pas parcourir un objet directement&nbsp;:
-                                         il faut parcourir ses propriétés, puis pour chaque propriété on peut aller chercher la valeur
+                                            On parcourt les clés renvoyées par <b>Object.keys()</b>
                                          </p>
                                         <p>&nbsp;</p>
                                         <small><textarea autojslog="js-object-iter" rows="8" cols="40">
@@ -439,8 +364,110 @@ for(let property in obj) {
                                          Cette syntaxe est équivalente au code qui utilise <b>Object.keys()</b>
                                         </small></p>
 				</section>
-			
-			</div>
+
+                <section>
+                    <h2>Destructuration d'objet</h2>
+                    <p>
+                        Comme pour les tableaux, on peut destructurer les valeurs d'un objet
+                        avec <b>let {key1:name1, key2:name2, etc} = object</b>
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><textarea autojslog="js-object-destructuring" rows="7" cols="50">
+let person = { name: "Ana", age: 42, job: "teacher" };
+let { job: jobName } = person;
+console.log(jobName);
+
+let {name, age} = person;
+console.log(`${name} ${age}`);
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-object-destructuring" class="autojslog"></div>
+                    </small>
+                    <p>
+                        <small>
+                            <b>let {key1} = object</b> est équivalent à <b>let {key1: key1} = object</b>
+                        </small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Destructuration d'objet (2)</h2>
+                    <p>
+                        Marche aussi pour les déclarations de fonction et les boucles
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><textarea autojslog="js-object-destructuring2" rows="9" cols="60">
+function isOld({age}) { return age >= 21; }
+let isVeryOld = ({age}) => age >= 30;
+console.log(isVeryOld({name: "Charlie", age: 65}));
+
+let persons = [{ name: "Ana", age: 42 }, { name: "Bob", age: 18 }];
+for(let {name, age} of persons) {
+  console.log(`${name} is ${age} years old`);
+}
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-object-destructuring2" class="autojslog"></div>
+                    </small>
+                    <p>
+                        <small>
+                            Pour les fonctions flèches, même s'il y a un seul paramètre,
+                            il faut mettre les parenthèses
+                        </small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Syntaxe de propriété raccourcie</h2>
+                    <p>
+                        À la création, on peut utiliser une variable à la place de <b>clé: valeur</b>
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><textarea autojslog="js-object-shorthand" rows="5" cols="50">
+let name = "Ana";
+let age = 42;
+let person = { name, age, job: "teacher" };
+console.log(person);
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-object-shorthand" class="autojslog"></div>
+                    </small>
+                    <p>
+                        <small>
+                            <b>{name}</b> est équivalent à <b>{name: name}</b>
+                        </small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>L'opérateur spread (...)</h2>
+                    <p>
+                        copie les propriétés d'un objet dans un nouvel objet
+                    </p>
+                    <p>
+                        <small>
+                            Attention à l'ordre des propriétés, l'opérateur ... écrase les valeurs existantes
+                        </small>
+                    </p>
+                    <small><textarea autojslog="js-object-spread" rows="7" cols="50">
+let person = { name: "Ana", age: 42 };
+let person2 = { ...person, job: "teacher" };
+console.log(person2);
+
+let person3 = { name: "Bob", ...person};
+console.log(person2);
+                                        </textarea></small>
+                    <p></p>
+                    <small>
+                        <div id="js-object-spread" class="autojslog"></div>
+                    </small>
+                    <p></p>
+                </section>
+
+            </div>
 
 		</div>
 
