@@ -249,7 +249,7 @@ root.render(<div><Hello></Hello><Hello></Hello></div>);
 				<section>
 					<h2>Balise auto-fermante</h2>
 					<p>
-                     Un slash après le nom d'un composant permet d'"auto-fermer" la balise
+                     Un slash après le nom d'un composant permet d'auto-fermer la balise
 					</p>
 					<p>&nbsp;</p>
 					<div id="react-root2"></div>
@@ -314,6 +314,7 @@ root.render(<div><Hello name="a"/><Hello name="b"/></div>);
 					<h2>Propriété (2)</h2>
 					<p>
 						Si une propriété n'est pas de type string,
+					  <br/>
 						il faut passer la valeur entre '{' '}'
 					</p>
 					<p>&nbsp;</p>
@@ -326,7 +327,7 @@ function Hello(props) {
 }
 const node = document.getElementById("react-prop2");
 const root = ReactDOM.createRoot(node);
-root.render(<div><Hello value={10}/><Hello value={40}/></div>);
+root.render(<div><Hello value="10"/><Hello value={40}/></div>);
           </textarea></small>
 					<p><small></small></p>
 					<small><div id="react-prop-example2"></div></small>
