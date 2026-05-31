@@ -276,7 +276,7 @@ console.log(car.driverName());
                 <section>
                     <h2>Classe prédéfinie&nbsp;: tableau</h2>
                     <p>
-                        Pour JavaScript, un tableau (<b>Array</b>) est un objet,
+                        Un tableau (<b>Array</b>) est un objet,
                         <br/>
                         <b>length</b> est une propriété des objets tableaux
                     </p>
@@ -489,10 +489,8 @@ console.log(car.driverName());
                         Un <b>[Prototype]</b> est un objet dans lequel aller chercher si on
                         trouve pas dans l'objet courant
                     </p>
-                    <small><textarea autojslog="js-object-create" rows="8" cols="40">
-let oldPets = {};
-oldPets.snoopy = "dog";
-oldPets.garfield = "cat";
+                    <small><textarea autojslog="js-object-create" rows="6" cols="45">
+let oldPets = { snoopy: "dog", garfield: "cat"};
 let newPets = Object.create(oldPets);
 newPets.goose = "flerken";
 console.log(newPets.goose);
@@ -504,19 +502,17 @@ console.log(newPets.snoopy);
                     </small>
                 </section>
                 <section>
-                    <h2>__proto__</h2>
+                    <h2>Object.getPrototypeOf()</h2>
                     <p>
                         On peut demander la valeur du <b>[Prototype]</b> d'un objet
-                        avec la clé <b>__proto__</b>.
+                        avec la méthode <b>Object.getPrototypeOf()</b>.
                     </p>
-                    <small><textarea autojslog="js-proto" rows="8" cols="40">
-let oldPets = {};
-oldPets.snoopy = "dog";
-oldPets.garfield = "cat";
+                    <small><textarea autojslog="js-proto" rows="6" cols="45">
+let oldPets = { snoopy: "dog", garfield: "cat"};
 let newPets = Object.create(oldPets);
 newPets.goose = "flerken";
-console.log(newPets);
-console.log(newPets.__proto__);
+
+console.log(Object.getPrototypeOf(newPets));
                     </textarea></small>
                     <p></p>
                     <small>
@@ -530,7 +526,7 @@ console.log(newPets.__proto__);
                         Comme on veut partager les méthodes, on va les mettre
                         dans le <b>[Prototype]</b>
                     </p>
-                    <small><textarea autojslog="js-layer" rows="10" cols="40">
+                    <small><textarea autojslog="js-layer" rows="10" cols="43">
 let methods = {
   driverName: function() { return this.driver; }
 };
@@ -547,7 +543,7 @@ console.log(car2.driverName());
                     </small>
                 </section>
 
-                <section>
+                <!-- section>
                     <h2>Comment on crée un objet en JavaScript &lt&lt; 6</h2>
                     <p>
                         Une fonction joue le rôle de constructeur, le champ
@@ -565,7 +561,7 @@ console.log(car.driverName());
                     <small>
                         <div id="js-old-new" class="autojslog"></div>
                     </small>
-                </section>
+                </section -->
                 <section>
                     <h2>Classe, fonction et champ prototype</h2>
                     <p>
