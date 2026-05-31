@@ -288,7 +288,7 @@ array.length
 // méthode
 array.slice(1)
 
-let array2 = new Array();
+let array2 = new Array(7);
 array2.length
                                         </textarea></small>
                     <small><div id="js-class-builtin-array"></div></small>
@@ -652,7 +652,7 @@ console.log(car.driverName());
                                         <small><textarea autojscanvas="js-object-matrix" rows="25" cols="55">
 let canvas = document.getElementById('js-object-matrix');
 let context = canvas.getContext("2d");
-let data = [ 'U', '-', 'E', 'I', 'F', 'F', 'E', 'L' ];
+let data = Array.from("U-EIFFEL");
 class Snake {
   constructor(x) {
     this.x = x;
