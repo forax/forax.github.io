@@ -669,7 +669,7 @@ class Snake {
   }
 }
 let snakes = new Array(canvas.width / 15);
-for(let i = 0; i < snakes.length; i++) { snakes[i] = new Snake(i); }
+for(let i = 0; i < snakes.length; i++) snakes[i] = new Snake(i);
 window.setInterval(() => {
   context.clearRect(0, 0, canvas.width, canvas.height);
   snakes.forEach(snake => snake.draw(context));
