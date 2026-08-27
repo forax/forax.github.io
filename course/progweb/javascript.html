@@ -303,6 +303,28 @@ a + b
                                          Ne pas utiliser == ou != sur des flottants
                                         </p>
 				</section>
+
+                <section>
+                    <h2>Affichage de flottants</h2>
+                    <p>
+                        Lors de la transformation en chaine de caractères,
+                        on peut tronquer avec toFixed() ou arrondir en fonction
+                        du digit suivant avec toPrecision().
+                    </p>
+                    <p>&nbsp;</p>
+                    <small><textarea autojs="js-number-string" rows="8" cols="20">
+let a = 0.1;
+let b = 0.2;
+
+(a + b).toString()
+(a + b).toFixed(2)
+
+(0.45).toPrecision(1)
+                                        </textarea></small>
+                    <small><div id="js-number-string"></div></small>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                </section>
 				
 				<section>
 					                     <h2>Opérateurs booléens</h2>
