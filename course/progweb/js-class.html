@@ -406,14 +406,12 @@ console.log(eval.add2()(2));
                         un <b>bind(this)</b>.
                     </p>
                     <p>&nbsp;</p>
-                    <small><textarea autojslog="js-bind-this" rows="9" cols="55">
+                    <small><textarea autojslog="js-bind-this" rows="7" cols="55">
 class Eval {
   constructor(x) { this.x = x; }
-  add() { return v => this.x + v; }
   add2() { return function(v) { return this.x + v; }.bind(this); }
 }
 let eval = new Eval(40);
-console.log(eval.add()(2));
 console.log(eval.add2()(2));
                                         </textarea></small>
                     <p></p>
