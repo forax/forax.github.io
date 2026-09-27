@@ -657,10 +657,9 @@ Exemple <b>qui <i>ne</b> marche pas</i>
 &lt;/audio&gt;
                                         </code></pre>
                                         <small>
-                                         Le format mp3 est supporté par tous les browsers,
-                                        <br/>
-                                         ogg (format libre !) n'est supporté ni par Internet Explorer
-                                         ni par Safari :(
+                                         Le format ogg (<tt>audio/ogg</tt>, <tt>audio/webm</tt>)
+                                         est supporté par tous les browsers,
+                                         le format mp3 (dépassé) est utilisé en fallback.
                                         </small>
 				</section>
                                 <section>
@@ -677,10 +676,11 @@ Exemple <b>qui <i>ne</b> marche pas</i>
 &lt;/video&gt;
                                         </code></pre>
                                         <small>
-                                         Le format mp4 est supporté par tous les browsers,
+                                         Les formats mp4/av1 et webm/vp9 sont supportés par tous les browsers,
+                                         (pas forcément d'accélération matérielle),
+                                         le format mp4/H.264 (trop gros) est utilisé en fallback.
                                         <br/>
-                                         ogg et webm (formats libres !) ne sont supportés ni par
-                                         Internet Explorer ni par Safari :(
+
                                         </small>
 				</section>
                                 <section>
