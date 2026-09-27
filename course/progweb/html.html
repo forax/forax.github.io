@@ -261,13 +261,90 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                          Voici les principaux éléments organisés en catégories&nbsp;:
                                         </p>
                                         <ul>
+                                         <li>éléments du document
                                          <li>éléments liés au texte
                                          <li>éléments de structure
                                          <li>éléments multi-média
                                          <li>éléments de formulaire (vu plus tard)
-                                         <li>éléments du document 
                                         </ul>
 				</section>
+                <section>
+                    <h2>&Eacute;léments du document</h2>
+                </section>
+                <section>
+                    <h2>&Eacute;léments du document (doctype)</h2>
+                    <p>
+                        Avant la balise html,
+                        on doit indiquer la version du HTML
+                    </p>
+                    <table>
+                        <td>HTML 5</td>
+                        <td><pre><code class="html" data-trim>
+&lt;!DOCTYPE html&gt;
+                                         </code></pre></td>
+                        <tr>
+                            <td>XHTML 1.0</td>
+                            <td><pre><code class="html" data-trim>
+&lt;!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+                                         </code></pre></td>
+                        <tr>
+                            <td>HTML 4.01</td>
+                            <td><pre><code class="html" data-trim>
+&lt;!DOCTYPE HTML PUBLIC
+ "-//W3C//DTD HTML 4.01 Transitional//EN"
+ "http://www.w3.org/TR/html4/loose.dtd"&gt;
+                                         </code></pre></td>
+                    </table>
+                </section>
+                <section>
+                    <h2>&Eacute;léments du document (head)</h2>
+                    <p>
+                        La balise <b>head</b> permet d'indiquer
+                        <br/>
+                        des propriétés du document
+                    </p>
+                    <dl>
+                        <dt>title
+                        <dd>permet d'indiquer le titre du document
+                        <dt>meta
+                        <dd>les méta-données associées au document
+                            </ul>
+                            <pre><code class="html" data-trim contenteditable>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+ &lt;head&gt;
+  &lt;title&gt;Programmation Web&lt;/title&gt;
+  &lt;meta charset="UTF-8"&gt;
+ &lt;/head&gt;
+&lt;/html&gt;
+                                        </code></pre>
+                </section>
+                <section>
+                    <h2>&Eacute;léments du document (meta)</h2>
+                    <p>
+                        Méta-donnée sur le document
+                    </p>
+                    <dl>
+                        <dt>table de caractères
+                            (<a href="https://en.wikipedia.org/wiki/Character_encodings_in_HTML">encodage</a>)
+                        <dd>
+                                          <pre><code class="html" data-trim contenteditable>
+&lt;meta charset="UTF-8"&gt;
+                                          </code></pre>
+                        <dt>mots-clefs (moteur de recherche)
+                        <dd>
+                                          <pre><code class="html" data-trim contenteditable>
+&lt;meta name="keywords" content="web, html, css, javascript"&gt;
+                                          </code></pre>
+                        <dt>auteur
+                        <dd>
+                                          <pre><code class="html" data-trim contenteditable>
+&lt;meta name="author" content="Remi Forax"&gt;
+                                          </code></pre>
+                    </dl>
+                </section>
                                 <section>
                                         <h2>&Eacute;léments liés au texte</h2>
 				</section>
@@ -617,83 +694,6 @@ Exemple <b>qui <i>ne</b> marche pas</i>
                                            <source src="images/html/upem.mp4" type="video/mp4">
                                          Sorry, no video for you.
                                         </video>
-				</section>
-                                <section>
-					<h2>&Eacute;léments du document</h2>
-				</section>
-                                <section>
-					<h2>&Eacute;léments du document (doctype)</h2>
-                                        <p>
-                                         Avant la balise html,
-                                         on doit indiquer la version du HTML
-                                        </p>
-                                        <table>
-                                         <td>HTML 5</td>
-                                         <td><pre><code class="html" data-trim>
-&lt;!DOCTYPE html&gt; 
-                                         </code></pre></td>
-                                        <tr>
-                                         <td>XHTML 1.0</td>
-                                         <td><pre><code class="html" data-trim>
-&lt;!DOCTYPE html PUBLIC
- "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
-                                         </code></pre></td>
-                                        <tr>
-                                         <td>HTML 4.01</td>
-                                         <td><pre><code class="html" data-trim>
-&lt;!DOCTYPE HTML PUBLIC
- "-//W3C//DTD HTML 4.01 Transitional//EN"
- "http://www.w3.org/TR/html4/loose.dtd"&gt; 
-                                         </code></pre></td>
-                                        </table>
-				</section>
-                                <section>
-					<h2>&Eacute;léments du document (head)</h2>
-                                        <p>
-                                         La balise <b>head</b> permet d'indiquer
-                                        <br/>
-                                         des propriétés du document
-                                        </p>
-                                        <dl>
-                                         <dt>title
-                                         <dd>permet d'indiquer le titre du document
-                                         <dt>meta
-                                         <dd>les méta-données associées au document
-                                        </ul>
-                                        <pre><code class="html" data-trim contenteditable>
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
- &lt;head&gt;
-  &lt;title&gt;Programmation Web&lt;/title&gt;
-  &lt;meta charset="UTF-8"&gt; 
- &lt;/head&gt;
-&lt;/html&gt;
-                                        </code></pre>
-				</section>
-                                <section>
-					<h2>&Eacute;léments du document (meta)</h2>
-                                        <p>
-                                         Méta-donnée sur le document
-                                        </p>
-                                        <dl>
-                                         <dt>table de caractères
-                                             (<a href="https://en.wikipedia.org/wiki/Character_encodings_in_HTML">encodage</a>)
-                                         <dd>
-                                          <pre><code class="html" data-trim contenteditable>
-&lt;meta charset="UTF-8"&gt;
-                                          </code></pre>
-                                         <dt>mots-clefs (moteur de recherche)
-                                         <dd>
-                                          <pre><code class="html" data-trim contenteditable>
-&lt;meta name="keywords" content="web, html, css, javascript"&gt;
-                                          </code></pre>
-                                         <dt>auteur
-                                         <dd>
-                                          <pre><code class="html" data-trim contenteditable>
-&lt;meta name="author" content="Remi Forax"&gt;
-                                          </code></pre>
-                                        </dl>
 				</section>
                                 <section>
 					<h2>Et pour le style ?</h2>
