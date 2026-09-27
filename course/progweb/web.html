@@ -108,6 +108,21 @@ rtt min/avg/max/mdev = 27.293/28.505/29.422/0.782 ms
                                         </code></pre>
 				</section>
                 <section>
+                    <h2>TTL (Time To Live)</h2>
+                    <p>
+                        Chaque paquet IP possède un compteur (TTL),
+                      <br/>
+                        décrémenté de 1 à chaque routeur traversé.
+                       <br/>
+                        Permet d'estimer le nombre de routeurs traversés
+                    </p>
+                    <p><small>
+                        Si TTL == 0, le paquet est détruit et un paquet d'erreur
+                        ICMP "Time Exceeded" est renvoyé à l'émetteur.
+                        Le TTL initial dépend de l'OS (64 Linux/macOS, 128 Windows)
+                    </small></p>
+                </section>
+                <section>
 					<h2>DNS</h2>
 					<blockquote cite="https://en.wikipedia.org/wiki/DNS">
                                          &ldquo;The Domain Name System (DNS) is a hierarchical distributed naming system
@@ -133,14 +148,16 @@ rtt min/avg/max/mdev = 27.293/28.505/29.422/0.782 ms
                                          La commande host permet de demander au DNS une adresse IP pour un nom de machine
                                         </p>
                                         <pre><code class="hlbash" data-trim>
-$ host www.u-pem.fr
-www.u-pem.fr is an alias for typo3-prod.u-pem.fr.
-typo3-prod.u-pem.fr has address 193.50.159.151.
+$ host www.univ-eiffel.fr
+www.univ-eiffel.fr is an alias for www.univ-gustave-eiffel.fr.
+www.univ-gustave-eiffel.fr has address 193.55.45.17
 
-$ host playboy.com
-playboy.com has address 204.74.99.100
-playboy.com mail is handled by 10 mx.la.playboy.com.
-playboy.com mail is handled by 5 mx01.la.playboy.com.
+$ host gmail.com
+gmail.com has address 172.217.16.229
+gmail.com has IPv6 address 2a00:1450:4007:811::2005
+gmail.com mail is handled by 10 alt1.gmail-smtp-in.l.google.com.
+gmail.com mail is handled by 5 gmail-smtp-in.l.google.com.
+gmail.com mail is handled by 20 alt2.gmail-smtp-in.l.google.com.
 					</code></pre>
 				</section>
                                 <section>
@@ -149,14 +166,14 @@ playboy.com mail is handled by 5 mx01.la.playboy.com.
                                          En utilisant un des DNS de Google 8.8.8.8
                                         </p>
                                         <pre><code class="hlbash" data-trim>
-$ host www.u-pem.fr 8.8.8.8
+$ host www.univ-eiffel.fr 8.8.8.8
 Using domain server:
 Name: 8.8.8.8
 Address: 8.8.8.8#53
 Aliases: 
 
-www.u-pem.fr is an alias for typo3-prod.u-pem.fr.
-typo3-prod.u-pem.fr has address 193.50.159.151
+www.univ-eiffel.fr is an alias for www.univ-gustave-eiffel.fr.
+www.univ-gustave-eiffel.fr has address 193.55.45.17
                                         </code></pre>
                                 </section>
                                 <section>
@@ -172,6 +189,28 @@ typo3-prod.u-pem.fr has address 193.50.159.151
                                          </a>
                                         </p>
                                 </section>
+                <section>
+                    <h2>whois</h2>
+                    <p>
+                        Permet d'interroger les registres qui gèrent
+                        les noms de domaine et les blocs d'adresses IP
+                    </p>
+                    <p><small>
+                        Infos: le propriétaire du domaine,
+                        dates de création/expiration, sa localisation (optionnelle), etc.
+                    </small></p>
+                    <pre><code class="hlbash" data-trim>
+$ whois example.com
+ Domain Name: NITENDO.COM
+ Registrar WHOIS Server: whois.tucows.com
+ Registrar URL: http://www.tucows.com
+ Updated Date: 2026-04-02T03:48:43Z
+ Creation Date: 1998-05-02T04:00:00Z
+ Registry Expiry Date: 2027-05-01T04:00:00Z
+ Registrar: Tucows Domains Inc.
+ ...
+    </code></pre>
+                </section>
                                 <section>
 					<h2>Routeur</h2>
 					<p>
@@ -287,26 +326,47 @@ traceroute to 93.184.220.20 (93.184.220.20), 30 hops max, 60 byte packets
                                              width="540"
                                              height="398">
 				</section>
-                                
+                <section>
+                    <h2>Les versions de HTTP</h2>
+                    <table>
+                      <tr>
+                        <td>HTTP/0.9 (1991)</td>
+                        <td>juste GET, pas de code de retour</td>
+                      </tr><tr>
+                        <td>HTTP/1.0 (1996)</td>
+                        <td>ajoute les headers + le code de retour + plusieurs types de contenu</td>
+                      </tr><tr>
+                        <td>HTTP/1.1 (1997)</td>
+                        <td>header Host (obligatoire) + connections persistantes</td>
+                      </tr>
+                    </table>
+                    <p><small>
+                        La plupart des sites utilisent HTTP/2 (2015) ou HTTP/3 (2022),
+                       <br/>
+                        mais HTTP/1.1 reste le plus simple car textuel
+                    </small></p>
+                </section>
                                 <section>
                                         <h2>netcat (nc)</h2>
                                         <p>
                                          permet d'envoyer une requête HTTP :)
                                         </p>
                                         <pre><code class="hlbash" data-trim>
-$ nc monge.univ-mlv.fr 80
+$ nc www.univ-gustave-eiffel.fr 80
 GET / HTTP/1.0
                                          </code></pre>
                                          <pre class="fragment"><code class="hlbash" data-trim>
-HTTP/1.1 302 Found
-Date: Mon, 21 Dec 2015 17:15:35 GMT
+HTTP/1.1 400 Bad Request
+Date: Sun, 27 Sep 2026 10:13:25 GMT
 Server: Apache
-Location: http://igm.u-pem.fr/
-Content-Length: 269
+Content-Length: 338
 Connection: close
 Content-Type: text/html; charset=iso-8859-1
 ...
                                        </code></pre>
+                                    <p class="fragment"><small>
+                                        Le serveur n'implante pas le protocole HTTP 1.0 (trop vieux)
+                                    </small></p>
                                 </section>
                                 
                                 <section>
@@ -333,6 +393,7 @@ Content-Type: text/html; charset=iso-8859-1
 					                    <p><small>
                                          200 OK<br/>
                                          301 Moved Permanently<br/>
+                                         400 Bad Request<br/>
                                          401 Unauthorized<br/>
                                          404 Not Found
                                         </small></p>
@@ -413,6 +474,8 @@ GET / HTTP/1.1
 Host: forax.github.io
 
 HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Length: 6042
 Server: GitHub.com
 ...
                                        </code></pre>
@@ -428,23 +491,22 @@ Host: imgs.xkcd.com
                                           </code></pre>
                                           <pre class="fragment"><code class="http" data-trim>
 HTTP/1.1 200 OK
-Cache-Control: public, max-age=300
-Expires: Sun, 24 Jan 2016 10:51:04 GMT
-Content-Type: image/png
-ETag: "3722984847"
-Last-Modified: Mon, 28 Apr 2014 04:40:03 GMT
-Server: lighttpd/1.4.28
+Connection: keep-alive
 Content-Length: 19172
+Server: nginx
+Content-Type: image/png
+Last-Modified: Mon, 28 Apr 2014 04:40:03 GMT
+ETag: "535ddba3-4ae4"
+Access-Control-Allow-Origin: *
 Accept-Ranges: bytes
-Date: Sun, 24 Jan 2016 13:58:11 GMT
+Age: 0
+Date: Sun, 27 Sep 2026 09:58:04 GMT
 Via: 1.1 varnish
-Age: 16
-Connection: close
-X-Served-By: cache-lcy1135-LCY
-X-Cache: HIT
-X-Cache-Hits: 6
-X-Timer: S1453643891.248729,VS0,VE0
-
+X-Served-By: cache-par-lfpb1150090-PAR
+X-Cache: MISS
+X-Cache-Hits: 0
+X-Timer: S1790503084.406746,VS0,VE403
+...
 				                          </code></pre>
 				                          <small>
 				                            Fichier PNG de 19172 octets
@@ -463,12 +525,16 @@ X-Timer: S1453643891.248729,VS0,VE0
                                          à partir d'une URL
                                         </p>
                                         <pre><code class="hlbash" data-trim>
-$ wget http://igm.u-pem.fr/index.html
---2015-12-22 00:54:29--  http://igm.u-pem.fr/index.html
-Resolving igm.u-pem.fr (igm.u-pem.fr)... 193.50.159.151
-Connecting to igm.u-pem.fr (igm.u-pem.fr)|193.50.159.151|:80... connected.
+$ wget http://ligm.univ-eiffel.fr/~forax/index.html
+--2026-09-27 12:01:09--  http://ligm.univ-eiffel.fr/~forax/index.html
+Resolving ligm.univ-eiffel.fr (ligm.univ-eiffel.fr)... 193.55.61.150
+Connecting to ligm.univ-eiffel.fr (ligm.univ-eiffel.fr)|193.55.61.150|:80... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://ligm.univ-eiffel.fr/~forax/index.html [following]
+--2026-09-27 12:01:09--  https://ligm.univ-eiffel.fr/~forax/index.html
+Connecting to ligm.univ-eiffel.fr (ligm.univ-eiffel.fr)|193.55.61.150|:443... connected.
 HTTP request sent, awaiting response... 200 OK
-Length: unspecified [text/html]
+Length: 6073 (5,9K) [text/html]
 Saving to: ‘index.html’
                                         </code></pre>
                                 </section>
@@ -500,46 +566,47 @@ Saving to: ‘index.html’
                                 <section>
 					<h2>HTTPS</h2>
 					<p>
-                                         Tunnel de sécurité autour de HTTP
-                                        </p>
-                                        <p>
-                                         Utilise le principe du chiffrement asymétrique
-                                        <br/>
-                                         entre le client et le serveur
-                                        </p>
-                                        <p class="fragment">
-                                         La clé public est cherchée auprès de serveurs
-                                         (dit serveurs de certificats) qui ont leurs clés publiques
-                                         stockées dans le code du client
-                                        </p>
-                                        <p class="fragment">
-                                         Pour des questions de performance,
-                                         le chiffrement asymétrique n'est utilisé que pour échanger
-                                         une clef symétrique entre le client et le serveur,
-                                         le reste des échanges se fait en utilisant cette clef symétrique
-                                        </p>
+                      Tunnel de sécurité autour de HTTP
+                    </p>
+                    <p>
+                      Utilise le principe du chiffrement asymétrique
+                      entre le client et le serveur pour échanger une clef symétrique
+                    <br/>
+                      Le reste des échanges se fait en utilisant cette clef symétrique
+                    </p>
 				</section>
 
-                                <!-- section>
-					<h2>Chiffrage asymétrique</h2>
-                                        
-					<p>
-                                         clé publique
-                                         clé privée
-                                        </p>
-                                        
-				</section>
+                <section>
+                    <h2>Chiffrement asymétrique</h2>
+                    <p>
+                        Chaque machine possède une paire de clés : une clé publique (diffusée à tous)
+                        et une clé privée (gardée secrète)
+                    </p>
+                    <p>
+                        Ce que l'on chiffre avec la clé publique ne peut être déchiffré
+                        qu'avec la clé privée correspondante (et vice-versa)
+                    </p>
+                    <p class="fragment">
+                        Le serveur envoie sa clé publique au client, qui s'en sert pour chiffrer
+                        un secret que seul le serveur (avec sa clé privée) pourra lire
+                    </p>
+                </section>
 
-                                <section>
-                                         <img src="images/web/https-certificates.png">
-				</section>
-
-                                <section>
-					<h2>Certificats</h2>
-					<p>
-                                         
-                                        </p>
-				</section -->
+                <section>
+                    <h2>Certificats</h2>
+                    <p>
+                        Comment être sûr que la clé publique reçue appartient bien
+                        au serveur voulu (et pas à un attaquant) ?
+                    </p>
+                    <p>
+                        Une autorité de certification (Certificate Authority) signe
+                        un certificat qui associe un nom de domaine à une clé publique
+                    </p>
+                    <p>
+                        Le navigateur possède déjà les clés publiques des autorités reconnues,
+                        ce qui lui permet de vérifier la signature du certificat
+                    </p>
+                </section>
 			</div>
 
 		</div>
